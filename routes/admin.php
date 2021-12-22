@@ -6,7 +6,7 @@ use App\Http\Controllers\Backend\SubcategoryController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\ProductController;
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
 
   Route::get('/dashboard', function () {
     return view('backend.dashboard');

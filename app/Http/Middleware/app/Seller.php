@@ -19,6 +19,6 @@ class Seller
         if(auth()->user()->role == 'Seller'){
             return $next($request);
         }
-        return redirect('/');
+        return redirect('/admin/dashboard');
     }
 }

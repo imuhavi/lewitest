@@ -19,6 +19,6 @@ class Customer
         if(auth()->user()->role == 'Customer'){
             return $next($request);
         }
-        return redirect('/');
+        return redirect('/seller/dashboard');
     }
 }
