@@ -363,9 +363,13 @@
                                     <li role="presentation" class="divider"></li>
                                     <li role="presentation"><a href="lock-screen.html"><i class="icon-lock"></i>Lock
                                             screen</a></li>
-                                    <li role="presentation"><a href="login.html"><i class="icon-key m-r-xs"></i>Log
-                                            out</a></li>
+                                    <li role="presentation"><a href="#" onclick="logout()"><i class="icon-key m-r-xs"></i>Log out</a></li>
                                 </ul>
+                                
+                                <form method="POST" id="logoutForm" action="{{ route('logout') }}">
+                                    @csrf
+                                </form>
+
                             </li>
                             <li>
                                 <a href="javascript:void(0);" id="showRight">
@@ -377,3 +381,12 @@
                 </div>
             </div>
         </div><!-- Navbar -->
+
+    <script>
+        // Logout
+        let logoutForm = document.getElementById('logoutForm')
+        function logout() {
+            event.preventDefault()
+            if(confirm('Are you sure to logout ?')) logoutForm.submit()
+        }
+    </script>

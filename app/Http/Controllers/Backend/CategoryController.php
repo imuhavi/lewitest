@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+  private $VIEW_PATH = 'backend.category.';
+
   /**
    * Display a listing of the resource.
    *
@@ -15,7 +17,7 @@ class CategoryController extends Controller
    */
   public function index()
   {
-    return view('backend.category.category-index');
+    return view( $this->VIEW_PATH . 'category-index');
   }
 
   /**
@@ -25,7 +27,7 @@ class CategoryController extends Controller
    */
   public function create()
   {
-    return view('backend.category.category-create');
+    return view( $this->VIEW_PATH . 'category-create');
   }
 
   /**
@@ -58,7 +60,7 @@ class CategoryController extends Controller
    */
   public function edit(Category $category)
   {
-    return view('backend.category.category-edit');
+    return view( $this->VIEW_PATH . 'category-edit');
   }
 
   /**
