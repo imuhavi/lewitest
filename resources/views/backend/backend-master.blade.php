@@ -60,8 +60,10 @@
     <script src="{{ asset('backend/') }}/assets/plugins/flot/jquery.flot.tooltip.min.js"></script>
     <script src="{{ asset('backend/') }}/assets/plugins/curvedlines/curvedLines.js"></script>
     <script src="{{ asset('backend/') }}/assets/plugins/chartjs/Chart.bundle.min.js"></script>
+    <script src="{{ asset('backend/') }}/assets/plugins/datatables/js/jquery.datatables.min.js"></script>
     <script src="{{ asset('backend/') }}/assets/js/meteor.min.js"></script>
     <script src="{{ asset('backend/') }}/assets/js/pages/dashboard.js"></script>
+    <script src="{{ asset('backend/') }}/assets/js/pages/table-data.js"></script>
 
 </body>
 

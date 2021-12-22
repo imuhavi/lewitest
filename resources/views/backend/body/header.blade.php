@@ -21,6 +21,10 @@
     <link href="{{ asset('backend/') }}/assets/plugins/3d-bold-navigation/css/style.css" rel="stylesheet" type="text/css" />
     <link href="{{ asset('backend/') }}/assets/plugins/slidepushmenus/css/component.css" rel="stylesheet" type="text/css" />
     <link href="{{ asset('backend/') }}/assets/plugins/weather-icons-master/css/weather-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('backend/') }}/assets/plugins/datatables/css/jquery.datatables.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="{{ asset('backend/') }}/assets/plugins/datatables/css/jquery.datatables_themeroller.css"
+        rel="stylesheet" type="text/css" />
     <link href="{{ asset('backend/') }}/assets/plugins/toastr/toastr.min.css" rel="stylesheet" type="text/css" />
 
     <!-- Theme Styles -->

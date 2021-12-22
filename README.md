@@ -5,6 +5,7 @@
     1) Project init
     2) Laravel Default Authentication System Add
     3) Backend Templete Mastaring Done
+    4) Category, subcateogry, product, copun model,controler and blade page create.
 
 ## Hridoy
 

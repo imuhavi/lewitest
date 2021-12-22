@@ -1,4 +1,7 @@
 @extends('backend.backend-master')
+@section('dashboard_active')
+  active
+@endsection
 @section('content')
   <div class="page-inner">
       <div class="page-title">
