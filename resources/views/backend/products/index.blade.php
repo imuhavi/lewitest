@@ -1,4 +1,4 @@
-@extends('backend.backend-master');
+@extends('backend.master');
 @section('product_active')
   active
 @endsection

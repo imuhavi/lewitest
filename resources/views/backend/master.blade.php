@@ -2,7 +2,7 @@
 <html lang="en">
 
         @include('backend.body.header')
-        @include('backend.body.side-nav')
+        @include('backend.body.sidemenu')
 
 
         {{-- Main Content --}}

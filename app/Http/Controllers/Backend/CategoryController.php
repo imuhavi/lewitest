@@ -17,7 +17,7 @@ class CategoryController extends Controller
    */
   public function index()
   {
-    return view( $this->VIEW_PATH . 'category-index');
+    return view($this->VIEW_PATH . 'index');
   }
 
   /**
@@ -27,7 +27,7 @@ class CategoryController extends Controller
    */
   public function create()
   {
-    return view( $this->VIEW_PATH . 'category-create');
+    return view($this->VIEW_PATH . 'create');
   }
 
   /**
@@ -60,7 +60,7 @@ class CategoryController extends Controller
    */
   public function edit(Category $category)
   {
-    return view( $this->VIEW_PATH . 'category-edit');
+    return view($this->VIEW_PATH . 'edit');
   }
 
   /**

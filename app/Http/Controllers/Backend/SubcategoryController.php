@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class SubcategoryController extends Controller
 {
+  private $VIEW_PATH = 'backend.subcategory.';
   /**
    * Display a listing of the resource.
    *
@@ -15,7 +16,7 @@ class SubcategoryController extends Controller
    */
   public function index()
   {
-    return view('backend.subcategory.subcategory-index');
+    return view($this->VIEW_PATH . 'index');
   }
 
   /**
@@ -25,7 +26,7 @@ class SubcategoryController extends Controller
    */
   public function create()
   {
-    return view('backend.subcategory.subcategory-create');
+    return view($this->VIEW_PATH . 'create');
   }
 
   /**
@@ -58,7 +59,7 @@ class SubcategoryController extends Controller
    */
   public function edit(Subcategory $subcategory)
   {
-    return view('backend.subcategory.subcategory-edit');
+    return view($this->VIEW_PATH . 'edit');
   }
 
   /**

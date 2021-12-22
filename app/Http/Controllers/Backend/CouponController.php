@@ -3,13 +3,13 @@
 namespace App\Http\Backend\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Product;
+use App\Models\Coupon;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class CouponController extends Controller
 {
 
-  private $VIEW_PATH = 'backend.products.';
+  private $VIEW_PATH = "";
   /**
    * Display a listing of the resource.
    *
@@ -17,7 +17,7 @@ class ProductController extends Controller
    */
   public function index()
   {
-    return view($this->VIEW_PATH . 'index');
+    //
   }
 
   /**
@@ -27,7 +27,7 @@ class ProductController extends Controller
    */
   public function create()
   {
-    return view($this->VIEW_PATH . 'create');
+    //
   }
 
   /**
@@ -44,10 +44,10 @@ class ProductController extends Controller
   /**
    * Display the specified resource.
    *
-   * @param  \App\Models\Product  $product
+   * @param  \App\Models\Coupon  $coupon
    * @return \Illuminate\Http\Response
    */
-  public function show(Product $product)
+  public function show(Coupon $coupon)
   {
     //
   }
@@ -55,22 +55,22 @@ class ProductController extends Controller
   /**
    * Show the form for editing the specified resource.
    *
-   * @param  \App\Models\Product  $product
+   * @param  \App\Models\Coupon  $coupon
    * @return \Illuminate\Http\Response
    */
-  public function edit(Product $product)
+  public function edit(Coupon $coupon)
   {
-    return view($this->VIEW_PATH . 'edit');
+    //
   }
 
   /**
    * Update the specified resource in storage.
    *
    * @param  \Illuminate\Http\Request  $request
-   * @param  \App\Models\Product  $product
+   * @param  \App\Models\Coupon  $coupon
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, Product $product)
+  public function update(Request $request, Coupon $coupon)
   {
     //
   }
@@ -78,20 +78,11 @@ class ProductController extends Controller
   /**
    * Remove the specified resource from storage.
    *
-   * @param  \App\Models\Product  $product
+   * @param  \App\Models\Coupon  $coupon
    * @return \Illuminate\Http\Response
    */
-  public function destroy(Product $product)
+  public function destroy(Coupon $coupon)
   {
     //
-  }
-
-  /**
-   * Display Proudct Trash List
-   */
-
-  public function productDraft()
-  {
-    return view($this->VIEW_PATH . 'draft');
   }
 }

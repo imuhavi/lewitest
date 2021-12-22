@@ -1,4 +1,4 @@
-@extends('backend.backend-master')
+@extends('backend.master')
 @section('dashboard_active')
   active
 @endsection
