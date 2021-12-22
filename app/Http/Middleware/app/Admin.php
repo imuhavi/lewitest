@@ -19,6 +19,6 @@ class Admin
         if(auth()->user()->role == 'Admin'){
             return $next($request);
         }
-        return redirect('/');
+        return redirect('/login');
     }
 }
