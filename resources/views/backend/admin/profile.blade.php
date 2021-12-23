@@ -15,56 +15,79 @@
             <div class="col-md-8">
                 <div class="panel panel-white">
                     <div class="panel-heading clearfix">
-                        <h4 class="panel-title">User Profile Information</h4>
+                        <h4 class="panel-title">Manage Profile Information</h4>
                     </div>
                     <div class="panel-body">
                         <div class="card mb-4">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <p class="mb-0">Full Name</p>
+                            <form action="#" method="post" enctype="multipart/form-data">
+                              @csrf
+                              <div class="card-body">
+
+                                  <div class="row">
+                                      <div class="col-sm-3">
+                                          <p class="mb-0">Profile Photo</p>
+                                      </div>
+                                      <div class="col-sm-5">
+                                          <input type="file" name="profile_photo" id="profile_photo" class="form-control">
+                                      </div>
+                                      <div class="col-sm-4">
+                                        <img class="img avatar"
+                                            src="{{ asset("backend/assets/default-img/user.jpeg") }}" alt="" width="80px" height="80px">
+                                      </div>
+                                  </div>
+                                  <hr>
+                                  <div class="row">
+                                      <div class="col-sm-3">
+                                          <p class="mb-0">Full Name</p>
+                                      </div>
+                                      <div class="col-sm-9">
+                                          {{-- <p class="text-muted mb-0">Johnatan Smith</p> --}}
+                                          <input type="text" name="full_name" id="full_name" class="form-control">
+                                      </div>
+                                  </div>
+                                  <hr>
+                                  <div class="row">
+                                      <div class="col-sm-3">
+                                          <p class="mb-0">Email</p>
+                                      </div>
+                                      <div class="col-sm-9">
+                                          <input type="email" name="email" id="email" class="form-control">
+                                      </div>
+                                  </div>
+                                  <hr>
+                                  <div class="row">
+                                      <div class="col-sm-3">
+                                          <p class="mb-0">Phone(primary)</p>
+                                      </div>
+                                      <div class="col-sm-9">
+                                          <input type="tel" name="phone" id="phone" class="form-control">
+                                      </div>
+                                  </div>
+                                  <hr>
+                                  <div class="row">
+                                      <div class="col-sm-3">
+                                          <p class="mb-0">Mobile(optional)</p>
+                                      </div>
+                                      <div class="col-sm-9">
+                                          <input type="tel" name="mobile" id="mobile" class="form-control">
+                                      </div>
+                                  </div>
+                                  <hr>
+                                  <div class="row">
+                                      <div class="col-sm-3">
+                                          <p class="mb-0">Address</p>
+                                      </div>
+                                      <div class="col-sm-9">
+                                          <textarea name="address" id="address" class="form-control"></textarea>
+                                      </div>
+                                  </div>
+                                  <div class="row" style="margin-top: 20px">
+                                    <div class="col-sm-12 text-right ">
+                                      <button class="btn btn-info" type="submit">Save Changes</button>
                                     </div>
-                                    <div class="col-sm-9">
-                                        <p class="text-muted mb-0">Johnatan Smith</p>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <p class="mb-0">Email</p>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <p class="text-muted mb-0">example@example.com</p>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <p class="mb-0">Phone</p>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <p class="text-muted mb-0">(097) 234-5678</p>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <p class="mb-0">Mobile</p>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <p class="text-muted mb-0">(098) 765-4321</p>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <p class="mb-0">Address</p>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
-                                    </div>
-                                </div>
-                            </div>
+                                  </div>
+                              </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -76,7 +99,9 @@
                         <h4 class="panel-title">Change Password</h4>
                     </div>
                     <div class="panel-body">
-                        <form>
+                        <form action="#" method="POST">
+
+                          @csrf
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="current_password">Current Passord</label>

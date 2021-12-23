@@ -1,14 +1,14 @@
 <div class="page-sidebar sidebar">
     <div class="page-sidebar-inner slimscroll">
         <ul class="menu accordion-menu">
-            <li class="@yield('dashboard_active')"><a href="{{ url('admin/dashboard') }}"
+            <li class="@yield('dashboard_active')"><a href="{{ route('dashboard') }}"
                     class="waves-effect waves-button"><span
                         class="menu-icon icon-home"></span>
                     <p>Dashboard</p><span class="active-page"></span>
                 </a></li>
 
             <li class="@yield('category_active')"><a href="{{ route('category.index') }}"
-                    class="waves-effect waves-button"><span class="menu-icon icon-user"></span>
+                    class="waves-effect waves-button"><span class="menu-icon fa fa-sitemap"></span>
                     <p>Category</p>
                 </a></li>
 
@@ -18,7 +18,7 @@
                 </a></li>
             
             <li class="droplink @yield('product_active')"><a href="#" class="waves-effect waves-button"><span
-                        class="menu-icon icon-envelope-open"></span>
+                        class="menu-icon icon-present"></span>
                     <p>Product Management</p><span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
@@ -29,8 +29,13 @@
             </li>
 
             <li class="@yield('coupon_active')"><a href="{{ route('coupon.index') }}"
-                    class="waves-effect waves-button"><span class="menu-icon icon-user"></span>
+                    class="waves-effect waves-button"><span class="menu-icon  icon-tag"></span>
                     <p>Coupons</p>
+                </a></li>
+
+            <li class="@yield('customer_active')"><a href="{{ route('customerList') }}"
+                    class="waves-effect waves-button"><span class="menu-icon fa fa-users"></span>
+                    <p>All Customers</p>
                 </a></li>
 
             <li class="droplink"><a href="#" class="waves-effect waves-button"><span

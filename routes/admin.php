@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Backend\Controllers\CouponController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SubcategoryController;
@@ -22,4 +23,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin', 'verified']
     'coupon' => CouponController::class,
   ]);
   Route::get('product-draft', [ProductController::class, 'productDraft'])->name('productDraft');
+
+  Route::get('customer-list', [CustomerController::class, 'customerList'])->name('customerList');
 });

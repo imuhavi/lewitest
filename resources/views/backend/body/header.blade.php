@@ -351,7 +351,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <span class="user-name">{{ Auth::user()->name ?? "" }}<i
                                             class="fa fa-angle-down"></i></span>
-                                    <img class="img-circle avatar" src=""
+                                    <img class="img-circle avatar" src="{{ asset('backend/assets/default-img/user.jpeg') }}"
                                         width="40"
                                         height="40" alt="">
                                 </a>
