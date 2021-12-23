@@ -8,12 +8,12 @@
                 </a></li>
 
             <li class="@yield('category_active')"><a href="{{ route('category.index') }}"
-                    class="waves-effect waves-button"><span class="menu-icon fa fa-sitemap"></span>
+                    class="waves-effect waves-button"><span class="menu-icon icon-grid"></span>
                     <p>Category</p>
                 </a></li>
 
             <li class="@yield('subcategory_active')"><a href="{{ route('subcategory.index') }}"
-                    class="waves-effect waves-button"><span class="menu-icon icon-user"></span>
+                    class="waves-effect waves-button"><span class="menu-icon fa fa-sitemap"></span>
                     <p>Subcategory</p>
                 </a></li>
             
@@ -28,8 +28,13 @@
                 </ul>
             </li>
 
+            <li class="@yield('brand_active')"><a href="{{ route('brand.index') }}"
+                    class="waves-effect waves-button"><span class="menu-icon icon-badge"></span>
+                    <p>Brands</p>
+                </a></li>
+
             <li class="@yield('coupon_active')"><a href="{{ route('coupon.index') }}"
-                    class="waves-effect waves-button"><span class="menu-icon  icon-tag"></span>
+                    class="waves-effect waves-button"><span class="menu-icon icon-tag"></span>
                     <p>Coupons</p>
                 </a></li>
 

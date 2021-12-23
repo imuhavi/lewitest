@@ -1,5 +1,5 @@
 @extends('backend.master');
-@section('category_active')
+@section('brand_active')
 active
 @endsection
 @section('content')
@@ -8,8 +8,8 @@ active
         <div class="page-breadcrumb">
             <ol class="breadcrumb breadcrumb-with-header">
                 <li><a href="{{ url('admin/dashboard') }}">Dashboard</a></li>
-                <li><a href="{{ route('category.index') }}">Category</a></li>
-                <li class="active">Category-Edit</li>
+                <li><a href="{{ route('brand.index') }}">Brand</a></li>
+                <li class="active">Brand-list</li>
             </ol>
         </div>
     </div>
@@ -17,10 +17,9 @@ active
 
         <div class="row">
             <div class="col-md-8">
-
                 <div class="panel panel-white">
                     <div class="panel-heading clearfix">
-                        <h4 class="panel-title">Category List</h4>
+                        <h4 class="panel-title">Brand List</h4>
                     </div>
 
                     <div class="panel-body">
@@ -58,35 +57,29 @@ active
             <div class="col-md-4">
                 <div class="panel panel-white">
                     <div class="panel-heading clearfix">
-                        <h4 class="panel-title">Edit Category</h4>
+                        <h4 class="panel-title">Add Brand</h4>
                     </div>
                     <div class="panel-body">
                         <form>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="category">Category Name</label>
-                                    <input type="text" class="form-control m-t-xxs" id="category"
-                                        placeholder="category name">
+                                    <label for="brand">Brand Name</label>
+                                    <input type="text" class="form-control m-t-xxs" id="brand"
+                                        placeholder="brand name">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="category_img">Choose Category Photo</label>
-                                    <input type="file" class="form-control" name="category_img" id="category_img"
-                                        onchange="document.getElementById('image_id').src =
-                                        window.URL.createObjectURL(this.files[0])">
+                                    <label for="brand_img">Choose Brand Photo</label>
+                                    <input type="file" class="form-control" name="brand_img" id="brand_img"
+                                        onchange="document.getElementById('image_id').src = window.URL.createObjectURL(this.files[0])">
                                 </div>
 
                                 <img class="img-thumbnail" src="{{ asset('backend/assets/default-img/user.jpeg') }}"
                                     id="image_id" width="100" height="100" />
                             </div>
 
-                            <div class="status">
-                                <label class="no-s">
-                                    <input type="checkbox"> Active
-                                </label>
-                            </div>
-                            <button type="submit" class="btn btn-primary m-t-xs m-b-xs">Save Changes</button>
+                            <button type="submit" class="btn btn-primary m-t-xs m-b-xs">Save</button>
                         </form>
                     </div>
                 </div>

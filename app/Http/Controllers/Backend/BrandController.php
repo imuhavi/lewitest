@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Coupon;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 
-class CouponController extends Controller
+class BrandController extends Controller
 {
 
-  private $VIEW_PATH = "backend.coupon.";
+  private $VIEW_PATH = 'backend.brand.';
   /**
    * Display a listing of the resource.
    *
@@ -44,44 +44,45 @@ class CouponController extends Controller
   /**
    * Display the specified resource.
    *
-   * @param  \App\Models\Coupon  $coupon
+   * @param  \App\Models\Brand  $brand
    * @return \Illuminate\Http\Response
    */
-  public function show(Coupon $coupon)
+  public function show(Brand $brand)
   {
     //
   }
 
   /**
-   * Show the form for editing the specified resource.
+   *  Show the form for editing the specified resource.
    *
-   * @param  \App\Models\Coupon  $coupon
+   * @param  \App\Models\Brand  $brand
    * @return \Illuminate\Http\Response
    */
-  public function edit(Coupon $coupon)
+  public function edit(Brand $brand)
   {
-    //
+    return view($this->VIEW_PATH . 'edit');
   }
 
   /**
    * Update the specified resource in storage.
    *
    * @param  \Illuminate\Http\Request  $request
-   * @param  \App\Models\Coupon  $coupon
+   * @param  \App\Models\Brand  $brand
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, Coupon $coupon)
+  public function update(Request $request, Brand $brand)
   {
     //
   }
 
   /**
-   * Remove the specified resource from storage.
+   * Remove the specified resource in storage.
    *
-   * @param  \App\Models\Coupon  $coupon
+   * @param  \Illuminate\Http\Request  $request
+   * @param  \App\Models\Brand  $brand
    * @return \Illuminate\Http\Response
    */
-  public function destroy(Coupon $coupon)
+  public function destroy(Brand $brand)
   {
     //
   }

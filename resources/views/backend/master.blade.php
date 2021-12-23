@@ -59,7 +59,7 @@
     <script src="{{ asset('backend/') }}/assets/plugins/waves/waves.min.js"></script>
     <script src="{{ asset('backend/') }}/assets/plugins/3d-bold-navigation/js/main.js"></script>
     <script src="{{ asset('backend/') }}/assets/plugins/waypoints/jquery.waypoints.min.js"></script>
-    <script src="{{ asset('backend/') }}/assets/plugins/toastr/toastr.min.js"></script>
+    {{-- <script src="{{ asset('backend/') }}/assets/plugins/toastr/toastr.min.js"></script> --}}
     <script src="{{ asset('backend/') }}/assets/plugins/flot/jquery.flot.min.js"></script>
     <script src="{{ asset('backend/') }}/assets/plugins/flot/jquery.flot.time.min.js"></script>
     <script src="{{ asset('backend/') }}/assets/plugins/flot/jquery.flot.symbol.min.js"></script>
@@ -69,7 +69,7 @@
     <script src="{{ asset('backend/') }}/assets/plugins/chartjs/Chart.bundle.min.js"></script>
     <script src="{{ asset('backend/') }}/assets/plugins/datatables/js/jquery.datatables.min.js"></script>
 
-    <script src="{{ asset('backend/') }}/assets/js/custom.js"></script>
+    {{-- <script src="{{ asset('backend/') }}/assets/js/custom.js"></script> --}}
     <script src="{{ asset('backend/') }}/assets/js/meteor.min.js"></script>
     <script src="{{ asset('backend/') }}/assets/js/pages/dashboard.js"></script>
     <script src="{{ asset('backend/') }}/assets/js/pages/table-data.js"></script>

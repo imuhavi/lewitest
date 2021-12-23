@@ -5308,7 +5308,7 @@ body.small-sidebar.page-horizontal-bar.page-sidebar-fixed .accordion-menu > li >
     text-align: center;
 } 
 
-.coming-soon .page-inner {
+.coming-soon . {
     background: url("../images/login-bg.png");
     background-size: cover;
     width: 100%;
@@ -5325,7 +5325,7 @@ body.small-sidebar.page-horizontal-bar.page-sidebar-fixed .accordion-menu > li >
     height: 100%;
 }
 
-.page-register .page-inner {
+.page-register . {
     background: url("../images/register-bg.png");
     background-size: cover;
     width: 100%;

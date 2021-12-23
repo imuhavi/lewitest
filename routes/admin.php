@@ -2,8 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Backend\Controllers\CouponController;
+use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\ProductController;
@@ -21,6 +22,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin', 'verified']
     'subcategory' => SubcategoryController::class,
     'product' => ProductController::class,
     'coupon' => CouponController::class,
+    'brand' => BrandController::class,
   ]);
   Route::get('product-draft', [ProductController::class, 'productDraft'])->name('productDraft');
 

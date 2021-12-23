@@ -50,21 +50,21 @@
         <h3><span class="pull-left">Messages</span><a href="javascript:void(0);" class="pull-right" id="closeRight"><i
                     class="icon-close"></i></a></h3>
         <div class="slimscroll">
-            <a href="javascript:void(0);" class="showRight2"><img src="assets/images/avatar2.png" alt=""><span>Michael
+            <a href="javascript:void(0);" class="showRight2"><img src="{{ asset('backend/') }}/assets/images/avatar2.png" alt=""><span>Michael
                     Lewis<small>Nice to meet you</small></span></a>
-            <a href="javascript:void(0);" class="showRight2"><img src="assets/images/avatar3.png" alt=""><span>John
+            <a href="javascript:void(0);" class="showRight2"><img src="{{ asset('backend/') }}/assets/images/avatar3.png" alt=""><span>John
                     Doe<small>Nice to meet you</small></span></a>
-            <a href="javascript:void(0);" class="showRight2"><img src="assets/images/avatar4.png" alt=""><span>Emma
+            <a href="javascript:void(0);" class="showRight2"><img src="{{ asset('backend/') }}/assets/images/avatar4.png" alt=""><span>Emma
                     Green<small>Nice to meet you</small></span></a>
-            <a href="javascript:void(0);" class="showRight2"><img src="assets/images/avatar5.png" alt=""><span>Nick
+            <a href="javascript:void(0);" class="showRight2"><img src="{{ asset('backend/') }}/assets/images/avatar5.png" alt=""><span>Nick
                     Doe<small>Nice to meet you</small></span></a>
-            <a href="javascript:void(0);" class="showRight2"><img src="assets/images/avatar2.png" alt=""><span>Michael
+            <a href="javascript:void(0);" class="showRight2"><img src="{{ asset('backend/') }}/assets/images/avatar2.png" alt=""><span>Michael
                     Lewis<small>Nice to meet you</small></span></a>
-            <a href="javascript:void(0);" class="showRight2"><img src="assets/images/avatar3.png" alt=""><span>John
+            <a href="javascript:void(0);" class="showRight2"><img src="{{ asset('backend/') }}/assets/images/avatar3.png" alt=""><span>John
                     Doe<small>Nice to meet you</small></span></a>
-            <a href="javascript:void(0);" class="showRight2"><img src="assets/images/avatar4.png" alt=""><span>Emma
+            <a href="javascript:void(0);" class="showRight2"><img src="{{ asset('backend/') }}/assets/images/avatar4.png" alt=""><span>Emma
                     Green<small>Nice to meet you</small></span></a>
-            <a href="javascript:void(0);" class="showRight2"><img src="assets/images/avatar5.png" alt=""><span>Nick
+            <a href="javascript:void(0);" class="showRight2"><img src="{{ asset('backend/') }}/assets/images/avatar5.png" alt=""><span>Nick
                     Doe<small>Nice to meet you</small></span></a>
         </div>
     </nav>
