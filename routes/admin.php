@@ -1,16 +1,19 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Backend\Controllers\CouponController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SubcategoryController;
-use App\Http\Controllers\CouponController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Backend\UserProfileController;
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin', 'verified']], function () {
 
-  Route::get('/dashboard', function () {
-    return view('backend.dashboard');
-  });
+  Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+
+  Route::get('/profile', [UserProfileController::class, 'userProfile'])->name('userProfile');
 
   Route::resources([
     'category' => CategoryController::class,

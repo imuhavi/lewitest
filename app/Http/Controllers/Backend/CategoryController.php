@@ -27,7 +27,7 @@ class CategoryController extends Controller
    */
   public function create()
   {
-    return view($this->VIEW_PATH . 'create');
+    //
   }
 
   /**

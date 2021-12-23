@@ -8,6 +8,7 @@
         {{-- Main Content --}}
         @yield('content')
 
+
     </main><!-- Page Content -->
     <nav class="cd-nav-container" id="cd-nav">
         <header>
@@ -38,6 +39,12 @@
     </nav>
     <div class="cd-overlay"></div>
 
+    {{-- Preloder --}}
+    {{-- <div id="preloader">
+        <div id="status"></div>
+    </div> --}}
+
+   
 
     <!-- Javascripts -->
     <script src="{{ asset('backend/') }}/assets/plugins/jquery/jquery-3.1.0.min.js"></script>
@@ -61,6 +68,8 @@
     <script src="{{ asset('backend/') }}/assets/plugins/curvedlines/curvedLines.js"></script>
     <script src="{{ asset('backend/') }}/assets/plugins/chartjs/Chart.bundle.min.js"></script>
     <script src="{{ asset('backend/') }}/assets/plugins/datatables/js/jquery.datatables.min.js"></script>
+
+    <script src="{{ asset('backend/') }}/assets/js/custom.js"></script>
     <script src="{{ asset('backend/') }}/assets/js/meteor.min.js"></script>
     <script src="{{ asset('backend/') }}/assets/js/pages/dashboard.js"></script>
     <script src="{{ asset('backend/') }}/assets/js/pages/table-data.js"></script>

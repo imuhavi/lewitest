@@ -44,6 +44,7 @@
 </head>
 
 <body class="compact-menu">
+
     <div class="overlay"></div>
     <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s1">
         <h3><span class="pull-left">Messages</span><a href="javascript:void(0);" class="pull-right" id="closeRight"><i
@@ -135,7 +136,7 @@
                     </a>
                 </div>
                 <div class="logo-box">
-                    <a href="index.html" class="logo-text"><span>METEOR</span></a>
+                    <a href="{{ url('admin/dashboard') }}" class="logo-text"><span>METEOR</span></a>
                 </div><!-- Logo Box -->
                 <div class="search-button">
                     <a href="javascript:void(0);" class="show-search"><i class="icon-magnifier"></i></a>
@@ -348,21 +349,18 @@
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <span class="user-name">Nick<i class="fa fa-angle-down"></i></span>
-                                    <img class="img-circle avatar" src="assets/images/avatar1.png" width="40"
+                                    <span class="user-name">{{ Auth::user()->name ?? "" }}<i
+                                            class="fa fa-angle-down"></i></span>
+                                    <img class="img-circle avatar" src=""
+                                        width="40"
                                         height="40" alt="">
                                 </a>
                                 <ul class="dropdown-menu dropdown-list" role="menu">
-                                    <li role="presentation"><a href="profile.html"><i class="icon-user"></i>Profile</a>
+                                    <li role="presentation"><a href="{{ route('userProfile') }}"><i class="icon-user"></i>Profile</a>
                                     </li>
-                                    <li role="presentation"><a href="calendar.html"><i
-                                                class="icon-calendar"></i>Calendar</a></li>
-                                    <li role="presentation"><a href="inbox.html"><i
-                                                class="icon-envelope-open"></i>Inbox<span
-                                                class="badge badge-success pull-right">4</span></a></li>
+                                    
                                     <li role="presentation" class="divider"></li>
-                                    <li role="presentation"><a href="lock-screen.html"><i class="icon-lock"></i>Lock
-                                            screen</a></li>
+                                    
                                     <li role="presentation"><a href="#" onclick="logout()"><i class="icon-key m-r-xs"></i>Log out</a></li>
                                 </ul>
                                 

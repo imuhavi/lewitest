@@ -14,13 +14,15 @@
           </div>
       </div>
       <div id="main-wrapper">
+          
           <div class="row">
-              <div class="col-md-12">
-                  <div class="panel panel-white">
-                      <div class="panel-heading clearfix text-right">
-                          <a href="" class="btn btn-outline-primary mb-3"> <i class="icon-plus"></i> Add Category</a>
+              <div class="col-md-8">
+  
+                  <div class="panel panel-white"> 
+                      <div class="panel-heading clearfix">
+                          <h4 class="panel-title">Category List</h4>
                       </div>
-                      
+
                       <div class="panel-body">
                           <div class="table-responsive">
                               <table id="example" class="display table" style="width: 100%; cellspacing: 0;">
@@ -51,6 +53,40 @@
                           </div>
                       </div>
                   </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="panel panel-white">
+                     <div class="panel-heading clearfix">
+                         <h4 class="panel-title">Add Category</h4>
+                     </div>
+                    <div class="panel-body">
+                        <form>
+                            <div class="form-row">
+                              <div class="form-group">
+                                  <label for="category">Category Name</label>
+                                  <input type="text" class="form-control m-t-xxs" id="category"
+                                      placeholder="category name">
+                              </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="project_image">Chose Category Photo</label>
+                                    <input type="file" class="form-control" name="project_image" id="project_image"
+                                        onchange="preview_image()">
+                                </div>
+                            </div>
+
+
+                            <div class="status">
+                                <label class="no-s">
+                                    <input type="checkbox"> Active
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary m-t-xs m-b-xs">Submit</button>
+                        </form>
+                    </div>
+                </div>
               </div>
           </div><!-- Row -->
       </div><!-- Main Wrapper -->

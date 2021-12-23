@@ -6,6 +6,8 @@
     2) Laravel Default Authentication System Add
     3) Backend Templete Mastaring Done
     4) Category, subcateogry, product, copun model,controler and blade page create.
+    5) Email Verification Testing and Mailtrip SMTP Setup
+    6) User Profile Blade Page Create and Design
 
 ## Hridoy
 
