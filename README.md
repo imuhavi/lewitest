@@ -8,6 +8,7 @@
     4) Category, subcateogry, product, copun model,controler and blade page create.
     5) Email Verification Testing and Mailtrip SMTP Setup
     6) User Profile Blade Page Create and Design
+    7) Brand Blade/model/controler Create.
 
 ## Hridoy
 
