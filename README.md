@@ -14,3 +14,4 @@
     3) Middleware created for admin, seller & customer
     4) Custom helper file created
     5) Middleware updated for admin, seller & customer
+    6) Update migration files (Category, Subcategory & Coupon)
