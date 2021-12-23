@@ -74,7 +74,7 @@
         <div class="slimscroll chat">
             <div class="chat-item chat-item-left">
                 <div class="chat-image">
-                    <img src="assets/images/avatar2.png" alt="">
+                    <img src="{{ asset('backend/assets/images/avatar2.png') }}" alt="">
                 </div>
                 <div class="chat-message">
                     Duis aute irure dolor?
@@ -87,7 +87,7 @@
             </div>
             <div class="chat-item chat-item-left">
                 <div class="chat-image">
-                    <img src="assets/images/avatar2.png" alt="">
+                    <img src="{{ asset('backend/assets/images/avatar2.png') }}" alt="">
                 </div>
                 <div class="chat-message">
                     Ut ullamcorper, ligula.
@@ -100,7 +100,7 @@
             </div>
             <div class="chat-item chat-item-left">
                 <div class="chat-image">
-                    <img src="assets/images/avatar2.png" alt="">
+                    <img src="{{ asset('backend/assets/images/avatar2.png') }}" alt="">
                 </div>
                 <div class="chat-message">
                     Curabitur pretium?
@@ -136,7 +136,7 @@
                     </a>
                 </div>
                 <div class="logo-box">
-                    <a href="{{ url('admin/dashboard') }}" class="logo-text"><span>METEOR</span></a>
+                    <a href="{{ route('dashboard') }}" class="logo-text"><span>METEOR</span></a>
                 </div><!-- Logo Box -->
                 <div class="search-button">
                     <a href="javascript:void(0);" class="show-search"><i class="icon-magnifier"></i></a>
@@ -147,9 +147,12 @@
                             <li>
                                 <a href="javascript:void(0);" class="sidebar-toggle"><i class="icon-arrow-left"></i></a>
                             </li>
-                            <li>
+
+
+                            {{-- <li>
                                 <a href="#cd-nav" class="cd-nav-trigger"><i class="icon-support"></i></a>
-                            </li>
+                            </li> --}}
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="icon-settings"></i>

@@ -4,7 +4,6 @@
         @include('backend.body.header')
         @include('backend.body.sidemenu')
 
-
         {{-- Main Content --}}
         @yield('content')
 

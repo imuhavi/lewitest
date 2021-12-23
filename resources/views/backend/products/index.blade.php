@@ -1,7 +1,6 @@
 @extends('backend.master');
-@section('product_active')
-  active
-@endsection
+@section('product_active') active open @endsection
+@section('subproduct_active') active @endsection
 @section('content')
     <div class="page-inner">
         <div class="page-title">
@@ -17,8 +16,15 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-white">
-                        <div class="panel-heading clearfix text-right">
-                            <a href="{{ route('product.create') }}" class="btn btn-outline-primary mb-3"> <i class="icon-plus"></i> Add Product</a>
+                        <div class="panel-heading clearfix">
+                          <div class="text-left">
+                            <h4 class="panel-title">Product List</h4>
+                          </div>
+                          
+                          <div class="text-right">
+                            <a href="{{ route('product.create') }}" class="btn btn-outline-primary mb-3"> <i
+                                    class="icon-plus"></i> Add Product</a>
+                          </div>
                         </div>
 
                         <div class="panel-body">
