@@ -4,7 +4,7 @@
       <div class="page-title">
           <div class="page-breadcrumb">
               <ol class="breadcrumb breadcrumb-with-header">
-                  <li><a href="{{ url('admin/dashboard') }}">Dashboard</a></li>
+                  <li><a href="{{ url( routePrefix() . '/dashboard') }}">Dashboard</a></li>
                   <li><a href="#">User</a></li>
                   <li class="active">User-Profile</li>
               </ol>
@@ -19,7 +19,7 @@
                     </div>
                     <div class="panel-body">
                         <div class="card mb-4">
-                            <form action="{{ url('/admin/update-profile') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('updateProfile') }}" method="post" enctype="multipart/form-data">
                               @csrf
                               <div class="card-body">
 
@@ -36,7 +36,7 @@
                                       <div class="col-sm-4">
                                         @if(auth()->user()->avatar)
                                             <img class="img avatar" id="avatar_preview"
-                                                src="{{ asset('backend/images' . auth()->user()->avatar) }}" alt="" width="80px" height="80px">
+                                                src="{{ asset('backend/uploads/' . auth()->user()->avatar) }}" alt="" width="80px" height="80px">
                                         @else
                                             <img class="img avatar" id="avatar_preview"
                                                 src="{{ asset('backend/assets/default-img/user.jpeg') }}" alt="" width="80px" height="80px">
@@ -50,6 +50,9 @@
                                       </div>
                                       <div class="col-sm-9">
                                           <input type="text" name="full_name" value="{{ auth()->user()->name }}" id="full_name" class="form-control">
+                                            @error('full_name')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
                                       </div>
                                   </div>
                                   <hr>
@@ -58,7 +61,7 @@
                                           <p class="mb-0">Email</p>
                                       </div>
                                       <div class="col-sm-9">
-                                          <input type="email" name="email" value="{{ auth()->user()->email }}" id="email" class="form-control">
+                                          <input type="email" title="You can not update your verified email" disabled value="{{ auth()->user()->email }}" id="email" class="form-control">
                                       </div>
                                   </div>
                                   <hr>
@@ -68,6 +71,9 @@
                                       </div>
                                       <div class="col-sm-9">
                                           <input type="tel" name="phone" value="{{ auth()->user()->phone_1 }}" id="phone" class="form-control">
+                                            @error('phone')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
                                       </div>
                                   </div>
                                   <hr>
@@ -77,6 +83,9 @@
                                       </div>
                                       <div class="col-sm-9">
                                           <input type="tel" name="mobile" value="{{ auth()->user()->phone_2 }}"  id="mobile" class="form-control">
+                                            @error('mobile')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
                                       </div>
                                   </div>
                                   <hr>
@@ -85,12 +94,15 @@
                                           <p class="mb-0">Address</p>
                                       </div>
                                       <div class="col-sm-9">
-                                          <textarea name="address" value="{{ auth()->user()->address }}"  id="address" class="form-control"></textarea>
+                                          <textarea name="address" id="address" class="form-control">{{ auth()->user()->address }}</textarea>
+                                            @error('address')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
                                       </div>
                                   </div>
                                   <div class="row" style="margin-top: 20px">
                                     <div class="col-sm-12 text-right ">
-                                      <button class="btn btn-info" type="submit">Save Changes</button>
+                                      <button class="btn btn-info" type="submit">Update</button>
                                     </div>
                                   </div>
                               </div>
@@ -106,33 +118,38 @@
                         <h4 class="panel-title">Change Password</h4>
                     </div>
                     <div class="panel-body">
-                        <form action="#" method="POST">
-
+                        <form action="{{ route('updatePassword') }}" method="POST">
                           @csrf
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="current_password">Current Passord</label>
-                                    <input type="password" class="form-control m-t-xxs" id="current_password"
+                                    <input type="password" name="current_password" class="form-control m-t-xxs" id="current_password"
                                         placeholder="Current Password">
+                                    @error('current_password')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="new_password">New Passord</label>
-                                    <input type="password" class="form-control m-t-xxs" id="new_password"
+                                    <label for="password">New Passord</label>
+                                    <input type="password" name="password" class="form-control m-t-xxs" id="password"
                                         placeholder="Current Password">
+                                    @error('password')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="conformation_password">Confirm Passord</label>
-                                    <input type="password" class="form-control m-t-xxs" id="conformation_password"
+                                    <input type="password" class="form-control m-t-xxs" name="password_confirmation" id="conformation_password"
                                         placeholder="Confirm Password">
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary m-t-xs m-b-xs">Update</button>
+                            <button type="submit" class="btn btn-info m-t-xs m-b-xs">Update</button>
                         </form>
                     </div>
                 </div>

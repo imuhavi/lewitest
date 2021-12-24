@@ -1,18 +1,19 @@
 <div class="page-sidebar sidebar">
     <div class="page-sidebar-inner slimscroll">
         <ul class="menu accordion-menu">
-            <li class="@yield('dashboard_active')"><a href="{{ route('dashboard') }}"
+            <li class="@yield('dashboard_active')">
+                <a href="{{ url( routePrefix() . '/dashboard') }}"
                     class="waves-effect waves-button"><span
                         class="menu-icon icon-home"></span>
                     <p>Dashboard</p><span class="active-page"></span>
                 </a></li>
 
-            <li class="@yield('category_active')"><a href="{{ route('category.index') }}"
+            <li class="@yield('category_active')"><a href="{{ url( routePrefix() . '/category') }}"
                     class="waves-effect waves-button"><span class="menu-icon icon-grid"></span>
                     <p>Category</p>
                 </a></li>
 
-            <li class="@yield('subcategory_active')"><a href="{{ route('subcategory.index') }}"
+            <li class="@yield('subcategory_active')"><a href="{{ url( routePrefix() . '/subcategory') }}"
                     class="waves-effect waves-button"><span class="menu-icon fa fa-sitemap"></span>
                     <p>Subcategory</p>
                 </a></li>
@@ -44,21 +45,31 @@
                     <p>All Orders</p>
                 </a></li>
 
-            <li class="droplink @yield('seller_active')"><a href="{{ route('sellerList') }}"
-                    class="waves-effect waves-button"><span
-                        class="menu-icon fa fa-user-plus"></span>
-                    <p>Seller Management</p><span class="arrow"></span>
-                </a>
-                <ul class="sub-menu">
-                    <li class="@yield('subseller')"><a href="{{ route('sellerList') }}">Seller List</a></li>
-                    <li class="@yield('subseller2')"><a href="{{ route('paymentWithdraw') }}">Withdraws</a></li>
-                </ul>
-            </li>
+            @if(routePrefix() === 'admin')
+                <li class="droplink @yield('seller_active')"><a href="{{ route('sellerList') }}"
+                        class="waves-effect waves-button"><span
+                            class="menu-icon fa fa-user-plus"></span>
+                        <p>Seller Management</p><span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="@yield('subseller')"><a href="{{ route('sellerList') }}">Seller List</a></li>
+                        <li class="@yield('subseller2')"><a href="{{ route('paymentWithdraw') }}">Withdraws</a></li>
+                    </ul>
+                </li>
+            @elseif(routePrefix() === 'seller')
+                <li class="@yield('withdraw_active')"><a href="{{ route('customerList') }}"
+                        class="waves-effect waves-button"><span class="menu-icon fa fa-users"></span>
+                        <p>My Withdraws</p>
+                    </a>
+                </li>
+            @endif
 
+            
             <li class="@yield('customer_active')"><a href="{{ route('customerList') }}"
                     class="waves-effect waves-button"><span class="menu-icon fa fa-users"></span>
                     <p>All Customers</p>
-                </a></li>
+                </a>
+            </li>
 
             <li class="droplink"><a href="#" class="waves-effect waves-button"><span
                         class="menu-icon icon-envelope-open"></span>

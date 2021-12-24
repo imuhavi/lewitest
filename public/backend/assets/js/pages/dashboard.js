@@ -1,19 +1,4 @@
 $( document ).ready(function() {
-    
-    // CounterUp Plugin
-    
-    setTimeout(function() {
-        toastr.options = {
-            closeButton: true,
-            progressBar: true,
-            showMethod: 'fadeIn',
-            hideMethod: 'fadeOut',
-            timeOut: 5000
-        };
-        toastr.success('There are 3 layers in this version, others are coming soon', 'Welcome!');
-    }, 1800);
-    
-    
     // First Chart
     var data = {
         labels: ["January", "February", "March", "April", "May", "June", "July"],

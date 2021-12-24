@@ -7,7 +7,7 @@ active
     <div class="page-title">
         <div class="page-breadcrumb">
             <ol class="breadcrumb breadcrumb-with-header">
-                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ url( routePrefix() . '/dashboard') }}">Dashboard</a></li>
                 <li><a href="{{ route('subcategory.index') }}">Subcategory</a></li>
                 <li class="active">Subcategory-list</li>
             </ol>
