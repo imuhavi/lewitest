@@ -7,8 +7,8 @@ active
     <div class="page-title">
         <div class="page-breadcrumb">
             <ol class="breadcrumb breadcrumb-with-header">
-                <li><a href="{{ url('admin/dashboard') }}">Dashboard</a></li>
-                <li><a href="{{ route('category.index') }}">Category</a></li>
+                <li><a href="{{ url(routePrefix().'/dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ url(routePrefix(). 'category') }}">Category</a></li>
                 <li class="active">Category-Edit</li>
             </ol>
         </div>

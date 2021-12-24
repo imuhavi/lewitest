@@ -1,34 +1,38 @@
 <?php
 
-if(!function_exists('uploadImage')){
-    function uploadImage($image, $size = 10){
-        $imageFile = time().'_'.$image->getClientOriginalName();
-        
-        $destination = public_path('backend/uploads');
+if (!function_exists('uploadImage')) {
+  function uploadImage($image, $size = 10)
+  {
+    $imageFile = time() . '_' . $image->getClientOriginalName();
 
-        // $imgFile = Image::make($image->getRealPath());
-        // $imgFile->resize($size, $size, function ($constraint) {
-        //     $constraint->aspectRatio();
-        // })->save($destination.'/'.$imageFile); // Here this code's isn't working
+    $destination = public_path('backend/uploads');
 
-        $image->move($destination, $imageFile);
+    // $imgFile = Image::make($image->getRealPath());
+    // $imgFile->resize($size, $size, function ($constraint) {
+    //     $constraint->aspectRatio();
+    // })->save($destination.'/'.$imageFile); // Here this code's isn't working
 
-        return back()->with('success', 'Image has successfully uploaded.')
-                     ->with('fileName', $imageFile);
-    }
+    $image->move($destination, $imageFile);
+
+    return back()->with('success', 'Image has successfully uploaded.')
+      ->with('fileName', $imageFile);
+  }
 }
 
-if(!function_exists('removeImage')){
-    function removeImage($image){
-        $destination = public_path('backend/uploads/');
-        unlink($destination . $image);
-    
-        return back()->with('success', 'Image has successfully removed.');
-    }
+if (!function_exists('removeImage')) {
+  function removeImage($image)
+  {
+    $destination = public_path('backend/uploads/');
+    unlink($destination . $image);
+
+    return back()->with('success', 'Image has successfully removed.');
+  }
 }
 
-if(!function_exists('routePrefix')){
-    function routePrefix(){
-        return strtolower(auth()->user()->role);
-    }
+
+if (!function_exists('routePrefix')) {
+  function routePrefix()
+  {
+    return strtolower(auth()->user()->role);
+  }
 }

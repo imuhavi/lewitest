@@ -11,19 +11,60 @@ $(document).ready(function () {
   })
 
   // CounterUp Plugin || Toastr
-  setTimeout(function() {
+  setTimeout(function () {
     toastr.options = {
-        closeButton: true,
-        progressBar: true,
-        showMethod: 'fadeIn',
-        hideMethod: 'fadeOut',
-        timeOut: 5000
+      closeButton: true,
+      progressBar: true,
+      showMethod: 'fadeIn',
+      hideMethod: 'fadeOut',
+      timeOut: 5000
     }
-    if(successNotification) toastr.success(successNotification, 'Success !')
-    if(infoNotification) toastr.info(infoNotification, 'Information !')
-    if(warningNotification) toastr.warning(warningNotification, 'Warning !')
-    if(errorNotification) toastr.error(errorNotification, 'Error !')
+    if (successNotification) toastr.success(successNotification, 'Success !')
+    if (infoNotification) toastr.info(infoNotification, 'Information !')
+    if (warningNotification) toastr.warning(warningNotification, 'Warning !')
+    if (errorNotification) toastr.error(errorNotification, 'Error !')
   }, 1800)
+
+
+  var hiddenMailOptions = function () {
+    if ($('.checkbox-mail:checked').length) {
+      $('.mail-hidden-options').css('display', 'inline-block');
+    } else {
+      $('.mail-hidden-options').css('display', 'none');
+    };
+  };
+
+  hiddenMailOptions();
+
+  $('.check-mail-all').click(function () {
+    $('.checkbox-mail').click();
+  });
+
+  $('.checkbox-mail').each(function () {
+    $(this).click(function () {
+      if ($(this).closest('tr').hasClass("checked")) {
+        $(this).closest('tr').removeClass('checked');
+        hiddenMailOptions();
+      } else {
+        $(this).closest('tr').addClass('checked');
+        hiddenMailOptions();
+      }
+    });
+  });
+
+  $('.mailbox-content table tr td').not(":first-child").on('click', function (e) {
+    e.stopPropagation();
+    e.preventDefault();
+
+    window.location = "message-view.html";
+  });
+
+  // Summernote Text Editor
+
+  $('.summernote').summernote({
+    height: 250
+  });
+
 
 })
 
@@ -32,3 +73,5 @@ $(document).ready(function () {
 function previewImage(whereToShow, imageFile) {
   document.getElementById(whereToShow).src = window.URL.createObjectURL(imageFile[0])
 }
+
+

@@ -27,6 +27,9 @@
         rel="stylesheet" type="text/css" />
     <link href="{{ asset('backend/') }}/assets/plugins/toastr/toastr.min.css" rel="stylesheet" type="text/css" />
 
+    <link href="{{ asset('backend/') }}/assets/plugins/summernote-master/summernote.css" rel="stylesheet"
+        type="text/css" />
+
     <!-- Theme Styles -->
     <link href="{{ asset('backend/') }}/assets/css/meteor.min.css" rel="stylesheet" type="text/css" />
     <link href="{{ asset('backend/') }}/assets/css/layers/dark-layer.css" class="theme-color" rel="stylesheet" type="text/css" />
@@ -136,7 +139,8 @@
                     </a>
                 </div>
                 <div class="logo-box">
-                    <a href="{{ url( routePrefix() . '/dashboard') }}" class="logo-text"><span>{{ config('app.name') }}</span></a>
+                    {{-- <a href="{{ url( routePrefix() . '/dashboard') }}" class="logo-text"><span>{{ config('app.name') }}</span></a> --}}
+                    <a href="{{ url( routePrefix() . '/dashboard') }}" class="logo-text"><span>Farish Ecom</span></a>
                 </div><!-- Logo Box -->
                 <div class="search-button">
                     <a href="javascript:void(0);" class="show-search"><i class="icon-magnifier"></i></a>

@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\MailboxController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SellerController;
 use App\Http\Controllers\Backend\SubcategoryController;
@@ -29,4 +30,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']
   Route::get('sellers-list', [SellerController::class, 'sellerList'])->name('sellerList');
   Route::get('seller-withdraw', [SellerController::class, 'paymentWithdraw'])->name('paymentWithdraw');
   Route::get('customer-list', [CustomerController::class, 'customerList'])->name('customerList');
+
+  // Mailbox Route
+  Route::get('mail', [MailboxController::class, 'mailbox'])->name('mailbox');
+  Route::get('compose', [MailboxController::class, 'compose'])->name('compose');
 });

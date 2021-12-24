@@ -19,4 +19,7 @@ Route::group(['prefix' => 'seller', 'middleware' => ['auth', 'seller']], functio
     'coupon' => CouponController::class,
     'brand' => BrandController::class
   ]);
+
+  Route::get('product-draft', [ProductController::class, 'productDraft'])->name('productDraft');
+  Route::get('orders', [DashboardController::class, 'orderList'])->name('orderList');
 });

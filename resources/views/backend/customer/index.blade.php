@@ -4,8 +4,8 @@
       <div class="page-title">
           <div class="page-breadcrumb">
               <ol class="breadcrumb breadcrumb-with-header">
-                  <li><a href="{{ url('admin/dashboard') }}">Dashboard</a></li>
-                  <li><a href="{{ route('customerList') }}">Customer</a></li>
+                  <li><a href="{{ url(routePrefix(). '/dashboard') }}">Dashboard</a></li>
+                  <li><a href="{{ url(routePrefix(). '/customer-list') }}">Customer</a></li>
                   <li class="active">Customer-list</li>
               </ol>
           </div>
