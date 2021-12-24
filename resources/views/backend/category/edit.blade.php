@@ -73,12 +73,11 @@ active
                                 <div class="form-group">
                                     <label for="category_img">Choose Category Photo</label>
                                     <input type="file" class="form-control" name="category_img" id="category_img"
-                                        onchange="document.getElementById('image_id').src =
-                                        window.URL.createObjectURL(this.files[0])">
+                                        onchange="previewImage('category_preview', this.files)">
                                 </div>
 
                                 <img class="img-thumbnail" src="{{ asset('backend/assets/default-img/user.jpeg') }}"
-                                    id="image_id" width="100" height="100" />
+                                    id="category_preview" width="100" height="100" />
                             </div>
 
                             <div class="status">

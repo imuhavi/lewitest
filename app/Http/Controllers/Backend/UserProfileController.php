@@ -14,4 +14,11 @@ class UserProfileController extends Controller
   {
     return view($this->VIEW_PATH . 'profile');
   }
+
+  public function updateProfile(Request $request)
+  {
+    return resizeAndUploadImage($request->file('profile_photo'));
+    return redirect()->back();
+  }
+
 }

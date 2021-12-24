@@ -11,3 +11,9 @@ $(document).ready(function () {
   })
 
 });
+
+
+// preview an image when uploading
+function previewImage(whereToShow, imageFile) {
+  document.getElementById(whereToShow).src = window.URL.createObjectURL(imageFile[0])
+}

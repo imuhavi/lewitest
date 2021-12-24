@@ -19,7 +19,7 @@
                     </div>
                     <div class="panel-body">
                         <div class="card mb-4">
-                            <form action="#" method="post" enctype="multipart/form-data">
+                            <form action="{{ url('/admin/update-profile') }}" method="post" enctype="multipart/form-data">
                               @csrf
                               <div class="card-body">
 
@@ -28,11 +28,19 @@
                                           <p class="mb-0">Profile Photo</p>
                                       </div>
                                       <div class="col-sm-5">
-                                          <input type="file" name="profile_photo" id="profile_photo" class="form-control">
+                                          <input type="file"
+                                            accept="image/*"
+                                            onchange="previewImage('avatar_preview', this.files)"
+                                            name="profile_photo" id="profile_photo" class="form-control">
                                       </div>
                                       <div class="col-sm-4">
-                                        <img class="img avatar"
-                                            src="{{ asset("backend/assets/default-img/user.jpeg") }}" alt="" width="80px" height="80px">
+                                        @if(auth()->user()->avatar)
+                                            <img class="img avatar" id="avatar_preview"
+                                                src="{{ asset('backend/images' . auth()->user()->avatar) }}" alt="" width="80px" height="80px">
+                                        @else
+                                            <img class="img avatar" id="avatar_preview"
+                                                src="{{ asset('backend/assets/default-img/user.jpeg') }}" alt="" width="80px" height="80px">
+                                        @endif
                                       </div>
                                   </div>
                                   <hr>
@@ -41,8 +49,7 @@
                                           <p class="mb-0">Full Name</p>
                                       </div>
                                       <div class="col-sm-9">
-                                          {{-- <p class="text-muted mb-0">Johnatan Smith</p> --}}
-                                          <input type="text" name="full_name" id="full_name" class="form-control">
+                                          <input type="text" name="full_name" value="{{ auth()->user()->name }}" id="full_name" class="form-control">
                                       </div>
                                   </div>
                                   <hr>
@@ -51,7 +58,7 @@
                                           <p class="mb-0">Email</p>
                                       </div>
                                       <div class="col-sm-9">
-                                          <input type="email" name="email" id="email" class="form-control">
+                                          <input type="email" name="email" value="{{ auth()->user()->email }}" id="email" class="form-control">
                                       </div>
                                   </div>
                                   <hr>
@@ -60,7 +67,7 @@
                                           <p class="mb-0">Phone(primary)</p>
                                       </div>
                                       <div class="col-sm-9">
-                                          <input type="tel" name="phone" id="phone" class="form-control">
+                                          <input type="tel" name="phone" value="{{ auth()->user()->phone_1 }}" id="phone" class="form-control">
                                       </div>
                                   </div>
                                   <hr>
@@ -69,7 +76,7 @@
                                           <p class="mb-0">Mobile(optional)</p>
                                       </div>
                                       <div class="col-sm-9">
-                                          <input type="tel" name="mobile" id="mobile" class="form-control">
+                                          <input type="tel" name="mobile" value="{{ auth()->user()->phone_2 }}"  id="mobile" class="form-control">
                                       </div>
                                   </div>
                                   <hr>
@@ -78,7 +85,7 @@
                                           <p class="mb-0">Address</p>
                                       </div>
                                       <div class="col-sm-9">
-                                          <textarea name="address" id="address" class="form-control"></textarea>
+                                          <textarea name="address" value="{{ auth()->user()->address }}"  id="address" class="form-control"></textarea>
                                       </div>
                                   </div>
                                   <div class="row" style="margin-top: 20px">
@@ -125,8 +132,7 @@
                                         placeholder="Confirm Password">
                                 </div>
                             </div>
-                            
-                            <button type="submit" class="btn btn-primary m-t-xs m-b-xs">Save Changes</button>
+                            <button type="submit" class="btn btn-primary m-t-xs m-b-xs">Update</button>
                         </form>
                     </div>
                 </div>

@@ -39,9 +39,9 @@
     <div class="cd-overlay"></div>
 
     {{-- Preloder --}}
-    {{-- <div id="preloader">
+    <div id="preloader">
         <div id="status"></div>
-    </div> --}}
+    </div>
 
    
 
@@ -72,7 +72,7 @@
     <script src="{{ asset('backend/') }}/assets/js/meteor.min.js"></script>
     <script src="{{ asset('backend/') }}/assets/js/pages/dashboard.js"></script>
     <script src="{{ asset('backend/') }}/assets/js/pages/table-data.js"></script>
-
+    <script src="{{ asset('backend/') }}/assets/js/custom.js"></script>
 </body>
 
 </html>
