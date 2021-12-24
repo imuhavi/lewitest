@@ -19,4 +19,10 @@ class DashboardController extends Controller
   {
     return view($this->VIEW_PATH . 'dashboard');
   }
+
+
+  public function orderList()
+  {
+    return view($this->VIEW_PATH . 'orders.index');
+  }
 }

@@ -22,9 +22,10 @@
                     <p>Product Management</p><span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
-                    <li><a href="{{ route('product.index') }}">Product List</a></li>
-                    <li><a href="{{ route('product.create') }}">Add New Product</a></li>
-                    <li><a href="{{ route('productDraft') }}">Product Draft</a></li>
+                    <li class="@yield('subproduct_active')"><a href="{{ route('product.index') }}">Product List</a></li>
+                    <li class="@yield('subproduct_active1')"><a href="{{ route('product.create') }}">Add New Product</a>
+                    </li>
+                    <li class="@yield('subproduct_active2')"><a href="{{ route('productDraft') }}">Product Draft</a></li>
                 </ul>
             </li>
 
@@ -37,6 +38,22 @@
                     class="waves-effect waves-button"><span class="menu-icon icon-tag"></span>
                     <p>Coupons</p>
                 </a></li>
+
+            <li class="@yield('order_active')"><a href="{{ route('orderList') }}"
+                    class="waves-effect waves-button"><span class="menu-icon icon-basket-loaded"></span>
+                    <p>All Orders</p>
+                </a></li>
+
+            <li class="droplink @yield('seller_active')"><a href="{{ route('sellerList') }}"
+                    class="waves-effect waves-button"><span
+                        class="menu-icon fa fa-user-plus"></span>
+                    <p>Seller Management</p><span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="@yield('subseller')"><a href="{{ route('sellerList') }}">Seller List</a></li>
+                    <li class="@yield('subseller2')"><a href="{{ route('paymentWithdraw') }}">Withdraws</a></li>
+                </ul>
+            </li>
 
             <li class="@yield('customer_active')"><a href="{{ route('customerList') }}"
                     class="waves-effect waves-button"><span class="menu-icon fa fa-users"></span>

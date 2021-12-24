@@ -5,8 +5,8 @@
           <div class="page-breadcrumb">
               <ol class="breadcrumb breadcrumb-with-header">
                   <li><a href="{{ url('admin/dashboard') }}">Dashboard</a></li>
-                  <li><a href="{{ route('product.index') }}">Product</a></li>
-                  <li class="active">Product-list</li>
+                  <li><a href="{{ route('customerList') }}">Customer</a></li>
+                  <li class="active">Customer-list</li>
               </ol>
           </div>
       </div>
@@ -14,9 +14,8 @@
           <div class="row">
               <div class="col-md-12">
                   <div class="panel panel-white">
-                      <div class="panel-heading clearfix text-right">
-                          <a href="{{ route('product.create') }}" class="btn btn-outline-primary mb-3"> <i
-                                  class="icon-plus"></i> Add Product</a>
+                      <div class="panel-heading clearfix">
+                          <h4 class="panel-title">Customers List</h4>
                       </div>
 
                       <div class="panel-body">

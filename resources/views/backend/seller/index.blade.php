@@ -1,25 +1,25 @@
 @extends('backend.master');
-@section('subcategory_active')
-active
-@endsection
+@section('seller_active') active open @endsection
+@section('subseller') active @endsection
 @section('content')
 <div class="page-inner">
     <div class="page-title">
         <div class="page-breadcrumb">
             <ol class="breadcrumb breadcrumb-with-header">
-                <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                <li><a href="{{ route('subcategory.index') }}">Subcategory</a></li>
-                <li class="active">Subcategory-list</li>
+                <li><a href="{{ url('admin/dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ route('sellerList') }}">Seller</a></li>
+                <li class="active">Seller-list</li>
             </ol>
         </div>
     </div>
     <div id="main-wrapper">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="panel panel-white">
                     <div class="panel-heading clearfix">
-                        <h4 class="panel-title">Subcategory List</h4>
+                        <h4 class="panel-title">Seller List</h4>
                     </div>
+
                     <div class="panel-body">
                         <div class="table-responsive">
                             <table id="example" class="display table" style="width: 100%; cellspacing: 0;">
@@ -48,37 +48,6 @@ active
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="panel panel-white">
-                    <div class="panel-heading clearfix">
-                        <h4 class="panel-title">Add Subcategory</h4>
-                    </div>
-                    <div class="panel-body">
-                        <form>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="category">Subcategory Name</label>
-                                    <input type="text" class="form-control m-t-xxs" id="category"
-                                        placeholder="Subcategory name">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="category">Choose Parent Category</label>
-                                    <select name="" id="category" class="form-control">
-                                      <option value="" disabled>Select One</option>
-                                      <option value="">Category two</option>
-                                      <option value="">Category three</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary m-t-xs m-b-xs">Save</button>
-                        </form>
                     </div>
                 </div>
             </div>
