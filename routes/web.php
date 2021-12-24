@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\UserProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
   return view('welcome');
+});
+
+Route::group(['middleware' => ['auth', 'verified']], function () {
+  Route::get('/profile', [UserProfileController::class, 'userProfile'])->name('userProfile');
+  Route::post('/update-profile', [UserProfileController::class, 'updateProfile'])->name('updateProfile');
+  Route::post('/update-password', [UserProfileController::class, 'updatePassword'])->name('updatePassword');
 });
 
 require __DIR__ . '/auth.php';

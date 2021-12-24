@@ -1,21 +1,34 @@
 <?php
 
-if(!function_exists('resizeAndUploadImage')){
-    function resizeAndUploadImage($image){
-       $input['file'] = time().'_'.$image->getClientOriginalName();
+if(!function_exists('uploadImage')){
+    function uploadImage($image, $size = 10){
+        $imageFile = time().'_'.$image->getClientOriginalName();
         
-        $destinationPath = public_path('backend/uploads');
-    
+        $destination = public_path('backend/uploads');
+
         // $imgFile = Image::make($image->getRealPath());
-    
-        // $imgFile->resize(10, 10, function ($constraint) {
+        // $imgFile->resize($size, $size, function ($constraint) {
         //     $constraint->aspectRatio();
-        // })->save($destinationPath.'/'.$input['file']);
+        // })->save($destination.'/'.$imageFile); // Here this code's isn't working
+
+        $image->move($destination, $imageFile);
+
+        return back()->with('success', 'Image has successfully uploaded.')
+                     ->with('fileName', $imageFile);
+    }
+}
+
+if(!function_exists('removeImage')){
+    function removeImage($image){
+        $destination = public_path('backend/uploads/');
+        unlink($destination . $image);
     
-        $image->move($destinationPath, $input['file']);
-    
-        return back()
-            ->with('success', 'Image has successfully uploaded.')
-            ->with('fileName', $input['file']);
+        return back()->with('success', 'Image has successfully removed.');
+    }
+}
+
+if(!function_exists('routePrefix')){
+    function routePrefix(){
+        return strtolower(auth()->user()->role);
     }
 }

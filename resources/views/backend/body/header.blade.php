@@ -136,7 +136,7 @@
                     </a>
                 </div>
                 <div class="logo-box">
-                    <a href="{{ route('dashboard') }}" class="logo-text"><span>METEOR</span></a>
+                    <a href="{{ url( routePrefix() . '/dashboard') }}" class="logo-text"><span>{{ config('app.name') }}</span></a>
                 </div><!-- Logo Box -->
                 <div class="search-button">
                     <a href="javascript:void(0);" class="show-search"><i class="icon-magnifier"></i></a>
@@ -354,9 +354,15 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <span class="user-name">{{ Auth::user()->name ?? "" }}<i
                                             class="fa fa-angle-down"></i></span>
-                                    <img class="img-circle avatar" src="{{ asset('backend/assets/default-img/user.jpeg') }}"
-                                        width="40"
-                                        height="40" alt="">
+                                    @if(auth()->user()->avatar)
+                                        <img class="img-circle avatar" src="{{ asset('backend/uploads/' . auth()->user()->avatar) }}"
+                                            width="40"
+                                            height="40" alt="">
+                                    @else
+                                        <img class="img-circle avatar" src="{{ asset('backend/assets/default-img/user.jpeg') }}"
+                                            width="40"
+                                            height="40" alt="">
+                                    @endif
                                 </a>
                                 <ul class="dropdown-menu dropdown-list" role="menu">
                                     <li role="presentation"><a href="{{ route('userProfile') }}"><i class="icon-user"></i>Profile</a>

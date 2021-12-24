@@ -10,14 +10,10 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SellerController;
 use App\Http\Controllers\Backend\SubcategoryController;
-use App\Http\Controllers\Backend\UserProfileController;
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']], function () {
 
-  Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-
-  Route::get('/profile', [UserProfileController::class, 'userProfile'])->name('userProfile');
-  Route::post('/update-profile', [UserProfileController::class, 'updateProfile'])->name('updateProfile');
+  Route::get('/dashboard', [DashboardController::class, 'dashboard']);
 
   Route::resources([
     'category' => CategoryController::class,
