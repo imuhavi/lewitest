@@ -10,6 +10,7 @@
     6) User Profile Blade Page Create and Design
     7) Brand Blade/model/controler Create
     8) Order Blade / Seller Blade
+    9) Update Routes / Add Mailbox Blade and Compose
 
 ## Hridoy
 
