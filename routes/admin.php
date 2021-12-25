@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\MailboxController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SellerController;
+use App\Http\Controllers\Backend\SettingsController;
 use App\Http\Controllers\Backend\SubcategoryController;
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']], function () {
@@ -34,4 +35,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']
   // Mailbox Route
   Route::get('mail', [MailboxController::class, 'mailbox'])->name('mailbox');
   Route::get('compose', [MailboxController::class, 'compose'])->name('compose');
+
+
+  // Settings Route,
+  Route::get('settings', [SettingsController::class, 'settings'])->name('settings');
 });

@@ -87,6 +87,13 @@
                 </ul>
             </li>
 
+
+            <li class="@yield('settings_active')"><a href="{{ url( routePrefix() .'/settings') }}"
+                    class="waves-effect waves-button"><span class="menu-icon icon-settings"></span>
+                    <p>Settings</p>
+                </a>
+            </li>
+
         </ul>
     </div><!-- Page Sidebar Inner -->
 </div><!-- Page Sidebar -->

@@ -8,7 +8,7 @@
           <div class="page-breadcrumb">
               <ol class="breadcrumb breadcrumb-with-header">
                   <li><a href="{{ url(routePrefix(). '/dashboard') }}">Dashboard</a></li>
-                  <li><a href="{{ route(routePrefix(). 'category') }}">Category</a></li>
+                  <li><a href="{{ url(routePrefix(). '/category') }}">Category</a></li>
                   <li class="active">Category-list</li>
               </ol>
           </div>
