@@ -36,7 +36,7 @@ active
                                         <th>Office</th>
                                         <th>Age</th>
                                         <th>Start date</th>
-                                        <th>Action</th>
+                                        <th width="120" style="text-align: center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

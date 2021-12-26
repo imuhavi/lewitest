@@ -37,7 +37,7 @@
                                           <th>Icon</th>
                                           <th>Banner</th>
                                           <th>Status</th>
-                                          <th>Action</th>
+                                          <th width="120" style="text-align: center">Action</th>
                                       </tr>
                                   </thead>
                                   <tbody>
@@ -57,7 +57,7 @@
                                           <td>
                                             <a class="btn btn-sm btn-info" href="{{ url( routePrefix() . '/category/' . $item->id . '/edit') }}"><i class="fa fa-edit"></i></a>
                                             <a class="btn btn-sm btn-info" href="{{ url( routePrefix() . '/category/' . $item->id) }}"><i class="fa fa-eye"></i></a>
-                                            <form action="{{ route('category.destroy', $item->id) }}" method="post">
+                                            <form style="display: inline-block" action="{{ route('category.destroy', $item->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
