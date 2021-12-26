@@ -28,7 +28,9 @@ class UserProfileController extends Controller
       $user = User::find(auth()->user()->id);
 
       if($request->file('profile_photo')){
-        removeImage($user->avatar);
+        if($user->avatar){
+          removeImage($user->avatar);
+        }
         uploadImage($request->file('profile_photo'));
       }
       
