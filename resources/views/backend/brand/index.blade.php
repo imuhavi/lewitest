@@ -16,10 +16,17 @@ active
     <div id="main-wrapper">
 
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-white">
                     <div class="panel-heading clearfix">
-                        <h4 class="panel-title">Brand List</h4>
+                        <div class="text-left">
+                          <h4 class="panel-title">Brand List</h4>
+                        </div>
+
+                        <div class="text-right">
+                          <a class="btn btn-info btn-sm" href="{{ url(routePrefix() . '/brand/create') }}">Add
+                              Brand</a>
+                        </div>
                     </div>
 
                     <div class="panel-body">
@@ -54,10 +61,16 @@ active
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-6 col-md-offset-3">
                 <div class="panel panel-white">
                     <div class="panel-heading clearfix">
-                        <h4 class="panel-title">Add Brand</h4>
+                        <div class="text-left">
+                          <h4 class="panel-title">Add Brand</h4>
+                        </div>
+
+                        <div class="text-right">
+                          <a href="{{ url(routePrefix() . '/brand') }}" class="btn btn-info btn-sm">Go back</a>
+                        </div>
                     </div>
                     <div class="panel-body">
                         <form>

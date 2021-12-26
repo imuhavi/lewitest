@@ -17,13 +17,13 @@
           <div class="row">
           
             @if($page == 'index')
-              <div class="col-md-10">
+              <div class="col-md-10 col-md-offset-1">
                   <div class="panel panel-white"> 
                       <div class="panel-heading clearfix">
-                          <div class="float-left">
+                          <div class="text-left">
                             <h4 class="panel-title">Category List</h4>
                           </div>
-                          <div class="float-right">
+                          <div class="text-right">
                             <a class="btn btn-info btn-sm" href="{{ url(routePrefix() . '/category/create') }}">Add category</a>
                           </div>
                       </div>
@@ -72,11 +72,16 @@
                   </div>
               </div>
             @elseif($page == 'create' || $page == 'edit')
-              <div class="col-md-6">
+              <div class="col-md-6 col-md-offset-3">
                 <div class="panel panel-white">
                     <div class="panel-heading clearfix">
-                        <h4 class="panel-title">{{ $page == 'create' ? 'Add' : 'Edit' }} Category</h4>
-                        <a href="{{ url(routePrefix() . '/category') }}" class="btn btn-info btn-sm">Go back</a>
+                        <div class="text-left">
+                          <h4 class="panel-title">{{ $page == 'create' ? 'Add' : 'Edit' }} Category</h4>
+                        </div>
+
+                        <div class="text-right">
+                          <a href="{{ url(routePrefix() . '/category') }}" class="btn btn-info btn-sm">Go back</a>
+                        </div>
                     </div>
                     <div class="panel-body">
                         <form action="{{ $page == 'create' ? url(routePrefix() . '/category') : url(routePrefix() . '/category/' . $data->id) }}" method="POST" enctype="multipart/form-data">

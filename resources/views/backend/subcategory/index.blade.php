@@ -15,10 +15,16 @@ active
     </div>
     <div id="main-wrapper">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-white">
                     <div class="panel-heading clearfix">
-                        <h4 class="panel-title">Subcategory List</h4>
+                        <div class="text-left">
+                          <h4 class="panel-title">Subcategory List</h4>
+                        </div>
+                        <div class="text-right">
+                            <a class="btn btn-info btn-sm" href="{{ url(routePrefix() . '/subcategory/create') }}">Add
+                                Subcategory</a>
+                        </div>
                     </div>
                     <div class="panel-body">
                         <div class="table-responsive">
@@ -52,7 +58,7 @@ active
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-6 col-md-offset-3">
                 <div class="panel panel-white">
                     <div class="panel-heading clearfix">
                         <h4 class="panel-title">Add Subcategory</h4>
