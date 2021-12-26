@@ -74,4 +74,8 @@ function previewImage(whereToShow, imageFile) {
   document.getElementById(whereToShow).src = window.URL.createObjectURL(imageFile[0])
 }
 
-
+// Push slug
+function pushSlug(text, id) {
+  let trimmedText = text.trim()
+  if(trimmedText.length > 0) document.getElementById(id).value = trimmedText.replaceAll(' ', '-')
+}
