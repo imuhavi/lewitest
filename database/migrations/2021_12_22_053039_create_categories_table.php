@@ -18,6 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('name');
             $table->text('banner')->nullable();
             $table->text('icon')->nullable();
+            $table->enum('type', ['Default', 'Deleteable'])->default('Deleteable');
             $table->enum('status', ['Active', 'Inactive'])->default('Active');
             $table->string('slug')->nullable();
             $table->text('meta_title')->nullable();
