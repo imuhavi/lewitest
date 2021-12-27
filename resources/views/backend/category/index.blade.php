@@ -107,6 +107,7 @@
                                       @enderror
                               </div>
                             </div>
+
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="category_img">Icon</label>

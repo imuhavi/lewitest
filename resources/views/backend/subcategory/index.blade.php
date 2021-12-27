@@ -72,12 +72,16 @@ active
                             @endif
                               <div class="form-row">
                                   <div class="form-group">
-                                      <label for="category">Subcategory Name</label>
-                                      <input type="text" class="form-control m-t-xxs" id="category"
+                                      <label for="subcategory">Subcategory Name</label>
+                                      <input type="text" class="form-control m-t-xxs" id="subcategory"
                                           placeholder="Subcategory name"
-                                          onkeyup="pushSlug(this.value, 'category_slug')" name="name">
+                                          onkeyup="pushSlug(this.value, 'subcategory_slug')" name="name">
                                   </div>
+                                  @error('name')
+                                  <small class="text-danger">{{ $message }}</small>
+                                  @enderror
                               </div>
+
                               <div class="form-row">
                                   <div class="form-group">
                                       <label for="category">Choose Parent Category</label>
