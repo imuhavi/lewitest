@@ -8,7 +8,7 @@ active
         <div class="page-breadcrumb">
             <ol class="breadcrumb breadcrumb-with-header">
                 <li><a href="{{ url(routePrefix(). '/dashboard') }}">Dashboard</a></li>
-                <li><a href="{{ route(routePrefix(). '/coupon') }}">Coupon</a></li>
+                <li><a href="{{ url(routePrefix(). '/coupon') }}">Coupon</a></li>
                 <li class="active">Coupon-list</li>
             </ol>
         </div>

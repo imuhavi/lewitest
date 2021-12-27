@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
 
 class SubcategoryController extends Controller
 {
-  private $VIEW_PATH = 'backend.subcategory.';
+  private $VIEW_PATH = 'backend.subcategory.index';
+  private $VIEW_ROUTE = '/subcategory';
   /**
    * Display a listing of the resource.
    *
@@ -16,7 +18,9 @@ class SubcategoryController extends Controller
    */
   public function index()
   {
-    return view($this->VIEW_PATH . 'index');
+    $page = 'index';
+    $data = Subcategory::orderBy('created_at', 'DESC')->get();
+    return view($this->VIEW_PATH, compact('data', 'page'));
   }
 
   /**
@@ -26,7 +30,10 @@ class SubcategoryController extends Controller
    */
   public function create()
   {
-    return view($this->VIEW_PATH . 'create');
+    $data = '';
+    $page = 'create';
+    $category = Category::orderBy('name', 'asc')->get();
+    return view($this->VIEW_PATH, compact('data', 'page', 'category'));
   }
 
   /**
