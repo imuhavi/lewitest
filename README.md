@@ -11,6 +11,7 @@
     7) Brand Blade/model/controler Create
     8) Order Blade / Seller Blade
     9) Update Routes / Add Mailbox Blade and Compose
+    10) Settings Blade Design Done
 
 ## Hridoy
 

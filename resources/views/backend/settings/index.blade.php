@@ -21,20 +21,20 @@
 
               <div class="panel-body">
                   <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                      {{-- General Settings --}}
                       <div class="panel panel-default">
                           <div class="panel-heading" role="tab" id="headingOne">
                               <h4 class="panel-title">
-                                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                  <a data-toggle="collapse" data-parent="#accordion" href="#general_settings"
                                       aria-expanded="true" aria-controls="collapseOne">
                                       General Settings
                                   </a>
                               </h4>
                           </div>
 
-                          <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
+                          <div id="general_settings" class="panel-collapse collapse in" role="tabpanel"
                               aria-labelledby="headingOne">
-                              <div class="panel-body">
-                                  
+                              <div class="panel-body">  
                                 <div class="tabs-left" role="tabpanel">
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-tabs" role="tablist">
@@ -48,8 +48,6 @@
                                        
                                     </ul>
                                 </div>
-
-
                               </div>
                           </div>
                       </div>
@@ -59,21 +57,19 @@
                           <div class="panel-heading" role="tab" id="headingTwo">
                               <h4 class="panel-title">
                                   <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                      href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                      href="#socail_login" aria-expanded="false" aria-controls="collapseTwo">
                                       Social Logins
                                   </a>
                               </h4>
                           </div>
 
-                          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
+                          <div id="socail_login" class="panel-collapse collapse" role="tabpanel"
                               aria-labelledby="headingTwo">
                               <div class="panel-body">
-                                  
-
                                 <div class="tabs-left" role="tabpanel">
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-tabs" role="tablist">
-                                        <li role="presentation" class="active"><a href="#facebook" role="tab"
+                                        <li role="presentation"><a href="#facebook" role="tab"
                                                 data-toggle="tab">Facebook </a></li>
 
                                         <li role="presentation"><a href="#google" role="tab" data-toggle="tab">Google</a>
@@ -84,8 +80,6 @@
 
                                     </ul>
                                 </div>
-
-
                               </div>
                           </div>
                       </div>
@@ -95,13 +89,14 @@
                           <div class="panel-heading" role="tab" id="headingTwo">
                               <h4 class="panel-title">
                                   <a class="collapsed" data-toggle="collapse" data-parent="#accordion"
-                                      href="#collapseThree" aria-expanded="false" aria-controls="collapseTwo">
+                                      href="#payment_method" aria-expanded="false" aria-controls="collapseTwo">
                                       Payment Methods
                                   </a>
                               </h4>
                           </div>
 
-                          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
+
+                          <div id="payment_method" class="panel-collapse collapse" role="tabpanel"
                               aria-labelledby="headingTwo">
                               <div class="panel-body">
                                   
@@ -109,7 +104,7 @@
                                 <div class="tabs-left" role="tabpanel">
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-tabs" role="tablist">
-                                        <li role="presentation" class="active"><a href="#facebook" role="tab"
+                                        <li role="presentation"><a href="#payment" role="tab"
                                                 data-toggle="tab">Setup Payment Methods </a></li>
                                     </ul>
                                 </div>
@@ -272,7 +267,7 @@
 
                    </div>
 
-                   {{-- Email Setup Settings --}}
+                   {{-- Mail Setup Settings --}}
                    <div role="tabpanel" class="tab-pane fade" id="mail">
                        <div class="card mb-4">
                            <form action="" method="post" enctype="multipart/form-data">
@@ -376,19 +371,148 @@
 
                    </div>
 
+                   {{-- Social Login Facebook --}}
                    <div role="tabpanel" class="tab-pane fade" id="facebook">
-                       <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis,
-                           sem. Nulla consequat massa quis enim. Donec pede justo,
-                           fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo,
-                           rhoncus ut, imperdiet a, venenatis vitae, justo.</p>
+                     <div class="card mb-4">
+                         <form action="" method="post" enctype="multipart/form-data">
+                             @csrf
+                             <div class="card-body">
+
+                                 <div class="row">
+                                     <div class="col-sm-3">
+                                         <p class="mb-0">App Id</p>
+                                     </div>
+                                     <div class="col-sm-5">
+                                         <input type="text" name="app_id" id="app_id"
+                                             class="form-control">
+                                     </div>
+                                 </div>
+                                 <hr>
+                                 <div class="row">
+                                     <div class="col-sm-3">
+                                         <p class="mb-0">App Secret</p>
+                                     </div>
+                                     <div class="col-sm-5">
+                                         <input type="text" name="app_secret" class="form-control" id="app_secret">
+                                     </div>
+                                 </div>
+
+                                 <div class="row" style="margin-top: 20px">
+                                     <div class="col-sm-8 text-right ">
+                                         <button class="btn btn-info" type="submit">Update</button>
+                                     </div>
+                                 </div>
+                             </div>
+                         </form>
+                     </div>
                    </div>
 
+                   {{-- Social Login Google --}}
                    <div role="tabpanel" class="tab-pane fade" id="google">
-                       <p>Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus,
-                           sem quam semper libero, sit amet adipiscing sem neque sed ipsum.
-                           Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id,
-                           lorem. Maecenas nec odio et ante tincidunt tempus.</p>
+                     <div class="card mb-4">
+                         <form action="" method="post" enctype="multipart/form-data">
+                             @csrf
+                             <div class="card-body">
+
+                                 <div class="row">
+                                     <div class="col-sm-3">
+                                         <p class="mb-0">Client Id</p>
+                                     </div>
+                                     <div class="col-sm-5">
+                                         <input type="text" name="client_id" id="client_id" class="form-control">
+                                     </div>
+                                 </div>
+                                 <hr>
+                                 <div class="row">
+                                     <div class="col-sm-3">
+                                         <p class="mb-0">Client Secret</p>
+                                     </div>
+                                     <div class="col-sm-5">
+                                         <input type="text" name="client_secret" class="form-control" id="client_secret">
+                                     </div>
+                                 </div>
+
+                                 <div class="row" style="margin-top: 20px">
+                                     <div class="col-sm-8 text-right ">
+                                         <button class="btn btn-info" type="submit">Update</button>
+                                     </div>
+                                 </div>
+                             </div>
+                         </form>
+                     </div>
                    </div>
+
+                    {{-- Social Login Twitter --}}
+                    <div role="tabpanel" class="tab-pane fade" id="twitter">
+                        <div class="card mb-4">
+                            <form action="" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="card-body">
+
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Twitter App Id</p>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <input type="text" name="twitter_app_id" id="twitter_app_id" class="form-control">
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-0">Twitter App Secret</p>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <input type="text" name="twitter_app_secret" class="form-control" id="twitter_app_secret">
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin-top: 20px">
+                                        <div class="col-sm-8 text-right ">
+                                            <button class="btn btn-info" type="submit">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                     {{-- Payment Method --}}
+                     <div role="tabpanel" class="tab-pane fade" id="payment">
+                         <div class="card mb-4">
+                             <form action="" method="post" enctype="multipart/form-data">
+                                 @csrf
+                                 <div class="card-body">
+
+                                     <div class="row">
+                                         <div class="col-sm-3">
+                                             <p class="mb-0">Publisable Key</p>
+                                         </div>
+                                         <div class="col-sm-5">
+                                             <input type="text" name="publisable_key" id="publisable_key"
+                                                 class="form-control">
+                                         </div>
+                                     </div>
+                                     <hr>
+                                     <div class="row">
+                                         <div class="col-sm-3">
+                                             <p class="mb-0">Publisable Secret</p>
+                                         </div>
+                                         <div class="col-sm-5">
+                                             <input type="text" name="publisable_sectet" class="form-control"
+                                                 id="publisable_sectet">
+                                         </div>
+                                     </div>
+
+                                     <div class="row" style="margin-top: 20px">
+                                         <div class="col-sm-8 text-right ">
+                                             <button class="btn btn-info" type="submit">Update</button>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </form>
+                         </div>
+                     </div>
                </div>
              </div>
            </div>
