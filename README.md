@@ -23,3 +23,5 @@
     6) Update migration files (Category, Subcategory & Coupon)
     7) Profile update
     8) Password update
+    9) Category CRUD
+    10) Default category
