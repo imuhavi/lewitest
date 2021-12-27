@@ -20,8 +20,8 @@ class UserProfileController extends Controller
   {
     $request->validate([
       'full_name' => 'required|min:2|max:20',
-      'phone' => 'min:11|max:17',
-      'mobile' => 'min:11|max:17',
+      'phone' => 'nullable|min:11|max:17',
+      'mobile' => 'nullable|min:11|max:17',
       'address' => 'max:200'
     ]);
     try {

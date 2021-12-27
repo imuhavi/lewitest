@@ -46,10 +46,18 @@
                                           <td>{{ $loop->iteration }}</td>
                                           <td>{{ $item->name }}</td>
                                           <td>
-                                            <img src="{{ asset('/backend/uploads/' . $item->icon) }}" class="small-image" alt="Category icon - {{ $item->icon }}">
+                                            @if($item->icon)
+                                                <img src="{{ asset('/backend/uploads/' . $item->icon) }}" class="small-image" alt="Category icon - {{ $item->icon }}">
+                                            @else
+                                                <img src="{{ asset('backend/assets/default-img/user.jpeg') }}" class="small-image" alt="Default category icon">
+                                            @endif
                                           </td>
                                           <td>
-                                            <img src="{{ asset('/backend/uploads/' . $item->banner) }}" class="small-image" alt="Category banner - {{ $item->banner }}">
+                                            @if($item->banner)
+                                                <img src="{{ asset('/backend/uploads/' . $item->banner) }}" class="small-image" alt="Category banner - {{ $item->banner }}">
+                                            @else
+                                                <img src="{{ asset('backend/assets/default-img/user.jpeg') }}" class="small-image" alt="Default category banner">
+                                            @endif
                                           </td>
                                           <td>
                                             <span class="badge badge-pill badge-{{ $item->status === 'Active' ? 'success' : 'danger' }}">{{ $item->status }}</span>
@@ -110,7 +118,7 @@
                                 </div>
 
                                 <img class="img-thumbnail"
-                                    src="{{ $page == 'create' ? asset('backend/assets/default-img/user.jpeg') : asset('backend/uploads/' . $data->icon) }}"
+                                    src="{{ ($page == 'create' || !$data->icon) ? asset('backend/assets/default-img/user.jpeg') : asset('backend/uploads/' . $data->icon) }}"
                                     id="icon" width="100" height="100" />
                             </div>
                             <div class="form-row">
@@ -124,7 +132,7 @@
                                 </div>
 
                                 <img class="img-thumbnail"
-                                    src="{{ $page == 'create' ? asset('backend/assets/default-img/user.jpeg') : asset('backend/uploads/' . $data->banner) }}"
+                                    src="{{ ($page == 'create' || !$data->banner) ? asset('backend/assets/default-img/user.jpeg') : asset('backend/uploads/' . $data->banner) }}"
                                     id="banner" width="100" height="100" />
                             </div>
                             <div class="from-row status">

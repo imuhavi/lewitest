@@ -124,6 +124,9 @@ class CategoryController extends Controller
   public function destroy(Category $category)
   {
     try {
+      if($category->type === 'Default'){
+        return redirect()->back()->with('warning', 'You can not delete this default category.');
+      }
       removeImage($category->icon);
       removeImage($category->banner);
       $category->delete();
