@@ -98,14 +98,14 @@
                             @method('PATCH')
                         @endif
                             <div class="form-row">
-                            <div class="form-group">
-                                <label for="category">Name</label>
-                                <input type="text" value="{{ $data ? $data->name : '' }}" onkeyup="pushSlug(this.value, 'category_slug')" name="name" class="form-control m-t-xxs" id="category"
-                                    placeholder="Name">
-                                    @error('name')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
-                            </div>
+                              <div class="form-group">
+                                  <label for="category">Name</label>
+                                  <input type="text" value="{{ $data ? $data->name : '' }}" onkeyup="pushSlug(this.value, 'category_slug')" name="name" class="form-control m-t-xxs" id="category"
+                                      placeholder="Name">
+                                      @error('name')
+                                          <small class="text-danger">{{ $message }}</small>
+                                      @enderror
+                              </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group">
