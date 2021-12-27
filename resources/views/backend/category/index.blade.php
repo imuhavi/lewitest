@@ -122,6 +122,7 @@
                                     src="{{ ($page == 'create' || !$data->icon) ? asset('backend/assets/default-img/user.jpeg') : asset('backend/uploads/' . $data->icon) }}"
                                     id="icon" width="100" height="100" />
                             </div>
+
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="category_banner">Banner</label>
@@ -136,6 +137,7 @@
                                     src="{{ ($page == 'create' || !$data->banner) ? asset('backend/assets/default-img/user.jpeg') : asset('backend/uploads/' . $data->banner) }}"
                                     id="banner" width="100" height="100" />
                             </div>
+
                             <div class="from-row status">
                                 <label>Publication status : </label>
                                 <label class="no-s">
@@ -146,129 +148,131 @@
                                     @endif
                                 </label>
                             </div>
+
                             <div class="form-row">
-                            <div class="form-group">
-                                <label for="category_slug">Slug</label>
-                                <input type="text" value="{{ $data ? $data->slug : '' }}" name="slug" class="form-control m-t-xxs" id="category_slug"
-                                    placeholder="Slug">
-                                    @error('slug')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
+                              <div class="form-group">
+                                  <label for="category_slug">Slug</label>
+                                  <input type="text" value="{{ $data ? $data->slug : '' }}" name="slug" class="form-control m-t-xxs" id="category_slug"
+                                      placeholder="Slug">
+                                      @error('slug')
+                                          <small class="text-danger">{{ $message }}</small>
+                                      @enderror
+                              </div>
                             </div>
-                            </div>
+
                             <div class="form-row">
-                            <div class="form-group">
-                                <label for="category">Meta title</label>
-                                <input type="text" value="{{ $data ? $data->meta_title : '' }}" name="meta_title" class="form-control m-t-xxs" id="category"
-                                    placeholder="Meta title">
-                                    @error('meta_title')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
+                              <div class="form-group">
+                                  <label for="category">Meta title</label>
+                                  <input type="text" value="{{ $data ? $data->meta_title : '' }}" name="meta_title" class="form-control m-t-xxs" id="category"
+                                      placeholder="Meta title">
+                                      @error('meta_title')
+                                          <small class="text-danger">{{ $message }}</small>
+                                      @enderror
+                              </div>
+
                             </div>
-                            </div>
+
                             <div class="form-row">
-                            <div class="form-group">
-                                <label for="description">Meta description</label>
-                                <textarea class="form-control m-t-xxs" name="meta_description" id="description"
-                                    placeholder="Meta description">{{ $data ? $data->meta_description : '' }}</textarea>
-                                    @error('meta_description')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
+                              <div class="form-group">
+                                  <label for="description">Meta description</label>
+                                  <textarea class="form-control m-t-xxs" name="meta_description" id="description"
+                                      placeholder="Meta description">{{ $data ? $data->meta_description : '' }}</textarea>
+                                      @error('meta_description')
+                                          <small class="text-danger">{{ $message }}</small>
+                                      @enderror
+                              </div>
                             </div>
-                            </div>
+
                             <button type="submit" class="btn btn-primary m-t-xs m-b-xs">{{ $page == 'create' ? 'Save' : 'Update' }}</button>
                         </form>
                     </div>
                 </div>
               </div>
               
-            @elseif('show')
-                
-                <div class="col-md-8 col-md-offset-2">
-                  <div class="panel panel-info">
+            @elseif('show') 
+              <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-info">
 
-                    <div class="panel-heading clearfix">
-                      <div class="text-left float-left">
-                        <h3 class="panel-title">Category</h3>
-                      </div>
-                      <div class="text-right">
-                        <a href="{{ url(routePrefix() . '/category') }}" class="btn btn-info btn-sm">Go back</a>
-                      </div>
+                  <div class="panel-heading clearfix">
+                    <div class="text-left float-left">
+                      <h3 class="panel-title">Category</h3>
                     </div>
-
-                    <div class="panel-body">
-                      <table class="table table-striped">
-                          <tbody>
-                              <tr>
-                                  <th class="45%" width="45%">Category Name</th>
-                                  <td width="10%">:</td>
-                                  <td class="45%" width="45%">{{ $data->name }}</td>
-                              </tr>
-                              <tr>
-                                  <th width="45%">Banner Photo</th>
-                                  <td width="10%">:</td>
-                                  <td width="45%">
-                                    @if($data->banner)
-                                    <img src="{{ asset('/backend/uploads/' . $data->banner) }}" class="thumbnail-img"
-                                        alt="Category Banner - {{ $data->banner }}">
-                                    @else
-                                    <img src="{{ asset('backend/assets/default-img/user.jpeg') }}" class="thumbnail-img"
-                                        alt="Default category Banner">
-                                    @endif
-                                  </td>
-                              </tr>
-
-                              <tr>
-                                  <th width="45%">Category Icon</th>
-                                  <td width="10%">:</td>
-                                  <td width="45%">
-                                    @if($data->icon)
-                                    <img src="{{ asset('/backend/uploads/' . $data->icon) }}" class="thumbnail-img"
-                                        alt="Category Banner - {{ $data->icon }}">
-                                    @else
-                                    <img src="{{ asset('backend/assets/default-img/user.jpeg') }}" class="thumbnail-img"
-                                        alt="Default category Banner">
-                                    @endif
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <th width="45%">Category Url</th>
-                                  <td width="10%">:</td>
-                                  <td width="45%">{{ $data->slug }}</td>
-                              </tr>
-                              <tr>
-                                  <th width="45%">Meta Title</th>
-                                  <td width="10%">:</td>
-                                  <td width="45%">{{ $data->meta_title ?? Null }}</td>
-                              </tr>
-
-                              <tr>
-                                  <th width="45%">Meta Description</th>
-                                  <td width="10%">:</td>
-                                  <td width="45%">{{ $data->meta_description ?? Null }}</td>
-                              </tr>
-
-                              <tr>
-                                  <th width="45%">Category Status</th>
-                                  <th width="10%">:</th>
-                                  <td width="45%">
-                                  <span class="badge badge-pill badge-{{ $data->status === 'Active' ? 'success' : 'danger' }}">{{ $data->status }}</span>
-                                  </td>
-                              </tr>
-
-                              <tr>
-                                  <th width="45%">Category Create</th>
-                                  <th width="10%">:</th>
-                                  <td width="45%">{{ $data->created_at->diffForHumans() }}</td>
-                              </tr>
-
-                          </tbody>
-                      </table>
+                    <div class="text-right">
+                      <a href="{{ url(routePrefix() . '/category') }}" class="btn btn-info btn-sm">Go back</a>
                     </div>
                   </div>
-                </div>
 
-                {{-- {{ $data }} --}}
+                  <div class="panel-body">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <th class="45%" width="45%">Category Name</th>
+                                <td width="10%">:</td>
+                                <td class="45%" width="45%">{{ $data->name }}</td>
+                            </tr>
+                            <tr>
+                                <th width="45%">Banner Photo</th>
+                                <td width="10%">:</td>
+                                <td width="45%">
+                                  @if($data->banner)
+                                  <img src="{{ asset('/backend/uploads/' . $data->banner) }}" class="thumbnail-img"
+                                      alt="Category Banner - {{ $data->banner }}">
+                                  @else
+                                  <img src="{{ asset('backend/assets/default-img/user.jpeg') }}" class="thumbnail-img"
+                                      alt="Default category Banner">
+                                  @endif
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th width="45%">Category Icon</th>
+                                <td width="10%">:</td>
+                                <td width="45%">
+                                  @if($data->icon)
+                                  <img src="{{ asset('/backend/uploads/' . $data->icon) }}" class="thumbnail-img"
+                                      alt="Category Banner - {{ $data->icon }}">
+                                  @else
+                                  <img src="{{ asset('backend/assets/default-img/user.jpeg') }}" class="thumbnail-img"
+                                      alt="Default category Banner">
+                                  @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <th width="45%">Category Url</th>
+                                <td width="10%">:</td>
+                                <td width="45%">{{ $data->slug }}</td>
+                            </tr>
+                            <tr>
+                                <th width="45%">Meta Title</th>
+                                <td width="10%">:</td>
+                                <td width="45%">{{ $data->meta_title ?? Null }}</td>
+                            </tr>
+
+                            <tr>
+                                <th width="45%">Meta Description</th>
+                                <td width="10%">:</td>
+                                <td width="45%">{{ $data->meta_description ?? Null }}</td>
+                            </tr>
+
+                            <tr>
+                                <th width="45%">Category Status</th>
+                                <th width="10%">:</th>
+                                <td width="45%">
+                                <span class="badge badge-pill badge-{{ $data->status === 'Active' ? 'success' : 'danger' }}">{{ $data->status }}</span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th width="45%">Category Create</th>
+                                <th width="10%">:</th>
+                                <td width="45%">{{ $data->created_at->diffForHumans() }}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
             @endif
 
           </div><!-- Row -->

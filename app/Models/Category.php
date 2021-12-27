@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    use HasFactory;
+  use HasFactory;
+
+  function subcategory()
+  {
+    return $this->hasMany(Subcategory::class, 'category_id');
+  }
 }

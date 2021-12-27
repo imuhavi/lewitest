@@ -56,7 +56,7 @@ class CategoryController extends Controller
         $category->banner = session('fileName');
       }
 
-      $category->slug = $request->slug;
+      $category->slug = strtolower($request->slug);
       $category->status = $status;
       $category->meta_title = $request->meta_title;
       $category->meta_description = $request->meta_description;
@@ -93,6 +93,8 @@ class CategoryController extends Controller
     try {
       if(isset($request->status) && $request->status == 'on'){
         $status = 'Active';
+      }else{
+        $status = 'Inactive';
       }
 
       if($request->file('icon')){
@@ -108,7 +110,7 @@ class CategoryController extends Controller
       }
 
       $category->name = $request->name;
-      $category->slug = $request->slug;
+      $category->slug = strtolower($request->slug);
       if($status){
         $category->status = $status;
       }
