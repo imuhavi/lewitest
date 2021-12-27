@@ -182,9 +182,92 @@
               </div>
               
             @elseif('show')
-                <a href="{{ url(routePrefix() . '/category') }}" class="btn btn-info btn-sm">Go back</a>
-                <h1>Show the data here. You have $data !</h1>
-                {{ $data }}
+                
+                <div class="col-md-8 col-md-offset-2">
+                  <div class="panel panel-info">
+
+                    <div class="panel-heading clearfix">
+                      <div class="text-left float-left">
+                        <h3 class="panel-title">Category</h3>
+                      </div>
+                      <div class="text-right">
+                        <a href="{{ url(routePrefix() . '/category') }}" class="btn btn-info btn-sm">Go back</a>
+                      </div>
+                    </div>
+
+                    <div class="panel-body">
+                      <table class="table table-striped">
+                          <tbody>
+                              <tr>
+                                  <th class="45%" width="45%">Category Name</th>
+                                  <td width="10%">:</td>
+                                  <td class="45%" width="45%">{{ $data->name }}</td>
+                              </tr>
+                              <tr>
+                                  <th width="45%">Banner Photo</th>
+                                  <td width="10%">:</td>
+                                  <td width="45%">
+                                    @if($data->banner)
+                                    <img src="{{ asset('/backend/uploads/' . $data->banner) }}" class="thumbnail-img"
+                                        alt="Category Banner - {{ $data->banner }}">
+                                    @else
+                                    <img src="{{ asset('backend/assets/default-img/user.jpeg') }}" class="thumbnail-img"
+                                        alt="Default category Banner">
+                                    @endif
+                                  </td>
+                              </tr>
+
+                              <tr>
+                                  <th width="45%">Category Icon</th>
+                                  <td width="10%">:</td>
+                                  <td width="45%">
+                                    @if($data->icon)
+                                    <img src="{{ asset('/backend/uploads/' . $data->icon) }}" class="thumbnail-img"
+                                        alt="Category Banner - {{ $data->icon }}">
+                                    @else
+                                    <img src="{{ asset('backend/assets/default-img/user.jpeg') }}" class="thumbnail-img"
+                                        alt="Default category Banner">
+                                    @endif
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <th width="45%">Category Url</th>
+                                  <td width="10%">:</td>
+                                  <td width="45%">{{ $data->slug }}</td>
+                              </tr>
+                              <tr>
+                                  <th width="45%">Meta Title</th>
+                                  <td width="10%">:</td>
+                                  <td width="45%">{{ $data->meta_title ?? Null }}</td>
+                              </tr>
+
+                              <tr>
+                                  <th width="45%">Meta Description</th>
+                                  <td width="10%">:</td>
+                                  <td width="45%">{{ $data->meta_description ?? Null }}</td>
+                              </tr>
+
+                              <tr>
+                                  <th width="45%">Category Status</th>
+                                  <th width="10%">:</th>
+                                  <td width="45%">
+                                  <span class="badge badge-pill badge-{{ $data->status === 'Active' ? 'success' : 'danger' }}">{{ $data->status }}</span>
+                                  </td>
+                              </tr>
+
+                              <tr>
+                                  <th width="45%">Category Create</th>
+                                  <th width="10%">:</th>
+                                  <td width="45%">{{ $data->created_at->diffForHumans() }}</td>
+                              </tr>
+
+                          </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                {{-- {{ $data }} --}}
             @endif
 
           </div><!-- Row -->
