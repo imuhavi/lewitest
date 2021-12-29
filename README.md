@@ -13,6 +13,7 @@
     9) Update Routes / Add Mailbox Blade and Compose
     10) Settings Blade Design Done
     11) Sucategory CRUD
+    12) Brand CRUD Done
 
 ## Hridoy
 
