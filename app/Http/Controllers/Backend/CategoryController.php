@@ -61,7 +61,7 @@ class CategoryController extends Controller
       $category->meta_title = $request->meta_title;
       $category->meta_description = $request->meta_description;
       $category->save();
-      return redirect(routePrefix() . $this->VIEW_ROUTE)->with('success', 'Category saved successfully .');
+      return back()->with('success', 'Category saved successfully .');
     } catch (\Throwable $th) {
       return redirect()->back()->with('error', $th->getMessage());
     }

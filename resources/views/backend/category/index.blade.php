@@ -100,7 +100,7 @@
                             <div class="form-row">
                               <div class="form-group">
                                   <label for="category">Name</label>
-                                  <input type="text" value="{{ $data ? $data->name : '' }}" onkeyup="pushSlug(this.value, 'category_slug')" name="name" class="form-control m-t-xxs" id="category" placeholder="Name">
+                                  <input type="text" value="{{ $data ? $data->name : old('name') }}" onkeyup="pushSlug(this.value, 'category_slug')" name="name" class="form-control m-t-xxs" id="category" placeholder="Name">
                                   @error('name')
                                       <small class="text-danger">{{ $message }}</small>
                                   @enderror
@@ -149,7 +149,8 @@
                             <div class="form-row">
                               <div class="form-group">
                                   <label for="category_slug">Slug</label>
-                                  <input type="text" value="{{ $data ? $data->slug : '' }}" name="slug" class="form-control m-t-xxs" id="category_slug"
+                                  <input type="text" value="{{ $data ? $data->slug : old('slug') }}" name="slug"
+                                      class="form-control m-t-xxs" id="category_slug"
                                       placeholder="Slug">
                                       @error('slug')
                                           <small class="text-danger">{{ $message }}</small>
@@ -160,7 +161,8 @@
                             <div class="form-row">
                               <div class="form-group">
                                   <label for="category">Meta title</label>
-                                  <input type="text" value="{{ $data ? $data->meta_title : '' }}" name="meta_title" class="form-control m-t-xxs" id="category"
+                                  <input type="text" value="{{ $data ? $data->meta_title : old('meta_title') }}"
+                                      name="meta_title" class="form-control m-t-xxs" id="category"
                                       placeholder="Meta title">
                                       @error('meta_title')
                                           <small class="text-danger">{{ $message }}</small>
@@ -171,8 +173,7 @@
                             <div class="form-row">
                               <div class="form-group">
                                   <label for="description">Meta description</label>
-                                  <textarea class="form-control m-t-xxs" name="meta_description" id="description"
-                                      placeholder="Meta description">{{ $data ? $data->meta_description : '' }}</textarea>
+                                  <textarea class="form-control m-t-xxs" name="meta_description" id="description" placeholder="Meta description">{{ $data ? $data->meta_description : old('meta_description') }}</textarea>
                                       @error('meta_description')
                                           <small class="text-danger">{{ $message }}</small>
                                       @enderror
