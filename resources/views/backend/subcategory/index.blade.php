@@ -51,7 +51,7 @@ active
                                                <img src="{{ asset('/backend/uploads/' . $subcatItem->icon) }}"
                                                    class="small-image" alt="Category icon - {{ $subcatItem->icon }}">
                                              @else
-                                                <img src="{{ asset('backend/assets/default-img/user.jpeg') }}"
+                                                <img src="{{ asset('backend/assets/default-img/noimage.jpg') }}"
                                                     class="small-image" alt="Default category icon">
                                              @endif
                                            </td>
@@ -60,7 +60,7 @@ active
                                              <img src="{{ asset('/backend/uploads/' . $subcatItem->banner) }}"
                                                  class="small-image" alt="Category banner - {{ $subcatItem->banner }}">
                                              @else
-                                             <img src="{{ asset('backend/assets/default-img/user.jpeg') }}"
+                                             <img src="{{ asset('backend/assets/default-img/noimage.jpg') }}"
                                                  class="small-image" alt="Default category banner">
                                              @endif
                                            </td>
@@ -132,7 +132,7 @@ active
 
                               <div class="form-row">
                                   <div class="form-group">
-                                      <label for="subcategory_icon">Subcategory Icon</label>
+                                      <label for="subcategory_icon">Upload Icon</label>
                                       <input type="file" class="form-control" name="icon" id="subcategory_icon"
                                           onchange="previewImage('icon', this.files)">
                                       @error('icon')
@@ -141,13 +141,13 @@ active
                                   </div>
 
                                   <img class="img-thumbnail"
-                                      src="{{ ($page == 'create' || !$data->icon) ? asset('backend/assets/default-img/user.jpeg') : asset('backend/uploads/' . $data->icon) }}"
+                                      src="{{ ($page == 'create' || !$data->icon) ? asset('backend/assets/default-img/noimage.jpg') : asset('backend/uploads/' . $data->icon) }}"
                                       id="icon" width="100" height="100" />
                               </div>
 
                               <div class="form-row">
                                   <div class="form-group">
-                                      <label for="subcategory_banner">Subcategory Banner</label>
+                                      <label for="subcategory_banner">Upload Banner</label>
                                       <input type="file" class="form-control" name="banner" id="subcategory_banner"
                                           onchange="previewImage('banner', this.files)">
                                       @error('banner')
@@ -156,7 +156,7 @@ active
                                   </div>
 
                                   <img class="img-thumbnail"
-                                      src="{{ ($page == 'create' || !$data->banner) ? asset('backend/assets/default-img/user.jpeg') : asset('backend/uploads/' . $data->banner) }}"
+                                      src="{{ ($page == 'create' || !$data->banner) ? asset('backend/assets/default-img/noimage.jpg') : asset('backend/uploads/' . $data->banner) }}"
                                       id="banner" width="100" height="100" />
                               </div>
 
@@ -207,7 +207,7 @@ active
                                   </div>
                               </div>
 
-                              <button type="submit" class="btn btn-primary m-t-xs m-b-xs">{{ $page == 'create' ? 'Save' : 'Update' }}</button>
+                              <button type="submit" class="btn btn-primary m-t-xs m-b-xs">{{ $page == 'create' ? 'Save' : 'Save Changes' }}</button>
                           </form>
                       </div>
                   </div>
@@ -240,7 +240,7 @@ active
                                           @if($data->banner)
                                           <img src="{{ asset('/backend/uploads/' . $data->banner) }}" class="thumbnail-img" alt="Category Banner - {{ $data->banner }}">
                                           @else
-                                          <img src="{{ asset('backend/assets/default-img/user.jpeg') }}"
+                                          <img src="{{ asset('backend/assets/default-img/noimage.jpg') }}"
                                               class="thumbnail-img" alt="Default category Banner">
                                           @endif
                                       </td>
@@ -254,7 +254,7 @@ active
                                           <img src="{{ asset('/backend/uploads/' . $data->icon) }}"
                                               class="thumbnail-img" alt="Subcategory Banner - {{ $data->icon }}">
                                           @else
-                                          <img src="{{ asset('backend/assets/default-img/user.jpeg') }}"
+                                          <img src="{{ asset('backend/assets/default-img/noimage.jpg') }}"
                                               class="thumbnail-img" alt="Default category Banner">
                                           @endif
                                       </td>

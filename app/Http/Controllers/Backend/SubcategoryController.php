@@ -79,9 +79,9 @@ class SubcategoryController extends Controller
       $subcategory->meta_title = $request->meta_title;
       $subcategory->meta_description = $request->meta_description;
       $subcategory->save();
-      return redirect(routePrefix() . $this->VIEW_ROUTE)->with('success', 'Subategory saved successfully .');
+      return back()->with('success', 'Subategory saved successfully .');
     } catch (\Throwable $th) {
-      return redirect()->back()->with('error', $th->getMessage());
+      return back()->with('error', $th->getMessage());
     };
   }
 
@@ -157,9 +157,9 @@ class SubcategoryController extends Controller
       $subcategory->meta_title = $request->meta_title;
       $subcategory->meta_description = $request->meta_description;
       $subcategory->save();
-      return redirect(routePrefix() . $this->VIEW_ROUTE)->with('success', 'Category updated successfully .');
+      return redirect(routePrefix() . $this->VIEW_ROUTE)->with('success', 'Subcategory updated successfully.');
     } catch (\Throwable $th) {
-      return redirect()->back()->with('error', $th->getMessage());
+      return back()->with('error', $th->getMessage());
     }
   }
 
@@ -175,7 +175,7 @@ class SubcategoryController extends Controller
       removeImage($subcategory->icon);
       removeImage($subcategory->banner);
       $subcategory->delete();
-      return redirect()->back()->with('success', 'Category deleted successfully !');
+      return redirect()->back()->with('success', 'Subcategory deleted successfully !');
     } catch (\Throwable $th) {
       return redirect()->back()->with('error', $th->getMessage());
     }

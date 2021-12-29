@@ -35,23 +35,23 @@ class CategoryController extends Controller
       'meta_title' => 'required|max:100',
       'meta_description' => 'required|max:1000'
     ]);
-    
+
     try {
-      if(isset($request->status) && $request->status == 'on'){
+      if (isset($request->status) && $request->status == 'on') {
         $status = 'Active';
-      }else{
+      } else {
         $status = 'Inactive';
       }
-  
+
       $category = new Category();
       $category->name = $request->name;
-      
-      if($request->file('icon')){
+
+      if ($request->file('icon')) {
         uploadImage($request->file('icon'));
         $category->icon = session('fileName');
       }
-      
-      if($request->file('banner')){
+
+      if ($request->file('banner')) {
         uploadImage($request->file('banner'));
         $category->banner = session('fileName');
       }
@@ -89,21 +89,21 @@ class CategoryController extends Controller
       'meta_title' => 'required|max:100',
       'meta_description' => 'required|max:1000'
     ]);
-    
+
     try {
-      if(isset($request->status) && $request->status == 'on'){
+      if (isset($request->status) && $request->status == 'on') {
         $status = 'Active';
-      }else{
+      } else {
         $status = 'Inactive';
       }
 
-      if($request->file('icon')){
+      if ($request->file('icon')) {
         removeImage($category->icon);
         uploadImage($request->file('icon'));
         $category->icon = session('fileName');
       }
-      
-      if($request->file('banner')){
+
+      if ($request->file('banner')) {
         removeImage($category->banner);
         uploadImage($request->file('banner'));
         $category->banner = session('fileName');
@@ -111,7 +111,7 @@ class CategoryController extends Controller
 
       $category->name = $request->name;
       $category->slug = strtolower($request->slug);
-      if($status){
+      if ($status) {
         $category->status = $status;
       }
       $category->meta_title = $request->meta_title;
@@ -126,7 +126,7 @@ class CategoryController extends Controller
   public function destroy(Category $category)
   {
     try {
-      if($category->type === 'Default'){
+      if ($category->type === 'Default') {
         return redirect()->back()->with('warning', 'You can not delete this default category.');
       }
       removeImage($category->icon);

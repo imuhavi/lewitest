@@ -77,5 +77,5 @@ function previewImage(whereToShow, imageFile) {
 // Push slug
 function pushSlug(text, id) {
   let trimmedText = text.trim()
-  if(trimmedText.length > 0) document.getElementById(id).value = trimmedText.replaceAll(' ', '-')
+  if (trimmedText.length > 0) document.getElementById(id).value = trimmedText.replaceAll(' ', '-').toLowerCase();
 }
