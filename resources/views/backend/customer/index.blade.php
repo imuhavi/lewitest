@@ -1,4 +1,4 @@
-@extends('backend.master');
+@extends('backend.master')
 @section('content')
   <div class="page-inner">
       <div class="page-title">
