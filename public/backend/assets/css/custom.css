@@ -21,6 +21,10 @@
     margin: -100px 0 0 -100px;
 }
 
+.pagination {
+    display: inline !important;
+}
+
 .small-image{
     height: 35px;
     width: 35px;
