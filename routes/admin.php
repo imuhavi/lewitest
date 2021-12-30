@@ -33,6 +33,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']
 
   Route::get('customer-list', [CustomerController::class, 'customerList'])->name('customerList');
   Route::get('customer/{id}', [CustomerController::class, 'customerShow'])->name('customerShow');
+  Route::get('')
 
   // Mailbox Route
   Route::get('mail', [MailboxController::class, 'mailbox'])->name('mailbox');
