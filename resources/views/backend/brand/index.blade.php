@@ -1,6 +1,6 @@
-@extends('backend.master');
+@extends('backend.master')
 @section('brand_active')
-active
+    active
 @endsection
 @section('content')
 <div class="page-inner">

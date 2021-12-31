@@ -166,8 +166,12 @@ class BrandController extends Controller
   public function destroy(Brand $brand)
   {
     try {
-      removeImage($brand->logo);
-      removeImage($brand->banner);
+      if(hasFile($brand->logo)){
+        removeImage($brand->logo);
+      }
+      if(hasFile($brand->banner)){
+        removeImage($brand->banner);
+      }
       $brand->delete();
       return back()->with('success', 'Brand deleted successfully!');
     } catch (\Throwable $th) {
