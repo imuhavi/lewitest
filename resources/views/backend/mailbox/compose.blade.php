@@ -1,4 +1,4 @@
-@extends('backend.master');
+@extends('backend.master')
 @section('mail-box') active open @endsection
 @section('compose') active @endsection
 @section('content')

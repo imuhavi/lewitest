@@ -1,4 +1,4 @@
-@extends('backend.master');
+@extends('backend.master')
 @section('order_active') active @endsection
 @section('content')
 <div class="page-inner">

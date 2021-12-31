@@ -63,13 +63,13 @@
                         <p>Coupons</p>
                     </a>
                 </li>
-                <li class="droplink @yield('seller_active')"><a href="{{ url(routePrefix() .'/seller-list') }}"
+                <li class="droplink @yield('seller_active')"><a href="#"
                         class="waves-effect waves-button"><span
                             class="menu-icon fa fa-user-plus"></span>
                         <p>Seller Management</p><span class="arrow"></span>
                     </a>
                     <ul class="sub-menu">
-                        <li class="@yield('subseller')"><a href="{{ url(routePrefix() .'seller-list') }}">Seller
+                        <li class="@yield('subseller')"><a href="{{ url(routePrefix() .'/seller-list') }}">Seller
                                 List</a></li>
                         <li class="@yield('subseller2')"><a
                                 href="{{ url(routePrefix() .'/seller-withdraw') }}">Withdraws</a></li>

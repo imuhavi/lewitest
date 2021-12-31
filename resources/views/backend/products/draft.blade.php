@@ -1,4 +1,4 @@
-@extends('backend.master');
+@extends('backend.master')
 @section('product_active') active open @endsection
 @section('subproduct_active2') active @endsection
 @section('content')

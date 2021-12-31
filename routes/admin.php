@@ -28,9 +28,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']
   Route::get('product-draft', [ProductController::class, 'productDraft'])->name('productDraft');
   Route::get('orders', [DashboardController::class, 'orderList'])->name('orderList');
 
-  Route::get('sellers-list', [SellerController::class, 'sellerList'])->name('sellerList');
+  Route::get('seller-list', [SellerController::class, 'sellerList'])->name('sellerList');
   Route::get('seller-withdraw', [SellerController::class, 'paymentWithdraw'])->name('paymentWithdraw');
+
   Route::get('customer-list', [CustomerController::class, 'customerList'])->name('customerList');
+  Route::get('customer/{id}', [CustomerController::class, 'customerShow'])->name('customerShow');
+  Route::get('')
 
   // Mailbox Route
   Route::get('mail', [MailboxController::class, 'mailbox'])->name('mailbox');
