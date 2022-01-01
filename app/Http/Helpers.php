@@ -40,6 +40,21 @@ if (!function_exists('routePrefix')) {
 if (!function_exists('hasFile')) {
   function hasFile($file)
   {
-    return file_exists(public_path('backend/uploads/' . $file));
+    if(!empty($file) && file_exists(public_path('backend/uploads/' . $file))){
+      return true;
+    }
+    return false;
+  }
+}
+
+if(!function_exists('set_env')){
+  function set_env(string $key, string $value, $env_path = null)
+  {
+    $value = preg_replace('/\s+/', '', $value); //replace special ch
+    $key = strtoupper($key); //force upper for security
+    $env = file_get_contents(isset($env_path) ? $env_path : base_path('.env')); //fet .env file
+    $env = str_replace("$key=" . env($key), "$key=" . $value, $env); //replace value
+    /** Save file eith new content */
+    $env = file_put_contents(isset($env_path) ? $env_path : base_path('.env'), $env);
   }
 }
