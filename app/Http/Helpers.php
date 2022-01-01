@@ -1,9 +1,10 @@
 <?php
+use Illuminate\Support\Str;
 
 if (!function_exists('uploadImage')) {
   function uploadImage($image, $size = 10)
   {
-    $imageFile = time() . '_' . $image->getClientOriginalName();
+    $imageFile = time() . '_' . Str::random() . '.' . $image->getClientOriginalExtension();
 
     $destination = public_path('backend/uploads');
 
@@ -29,10 +30,16 @@ if (!function_exists('removeImage')) {
   }
 }
 
-
 if (!function_exists('routePrefix')) {
   function routePrefix()
   {
     return strtolower(auth()->user()->role);
+  }
+}
+
+if (!function_exists('hasFile')) {
+  function hasFile($file)
+  {
+    return file_exists(public_path('backend/uploads/' . $file));
   }
 }
