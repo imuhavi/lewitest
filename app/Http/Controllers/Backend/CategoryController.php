@@ -129,8 +129,15 @@ class CategoryController extends Controller
       if ($category->type === 'Default') {
         return redirect()->back()->with('warning', 'You can not delete this default category.');
       }
-      removeImage($category->icon);
-      removeImage($category->banner);
+
+      if (hasFile($category->icon)) {
+        removeImage($category->icon);
+      }
+
+      if (hasFile($category->banner)) {
+        removeImage($category->banner);
+      }
+
       $category->delete();
       return redirect()->back()->with('success', 'Category deleted successfully !');
     } catch (\Throwable $th) {

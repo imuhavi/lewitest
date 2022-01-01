@@ -172,8 +172,14 @@ class SubcategoryController extends Controller
   public function destroy(Subcategory $subcategory)
   {
     try {
-      removeImage($subcategory->icon);
-      removeImage($subcategory->banner);
+
+      if (hasFile($subcategory->icon)) {
+        removeImage($subcategory->icon);
+      }
+
+      if (hasFile($subcategory->banner)) {
+        removeImage($subcategory->banner);
+      }
       $subcategory->delete();
       return redirect()->back()->with('success', 'Subcategory deleted successfully !');
     } catch (\Throwable $th) {

@@ -33,10 +33,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']
 
   Route::get('customer-list', [CustomerController::class, 'customerList'])->name('customerList');
   Route::get('customer/{id}', [CustomerController::class, 'customerShow'])->name('customerShow');
-<<<<<<< HEAD
-  Route::get('customer-delete/{id}', [CustomerController::class, 'distroy'])->name('customer.destroy');
-=======
->>>>>>> ac881efada3c18ff352ca98ae0ecebb5dcbade76
 
   // Mailbox Route
   Route::get('mail', [MailboxController::class, 'mailbox'])->name('mailbox');
