@@ -15,6 +15,7 @@
     11) Sucategory CRUD
     12) Brand CRUD Done
     13) Customer List
+    14) Seller List View
 
 ## Hridoy
 

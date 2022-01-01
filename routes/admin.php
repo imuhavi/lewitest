@@ -29,9 +29,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']
   Route::get('product-draft', [ProductController::class, 'productDraft'])->name('productDraft');
   Route::get('orders', [DashboardController::class, 'orderList'])->name('orderList');
 
+  // Seller Routing
   Route::get('seller-list', [SellerController::class, 'sellerList'])->name('sellerList');
+  Route::get('seller/{id}', [SellerController::class, 'sellerShow'])->name('sellerShow');
   Route::get('seller-withdraw', [SellerController::class, 'paymentWithdraw'])->name('paymentWithdraw');
 
+  // Customer Routing 
   Route::get('customer-list', [CustomerController::class, 'customerList'])->name('customerList');
   Route::get('customer/{id}', [CustomerController::class, 'customerShow'])->name('customerShow');
 

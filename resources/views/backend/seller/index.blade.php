@@ -12,45 +12,72 @@
             </ol>
         </div>
     </div>
+
     <div id="main-wrapper">
         <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-white">
-                    <div class="panel-heading clearfix">
-                        <h4 class="panel-title">Seller List</h4>
-                    </div>
+          @if ( $page == 'index')
+          <div class="col-md-12">
+              <div class="row mailbox-header">
+                  <div class="col-md-8">
+                      <h2>Seller List</h2>
+                  </div>
+                  <div class="col-md-4">
+                      <form action="#" method="GET">
+                          <div class="input-group">
+                              <input type="text" name="search" class="form-control input-search" placeholder="Search">
+                              <span class="input-group-btn">
+                                  <button class="btn btn-info" type="button"><i class="fa fa-search"></i></button>
+                              </span>
+                          </div><!-- Input Group -->
+                      </form>
+                  </div>
+              </div>
 
-                    <div class="panel-body">
-                        <div class="table-responsive">
-                            <table id="example" class="display table" style="width: 100%; cellspacing: 0;">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Tiger Nixon</td>
-                                        <td>System Architect</td>
-                                        <td>Edinburgh</td>
-                                        <td>61</td>
-                                        <td>2011/04/25</td>
-                                        <td>
-                                            <a class="btn btn-info" href="#">Edit</a>
-                                            <button class="btn btn-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+              <div class="panel panel-white">
+                  <div class="panel-heading clearfix">
+                      {{--  --}}
+                  </div>
+
+                  <div class="panel-body">
+                      <div class="table-responsive">
+                          <table id="" class="table table-bordered" style="width: 100%; cellspacing: 0;">
+                              <thead>
+                                  <tr>
+                                      <th>Sl</th>
+                                      <th>Name</th>
+                                      <th>Email Address</th>
+                                      <th>Phone Number</th>
+                                      <th width="120" style="text-align: center">Action</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  @forelse ( $data as $key => $item )
+                                  <tr>
+                                      <td>{{ $data->firstitem() + $key }}</td>
+                                      <td>{{ $item->name }}</td>
+                                      <td>{{ $item->email }}</td>
+                                      <td>{{ $item->phone }}</td>
+                                      <td>
+                                          <a class="btn btn-sm btn-info"
+                                              href="{{ url( routePrefix() . '/seller/' . $item->id) }}"><i class="fa fa-eye"></i></a>
+                                      </td>
+                                  </tr>
+                                  @empty
+                                  <tr>
+                                      <td colspan="5" class="text-center"><strong>No Seller Available!</strong></td>
+                                  </tr>
+                                  @endforelse
+                              </tbody>
+                          </table>
+                      </div>
+                      {{ $data->links() }}
+                  </div>
+
+              </div>
+          </div>
+          @elseif ($page == 'show')
+          {{ $data }}
+          @endif
         </div><!-- Row -->
     </div><!-- Main Wrapper -->
     <div class="page-footer">
