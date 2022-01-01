@@ -195,7 +195,7 @@ active
                                   </div>
                               </div>
 
-                              <button type="submit" class="btn btn-primary m-t-xs m-b-xs">{{ $page == 'create' ? 'Save' : 'Save Changes' }}</button>
+                              <button type="submit" class="btn btn-info m-t-xs m-b-xs">{{ $page == 'create' ? 'Save' : 'Save Changes' }}</button>
                           </form>
                       </div>
                   </div>

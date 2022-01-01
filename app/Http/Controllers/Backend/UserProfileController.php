@@ -27,13 +27,13 @@ class UserProfileController extends Controller
     try {
       $user = User::find(auth()->user()->id);
 
-      if($request->file('profile_photo')){
-        if($user->avatar){
+      if ($request->file('profile_photo')) {
+        if ($user->avatar) {
           removeImage($user->avatar);
         }
         uploadImage($request->file('profile_photo'));
       }
-      
+
       $user->update([
         'name' => $request->full_name,
         'phone_1' => $request->phone,
@@ -55,7 +55,7 @@ class UserProfileController extends Controller
     ]);
     try {
       $user = User::find(auth()->user()->id);
-      if(password_verify($request->current_password, $user->password)){
+      if (password_verify($request->current_password, $user->password)) {
         $user->update([
           'password' => bcrypt($request->password)
         ]);
@@ -66,5 +66,4 @@ class UserProfileController extends Controller
       return redirect()->back()->with('error', $th->getMessage());
     }
   }
-
 }

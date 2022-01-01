@@ -201,15 +201,14 @@ active
                                       <label for="meta_description">Meta description</label>
                                       <textarea class="form-control m-t-xxs" name="meta_description"
                                           id="meta_description"
-                                          placeholder="Meta
-                                          description">{{ $data ? $data->meta_description : old('meta_description') }}</textarea>
+                                          placeholder="Meta description">{{ $data ? $data->meta_description : old('meta_description') }}</textarea>
                                       @error('meta_description')
                                       <small class="text-danger">{{ $message }}</small>
                                       @enderror
                                   </div>
                               </div>
 
-                              <button type="submit" class="btn btn-primary m-t-xs m-b-xs">{{ $page == 'create' ? 'Save' : 'Save Changes' }}</button>
+                              <button type="submit" class="btn btn-info m-t-xs m-b-xs">{{ $page == 'create' ? 'Save' : 'Save Changes' }}</button>
                           </form>
                       </div>
                   </div>

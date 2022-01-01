@@ -116,9 +116,8 @@
                                     @enderror
                                 </div>
 
-                                <img class="img-thumbnail"
-                                    src="{{ ($page == 'create' || !$data->icon) ? asset('backend/assets/default-img/noimage.jpg') : asset('backend/uploads/' . $data->icon) }}"
-                                    id="icon" width="100" height="100" />
+                                <img for="category_img" class="img-thumbnail"
+                                    src="{{ ($page == 'create' || !$data->icon) ? asset('backend/assets/default-img/noimage.jpg') : asset('backend/uploads/' . $data->icon) }}" id="icon" width="100" height="100" />
                             </div>
 
                             <div class="form-row">
@@ -130,7 +129,7 @@
                                     @enderror
                                 </div>
 
-                                <img class="img-thumbnail"
+                                <img for="category_banner" class="img-thumbnail"
                                     src="{{ ($page == 'create' || !$data->banner) ? asset('backend/assets/default-img/noimage.jpg') : asset('backend/uploads/' . $data->banner) }}"
                                     id="banner" width="100" height="100" />
                             </div>
@@ -180,7 +179,7 @@
                               </div>
                             </div>
 
-                            <button type="submit" class="btn btn-primary m-t-xs m-b-xs">{{ $page == 'create' ? 'Save' : 'Save Changes' }}</button>
+                            <button type="submit" class="btn btn-info m-t-xs m-b-xs">{{ $page == 'create' ? 'Save' : 'Save Changes' }}</button>
                         </form>
                     </div>
                 </div>

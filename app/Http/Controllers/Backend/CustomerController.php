@@ -25,4 +25,10 @@ class CustomerController extends Controller
     $data = User::where('id', $id)->first();
     return view($this->VIEW_PATH, compact('page', 'data'));
   }
+
+
+  public function distroy($id)
+  {
+    // 
+  }
 }
