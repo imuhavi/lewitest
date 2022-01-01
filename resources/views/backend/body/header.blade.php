@@ -139,8 +139,7 @@
                     </a>
                 </div>
                 <div class="logo-box">
-                    {{-- <a href="{{ url( routePrefix() . '/dashboard') }}" class="logo-text"><span>{{ config('app.name') }}</span></a> --}}
-                    <a href="{{ url( routePrefix() . '/dashboard') }}" class="logo-text"><span>Farish Ecom</span></a>
+                    <a href="{{ url( routePrefix() . '/dashboard') }}" class="logo-text"><span>{{ str_replace('-', ' ', config('app.name')) }}</span></a>
                 </div><!-- Logo Box -->
                 <div class="search-button">
                     <a href="javascript:void(0);" class="show-search"><i class="icon-magnifier"></i></a>

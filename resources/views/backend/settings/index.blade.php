@@ -127,7 +127,7 @@
                    {{-- General Settings --}}
                    <div role="tabpanel" class="tab-pane active fade in" id="generalSetting">
                        <div class="card mb-4">
-                           <form action="" method="post" enctype="multipart/form-data">
+                           <form action="{{ url(routePrefix() . '/settings-update') }}" method="post" enctype="multipart/form-data">
                                @csrf
                                <div class="card-body">
 
@@ -136,8 +136,11 @@
                                            <p class="mb-0">Website Name</p>
                                        </div>
                                        <div class="col-sm-9">
-                                           <input type="text" name="website_title" id="website_title"
-                                               class="form-control">
+                                           <input type="text" name="app_name" id="website_title"
+                                               class="form-control" value="{{ $data->app_name }}">
+                                            @error('app_name')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
                                        </div>
                                    </div>
                                    <hr>
@@ -148,12 +151,18 @@
                                        <div class="col-sm-5">
                                            <input type="file" accept="image/*"
                                                onchange="previewImage('whiteLogo', this.files)"
-                                               name="profile_photo" id="profile_photo" class="form-control">
+                                               name="app_logo_white" id="app_logo_white" class="form-control">
                                        </div>
                                        <div class="col-sm-4" style="margin-top: 10px">
-                                           <img class="img avatar" id="whiteLogo"
-                                               src="{{ asset('backend/assets/default-img/user.jpeg') }}" alt=""
-                                               width="80px" height="80px">
+                                           @if($data->app_logo_white)
+                                                <img class="img avatar" id="whiteLogo"
+                                                    src="{{ asset('backend/uploads/' . $data->app_logo_white) }}" alt=""
+                                                    width="80px" height="80px">
+                                           @else
+                                                <img class="img avatar" id="whiteLogo"
+                                                    src="{{ asset('backend/assets/default-img/user.jpeg') }}" alt=""
+                                                    width="80px" height="80px">
+                                           @endif
                                        </div>
                                    </div>
 
@@ -164,13 +173,19 @@
                                        </div>
                                        <div class="col-sm-5">
                                            <input type="file" accept="image/*"
-                                               onchange="previewImage('blackLogo', this.files)" name="profile_photo"
-                                               id="profile_photo" class="form-control">
+                                               onchange="previewImage('blackLogo', this.files)" name="app_logo_black"
+                                               id="app_logo_black" class="form-control">
                                        </div>
                                        <div class="col-sm-4" style="margin-top: 10px">
-                                           <img class="img avatar" id="blackLogo"
-                                               src="{{ asset('backend/assets/default-img/user.jpeg') }}" alt=""
-                                               width="80px" height="80px">
+                                            @if($data->app_logo_black)
+                                                <img class="img avatar" id="blackLogo"
+                                                    src="{{ asset('backend/uploads/' . $data->app_logo_black) }}" alt=""
+                                                    width="80px" height="80px">
+                                            @else
+                                                    <img class="img avatar" id="blackLogo"
+                                                        src="{{ asset('backend/assets/default-img/user.jpeg') }}" alt=""
+                                                        width="80px" height="80px">
+                                            @endif
                                        </div>
                                    </div>
 
@@ -180,7 +195,7 @@
                                            <p class="mb-0">Website Email</p>
                                        </div>
                                        <div class="col-sm-9">
-                                           <input type="email" id="email" class="form-control" name="web_mail">
+                                           <input type="email" id="email" class="form-control" name="app_email" value="{{ $data->app_email }}">
                                        </div>
                                    </div>
 
@@ -190,7 +205,7 @@
                                            <p class="mb-0">Web Mobile Number</p>
                                        </div>
                                        <div class="col-sm-9">
-                                           <input type="tel" name="phone" class="form-control" id="phone">
+                                           <input type="tel" name="app_phone" class="form-control" value="{{ $data->app_phone }}" id="phone">
                                        </div>
                                    </div>
                                    <hr>
@@ -199,7 +214,7 @@
                                            <p class="mb-0">Address</p>
                                        </div>
                                        <div class="col-sm-9">
-                                           <textarea name="address" id="address" class="form-control"></textarea>
+                                           <textarea name="app_address" id="address" class="form-control">{{ $data->app_address }}</textarea>
                                        </div>
                                    </div>
                                     <hr>
@@ -208,7 +223,7 @@
                                             <p class="mb-0">Copyright Text</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <textarea name="address" id="address" class="form-control"></textarea>
+                                            <textarea name="app_copyright_text" id="address" class="form-control">{{ $data->app_copyright_text }}</textarea>
                                         </div>
                                     </div>
                                    <div class="row" style="margin-top: 20px">
@@ -224,7 +239,7 @@
                    {{-- SEO Settings --}}
                    <div role="tabpanel" class="tab-pane fade" id="seo">
                        <div class="card mb-4">
-                           <form action="" method="post" enctype="multipart/form-data">
+                           <form action="{{ url(routePrefix() . '/settings-seo-update') }}" method="post" enctype="multipart/form-data">
                                @csrf
                                <div class="card-body">
 
@@ -233,8 +248,11 @@
                                            <p class="mb-0">Meta Title</p>
                                        </div>
                                        <div class="col-sm-9">
-                                           <input type="text" name="website_title" id="website_title"
-                                               class="form-control">
+                                           <input type="text" name="seo_title" id="seo_title"
+                                               class="form-control" value="{{ $data->seo_title }}">
+                                            @error('seo_title')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
                                        </div>
                                    </div>
                                    <hr>
@@ -243,7 +261,10 @@
                                            <p class="mb-0">Meta Description</p>
                                        </div>
                                        <div class="col-sm-9">
-                                           <textarea name="address" id="address" class="form-control"></textarea>
+                                           <textarea name="seo_description" id="seo_description" class="form-control">{{ $data->seo_description }}</textarea>
+                                            @error('seo_description')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
                                        </div>
                                    </div>
                                    <hr>
@@ -252,7 +273,10 @@
                                            <p class="mb-0">Meta Keyword</p>
                                        </div>
                                        <div class="col-sm-9">
-                                           <input type="tel" name="phone" class="form-control" id="phone">
+                                           <textarea name="seo_keywords" id="seo_keywords" class="form-control">{{ $data->seo_keywords }}</textarea>
+                                            @error('seo_keywords')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
                                        </div>
                                    </div>
 
@@ -270,7 +294,7 @@
                    {{-- Mail Setup Settings --}}
                    <div role="tabpanel" class="tab-pane fade" id="mail">
                        <div class="card mb-4">
-                           <form action="" method="post" enctype="multipart/form-data">
+                           <form action="{{ url(routePrefix() . '/settings-mail-update') }}" method="post" enctype="multipart/form-data">
                                @csrf
                                <div class="card-body">
 
@@ -279,10 +303,10 @@
                                            <p class="mb-0">Type</p>
                                        </div>
                                        <div class="col-sm-5">
-                                          <select name="mailtype" id="" class="form-control">
-                                            <option value="" select disabled>Select Type</option>
-                                            <option value="">SMTP</option>
-                                            <option value="">GMAIL</option>
+                                          <select name="mail_type" id="" class="form-control">
+                                            <option value="" selected disabled>Select Type</option>
+                                            <option value="SMTP" @if($data->mail_type == 'SMTP') selected @endif>SMTP</option>
+                                            <option value="GMAIL" @if($data->mail_type == 'GMAIL') selected @endif>GMAIL</option>
                                           </select>
                                        </div>
                                    </div>
@@ -293,7 +317,7 @@
                                            <p class="mb-0">Mail Host</p>
                                        </div>
                                        <div class="col-sm-5">
-                                           <input type="text" name="mailhost" class="form-control" id="mailhost">
+                                           <input type="text" name="mail_host" value="{{ $data->mail_host }}" class="form-control" id="mail_host">
                                        </div>
                                    </div>
 
@@ -303,7 +327,7 @@
                                            <p class="mb-0">Mail Port</p>
                                        </div>
                                        <div class="col-sm-5">
-                                           <input type="tel" name="mailport" class="form-control" id="mailport">
+                                           <input type="number" value="{{ $data->mail_port }}" name="mail_port" class="form-control" id="mail_port">
                                        </div>
                                    </div>
                                    
@@ -313,7 +337,7 @@
                                            <p class="mb-0">Mail Username</p>
                                        </div>
                                        <div class="col-sm-5">
-                                           <input type="text" name="mailusername" class="form-control" id="mailusername">
+                                           <input type="text" name="mail_username" value="{{ $data->mail_username }}" class="form-control" id="mail_username">
                                        </div>
                                    </div>
                                    
@@ -323,8 +347,8 @@
                                            <p class="mb-0">Mail Password</p>
                                        </div>
                                        <div class="col-sm-5">
-                                           <input type="text" name="mailpassword" class="form-control"
-                                               id="mailpassword">
+                                           <input type="text" name="mail_password" value="{{ $data->mail_password }}" class="form-control"
+                                               id="mail_password">
                                        </div>
                                    </div>
                                    
@@ -334,8 +358,8 @@
                                            <p class="mb-0">Mail Encryption</p>
                                        </div>
                                        <div class="col-sm-5">
-                                           <input type="text" name="mailencryption" class="form-control"
-                                               id="mailencryption">
+                                           <input type="text" name="mail_encryption" value="{{ $data->mail_encryption }}" class="form-control"
+                                               id="mail_encryption">
                                        </div>
                                    </div>
                                    
@@ -345,7 +369,7 @@
                                            <p class="mb-0">Mail Address</p>
                                        </div>
                                        <div class="col-sm-5">
-                                           <input type="email" name="mailaddress" class="form-control" id="mailaddress">
+                                           <input type="email" name="mail_address" value="{{ $data->mail_address }}" class="form-control" id="mail_address">
                                        </div>
                                    </div>
                                    
@@ -355,8 +379,8 @@
                                            <p class="mb-0">Mail From Name</p>
                                        </div>
                                        <div class="col-sm-5">
-                                           <input type="text" name="mailfromname" class="form-control"
-                                               id="mailfromname">
+                                           <input type="text" name="mail_from_name" value="{{ $data->mail_from_name }}" class="form-control"
+                                               id="mail_from_name">
                                        </div>
                                    </div>
                                    
@@ -374,16 +398,16 @@
                    {{-- Social Login Facebook --}}
                    <div role="tabpanel" class="tab-pane fade" id="facebook">
                      <div class="card mb-4">
-                         <form action="" method="post" enctype="multipart/form-data">
+                         <form action="{{ url(routePrefix() . '/settings-social-update') }}" method="post">
                              @csrf
+                             <input type="hidden" name="type" value="Facebook">
                              <div class="card-body">
-
                                  <div class="row">
                                      <div class="col-sm-3">
                                          <p class="mb-0">App Id</p>
                                      </div>
                                      <div class="col-sm-5">
-                                         <input type="text" name="app_id" id="app_id"
+                                         <input type="text" name="app_id" value="{{ $socialArr['Facebook']->app_id }}" id="app_id"
                                              class="form-control">
                                      </div>
                                  </div>
@@ -393,7 +417,7 @@
                                          <p class="mb-0">App Secret</p>
                                      </div>
                                      <div class="col-sm-5">
-                                         <input type="text" name="app_secret" class="form-control" id="app_secret">
+                                         <input type="text" name="app_secret" value="{{ $socialArr['Facebook']->app_secret }}" class="form-control" id="app_secret">
                                      </div>
                                  </div>
 
@@ -410,25 +434,27 @@
                    {{-- Social Login Google --}}
                    <div role="tabpanel" class="tab-pane fade" id="google">
                      <div class="card mb-4">
-                         <form action="" method="post" enctype="multipart/form-data">
+                         <form action="{{ url(routePrefix() . '/settings-social-update') }}" method="post">
                              @csrf
+                             <input type="hidden" name="type" value="Google">
                              <div class="card-body">
 
-                                 <div class="row">
+                                <div class="row">
                                      <div class="col-sm-3">
-                                         <p class="mb-0">Client Id</p>
+                                         <p class="mb-0">App Id</p>
                                      </div>
                                      <div class="col-sm-5">
-                                         <input type="text" name="client_id" id="client_id" class="form-control">
+                                         <input type="text" name="app_id" value="{{ $socialArr['Google']->app_id }}" id="app_id"
+                                             class="form-control">
                                      </div>
                                  </div>
                                  <hr>
                                  <div class="row">
                                      <div class="col-sm-3">
-                                         <p class="mb-0">Client Secret</p>
+                                         <p class="mb-0">App Secret</p>
                                      </div>
                                      <div class="col-sm-5">
-                                         <input type="text" name="client_secret" class="form-control" id="client_secret">
+                                         <input type="text" name="app_secret" value="{{ $socialArr['Google']->app_secret }}" class="form-control" id="app_secret">
                                      </div>
                                  </div>
 
@@ -445,25 +471,27 @@
                     {{-- Social Login Twitter --}}
                     <div role="tabpanel" class="tab-pane fade" id="twitter">
                         <div class="card mb-4">
-                            <form action="" method="post" enctype="multipart/form-data">
+                            <form action="{{ url(routePrefix() . '/settings-social-update') }}" method="post">
                                 @csrf
+                                <input type="hidden" name="type" value="Twitter">
                                 <div class="card-body">
 
                                     <div class="row">
                                         <div class="col-sm-3">
-                                            <p class="mb-0">Twitter App Id</p>
+                                            <p class="mb-0">App Id</p>
                                         </div>
                                         <div class="col-sm-5">
-                                            <input type="text" name="twitter_app_id" id="twitter_app_id" class="form-control">
+                                            <input type="text" name="app_id" value="{{ $socialArr['Twitter']->app_id }}" id="app_id"
+                                                class="form-control">
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="row">
                                         <div class="col-sm-3">
-                                            <p class="mb-0">Twitter App Secret</p>
+                                            <p class="mb-0">App Secret</p>
                                         </div>
                                         <div class="col-sm-5">
-                                            <input type="text" name="twitter_app_secret" class="form-control" id="twitter_app_secret">
+                                            <input type="text" name="app_secret" value="{{ $socialArr['Twitter']->app_secret }}" class="form-control" id="app_secret">
                                         </div>
                                     </div>
 
