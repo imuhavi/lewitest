@@ -10,7 +10,8 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\MailboxController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SellerController;
-use App\Http\Controllers\Backend\SettingsController;
+use App\Http\Controllers\Backend\GeneralSettingController;
+use App\Http\Controllers\Backend\SocialConfigController;
 use App\Http\Controllers\Backend\SubcategoryController;
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']], function () {
@@ -44,5 +45,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']
 
 
   // Settings Route,
-  Route::get('settings', [SettingsController::class, 'settings'])->name('settings');
+  Route::get('settings', [GeneralSettingController::class, 'settings'])->name('settings');
+  Route::post('settings-update', [GeneralSettingController::class, 'update'])->name('settings.update');
+  Route::post('settings-seo-update', [GeneralSettingController::class, 'seoUpdate'])->name('settings.seo.update');
+  Route::post('settings-mail-update', [GeneralSettingController::class, 'mailUpdate'])->name('settings.mail.update');
+  Route::post('settings-social-update', [SocialConfigController::class, 'update'])->name('settings.social.update');
 });

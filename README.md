@@ -28,3 +28,5 @@
     8) Password update
     9) Category CRUD
     10) Default category
+    11) Website setting
+    12) Socail config
