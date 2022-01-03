@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Seller;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class SellerController extends Controller
 {
   private $VIEW_PATH = 'backend.seller.index';
-
+  private $SELLER_PROFILE = 'backend.seller.profile';
   public function sellerList()
   {
     $page = 'index';
@@ -21,8 +22,8 @@ class SellerController extends Controller
   public function sellerShow($id)
   {
     $page = 'show';
-    $data = User::where('id', $id)->first();
-    return view($this->VIEW_PATH, compact('page', 'data'));
+    $data = Seller::where('user_id', $id)->first();
+    return view($this->SELLER_PROFILE, compact('page', 'data'));
   }
 
 
