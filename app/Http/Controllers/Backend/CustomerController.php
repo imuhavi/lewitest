@@ -14,7 +14,7 @@ class CustomerController extends Controller
   public function customerList()
   {
     $page = 'index';
-    $data = User::where('role', 'Customer')->paginate(3);
+    $data = User::where('role', 'Customer')->latest()->paginate(10);
     return view($this->VIEW_PATH, compact('data', 'page'));
   }
 

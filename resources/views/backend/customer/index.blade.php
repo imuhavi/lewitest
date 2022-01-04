@@ -44,11 +44,11 @@
                                 <table id="" class="table table-bordered" style="width: 100%; cellspacing: 0;">
                                     <thead>
                                         <tr>
-                                            <th>Sl</th>
-                                            <th>Name</th>
-                                            <th>Email Address</th>
-                                            <th>Phone Number</th>
-                                            <th width="120" style="text-align: center">Action</th>
+                                          <th>Sl</th>
+                                          <th>Name</th>
+                                          <th>Email Address</th>
+                                          <th>Phone Number</th>
+                                          <th width="120" style="text-align: center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -71,7 +71,8 @@
                                         </tr>
                                         @empty
                                         <tr>
-                                          <td>No Customer Available !</td>
+                                          <td colspan="5" class="text-center"><strong>No Customer Available!</strong>
+                                          </td>
                                         </tr>
                                         @endforelse
                                     </tbody>
