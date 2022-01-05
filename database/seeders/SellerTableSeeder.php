@@ -16,7 +16,7 @@ class SellerTableSeeder extends Seeder
   {
 
     Seller::create([
-      'user_id' => 1,
+      'user_id' => 2,
       'shop_name' => 'Etc Store',
       'primary_phone' => '0293283490',
       'email' => 'etc.support@store.com',
