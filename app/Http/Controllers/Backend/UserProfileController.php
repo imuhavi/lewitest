@@ -3,17 +3,21 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Seller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserProfileController extends Controller
 {
 
-  private $VIEW_PATH = 'backend.';
+  private $VIEW_PATH = 'backend.profile';
 
   public function userProfile()
   {
-    return view($this->VIEW_PATH . 'profile');
+    $isSeller = 'Seller';
+    $data = Seller::where('user_id', auth()->user()->id)->first();
+    return view($this->VIEW_PATH, compact('data', 'isSeller'));
   }
 
   public function updateProfile(Request $request)
