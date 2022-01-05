@@ -22,11 +22,11 @@
                       <h2>Seller List</h2>
                   </div>
                   <div class="col-md-4">
-                      <form action="#" method="GET">
+                      <form action="{{ url(routePrefix() . '/seller-list') }}" method="GET">
                           <div class="input-group">
-                              <input type="text" name="search" class="form-control input-search" placeholder="Search">
+                              <input type="search" name="search" value="{{ $search }}" class="form-control input-search" placeholder="Search">
                               <span class="input-group-btn">
-                                  <button class="btn btn-info" type="button"><i class="fa fa-search"></i></button>
+                                  <button class="btn btn-info" type="submit"><i class="fa fa-search"></i></button>
                               </span>
                           </div><!-- Input Group -->
                       </form>
@@ -46,7 +46,7 @@
                                       <th>Sl</th>
                                       <th>Name</th>
                                       <th>Email Address</th>
-                                      <th>Phone Number</th>
+                                      <th>Phone Number(s)</th>
                                       <th width="120" style="text-align: center">Action</th>
                                   </tr>
                               </thead>
@@ -56,7 +56,19 @@
                                       <td>{{ $data->firstitem() + $key }}</td>
                                       <td>{{ $item->name }}</td>
                                       <td>{{ $item->email }}</td>
-                                      <td>{{ $item->phone }}</td>
+                                      <td>
+                                        @if($item->phone_1)
+                                            {{ $item->phone_1 }}
+                                        @else
+                                            <span class="text-danger">No number added</span>
+                                        @endif
+                                        ,
+                                        @if($item->phone_2)
+                                            {{ $item->phone_2 }}
+                                        @else
+                                            <span class="text-danger">No number added</span>
+                                        @endif
+                                      </td>
                                       <td>
                                           <a class="btn btn-sm btn-info"
                                               href="{{ url( routePrefix() . '/seller/' . $item->id) }}"><i class="fa fa-eye"></i></a>

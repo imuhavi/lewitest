@@ -11,11 +11,24 @@ class SellerController extends Controller
 {
   private $VIEW_PATH = 'backend.seller.index';
   private $SELLER_PROFILE = 'backend.seller.profile';
-  public function sellerList()
+  
+  public function sellerList(Request $request)
   {
     $page = 'index';
-    $data = User::where('role', 'Seller')->latest()->paginate(10);
-    return view($this->VIEW_PATH, compact('page', 'data'));
+    
+    $sql = User::where('role', 'Seller')->latest();
+    
+    $search = '';
+    if($request->search){
+      $search = $request->search;
+      $sql->where('name', 'like', '%' . $search  . '%')
+          ->orWhere('email', 'like', '%' . $search  . '%')
+          ->orWhere('phone_1', 'like', '%' . $search  . '%')
+          ->orWhere('phone_2', 'like', '%' . $search  . '%');
+    }
+
+    $data = $sql->paginate(10);
+    return view($this->VIEW_PATH, compact('page', 'data', 'search'));
   }
 
   // Display Individual Seller Profile and Details.
