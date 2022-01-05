@@ -9,7 +9,9 @@ use Illuminate\Http\Request;
 class CouponController extends Controller
 {
 
-  private $VIEW_PATH = "backend.coupon.";
+  private $VIEW_PATH = "backend.coupon.index";
+  private $VIEW_ROUTE = '/coupon';
+
   /**
    * Display a listing of the resource.
    *
@@ -17,7 +19,9 @@ class CouponController extends Controller
    */
   public function index()
   {
-    return view($this->VIEW_PATH . 'index');
+    $page = 'index';
+    $data = Coupon::orderBy('created_at', 'DESC')->get();
+    return view($this->VIEW_PATH, compact('page', 'data'));
   }
 
   /**
@@ -27,7 +31,9 @@ class CouponController extends Controller
    */
   public function create()
   {
-    //
+    $data = '';
+    $page = 'create';
+    return view($this->VIEW_PATH, compact('data', 'page'));
   }
 
   /**

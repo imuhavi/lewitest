@@ -34,9 +34,6 @@
                                 <p><i class="icon-envelope-open m-r-xs"></i><a href="#">{{ $data->email }}</a>
                                 </p>
                             </li>
-                            <li>
-                                {{-- <p><i class="icon-link m-r-xs"></i><a href="#">www.themeforest.net</a></p> --}}
-                            </li>
                         </ul>
                         <hr>
                         <a class="btn btn-info btn-block" href="#"><i class="icon-plus m-r-xs"></i>View Store</a>
