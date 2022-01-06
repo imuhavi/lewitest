@@ -61,12 +61,12 @@
                                             <td>
                                                 <a class="btn btn-sm btn-info"
                                                     href="{{ url( routePrefix() . '/customer/' . $item->id) }}"><i class="fa fa-eye"></i></a>
-                                                <form style="display: inline-block"
+                                                <!-- <form style="display: inline-block"
                                                     action="{{ route('category.destroy', $item->id) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
-                                                </form>
+                                                </form> -->
                                             </td>
                                         </tr>
                                         @empty

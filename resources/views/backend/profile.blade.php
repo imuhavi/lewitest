@@ -154,20 +154,23 @@
                     </div>
                 </div>
             </div>
-        </div><!-- Row -->
+        </div>
 
-        @if ( auth()->user()->role == $isSeller)
+        @if ( auth()->user()->role === 'Seller')
           <hr>
           <div class="row">
               <div class="col-md-12">
                   <div class="panel panel-white">
                       <div class="panel-heading clearfix">
-                          <h4 class="panel-title">Manage Seller Information</h4>
+                          <h4 class="panel-title">Manage Shop Information</h4>
                       </div>
                       <div class="panel-body">
                           <div class="card mb-4">
                               <form action="{{ route('updateProfile') }}" method="post" enctype="multipart/form-data">
                                   @csrf
+                                  @php
+                                    $seller = auth()->user()->seller
+                                  @endphp
                                   <div class="card-body">
 
                                       <div class="row">
@@ -180,10 +183,10 @@
                                                   name="shop_logo" id="shop_logo" class="form-control">
                                           </div>
                                           <div class="col-sm-4">
-                                              @if($data->shop_logo)
+                                              @if($seller->shop_logo)
                                               <img class="img avatar" id="shop_logo_preview"
-                                                  src="{{ asset('backend/uploads/' . $data->shop_logo) }}"
-                                                  alt="Shop-{{ $data->shop_logo }}" width="80px" height="80px">
+                                                  src="{{ asset('backend/uploads/' . $seller->shop_logo) }}"
+                                                  alt="Shop-{{ $seller->shop_logo }}" width="80px" height="80px">
                                               @else
                                               <img class="img avatar" id="shop_logo_preview"
                                                   src="{{ asset('backend/assets/default-img/noimage.jpg') }}"
@@ -197,7 +200,7 @@
                                               <p class="mb-0">Shop Name</p>
                                           </div>
                                           <div class="col-sm-9">
-                                              <input type="text" name="shop_name" value="{{ $data->shop_name }}"
+                                              <input type="text" name="shop_name" value="{{ $seller->shop_name }}"
                                                   id="shop_name" class="form-control">
                                               @error('shop_name')
                                               <small class="text-danger">{{ $message }}</small>
@@ -211,7 +214,7 @@
                                           </div>
                                           <div class="col-sm-9">
                                               <input type="email" title="You can not update your verified email"
-                                                  disabled value="{{ $data->email }}" id="email" class="form-control">
+                                                  disabled value="{{ $seller->email }}" id="email" class="form-control">
                                           </div>
                                       </div>
                                       <hr>
@@ -220,7 +223,7 @@
                                               <p class="mb-0">Phone(primary)</p>
                                           </div>
                                           <div class="col-sm-9">
-                                              <input type="tel" name="primary_phone" value="{{ $data->primary_phone }}"
+                                              <input type="tel" name="primary_phone" value="{{ $seller->primary_phone }}"
                                                   id="primary_phone" class="form-control">
                                               @error('primary_phone')
                                               <small class="text-danger">{{ $message }}</small>
@@ -234,7 +237,7 @@
                                           </div>
                                           <div class="col-sm-9">
                                               <input type="tel" name="secondary_phone"
-                                                  value="{{ $data->secondary_phone }}" id="secondary_phone"
+                                                  value="{{ $seller->secondary_phone }}" id="secondary_phone"
                                                   class="form-control">
                                               @error('secondary_phone')
                                               <small class="text-danger">{{ $message }}</small>
@@ -247,7 +250,7 @@
                                               <p class="mb-0">Address</p>
                                           </div>
                                           <div class="col-sm-3">
-                                              <input type="text" name="shop_location" value="{{ $data->shop_location }}"
+                                              <input type="text" name="shop_location" value="{{ $seller->shop_location }}"
                                                   id="shop_location" class="form-control">
                                               @error('shop_location')
                                               <small class="text-danger">{{ $message }}</small>
@@ -255,7 +258,7 @@
                                           </div>
 
                                           <div class="col-sm-3">
-                                              <input type="text" name="shop_address" value="{{ $data->shop_address }}"
+                                              <input type="text" name="shop_address" value="{{ $seller->shop_address }}"
                                                   id="shop_address" class="form-control">
                                               @error('shop_address')
                                               <small class="text-danger">{{ $message }}</small>
@@ -263,7 +266,7 @@
                                           </div>
 
                                           <div class="col-sm-3">
-                                              <input type="text" name="city" value="{{ $data->city }}" id="city"
+                                              <input type="text" name="city" value="{{ $seller->city }}" id="city"
                                                   class="form-control">
                                               @error('address')
                                               <small class="text-danger">{{ $message }}</small>

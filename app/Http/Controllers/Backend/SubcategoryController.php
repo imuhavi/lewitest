@@ -11,11 +11,7 @@ class SubcategoryController extends Controller
 {
   private $VIEW_PATH = 'backend.subcategory.index';
   private $VIEW_ROUTE = '/subcategory';
-  /**
-   * Display a listing of the resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
+  
   public function index()
   {
     $page = 'index';
@@ -23,11 +19,6 @@ class SubcategoryController extends Controller
     return view($this->VIEW_PATH, compact('data', 'page'));
   }
 
-  /**
-   * Show the form for creating a new resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
   public function create()
   {
     $data = '';
@@ -36,16 +27,11 @@ class SubcategoryController extends Controller
     return view($this->VIEW_PATH, compact('data', 'page', 'category'));
   }
 
-  /**
-   * Store a newly created resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Http\Response
-   */
   public function store(Request $request)
   {
     $request->validate([
       'name' => 'required|max:100',
+      'category_id' => 'required',
       'icon' => 'required|mimes:jpg,jpeg,bmp,png',
       'banner' => 'required|mimes:jpg,jpeg,bmp,png',
       'slug' => 'required|max:100',
@@ -85,12 +71,6 @@ class SubcategoryController extends Controller
     };
   }
 
-  /**
-   * Display the specified resource.
-   *
-   * @param  \App\Models\Subcategory  $subcategory
-   * @return \Illuminate\Http\Response
-   */
   public function show(Subcategory $subcategory)
   {
     $page = 'show';
@@ -98,12 +78,6 @@ class SubcategoryController extends Controller
     return view($this->VIEW_PATH, compact('data', 'page'));
   }
 
-  /**
-   * Show the form for editing the specified resource.
-   *
-   * @param  \App\Models\Subcategory  $subcategory
-   * @return \Illuminate\Http\Response
-   */
   public function edit(Subcategory $subcategory)
   {
     $page = 'edit';
@@ -112,13 +86,6 @@ class SubcategoryController extends Controller
     return view($this->VIEW_PATH, compact('page', 'data', 'category'));
   }
 
-  /**
-   * Update the specified resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @param  \App\Models\Subcategory  $subcategory
-   * @return \Illuminate\Http\Response
-   */
   public function update(Request $request, Subcategory $subcategory)
   {
     $request->validate([
@@ -163,12 +130,6 @@ class SubcategoryController extends Controller
     }
   }
 
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  \App\Models\Subcategory  $subcategory
-   * @return \Illuminate\Http\Response
-   */
   public function destroy(Subcategory $subcategory)
   {
     try {
