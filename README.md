@@ -19,6 +19,7 @@
     15) Seller/Store Profile View
     16) Sellerseeder File Create insert demo data
     17) Seller Profile
+    18) Update Seller Profile Design
 
 ## Hridoy
 
