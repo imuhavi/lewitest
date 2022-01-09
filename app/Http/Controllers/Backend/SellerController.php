@@ -31,14 +31,12 @@ class SellerController extends Controller
     return view($this->VIEW_PATH, compact('page', 'data', 'search'));
   }
 
-  // Display Individual Seller Profile and Details.
   public function sellerShow($id)
   {
     $page = 'show';
     $data = Seller::where('user_id', $id)->first();
     return view($this->SELLER_PROFILE, compact('page', 'data'));
   }
-
 
   public function paymentWithdraw()
   {

@@ -18,7 +18,6 @@ class CustomerController extends Controller
     return view($this->VIEW_PATH, compact('data', 'page'));
   }
 
-  // Display Individual Customer Profile and Details.
   public function customerShow($id)
   {
     $page = 'show';
