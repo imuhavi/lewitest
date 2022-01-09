@@ -11,11 +11,21 @@ class CustomerController extends Controller
 
   private $VIEW_PATH = 'backend.customer.index';
 
-  public function customerList()
+  public function customerList(Request $request)
   {
     $page = 'index';
-    $data = User::where('role', 'Customer')->latest()->paginate(10);
-    return view($this->VIEW_PATH, compact('data', 'page'));
+    $user = User::where('role', 'Customer')->latest();
+    $keyword = '';
+    if ($request->search) {
+      $keyword = $request->search;
+      $user->where('name', 'like', '%' . $keyword . '%')
+        ->orWhere('email', 'like', '%' . $keyword  . '%')
+        ->orWhere('phone_1', 'like', '%' . $keyword  . '%')
+        ->orWhere('phone_2', 'like', '%' . $keyword  . '%');
+    }
+
+    $data = $user->paginate(10);
+    return view($this->VIEW_PATH, compact('data', 'page', 'keyword'));
   }
 
   public function customerShow($id)

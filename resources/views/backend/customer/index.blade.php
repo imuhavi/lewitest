@@ -22,11 +22,12 @@ active
             <h2>Customer List</h2>
           </div>
           <div class="col-md-4">
-            <form action="#" method="GET">
+            <form action="{{ url(routePrefix(). '/customer-list') }}" method="GET">
               <div class="input-group">
-                <input type="text" name="search" class="form-control input-search" placeholder="Search">
+                <input type="search" name="search" value="{{ $keyword }}" class="form-control input-search"
+                  placeholder="Search">
                 <span class="input-group-btn">
-                  <button class="btn btn-info" type="button"><i class="fa fa-search"></i></button>
+                  <button class="btn btn-info" type="submit"><i class="fa fa-search"></i></button>
                 </span>
               </div><!-- Input Group -->
             </form>
