@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\SellerController;
 use App\Http\Controllers\Backend\GeneralSettingController;
 use App\Http\Controllers\Backend\SocialConfigController;
 use App\Http\Controllers\Backend\SubcategoryController;
+use App\Http\Controllers\Backend\AttributesController;
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']], function () {
 
@@ -24,6 +25,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']
     'product' => ProductController::class,
     'coupon' => CouponController::class,
     'brand' => BrandController::class,
+    'attributes' => AttributesController::class
   ]);
 
   Route::get('product-draft', [ProductController::class, 'productDraft'])->name('productDraft');
@@ -41,7 +43,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']
   // Mailbox Route
   Route::get('mail', [MailboxController::class, 'mailbox'])->name('mailbox');
   Route::get('compose', [MailboxController::class, 'compose'])->name('compose');
-
 
   // Settings Route,
   Route::get('settings', [GeneralSettingController::class, 'settings'])->name('settings');
