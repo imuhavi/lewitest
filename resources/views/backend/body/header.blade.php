@@ -1,11 +1,12 @@
 <head>
 
   <!-- Title -->
-  <title>Meteor | Responsive Admin Dashboard Template</title>
+  <title>{{ str_replace('-', ' ',
+    config('app.name')) }} | {{ ucfirst(routePrefix()) }} - @yield('meta_title', 'Dashboard') </title>
 
   <meta content="width=device-width, initial-scale=1" name="viewport" />
   <meta charset="UTF-8">
-  <meta name="description" content="Admin Dashboard Template" />
+  <meta name="description" content="@yield('meta_description', 'Welcome to our admin panel')" />
   <meta name="keywords" content="admin,dashboard" />
   <meta name="author" content="stacks" />
 
@@ -57,36 +58,7 @@
 <body class="compact-menu">
 
   <div class="overlay"></div>
-  <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s1">
-    <h3><span class="pull-left">Messages</span><a href="javascript:void(0);" class="pull-right" id="closeRight"><i
-          class="icon-close"></i></a></h3>
-    <div class="slimscroll">
-      <a href="javascript:void(0);" class="showRight2"><img src="{{ asset('backend/') }}/assets/images/avatar2.png"
-          alt=""><span>Michael
-          Lewis<small>Nice to meet you</small></span></a>
-      <a href="javascript:void(0);" class="showRight2"><img src="{{ asset('backend/') }}/assets/images/avatar3.png"
-          alt=""><span>John
-          Doe<small>Nice to meet you</small></span></a>
-      <a href="javascript:void(0);" class="showRight2"><img src="{{ asset('backend/') }}/assets/images/avatar4.png"
-          alt=""><span>Emma
-          Green<small>Nice to meet you</small></span></a>
-      <a href="javascript:void(0);" class="showRight2"><img src="{{ asset('backend/') }}/assets/images/avatar5.png"
-          alt=""><span>Nick
-          Doe<small>Nice to meet you</small></span></a>
-      <a href="javascript:void(0);" class="showRight2"><img src="{{ asset('backend/') }}/assets/images/avatar2.png"
-          alt=""><span>Michael
-          Lewis<small>Nice to meet you</small></span></a>
-      <a href="javascript:void(0);" class="showRight2"><img src="{{ asset('backend/') }}/assets/images/avatar3.png"
-          alt=""><span>John
-          Doe<small>Nice to meet you</small></span></a>
-      <a href="javascript:void(0);" class="showRight2"><img src="{{ asset('backend/') }}/assets/images/avatar4.png"
-          alt=""><span>Emma
-          Green<small>Nice to meet you</small></span></a>
-      <a href="javascript:void(0);" class="showRight2"><img src="{{ asset('backend/') }}/assets/images/avatar5.png"
-          alt=""><span>Nick
-          Doe<small>Nice to meet you</small></span></a>
-    </div>
-  </nav>
+
   <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
     <h3><span class="pull-left">Michael Lewis</span> <a href="javascript:void(0);" class="pull-right"
         id="closeRight2"><i class="fa fa-angle-right"></i></a></h3>
@@ -378,11 +350,8 @@
                 </form>
 
               </li>
-              <li>
-                <a href="javascript:void(0);" id="showRight">
-                  <i class="icon-bubbles"></i>
-                </a>
-              </li>
+
+
             </ul><!-- Nav -->
           </div><!-- Top Menu -->
         </div>

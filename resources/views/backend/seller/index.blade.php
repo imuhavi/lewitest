@@ -1,4 +1,12 @@
-@extends('backend.master') @section('seller_active') active open @endsection
+@extends('backend.master')
+@section('seller_active') active open @endsection
+@section('meta_title')
+Seller-list
+@endsection
+
+@section('meta_description')
+{{ Str::limit($data->name, 100) }}
+@endsection
 @section('subseller') active @endsection @section('content')
 <div class="page-inner">
   <div class="page-title">

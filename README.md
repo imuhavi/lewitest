@@ -20,6 +20,7 @@
     16) Sellerseeder File Create insert demo data
     17) Seller Profile
     18) Update Seller Profile Design
+    19) Added Meta title and Description backend blade page
 
 ## Hridoy
 
@@ -35,7 +36,6 @@
     10) Default category
     11) Website setting
     12) Socail config
-
 
 Profile (Seller section)
 

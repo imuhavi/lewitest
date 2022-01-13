@@ -1,4 +1,13 @@
 @extends('backend.master')
+
+@section('meta_title')
+{{ Str::title(auth()->user()->name) }}
+@endsection
+
+@section('meta_description')
+{{ Str::limit(auth()->user()->address) }}
+@endsection
+
 @section('content')
 <div class="page-inner">
   <div class="page-title">

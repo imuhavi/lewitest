@@ -2,6 +2,21 @@
 @section('customer_active')
 active
 @endsection
+
+@section('meta_title')
+@if( $page == 'index')
+Seller-list
+@elseif($page == 'show')
+{{ Str::title($data->name) }} View
+@endif
+@endsection
+
+@section('meta_description')
+@if( $page == 'show')
+{{ Str::limit($data->shop_address, 100) }}
+@endif
+@endsection
+
 @section('content')
 <div class="page-inner">
   <div class="page-title">

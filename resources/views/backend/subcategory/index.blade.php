@@ -2,6 +2,25 @@
 @section('subcategory_active')
 active
 @endsection
+
+@section('meta_title')
+@if( $page == 'index')
+Subcategory-list
+@elseif($page == 'create')
+Add Subcategory
+@elseif($page == 'show')
+{{ Str::title($data->name) }} View
+@elseif($page == 'edit')
+{{ Str::title($data->name) }} Edit
+@endif
+@endsection
+
+@section('meta_description')
+@if( $page == 'show' || $page == 'edit')
+{{ Str::limit($data->meta_description, 100) }}
+@endif
+@endsection
+
 @section('content')
 <div class="page-inner">
   <div class="page-title">

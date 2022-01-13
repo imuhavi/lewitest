@@ -1,5 +1,10 @@
 @extends('backend.master')
 @section('settings_active') active @endsection
+
+@section('meta_title')
+{{ __('Websites Settings') }}
+@endsection
+
 @section('content')
 <div class="page-inner">
   <div class="page-title">
