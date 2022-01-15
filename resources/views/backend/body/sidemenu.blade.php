@@ -62,6 +62,11 @@
           <p>Coupons</p>
         </a>
       </li>
+      <li class="@yield('attributes_active')"><a href="{{ url(routePrefix().'/attributes') }}"
+          class="waves-effect waves-button"><span class="menu-icon icon-tag"></span>
+          <p>Attributes</p>
+        </a>
+      </li>
       <li class="droplink @yield('seller_active')"><a href="#" class="waves-effect waves-button"><span
             class="menu-icon fa fa-user-plus"></span>
           <p>Seller Management</p><span class="arrow"></span>
