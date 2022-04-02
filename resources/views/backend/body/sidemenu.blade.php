@@ -40,6 +40,12 @@
       </li>
 
       @if(routePrefix() === 'admin')
+      <li class="@yield('slider_active')"><a href="{{ url( routePrefix() . '/sliders') }}"
+          class="waves-effect waves-button"><span class="menu-icon icon-grid"></span>
+          <p>Sliders</p>
+        </a>
+      </li>
+      
       <li class="@yield('category_active')"><a href="{{ url( routePrefix() . '/category') }}"
           class="waves-effect waves-button"><span class="menu-icon icon-grid"></span>
           <p>Category</p>

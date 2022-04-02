@@ -29,7 +29,9 @@ class UserProfileController extends Controller
 
       if ($request->file('profile_photo')) {
         if ($user->avatar) {
-          removeImage($user->avatar);
+          if(hasFile($user->avatar)){
+            removeImage($user->avatar);
+          }
         }
         uploadImage($request->file('profile_photo'));
       }

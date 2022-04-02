@@ -35,7 +35,7 @@
     9) Category CRUD
     10) Default category
     11) Website setting
-    12) Socail config
+    12) Social config
 
 Profile (Seller section)
 

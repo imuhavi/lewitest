@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\GeneralSettingController;
 use App\Http\Controllers\Backend\SocialConfigController;
 use App\Http\Controllers\Backend\SubcategoryController;
 use App\Http\Controllers\Backend\AttributesController;
+use App\Http\Controllers\Backend\SliderController;
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']], function () {
 
@@ -22,19 +23,19 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']
   Route::resources([
     'category' => CategoryController::class,
     'subcategory' => SubcategoryController::class,
-    'product' => ProductController::class,
-    'coupon' => CouponController::class,
+    'product' => ProductController::class, // Not Done
+    'coupon' => CouponController::class, // Not Done
     'brand' => BrandController::class,
     'attributes' => AttributesController::class
   ]);
 
-  Route::get('product-draft', [ProductController::class, 'productDraft'])->name('productDraft');
-  Route::get('orders', [DashboardController::class, 'orderList'])->name('orderList');
+  Route::get('product-draft', [ProductController::class, 'productDraft'])->name('productDraft'); // Not Done
+  Route::get('orders', [DashboardController::class, 'orderList'])->name('orderList'); // Not Done
 
   // Seller Routing
   Route::get('seller-list', [SellerController::class, 'sellerList'])->name('sellerList');
   Route::get('seller/{id}', [SellerController::class, 'sellerShow'])->name('sellerShow');
-  Route::get('seller-withdraw', [SellerController::class, 'paymentWithdraw'])->name('paymentWithdraw');
+  Route::get('seller-withdraw', [SellerController::class, 'paymentWithdraw'])->name('paymentWithdraw'); // Not Done
 
   // Customer Routing 
   Route::get('customer-list', [CustomerController::class, 'customerList'])->name('customerList');
@@ -50,4 +51,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']
   Route::post('settings-seo-update', [GeneralSettingController::class, 'seoUpdate'])->name('settings.seo.update');
   Route::post('settings-mail-update', [GeneralSettingController::class, 'mailUpdate'])->name('settings.mail.update');
   Route::post('settings-social-update', [SocialConfigController::class, 'update'])->name('settings.social.update');
+
+  // Slider
+  Route::get('/sliders', [SliderController::class, 'index'])->name('sliderList');
+  Route::get('/sliders/create', [SliderController::class, 'create'])->name('sliderCreate');
+  Route::post('/sliders/store', [SliderController::class, 'store'])->name('sliderStore');
+  Route::get('/sliders/edit/{slider}', [SliderController::class, 'edit'])->name('sliderEdit');
+  Route::patch('/sliders/update/{slider}', [SliderController::class, 'update'])->name('sliderUpdate');
+  Route::get('/sliders/destroy/{slider}', [SliderController::class, 'destroy'])->name('sliderDestroy');
+  Route::get('/sliders/status/{slider}', [SliderController::class, 'statusChange'])->name('sliderStatus');
 });

@@ -9,9 +9,9 @@ Route::group(['prefix' => 'seller', 'middleware' => ['auth', 'seller']], functio
   Route::get('/dashboard', [DashboardController::class, 'dashboard']);
 
   Route::resources([
-    'product' => ProductController::class
+    'product' => ProductController::class // Not Done
   ]);
 
-  Route::get('product-draft', [ProductController::class, 'productDraft'])->name('productDraft');
-  Route::get('orders', [DashboardController::class, 'orderList'])->name('orderList');
+  Route::get('product-draft', [ProductController::class, 'productDraft'])->name('productDraft'); // Not Done
+  Route::get('orders', [DashboardController::class, 'orderList'])->name('orderList'); // Not Done
 });
