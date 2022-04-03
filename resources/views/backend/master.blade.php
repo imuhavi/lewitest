@@ -39,9 +39,9 @@
 <div class="cd-overlay"></div>
 
 {{-- Preloder --}}
-<div id="preloader">
+<!-- <div id="preloader">
   <div id="status"></div>
-</div>
+</div> -->
 
 
 
@@ -78,6 +78,8 @@
   var warningNotification = "{{ session('warning') }}"
   var errorNotification = "{{ session('error') }}"
 </script>
+<script src="//cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>
+
 <script src="{{ asset('backend/') }}/assets/js/custom.js"></script>
 </body>
 

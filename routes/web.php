@@ -28,3 +28,7 @@ require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
 require __DIR__ . '/seller.php';
 require __DIR__ . '/customer.php';
+
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+  \UniSharp\LaravelFilemanager\Lfm::routes();
+});

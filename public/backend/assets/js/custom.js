@@ -79,3 +79,13 @@ function pushSlug(text, id) {
   let trimmedText = text.trim()
   if (trimmedText.length > 0) document.getElementById(id).value = trimmedText.replaceAll(' ', '-').toLowerCase();
 }
+
+// CKEditor
+var options = {
+  filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+  filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+  filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+  filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+};
+
+CKEDITOR.replace('my-editor', options);

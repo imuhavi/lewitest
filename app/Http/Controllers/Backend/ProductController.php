@@ -3,22 +3,33 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
+use App\Models\Subcategory;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
 
-  private $VIEW_PATH = 'backend.products.';
-  
+  private $VIEW_PATH = 'backend.products.index';
+  private $VIEW_ROUTE = '/product';
+
   public function index()
   {
-    return view($this->VIEW_PATH . 'index');
+    $page = 'index';
+    $data = Product::orderBy('created_at', 'DESC')->get();
+    return view($this->VIEW_PATH, compact('page', 'data'));
   }
 
   public function create()
   {
-    return view($this->VIEW_PATH . 'create');
+    $data = '';
+    $page = 'create';
+    $category = Category::orderBy('name', 'asc')->get();
+    $subCategory = Subcategory::orderBy('name', 'asc')->get();
+    $brand = Brand::orderBy('name', 'asc')->get();
+    return view($this->VIEW_PATH, compact('data', 'page', 'category', 'subCategory', 'brand'));
   }
 
   public function store(Request $request)

@@ -1,6 +1,6 @@
 @extends('backend.master')
 @section('attributes_active')
-  active
+active
 @endsection
 @section('content')
 <div class="page-inner">
@@ -48,13 +48,13 @@
                     <td>{{ $item->name }}</td>
                     <td>
                       @php
-                        $last_key = count(json_decode($item->value)) - 1
+                      $last_key = count(json_decode($item->value)) - 1
                       @endphp
                       @foreach(json_decode($item->value) as $key => $value)
-                        {{ $value }}
-                        @if($key !== $last_key)
-                          {{ ', ' }}
-                        @endif
+                      {{ $value }}
+                      @if($key !== $last_key)
+                      {{ ', ' }}
+                      @endif
                       @endforeach
                     </td>
                     <td>
@@ -93,37 +93,39 @@
               method="post">
               @csrf
               @if ($page == 'edit')
-                @method('PATCH')
+              @method('PATCH')
               @endif
               <div class="form-row">
                 <div class="form-group">
                   <label for="attribute">Attribute Name</label>
-                  <button type="button" class="btn btn-sm btn-success" onclick="addValueField()">Add value field</button>
-                  <input type="text" class="form-control m-t-xxs" id="attribute" placeholder="attribute name" name="name"
-                    value="{{ $data ? $data->name : old('name')}}">
+                  <button type="button" class="btn btn-sm btn-success" onclick="addValueField()">Add value
+                    field</button>
+                  <input type="text" class="form-control m-t-xxs" id="attribute" placeholder="attribute name"
+                    name="name" value="{{ $data ? $data->name : old('name')}}">
                   @error('name')
                   <small class="text-danger">{{ $message }}</small>
                   @enderror
                 </div>
               </div>
-              
+
               @if($page == 'edit')
-                <label for="attribute">Attribute Values</label>
-                <div class="form-row">
-                  <div class="form-group">
-                    <input type="text" class="form-control m-t-xxs" value="{{ $data ? $data->value : old('attribute_value')}}" placeholder="attribute values"
-                          name="attribute_value" required>
-                  </div>
+              <label for="attribute">Attribute Values</label>
+              <div class="form-row">
+                <div class="form-group">
+                  <input type="text" class="form-control m-t-xxs"
+                    value="{{ $data ? $data->value : old('attribute_value')}}" placeholder="attribute values"
+                    name="attribute_value" required>
                 </div>
+              </div>
               @else
-                <label for="attribute">Attribute Values</label>
-                <div class="form-row">
-                  <div class="form-group">
-                    <input type="text" class="form-control m-t-xxs" placeholder="attribute value"
-                          name="attribute_value[]" required>
-                  </div>
+              <label for="attribute">Attribute Values</label>
+              <div class="form-row">
+                <div class="form-group">
+                  <input type="text" class="form-control m-t-xxs" placeholder="attribute value" name="attribute_value[]"
+                    required>
                 </div>
-                <div id="attributeValues"></div>
+              </div>
+              <div id="attributeValues"></div>
               @endif
 
               @error('attribute_value')

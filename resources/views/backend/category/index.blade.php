@@ -107,6 +107,7 @@ Add Category
           </div>
         </div>
       </div>
+
       @elseif($page == 'create' || $page == 'edit')
       <div class="col-md-6 col-md-offset-3">
         <div class="panel panel-white">
