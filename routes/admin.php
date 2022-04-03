@@ -32,20 +32,20 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']
   Route::get('product-draft', [ProductController::class, 'productDraft'])->name('productDraft'); // Not Done
   Route::get('orders', [DashboardController::class, 'orderList'])->name('orderList'); // Not Done
 
-  // Seller Routing
+  // Seller
   Route::get('seller-list', [SellerController::class, 'sellerList'])->name('sellerList');
   Route::get('seller/{id}', [SellerController::class, 'sellerShow'])->name('sellerShow');
   Route::get('seller-withdraw', [SellerController::class, 'paymentWithdraw'])->name('paymentWithdraw'); // Not Done
 
-  // Customer Routing 
+  // Customer
   Route::get('customer-list', [CustomerController::class, 'customerList'])->name('customerList');
   Route::get('customer/{id}', [CustomerController::class, 'customerShow'])->name('customerShow');
 
-  // Mailbox Route
+  // Mailbox
   Route::get('mail', [MailboxController::class, 'mailbox'])->name('mailbox');
   Route::get('compose', [MailboxController::class, 'compose'])->name('compose');
 
-  // Settings Route,
+  // Settings
   Route::get('settings', [GeneralSettingController::class, 'settings'])->name('settings');
   Route::post('settings-update', [GeneralSettingController::class, 'update'])->name('settings.update');
   Route::post('settings-seo-update', [GeneralSettingController::class, 'seoUpdate'])->name('settings.seo.update');
