@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attribute;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Subcategory;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -29,12 +31,14 @@ class ProductController extends Controller
     $category = Category::orderBy('name', 'asc')->get();
     $subCategory = Subcategory::orderBy('name', 'asc')->get();
     $brand = Brand::orderBy('name', 'asc')->get();
-    return view($this->VIEW_PATH, compact('data', 'page', 'category', 'subCategory', 'brand'));
+    $sellers = User::where('role', 'Seller')->orderBy('name', 'asc')->get();
+    $attributes = Attribute::orderBy('name', 'asc')->get();
+    return view($this->VIEW_PATH, compact('data', 'page', 'category', 'subCategory', 'brand', 'sellers', 'attributes'));
   }
 
   public function store(Request $request)
   {
-    //
+    return $request;
   }
 
   public function show(Product $product)

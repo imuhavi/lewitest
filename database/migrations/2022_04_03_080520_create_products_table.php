@@ -17,13 +17,14 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('seller_id')->nullable();
             $table->unsignedBigInteger('category_id')->nullable();
+            $table->unsignedBigInteger('sub_category_id')->nullable();
             $table->unsignedBigInteger('brand_id')->nullable();
             $table->string('name');
-            $table->text('description'); // summernote
+            $table->string('slug')->nullable();
+            $table->text('description'); // ckeditor
             $table->text('thumbnail')->nullable(); // 300 X 300
             $table->text('pdf')->nullable();
             $table->enum('status', ['Active', 'Inactive'])->default('Active');
-            $table->string('slug')->nullable();
             $table->decimal('purchase_price')->default(0);
             $table->decimal('price')->default(0);
             $table->enum('discount_type', ['Percent', 'Flat'])->default('Flat');
@@ -44,6 +45,7 @@ class CreateProductsTable extends Migration
             $table->boolean('is_draft')->default(0);
             $table->foreign('seller_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('sub_category_id')->references('id')->on('subcategories')->onDelete('cascade');
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
             $table->timestamps();
         });
