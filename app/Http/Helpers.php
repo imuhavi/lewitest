@@ -4,14 +4,18 @@ use Illuminate\Support\Str;
 if (!function_exists('uploadImage')) {
   function uploadImage($image, $size = 100)
   {
-    $imageFile = time() . '_' . Str::random() . '.' . $image->getClientOriginalExtension();
-
+    $ext = $image->getClientOriginalExtension();
+    $imageFile = time() . '_' . Str::random() . '.' . $ext;
     $destination = public_path('backend/uploads');
 
-    $imgFile = Image::make($image->getRealPath());
-    $imgFile->resize($size, $size, function ($constraint) {
-        $constraint->aspectRatio();
-    })->save($destination.'/'.$imageFile);
+    if($ext == 'pdf'){
+      $image->move($destination, $imageFile);
+    }else{
+      $imgFile = Image::make($image->getRealPath());
+      $imgFile->resize($size, $size, function ($constraint) {
+          $constraint->aspectRatio();
+      })->save($destination.'/'.$imageFile);
+    }
 
     return back()->with('success', 'Image has successfully uploaded.')
       ->with('fileName', $imageFile);

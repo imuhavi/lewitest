@@ -4,8 +4,6 @@
 
 
 @section('content')
-
-
 <div class="page-inner">
   <div class="page-title">
     <div class="page-breadcrumb">
@@ -153,9 +151,6 @@
                       <label for="discount">Discount</label>
                       <input type="number" min="0" value="{{ $data ? $data->discount : old('discount') }}" name="discount"
                         class="form-control m-t-xxs" id="discount" placeholder="Discount">
-                      @error('discount')
-                      <small class="text-danger">{{ $message }}</small>
-                      @enderror
                     </div>
                   </div>
 
@@ -228,9 +223,6 @@
                       <label for="tax">Tax</label>
                       <input type="number" min="0" value="{{ $data ? $data->tax : old('tax') }}" name="tax"
                         class="form-control m-t-xxs" id="tax" placeholder="Tax">
-                      @error('tax')
-                      <small class="text-danger">{{ $message }}</small>
-                      @enderror
                     </div>
                   </div>
                   
@@ -252,9 +244,6 @@
                       <label for="description">Product description</label>
                       <textarea class="form-control m-t-xxs" name="description" id="my-editor"
                         placeholder="Meta product_description">{{ $data ? $data->description : old('description') }}</textarea>
-                      @error('description')
-                      <small class="text-danger">{{ $message }}</small>
-                      @enderror
                     </div>
                   </div>
                 </div>

@@ -38,7 +38,62 @@ class ProductController extends Controller
 
   public function store(Request $request)
   {
-    return $request;
+    $request->validate([
+      'name' => 'required|max:199',
+      'slug' => 'required|max:199',
+      'purchase_price' => 'required',
+      'price' => 'required',
+      'shipping_cost' => 'required',
+      'shipping_days' => 'required',
+      'unit' => 'required',
+      'min' => 'required',
+      'max' => 'required',
+      'quantity' => 'required',
+      'category_id' => 'required'
+    ]);
+
+    try {
+      $data = $request->except('_token');
+
+      if(!empty($data['attributes'])){
+        $data['attributes'] = json_encode(array_map(function($item){
+          return json_encode(explode('-', $item));
+        }, $data['attributes']));
+      }
+
+      if($request->status == 'on'){
+        $data['status'] = 1;
+      }elseif ($request->status == 'off') {
+        $data['status'] = 0;
+      }
+      if($request->is_draft == 'on'){
+        $data['is_draft'] = 1;
+      }elseif ($request->is_draft == 'off') {
+        $data['is_draft'] = 0;
+      }
+      if($request->isCashAvailable == 'on'){
+        $data['isCashAvailable'] = 1;
+      }elseif ($request->isCashAvailable == 'off') {
+        $data['isCashAvailable'] = 0;
+      }
+
+      if ($request->file('meta_image')) {
+        uploadImage($request->file('meta_image'));
+        $data['meta_image'] = session('fileName');
+      }
+      if ($request->file('pdf')) {
+        uploadImage($request->file('pdf'));
+        $data['pdf'] = session('fileName');
+      }
+      if ($request->file('thumbnail')) {
+        uploadImage($request->file('thumbnail'));
+        $data['thumbnail'] = session('fileName');
+      }
+      Product::create($data);
+      return redirect()->back()->with('success', 'Product uploaded successfully.');
+    } catch (\Throwable $th) {
+      throw $th;
+    }
   }
 
   public function show(Product $product)
