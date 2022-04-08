@@ -376,6 +376,15 @@
                       <label for="pdf">Upload Pdf</label>
                       <input type="file" class="form-control" name="pdf" id="pdf">
                     </div>
+                    
+                    <div class="form-group">
+                      <label for="images">Upload Product Images</label>
+                      <input type="file" class="form-control" name="images[]" id="images" multiple>
+                      @error('images')
+                        <small class="text-danger">{{ $message }}</small>
+                      @enderror
+                    </div>
+
                     <div class="form-group">
                       <label for="thumbnail">Upload Thumbnail Image</label>
                       <input type="file" class="form-control" name="thumbnail" id="thumbnail"

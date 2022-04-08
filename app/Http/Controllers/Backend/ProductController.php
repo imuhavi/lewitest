@@ -7,6 +7,7 @@ use App\Models\Attribute;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductImage;
 use App\Models\Subcategory;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -53,14 +54,14 @@ class ProductController extends Controller
     ]);
 
     try {
-      $data = $request->except('_token');
+      $data = $request->except(['_token', 'images']);
 
       if(!empty($data['attributes'])){
         $data['attributes'] = json_encode(array_map(function($item){
           return json_encode(explode('-', $item));
         }, $data['attributes']));
       }
-
+      
       if($request->status == 'on'){
         $data['status'] = 1;
       }elseif ($request->status == 'off') {
@@ -76,7 +77,7 @@ class ProductController extends Controller
       }elseif ($request->isCashAvailable == 'off') {
         $data['isCashAvailable'] = 0;
       }
-
+      
       if ($request->file('meta_image')) {
         uploadImage($request->file('meta_image'));
         $data['meta_image'] = session('fileName');
@@ -89,10 +90,22 @@ class ProductController extends Controller
         uploadImage($request->file('thumbnail'));
         $data['thumbnail'] = session('fileName');
       }
-      Product::create($data);
+      
+      $product = Product::create($data);
+      
+      if(!empty($request->images)){
+        foreach ($request->images as $image) {
+          uploadImage($image);
+          ProductImage::create([
+            'product_id' => $product->id,
+            'image' => session('fileName')
+          ]);
+        }
+      }
+
       return redirect()->back()->with('success', 'Product uploaded successfully.');
     } catch (\Throwable $th) {
-      throw $th;
+      return redirect()->back()->with('error', $th->getMessage());
     }
   }
 
