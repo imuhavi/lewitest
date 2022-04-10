@@ -83,13 +83,17 @@
         @csrf
 
         @if($page == 'edit')
-          @method('PATCH')
+        @method('PATCH')
         @endif
 
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-8">
-              <div class="panel panel-white">
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Product Title and Slug</h3>
+                </div>
+                <br>
                 <div class="panel-body">
                   <div class="form-row">
                     <div class="form-group">
@@ -98,7 +102,7 @@
                         onkeyup="pushSlug(this.value, 'product_slug')" name="name" class="form-control m-t-xxs"
                         id="name" placeholder="Name">
                       @error('name')
-                        <small class="text-danger">{{ $message }}</small>
+                      <small class="text-danger">{{ $message }}</small>
                       @enderror
                     </div>
                   </div>
@@ -114,195 +118,229 @@
                     </div>
                   </div>
 
-                  <div class="form-row">
-                    <div class="form-group">
-                      <label for="purchase_price">Purchase Price</label>
-                      <input type="number" min="0" value="{{ $data ? $data->purchase_price : old('purchase_price') }}" name="purchase_price"
-                        class="form-control m-t-xxs" id="purchase_price" placeholder="Purchase Price">
-                      @error('purchase_price')
-                      <small class="text-danger">{{ $message }}</small>
-                      @enderror
-                    </div>
-                  </div>
-
-                  <div class="form-row">
-                    <div class="form-group">
-                      <label for="price">Price</label>
-                      <input type="number" min="0" value="{{ $data ? $data->price : old('price') }}" name="price"
-                        class="form-control m-t-xxs" id="price" placeholder="Price">
-                      @error('price')
-                      <small class="text-danger">{{ $message }}</small>
-                      @enderror
-                    </div>
-                  </div>
-
-                  <div class="form-row">
-                    <div class="form-group">
-                      <label for="discount_type">Discount type</label>
-                      <select name="discount_type" id="discount_type" class="form-control">
-                        <option value="Percent">Percent</option>
-                        <option value="Flat">Flat</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div class="form-row">
-                    <div class="form-group">
-                      <label for="discount">Discount</label>
-                      <input type="number" min="0" value="{{ $data ? $data->discount : old('discount') }}" name="discount"
-                        class="form-control m-t-xxs" id="discount" placeholder="Discount">
-                    </div>
-                  </div>
-
-                  <div class="form-row">
-                    <div class="form-group">
-                      <label for="shipping_cost">shipping_cost</label>
-                      <input type="number" min="0" value="{{ $data ? $data->shipping_cost : old('shipping_cost') }}" name="shipping_cost"
-                        class="form-control m-t-xxs" id="shipping_cost" placeholder="shipping_cost">
-                      @error('shipping_cost')
-                      <small class="text-danger">{{ $message }}</small>
-                      @enderror
-                    </div>
-                  </div>
-
-                  <div class="form-row">
-                    <div class="form-group">
-                      <label for="shipping_days">Shipping days</label>
-                      <input type="text" name="shipping_days" id="shipping_days" class="form-control">
-                      @error('shipping_days')
-                      <small class="text-danger">{{ $message }}</small>
-                      @enderror
-                    </div>
-                  </div>
-                  
-                  <div class="form-row">
-                    <div class="form-group">
-                      <label for="unit">Unit</label>
-                      <input type="text" name="unit" id="unit" class="form-control">
-                      @error('unit')
-                      <small class="text-danger">{{ $message }}</small>
-                      @enderror
-                    </div>
-                  </div>
-
-                  <div class="form-row">
-                    <div class="form-group">
-                      <label for="min">Min</label>
-                      <input type="number" min="1" value="{{ $data ? $data->min : old('min') }}" name="min"
-                        class="form-control m-t-xxs" id="min" placeholder="Min">
-                      @error('min')
-                      <small class="text-danger">{{ $message }}</small>
-                      @enderror
-                    </div>
-                  </div>
-
-                  <div class="form-row">
-                    <div class="form-group">
-                      <label for="max">Max</label>
-                      <input type="number" min="0" value="{{ $data ? $data->max : old('max') }}" name="max"
-                        class="form-control m-t-xxs" id="max" placeholder="Max">
-                      @error('max')
-                      <small class="text-danger">{{ $message }}</small>
-                      @enderror
-                    </div>
-                  </div>
-                  
-                  <div class="form-row">
-                    <div class="form-group">
-                      <label for="quantity">Quantity</label>
-                      <input type="number" min="0" value="{{ $data ? $data->quantity : old('quantity') }}" name="quantity"
-                        class="form-control m-t-xxs" id="quantity" placeholder="Quantity">
-                      @error('quantity')
-                      <small class="text-danger">{{ $message }}</small>
-                      @enderror
-                    </div>
-                  </div>
-
-                  <div class="form-row">
-                    <div class="form-group">
-                      <label for="tax">Tax</label>
-                      <input type="number" min="0" value="{{ $data ? $data->tax : old('tax') }}" name="tax"
-                        class="form-control m-t-xxs" id="tax" placeholder="Tax">
-                    </div>
-                  </div>
-                  
-                  <div class="form-row">
-                    <div class="form-group">
-                      <label for="tags">Tags</label>
-                      <input type="text" value="{{ $data ? $data->tags : old('tags') }}" name="tags"
-                        class="form-control m-t-xxs" id="tags" placeholder="Tags">
-                    </div>
-                  </div>
-
                 </div>
               </div>
 
-              <div class="panel panel-white">
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Product description</h3>
+                </div>
+                <br>
                 <div class="panel-body">
                   <div class="form-row">
                     <div class="form-group">
-                      <label for="description">Product description</label>
-                      <textarea class="form-control m-t-xxs" name="description" id="my-editor"
+                      <textarea class="form-control" name="description" id="my-editor"
                         placeholder="Meta product_description">{{ $data ? $data->description : old('description') }}</textarea>
                     </div>
                   </div>
                 </div>
               </div>
 
-
-              <div class="panel panel-white">
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Product Information</h3>
+                </div>
+                <br>
                 <div class="panel-body">
                   <div class="form-row">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-row">
+                          <div class="form-group">
+                            <label for="purchase_price">Purchase Price</label>
+                            <input type="number" min="0"
+                              value="{{ $data ? $data->purchase_price : old('purchase_price') }}" name="purchase_price"
+                              class="form-control m-t-xxs" id="purchase_price" placeholder="Purchase Price">
+                            @error('purchase_price')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="form-row">
+                          <div class="form-group">
+                            <label for="price">Price</label>
+                            <input type="number" min="0" value="{{ $data ? $data->price : old('price') }}" name="price"
+                              class="form-control m-t-xxs" id="price" placeholder="Price">
+                            @error('price')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-4">
+                        <div class="form-row">
+                          <div class="form-group">
+                            <label for="quantity">Quantity</label>
+                            <input type="number" min="0" value="{{ $data ? $data->quantity : old('quantity') }}"
+                              name="quantity" class="form-control" id="quantity" placeholder="Quantity">
+                            @error('quantity')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-4">
+                        <div class="form-row">
+                          <div class="form-group">
+                            <label for="discount_type">Discount type</label>
+                            <select name="discount_type" id="discount_type" class="form-control">
+                              <option value="Percent">Percent</option>
+                              <option value="Flat">Flat</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-4">
+                        <div class="form-row">
+                          <div class="form-group">
+                            <label for="discount">Discount</label>
+                            <input type="number" min="0" value="{{ $data ? $data->discount : old('discount') }}"
+                              name="discount" class="form-control" id="discount" placeholder="Discount">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-4">
+                        <div class="form-row">
+                          <div class="form-group">
+                            <label for="shipping_cost">shipping_cost</label>
+                            <input type="number" min="0"
+                              value="{{ $data ? $data->shipping_cost : old('shipping_cost') }}" name="shipping_cost"
+                              class="form-control" id="shipping_cost" placeholder="shipping_cost">
+                            @error('shipping_cost')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-row">
+                          <div class="form-group">
+                            <label for="shipping_days">Shipping days</label>
+                            <input type="text" name="shipping_days" id="shipping_days" class="form-control">
+                            @error('shipping_days')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-row">
+                          <div class="form-group">
+                            <label for="unit">Unit</label>
+                            <input type="text" name="unit" id="unit" class="form-control">
+                            @error('unit')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-row">
+                          <div class="form-group">
+                            <label for="min">Min</label>
+                            <input type="number" min="1" value="{{ $data ? $data->min : old('min') }}" name="min"
+                              class="form-control" id="min" placeholder="Min">
+                            @error('min')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-4">
+                        <div class="form-row">
+                          <div class="form-group">
+                            <label for="max">Max</label>
+                            <input type="number" min="0" value="{{ $data ? $data->max : old('max') }}" name="max"
+                              class="form-control" id="max" placeholder="Max">
+                            @error('max')
+                            <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-4">
+                        <div class="form-row">
+                          <div class="form-group">
+                            <label for="tax">Tax</label>
+                            <input type="number" min="0" value="{{ $data ? $data->tax : old('tax') }}" name="tax"
+                              class="form-control" id="tax" placeholder="Tax">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Seo Meta Tags</h3>
+                </div>
+                <br>
+                <div class="panel-body">
+                  <div class="form-horizontal">
                     <div class="form-group">
-                      <label for="meta_title">Meta title</label>
-                      <input type="text" value="{{ $data ? $data->meta_title : old('meta_title') }}" name="meta_title"
-                        class="form-control m-t-xxs" id="meta_title" placeholder="Meta title">
+                      <label for="meta_title" class="col-sm-2 fdots-custom-label">Meta Title</label>
+                      <div class="col-sm-10">
+                        <input type="text" value="{{ $data ? $data->meta_title : old('meta_title') }}" name="meta_title"
+                          class="form-control" id="meta_title" placeholder="Meta title">
+                      </div>
                       @error('meta_title')
                       <small class="text-danger">{{ $message }}</small>
                       @enderror
                     </div>
                   </div>
-                  <div class="form-row">
+
+                  <div class="form-horizontal">
                     <div class="form-group">
-                      <label for="meta_description">Meta description</label>
-                      <textarea class="form-control m-t-xxs" name="meta_description" id="meta_description"
-                        placeholder="Meta description">{{ $data ? $data->meta_description : old('meta_description') }}</textarea>
+                      <label for="meta_description" class="col-sm-2 fdots-custom-label">Meta description</label>
+                      <div class="col-sm-10">
+                        <textarea class="form-control" name="meta_description" id="meta_description"
+                          placeholder="Meta description">{{ $data ? $data->meta_description : old('meta_description') }}</textarea>
+                      </div>
                       @error('meta_description')
                       <small class="text-danger">{{ $message }}</small>
                       @enderror
                     </div>
                   </div>
-                  <div class="form-group">
-                      <label for="meta_image">Meta Image</label>
-                      <input type="file" class="form-control" name="meta_image" id="meta_image"
-                        onchange="previewImage('meta_image', this.files)">
+
+                  <div class="form-horizontal">
+                    <div class="form-group">
+                      <label for="meta_image" class="col-sm-2 fdots-custom-label">Meta Image</label>
+                      <div class="col-sm-10">
+                        <input type="file" class="form-control" name="meta_image" id="meta_image"
+                          onchange="previewImage('meta_image', this.files)">
+                      </div>
                       @error('meta_image')
                       <small class="text-danger">{{ $message }}</small>
                       @enderror
+                    </div>
                   </div>
                 </div>
               </div>
+
             </div>
+
+
+
             <div class="col-md-4">
-              <div class="panel panel-white">
+
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Product Categories</h3>
+                </div>
+                <br>
                 <div class="panel-body">
-                  
-                  <div class="form-row">
-                    <div class="form-group">
-                      <label for="attributes">Attributes : </label>
-                      <br>
-                      @foreach($attributes as $item)
-                        {{ $loop->iteration }}) {{ $item->name }}
-                        <select name="attributes[]" class="form-control" multiple>
-                          @foreach(json_decode($item->value) as $value)
-                            <option value="{{ $item->id .'-'. $value }}">{{ $value }}</option>
-                          @endforeach
-                        </select>
-                         <br>
-                      @endforeach
-                    </div>
-                  </div>
-                  
                   <div class="form-row">
                     <div class="form-group">
                       <label for="category">Choose Parent Category</label>
@@ -368,20 +406,47 @@
 
                 </div>
               </div>
-              <div class="panel panel-white">
-                <div class="panel-body">
 
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Product Variation</h3>
+                </div>
+                <br>
+                <div class="panel-body">
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="attributes">Product Attribute:(add fast attribute and value) </label>
+                      <br>
+                      @foreach($attributes as $item)
+                      {{ $loop->iteration }}. {{ $item->name }}
+                      <select name="attributes[]" class="form-control" multiple>
+                        @foreach(json_decode($item->value) as $value)
+                        <option value="{{ $item->id .'-'. $value }}">{{ $value }}</option>
+                        @endforeach
+                      </select>
+                      <br>
+                      @endforeach
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Product Attachment</h3>
+                </div>
+                <div class="panel-body">
                   <div class="form-row">
                     <div class="form-group">
                       <label for="pdf">Upload Pdf</label>
                       <input type="file" class="form-control" name="pdf" id="pdf">
                     </div>
-                    
+
                     <div class="form-group">
                       <label for="images">Upload Product Images</label>
                       <input type="file" class="form-control" name="images[]" id="images" multiple>
                       @error('images')
-                        <small class="text-danger">{{ $message }}</small>
+                      <small class="text-danger">{{ $message }}</small>
                       @enderror
                     </div>
 
@@ -409,7 +474,7 @@
                       @endif
                     </label>
                   </div>
-                  
+
                   <div class="from-row status">
                     <label>Draft : </label>
                     <label class="no-s">
@@ -420,14 +485,15 @@
                       @endif
                     </label>
                   </div>
-                  
+
                   <div class="from-row status">
                     <label>Cash on delivery Available : </label>
                     <label class="no-s">
                       @if($page == 'create')
                       <input type="checkbox" name="isCashAvailable"> Active
                       @else
-                      <input type="checkbox" name="isCashAvailable" {{ $data->isCashAvailable == 'Active' ? 'checked' : '' }}> Active
+                      <input type="checkbox" name="isCashAvailable" {{ $data->isCashAvailable == 'Active' ? 'checked' :
+                      '' }}> Active
                       @endif
                     </label>
                   </div>
@@ -441,6 +507,24 @@
 
                 </div>
               </div>
+
+
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Product Tags</h3>
+                </div>
+                <br>
+                <div class="panel-body">
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="tags">Tags</label>
+                      <input type="text" value="{{ $data ? $data->tags : old('tags') }}" name="tags"
+                        class="form-control" id="tags" placeholder="Tags">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
 
