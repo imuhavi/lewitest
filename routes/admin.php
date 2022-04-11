@@ -29,6 +29,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']
     'attributes' => AttributesController::class
   ]);
 
+  Route::get('product/delete/{product}', [ProductController::class, 'destroy']);
   Route::get('product-draft', [ProductController::class, 'productDraft'])->name('productDraft'); // Not Done
   Route::get('orders', [DashboardController::class, 'orderList'])->name('orderList'); // Not Done
 

@@ -23,45 +23,59 @@
             <div class="text-left">
               <h4 class="panel-title">Product List</h4>
             </div>
-
             <div class="text-right">
               <a href="{{ url(routePrefix(). '/product/create') }}" class="btn btn-outline-primary mb-3"> <i
                   class="icon-plus"></i>
                 Add Product</a>
             </div>
           </div>
+
+          <form action="" method="get">
+            @csrf
+            <input type="search" name="keyword" value="{{ isset($keyword) ? $keyword : ''  }}" placeholder="Search from here...">
+            <button type="submit">Search</button>
+          </form>
+
           <div class="panel-body">
             <div class="table-responsive">
-              <table id="example" class="display table" style="width: 100%; cellspacing: 0;">
+              <table class="display table" style="width: 100%; cellspacing: 0;">
                 <thead>
                   <tr>
                     <th>SL</th>
-                    <th>Image</th>
                     <th>Name</th>
+                    <th>Thumbnail</th>
                     <th>Category</th>
-                    <th>Publish</th>
+                    <th>Brand</th>
                     <th>Status</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
+                @foreach($data as $item)
                   <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011/04/25</td>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $item->name }}</td>
                     <td>
-                      <a class="btn btn-info" href="#">Edit</a>
-                      <button class="btn btn-danger">Delete</button>
+                      <img src="{{ asset('backend/uploads/' . $item->thumbnail) }}" alt="Product thumbnail">
+                    </td>
+                    <td>{{ $item->category ? $item->category->name : 'N/A' }}</td>
+                    <td>{{ $item->brand ? $item->brand->name : 'N/A' }}</td>
+                    <td>{{ $item->status }}</td>
+                    <td>
+                      <a class="btn btn-info" href="{{ url(routePrefix(). '/product/' . $item->id) }}">View</a>
+                      <a class="btn btn-info" href="{{ url(routePrefix(). '/product/' . $item->id . '/edit') }}">Edit</a>
+                      <a class="btn btn-danger" href="{{ url(routePrefix(). '/product/delete/' . $item->id) }}">Delete</a>
                     </td>
                   </tr>
+                @endforeach
                 </tbody>
               </table>
+              {{ $data->links() }}
             </div>
           </div>
         </div>
       </div>
+      
       @elseif($page == 'create' || $page == 'edit')
 
       <div class="panel panel-white">
@@ -223,7 +237,9 @@
                         <div class="form-row">
                           <div class="form-group">
                             <label for="shipping_days">Shipping days</label>
-                            <input type="text" name="shipping_days" id="shipping_days" class="form-control">
+                            <input type="text" name="shipping_days" 
+                            value="{{ $data ? $data->shipping_days : old('shipping_days') }}"
+                             id="shipping_days" class="form-control">
                             @error('shipping_days')
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -234,7 +250,9 @@
                         <div class="form-row">
                           <div class="form-group">
                             <label for="unit">Unit</label>
-                            <input type="text" name="unit" id="unit" class="form-control">
+                            <input type="text" name="unit" id="unit"
+                            value="{{ $data ? $data->unit : old('unit') }}"
+                             class="form-control">
                             @error('unit')
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -320,6 +338,11 @@
                       <div class="col-sm-10">
                         <input type="file" class="form-control" name="meta_image" id="meta_image"
                           onchange="previewImage('meta_image', this.files)">
+                        @if($data && $data->meta_image)
+                          <img height="50" width="50" src="{{ asset('backend/uploads/' . $data->meta_image) }}" alt="Meta Image">
+                        @else
+                          <img height="50" width="50" alt="Meta Image">
+                        @endif
                       </div>
                       @error('meta_image')
                       <small class="text-danger">{{ $message }}</small>
@@ -346,7 +369,7 @@
                       <label for="category">Choose Parent Category</label>
                       <select name="category_id" id="category" class="form-control">
                         <option value="" disabled selected>Select One</option>
-                        @foreach ( $category as $cat_item )
+                        @foreach ($category as $cat_item )
                         <option value="{{ $cat_item->id }}" @if ( $page=='edit' ) {{ $cat_item->id == $data->id ?
                           'selected'
                           : '' }} @endif
@@ -415,16 +438,36 @@
                 <div class="panel-body">
                   <div class="form-row">
                     <div class="form-group">
-                      <label for="attributes">Product Attribute:(add fast attribute and value) </label>
+                      <label for="attributes">Product Attribute:(add attribute and value) </label>
                       <br>
+
+  @php
+    $old_attributes = $data ? json_decode($data->attributes) : [];
+    $old_attributes_arr = [];
+  @endphp
+  
+  @foreach($old_attributes as $old_attribute)
+    @php
+      $old_attributes_arr[] = explode(',', str_replace('"', '', str_replace(']', '', str_replace('[', '', $old_attribute))))[1];
+    @endphp
+  @endforeach
+
                       @foreach($attributes as $item)
                       {{ $loop->iteration }}. {{ $item->name }}
+
+
                       <select name="attributes[]" class="form-control" multiple>
+                      
                         @foreach(json_decode($item->value) as $value)
-                        <option value="{{ $item->id .'-'. $value }}">{{ $value }}</option>
+                          <option 
+                            @if(in_array($value, $old_attributes_arr)) selected @endif
+                            value="{{ $item->id .'-'. $value }}">{{ $value }}</option>
                         @endforeach
+
                       </select>
+
                       <br>
+
                       @endforeach
                     </div>
                   </div>
@@ -448,6 +491,11 @@
                       @error('images')
                       <small class="text-danger">{{ $message }}</small>
                       @enderror
+                      @if($page == 'edit' && $data->images)
+                        @foreach($data->images as $image)
+                          <img src="{{ asset('backend/uploads/' . $image->image) }}" alt="Product images">
+                        @endforeach
+                      @endif
                     </div>
 
                     <div class="form-group">
@@ -530,6 +578,10 @@
 
         </div>
       </form>
+      @elseif($page == 'show')
+        {{
+          $data
+        }}
       @endif
     </div><!-- Row -->
   </div><!-- Main Wrapper -->
