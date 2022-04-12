@@ -16,12 +16,11 @@ class ProductController extends Controller
 {
 
   private $VIEW_PATH = 'backend.products.index';
-  private $VIEW_ROUTE = '/product';
 
   public function index(Request $request)
   {
     $page = 'index';
-    $sql = Product::with('category', 'brand')->orderBy('created_at', 'DESC');
+    $sql = Product::with('category', 'brand')->where('is_draft', 0)->orderBy('created_at', 'DESC');
     
     $keyword = '';
     if($request->keyword){
@@ -78,17 +77,18 @@ class ProductController extends Controller
       
       if($request->status == 'on'){
         $data['status'] = 1;
-      }elseif ($request->status == 'off') {
+      }else{
         $data['status'] = 0;
       }
+      
       if($request->is_draft == 'on'){
         $data['is_draft'] = 1;
-      }elseif ($request->is_draft == 'off') {
+      }else{
         $data['is_draft'] = 0;
       }
       if($request->isCashAvailable == 'on'){
         $data['isCashAvailable'] = 1;
-      }elseif ($request->isCashAvailable == 'off') {
+      }else{
         $data['isCashAvailable'] = 0;
       }
       
@@ -144,17 +144,125 @@ class ProductController extends Controller
 
   public function update(Request $request, Product $product)
   {
-    //
+    $request->validate([
+      'name' => 'required|max:199',
+      'slug' => 'required|max:199',
+      'purchase_price' => 'required',
+      'price' => 'required',
+      'shipping_cost' => 'required',
+      'shipping_days' => 'required',
+      'unit' => 'required',
+      'min' => 'required',
+      'max' => 'required',
+      'quantity' => 'required',
+      'category_id' => 'required'
+    ]);
+
+    try {
+      $data = $request->except(['_token', 'images']);
+
+      if(!empty($data['attributes'])){
+        $data['attributes'] = json_encode(array_map(function($item){
+          return json_encode(explode('-', $item));
+        }, $data['attributes']));
+      }
+      
+      if($request->status == 'on'){
+        $data['status'] = 1;
+      }else{
+        $data['status'] = 0;
+      }
+
+      if($request->is_draft == 'on'){
+        $data['is_draft'] = 1;
+      }else{
+        $data['is_draft'] = 0;
+      }
+      
+      if($request->isCashAvailable == 'on'){
+        $data['isCashAvailable'] = 1;
+      }else{
+        $data['isCashAvailable'] = 0;
+      }
+      
+      if ($request->file('meta_image')) {
+        removeImage($product->meta_image);
+        uploadImage($request->file('meta_image'));
+        $data['meta_image'] = session('fileName');
+      }
+      if ($request->file('pdf')) {
+        removeImage($product->pdf);
+        uploadImage($request->file('pdf'));
+        $data['pdf'] = session('fileName');
+      }
+      if ($request->file('thumbnail')) {
+        removeImage($product->thumbnail);
+        uploadImage($request->file('thumbnail'));
+        $data['thumbnail'] = session('fileName');
+      }
+      
+      $product->update($data);
+      
+      if(!empty($request->images)){
+        foreach ($request->images as $image) {
+          uploadImage($image);
+          ProductImage::create([
+            'product_id' => $product->id,
+            'image' => session('fileName')
+          ]);
+        }
+      }
+      return redirect()->back()->with('success', 'Product updated successfully.');
+    } catch (\Throwable $th) {
+      return redirect()->back()->with('error', $th->getMessage());
+    }
   }
 
   public function destroy(Product $product)
   {
+    if($product->thumbnail){
+      removeImage($product->thumbnail);
+    }
+    if($product->pdf){
+      removeImage($product->pdf);
+    }
+    if($product->meta_image){
+      removeImage($product->meta_image);
+    }
+    
+    foreach ($product->images as $image) {
+      removeImage($image->image);
+    }
+
     $product->delete();
     return redirect()->back()->with('success', 'Product deleted successfully !');
   }
 
-  public function productDraft()
+  public function destroyImage(ProductImage $image)
   {
-    return view($this->VIEW_PATH . 'draft');
+    removeImage($image->image);
+    $image->delete();
+    return redirect()->back()->with('success', 'Product image deleted successfully !');
+  }
+
+  public function productDraft(Request $request)
+  {
+    $page = 'index';
+    $sql = Product::with('category', 'brand')->where('is_draft', 1)->orderBy('created_at', 'DESC');
+    
+    $keyword = '';
+    if($request->keyword){
+      $keyword = $request->keyword;
+      $sql->where('name', 'like', '%' . $keyword . '%')
+          ->orWhere('slug', 'like', '%' . $keyword . '%')
+          ->orWhere('purchase_price', 'like', '%' . $keyword . '%')
+          ->orWhere('price', 'like', '%' . $keyword . '%')
+          ->orWhere('discount_type', 'like', '%' . $keyword . '%')
+          ->orWhere('discount', 'like', '%' . $keyword . '%')
+          ->orWhere('unit', 'like', '%' . $keyword . '%');
+    }
+
+    $data = $sql->paginate(2);
+    return view($this->VIEW_PATH, compact('page', 'data', 'keyword'));
   }
 }

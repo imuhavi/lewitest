@@ -6,12 +6,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'seller', 'middleware' => ['auth', 'seller']], function () {
 
-  Route::get('/dashboard', [DashboardController::class, 'dashboard']);
+  Route::get('/dashboard', [DashboardController::class, 'dashboard']); // Not Done
 
   Route::resources([
-    'product' => ProductController::class // Not Done
+    'product' => ProductController::class
   ]);
 
-  Route::get('product-draft', [ProductController::class, 'productDraft'])->name('productDraft'); // Not Done
+  Route::get('product-draft', [ProductController::class, 'productDraft'])->name('productDraft');
   Route::get('orders', [DashboardController::class, 'orderList'])->name('orderList'); // Not Done
 });

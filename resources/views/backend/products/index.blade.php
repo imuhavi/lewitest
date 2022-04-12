@@ -4,13 +4,47 @@
 
 
 @section('content')
+
+<style>
+  .content {
+    position: relative;
+    width: 50%;
+  }
+
+  /* Make the image responsive */
+  .content img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Style the button and place it in the middle of the content/image */
+  .content .btn-img {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #555;
+    color: white;
+    font-size: 16px;
+    padding: 2px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .content .btn-img:hover {
+    background-color: black;
+  }
+</style>
+
 <div class="page-inner">
   <div class="page-title">
     <div class="page-breadcrumb">
       <ol class="breadcrumb breadcrumb-with-header">
         <li><a href="{{ url(routePrefix(). '/dashboard') }}">Dashboard</a></li>
         <li><a href="{{ url(routePrefix(). '/product') }}">Product</a></li>
-        <li class="active">Product-list</li>
+        <li class="active"> {{ (str_replace(routePrefix() . '/', '', Request::path()) == 'product-draft') ? 'Draft' : '' }} Product-list</li>
       </ol>
     </div>
   </div>
@@ -21,7 +55,7 @@
         <div class="panel panel-white">
           <div class="panel-heading clearfix">
             <div class="text-left">
-              <h4 class="panel-title">Product List</h4>
+              <h4 class="panel-title">{{ (str_replace(routePrefix() . '/', '', Request::path()) == 'product-draft') ? 'Draft' : '' }} Product List</h4>
             </div>
             <div class="text-right">
               <a href="{{ url(routePrefix(). '/product/create') }}" class="btn btn-outline-primary mb-3"> <i
@@ -30,7 +64,7 @@
             </div>
           </div>
 
-          <form action="" method="get">
+          <form action="{{ url(routePrefix() . '/product') }}" method="get">
             @csrf
             <input type="search" name="keyword" value="{{ isset($keyword) ? $keyword : ''  }}" placeholder="Search from here...">
             <button type="submit">Search</button>
@@ -340,8 +374,6 @@
                           onchange="previewImage('meta_image', this.files)">
                         @if($data && $data->meta_image)
                           <img height="50" width="50" src="{{ asset('backend/uploads/' . $data->meta_image) }}" alt="Meta Image">
-                        @else
-                          <img height="50" width="50" alt="Meta Image">
                         @endif
                       </div>
                       @error('meta_image')
@@ -482,6 +514,9 @@
                   <div class="form-row">
                     <div class="form-group">
                       <label for="pdf">Upload Pdf</label>
+                      @if($data && $data->pdf)
+                        <a href="{{ asset('backend/uploads/' . $data->pdf) }}" target="_blank">Show PDF</a>
+                      @endif
                       <input type="file" class="form-control" name="pdf" id="pdf">
                     </div>
 
@@ -493,7 +528,12 @@
                       @enderror
                       @if($page == 'edit' && $data->images)
                         @foreach($data->images as $image)
+                        <div class="content">
                           <img src="{{ asset('backend/uploads/' . $image->image) }}" alt="Product images">
+                          <a href="{{ url(routePrefix() . '/product/image/delete/' . $image->id) }}" class="btn-img btn-danger">
+                            <i class="fa fa-trash"></i>
+                          </a>
+                        </div>
                         @endforeach
                       @endif
                     </div>
@@ -516,9 +556,9 @@
                     <label>Publication status : </label>
                     <label class="no-s">
                       @if($page == 'create')
-                      <input type="checkbox" name="status" checked> Active
+                        <input type="checkbox" name="status" checked> Active
                       @else
-                      <input type="checkbox" name="status" {{ $data->status == 'Active' ? 'checked' : '' }}> Active
+                        <input type="checkbox" name="status" {{ $data->status == 'Active' ? 'checked' : '' }}> Active
                       @endif
                     </label>
                   </div>
@@ -529,7 +569,7 @@
                       @if($page == 'create')
                       <input type="checkbox" name="is_draft"> Active
                       @else
-                      <input type="checkbox" name="is_draft" {{ $data->is_draft == 'Active' ? 'checked' : '' }}> Active
+                      <input type="checkbox" name="is_draft" {{ $data->is_draft == 1 ? 'checked' : '' }}> Active
                       @endif
                     </label>
                   </div>
@@ -540,7 +580,7 @@
                       @if($page == 'create')
                       <input type="checkbox" name="isCashAvailable"> Active
                       @else
-                      <input type="checkbox" name="isCashAvailable" {{ $data->isCashAvailable == 'Active' ? 'checked' :
+                      <input type="checkbox" name="isCashAvailable" {{ $data->isCashAvailable == 1 ? 'checked' :
                       '' }}> Active
                       @endif
                     </label>
@@ -572,10 +612,8 @@
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
-
         </div>
       </form>
       @elseif($page == 'show')
