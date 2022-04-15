@@ -239,7 +239,7 @@ Add Subcategory
 
           <div class="panel-heading clearfix">
             <div class="text-left float-left">
-              <h3 class="panel-title">Subategory</h3>
+              <h3 class="panel-title">Subcategory</h3>
             </div>
             <div class="text-right">
               <a href="{{ url(routePrefix() . '/subcategory') }}" class="btn btn-info btn-sm">Go back</a>
@@ -250,7 +250,7 @@ Add Subcategory
             <table class="table table-striped">
               <tbody>
                 <tr>
-                  <th class="45%" width="45%">Subategory Name</th>
+                  <th class="45%" width="45%">Subcategory Name</th>
                   <td width="10%">:</td>
                   <td class="45%" width="45%">{{ $data->name }}</td>
                 </tr>

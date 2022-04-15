@@ -53,12 +53,14 @@
     <div class="row">
       @if($page == 'index')
       <div class="col-md-12">
-        <div class="panel panel-white">
-          <div class="panel-heading clearfix">
-            <div class="text-left">
-              <h4 class="panel-title">{{ (str_replace(routePrefix() . '/', '', Request::path()) == 'product-draft') ?
-                'Draft' : '' }} Product List</h4>
-            </div>
+
+        <div class="row mailbox-header">
+          <div class="col-md-8">
+            <h4 class="panel-title">{{ (str_replace(routePrefix() . '/', '', Request::path()) == 'product-draft') ?
+              'Draft' : '' }} Product List</h4>
+          </div>
+
+          <div class="col-md-2">
             <div class="text-right">
               <a href="{{ url(routePrefix(). '/product/create') }}" class="btn btn-outline-primary mb-3"> <i
                   class="icon-plus"></i>
@@ -66,12 +68,30 @@
             </div>
           </div>
 
-          <form action="{{ url(routePrefix() . '/product') }}" method="get">
-            @csrf
-            <input type="search" name="keyword" value="{{ isset($keyword) ? $keyword : ''  }}"
-              placeholder="Search from here...">
-            <button type="submit">Search</button>
-          </form>
+          <div class="col-md-2">
+            <form action="{{ url(routePrefix() . '/product') }}" method="get">
+              @csrf
+              <div class="input-group">
+                <input class="form-control input-search" type="search" name="keyword"
+                  value="{{ isset($keyword) ? $keyword : ''  }}" placeholder="Search from here...">
+                <span class="input-group-btn">
+                  <button class="btn btn-info" type="submit"><i class="fa fa-search"></i></button>
+                </span>
+              </div>
+            </form>
+          </div>
+        </div>
+
+
+        <div class="panel panel-white">
+          <div class="panel-heading clearfix">
+            <div class="text-left">
+              {{-- --}}
+            </div>
+
+          </div>
+
+
 
           <div class="panel-body">
             <div class="table-responsive">
@@ -79,8 +99,8 @@
                 <thead>
                   <tr>
                     <th>SL</th>
-                    <th>Name</th>
                     <th>Thumbnail</th>
+                    <th>Name</th>
                     <th>Category</th>
                     <th>Brand</th>
                     <th>Status</th>
@@ -91,10 +111,10 @@
                   @foreach($data as $item)
                   <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $item->name }}</td>
                     <td>
                       <img src="{{ asset('backend/uploads/' . $item->thumbnail) }}" alt="Product thumbnail">
                     </td>
+                    <td>{{ $item->name }}</td>
                     <td>{{ $item->category ? $item->category->name : 'N/A' }}</td>
                     <td>{{ $item->brand ? $item->brand->name : 'N/A' }}</td>
                     <td>{{ $item->status }}</td>
@@ -613,7 +633,7 @@
                     <div class="form-group">
                       <label for="tags">Tags</label>
                       <input type="text" value="{{ $data ? $data->tags : old('tags') }}" name="tags"
-                        class="form-control" id="tags" placeholder="Tags">
+                        class="form-control" id="tags" placeholder="Tags" data-role="tagsinput">
                     </div>
                   </div>
                 </div>
@@ -626,6 +646,124 @@
       {{
       $data
       }}
+
+      <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-info">
+
+          <div class="panel-heading clearfix">
+            <div class="text-left float-left">
+              <h3 class="panel-title">Product</h3>
+            </div>
+            <div class="text-right">
+              <a href="{{ url(routePrefix() . '/product') }}" class="btn btn-info btn-sm">Go back</a>
+            </div>
+          </div>
+
+          <div class="panel-body">
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <th class="45%" width="45%">Product Name</th>
+                  <td width="10%">:</td>
+                  <td class="45%" width="45%">{{ $data->name }}</td>
+                </tr>
+                <tr>
+                  <th class="45%" width="45%">Product Url</th>
+                  <td width="10%">:</td>
+                  <td class="45%" width="45%">{{ $data->slug }}</td>
+                </tr>
+                <tr>
+                  <th width="45%">Product thumbnail</th>
+                  <td width="10%">:</td>
+                  <td width="45%">
+                    @if($data->thumbnail)
+                    <img src="{{ asset('backend/uploads/' . $data->thumbnail) }}" class="thumbnail-img"
+                      alt="Product Thumbnail - {{ $data->thumbnail }}">
+                    @else
+                    <img src="{{ asset('backend/assets/default-img/noimage.jpg') }}" class="thumbnail-img"
+                      alt="Default category Banner">
+                    @endif
+                  </td>
+                </tr>
+
+                <tr>
+                  <th width="45%">Parent Category</th>
+                  <td width="10%">:</td>
+                  <td width="45%">
+                    {{ $data->category->name }}
+                  </td>
+                </tr>
+
+                <tr>
+                  <th width="45%">Child Category</th>
+                  <td width="10%">:</td>
+                  <td width="45%">{{ $data->subcategory->name }}</td>
+                </tr>
+
+                <tr>
+                  <th width="45%">Brand Name</th>
+                  <td width="10%">:</td>
+                  <td width="45%">{{ $data->brand->name }}</td>
+                </tr>
+
+                <tr>
+                  <th width="45%">Purchase Quantity</th>
+                  <td width="10%">:</td>
+                  <td width="45%">{{ $data->quantity }}</td>
+                </tr>
+
+                <tr>
+                  <th width="45%">Purchase Price</th>
+                  <td width="10%">:</td>
+                  <td width="45%">{{ $data->purchase_price }}</td>
+                </tr>
+
+                <tr>
+                  <th width="45%">Price</th>
+                  <td width="10%">:</td>
+                  <td width="45%">{{ $data->price }}</td>
+                </tr>
+
+                <tr>
+                  <th width="45%">Discount</th>
+                  <td width="10%">:</td>
+                  <td width="45%">{{ $data->discount_type ?? Null }}</td>
+                </tr>
+
+                <tr>
+                  <th width="45%">Discount Amount</th>
+                  <td width="10%">:</td>
+                  <td width="45%">{{ $data->discount ?? Null }}{{ $data->discount_type == 'Percent' ? '%' : 'SAR' }}
+                  </td>
+                </tr>
+
+                <tr>
+                  <th width="45%">Meta Description</th>
+                  <td width="10%">:</td>
+                  <td width="45%">{{ $data->meta_description ?? Null }}</td>
+                </tr>
+
+                <tr>
+                  <th width="45%">Subcategory Status</th>
+                  <th width="10%">:</th>
+                  <td width="45%">
+                    <span class="badge badge-pill badge-{{ $data->status === 'Active' ? 'success' : 'danger' }}">{{
+                      $data->status }}</span>
+                  </td>
+                </tr>
+
+                <tr>
+                  <th width="45%">Subcategory Create</th>
+                  <th width="10%">:</th>
+                  <td width="45%">{{ $data->created_at->diffForHumans() }}</td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
       @endif
     </div><!-- Row -->
   </div><!-- Main Wrapper -->

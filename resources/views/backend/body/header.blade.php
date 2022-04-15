@@ -15,6 +15,7 @@
   <link href="{{ asset('backend/') }}/assets/plugins/uniform/css/default.css" rel="stylesheet" />
   <link href="{{ asset('backend/') }}/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"
     type="text/css" />
+  <link href="{{ asset('backend/') }}/assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
   <link href="{{ asset('backend/') }}/assets/plugins/fontawesome/css/font-awesome.css" rel="stylesheet"
     type="text/css" />
   <link href="{{ asset('backend/') }}/assets/plugins/line-icons/simple-line-icons.css" rel="stylesheet"

@@ -66,6 +66,8 @@
 <script src="{{ asset('backend/') }}/assets/plugins/flot/jquery.flot.tooltip.min.js"></script>
 <script src="{{ asset('backend/') }}/assets/plugins/curvedlines/curvedLines.js"></script>
 <script src="{{ asset('backend/') }}/assets/plugins/chartjs/Chart.bundle.min.js"></script>
+
+<script src="{{ asset('backend/') }}/assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
 <script src="{{ asset('backend/') }}/assets/plugins/datatables/js/jquery.datatables.min.js"></script>
 
 <script src="{{ asset('backend/') }}/assets/plugins/summernote-master/summernote.min.js"></script>
@@ -81,4 +83,5 @@
 <script src="//cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>
 <script src="{{ asset('backend/') }}/assets/js/custom.js"></script>
 </body>
+
 </html>
