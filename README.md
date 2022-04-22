@@ -22,6 +22,7 @@
     18) Update Seller Profile Design
     19) Added Meta title and Description backend blade page
     20) Create Product Add Blade Page
+    21) Frontend Mastering
 
 ## Hridoy
 

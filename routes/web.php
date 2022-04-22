@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\UserProfileController;
+use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,14 +15,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-  return view('welcome');
-});
+// Route::get('/', function () {
+//   return view('welcome');
+// });
+
+Route::get('/', [FrontendController::class, 'frontend'])->name('frontend');
+Route::get('/shop', [FrontendController::class, 'shop'])->name('shop');
+Route::get('/product/{slug}', [FrontendController::class, 'singleProductView'])->name('singleProductView');
+Route::get('/cart', [FrontendController::class, 'cart'])->name('cart');
+Route::get('/wishlist', [FrontendController::class, 'wishlist'])->name('wishlist');
+
+
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
   Route::get('/profile', [UserProfileController::class, 'userProfile'])->name('userProfile');
   Route::post('/update-profile', [UserProfileController::class, 'updateProfile'])->name('updateProfile');
   Route::post('/update-password', [UserProfileController::class, 'updatePassword'])->name('updatePassword');
+
+  Route::get('/checkout', [FrontendController::class, 'checkout'])->name('checkout');
 });
 
 require __DIR__ . '/auth.php';
