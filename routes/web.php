@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 //   return view('welcome');
 // });
 
-Route::get('/', [FrontendController::class, 'frontend'])->name('frontend');
+Route::get('/', [FrontendController::class, 'frontend'])->name('home');
 Route::get('/shop', [FrontendController::class, 'shop'])->name('shop');
 Route::get('/product/{slug}', [FrontendController::class, 'singleProductView'])->name('singleProductView');
 Route::get('/cart', [FrontendController::class, 'cart'])->name('cart');

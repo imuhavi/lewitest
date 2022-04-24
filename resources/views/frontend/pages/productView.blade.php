@@ -1,4 +1,7 @@
 @extends('frontend.master')
+@section('header_css')
+<link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/jquery.nice-number.min.css">
+@endsection
 @section('content')
 <main>
   <section id="product-detials">
@@ -267,4 +270,8 @@
   </section>
 
 </main>
+@endsection
+@section('footer_js')
+<!-- Nice Number -->
+<script src="{{ asset('/frontend/assets/') }}/js/jquery.nice-number.min.js"></script>
 @endsection

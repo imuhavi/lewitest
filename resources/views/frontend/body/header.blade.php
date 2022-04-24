@@ -6,10 +6,9 @@
   <!-- Font Awesome Icon -->
   <script src="https://kit.fontawesome.com/b868f71921.js" crossorigin="anonymous"></script>
   <!-- Bootstrap Css link -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <!-- Jquary Css Link -->
-  <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/jquery.nice-number.min.css">
+  <link rel="stylesheet" type="text/css" href="{{ asset('/frontend/assets/') }}/css/bootstrap.min.css">
+
+  @yield('header_css')
 
   <!-- Select 2 -->
   <link rel="stylesheet" href="{{ asset('/frontend/assets/') }}/css/select2.css">
@@ -21,8 +20,8 @@
   <!-- Nice Number Style -->
   <link rel="stylesheet" href="{{ asset('/frontend/assets/') }}/css/jquery.nice-number.min.css">
 
-  <!-- Price Range Slider -->
-  <link rel="stylesheet" href="{{ asset('/frontend/assets/') }}/css/price-range.css">
+
+
   <!-- Owl carousel -->
   <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/owl.carousel.min.css">
   <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/owl.theme.default.min.css">
@@ -59,13 +58,33 @@
           <input class="search border-0 p-2 ms-1" type="search" id="" placeholder="Search items...">
         </form>
         <!-- Company Logo -->
-        <a class="navbar-brand order-0 order-sm-0 order-lg-1" href="index.html"><span class="logo">Five Dots</span></a>
+        <a class="navbar-brand order-0 order-sm-0 order-lg-1" href="{{ route('home') }}"><span class="logo">Five
+            Dots</span></a>
         <!-- User Action -->
         <ul class="top-bar-right d-flex align-items-center nav-right order-3 order-sm-3 order-lg-2">
-          <li><a href="#" class="signIn" data-bs-toggle="modal" data-bs-target="#signIn"><img
-                src="{{ asset('frontend/assets') }}/images/profile.png" alt="user-profile"></a></li>
 
-          <li><a href="pages/wishlist.html"><img src="{{ asset('frontend/assets') }}/images/heart.png"
+          <li>
+            @auth
+            <a href="#" class="signIn" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><img
+                src="{{ asset('frontend/assets') }}/images/profile.png" alt="user-profile"></a>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <li><a class="dropdown-item" href="{{ url(routePrefix(). '/dashboard') }}">{{
+                  Str::words(Auth::user()->name) }}</a>
+              </li>
+              <li><a class="dropdown-item" href="#" onclick="logout()">Log out</a></li>
+            </ul>
+            <form method="POST" id="logoutForm" action="{{ route('logout') }}">
+              @csrf
+            </form>
+
+            @else
+            <a href="#" class="signIn" data-bs-toggle="modal" data-bs-target="#signIn"><img
+                src="{{ asset('frontend/assets') }}/images/profile.png" alt="user-profile"></a>
+            @endauth
+          </li>
+
+          <li><a href="{{ route('wishlist') }}"><img src="{{ asset('frontend/assets') }}/images/heart.png"
                 alt="user-profile"></a></li>
 
           <li><a href="pages/cart.html" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
@@ -83,7 +102,7 @@
 
         <div class="collapse navbar-collapse mobile-menu" id="navbarNavDropdown">
           <ul class="main_menu navbar-nav">
-            <li class="nav-item"><a href="index.html" class="home">Home </a>
+            <li class="nav-item"><a href="{{ route('home') }}" class="home">Home </a>
             </li>
             <li class="nav-item"><a href="product.html">new arrival</a></li>
             <li class="static"><a href="#">Clothes <i class="fas fa-angle-down"></i></a>
@@ -696,7 +715,7 @@
         </div>
 
         <div class="place-order">
-          <a href="pages/cart.html" class="place-order-button">Process To Checkout</a>
+          <a href="{{ route('cart') }}" class="place-order-button">Process To Checkout</a>
         </div>
 
       </div>
@@ -1232,3 +1251,12 @@
       </li>
     </ul>
   </nav>
+
+  <script>
+    // Logout
+    let logoutForm = document.getElementById('logoutForm')
+    function logout() {
+      event.preventDefault()
+      if (confirm('Are you sure to logout ?')) logoutForm.submit()
+    }
+  </script>

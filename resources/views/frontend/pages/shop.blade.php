@@ -1,5 +1,9 @@
 @extends('frontend.master')
 @section('content')
+@section('header_css')
+<link rel="stylesheet" href="{{ asset('/frontend/assets/') }}/css/price-range.css">
+
+@endsection
 <main>
 
   <section class="container" id="category-shop">
@@ -46,7 +50,7 @@
                     <div class="accordion-body">
 
                       <div class="price-range-wraper-sm">
-                        <div class="price-input-sm">
+                        <div class="price-filter-sm">
                           <div class="field">
                             <span>Min</span>
                             <input type="number" class="input-min" value="100">
@@ -760,4 +764,10 @@
 
   </section>
 </main>
+@endsection
+
+@section('footer_js')
+<script src="{{ asset('/frontend/assets/') }}/js/price-range.js" type="text/javascript"></script>
+
+<script src="{{ asset('/frontend/assets/') }}/js/price-range-sm.js" type="text/javascript"></script>
 @endsection

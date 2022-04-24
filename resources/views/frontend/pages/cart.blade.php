@@ -1,4 +1,7 @@
 @extends('frontend.master')
+@section('header_css')
+<link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/jquery.nice-number.min.css">
+@endsection
 @section('content')
 <main>
   <!-- Bradcum Here -->
@@ -84,7 +87,7 @@
 
           <div class="mt-3 cart-update">
             <a href="" class="btn common-btn">Update Cart</a>
-            <a href="" class="btn btn-light">Continue Shopping</a>
+            <a href="{{ route('shop') }}" class="btn btn-light">Continue Shopping</a>
           </div>
         </div>
 
@@ -146,4 +149,8 @@
   </section>
 </main>
 
+@endsection
+@section('footer_js')
+<!-- Nice Number -->
+<script src="{{ asset('/frontend/assets/') }}/js/jquery.nice-number.min.js"></script>
 @endsection

@@ -83,22 +83,20 @@
 
 
 <!-- Bootstrap Js Link -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="{{ asset('/frontend/assets/') }}/js/jquery-3.6.0.min.js"></script>
+
+<script type="text/javascript" src="{{ asset('/frontend/assets/') }}/js/bootstrap.bundle.min.js"></script>
 
 <!-- Price Range -->
-<script src="{{ asset('/frontend/assets/') }}/js/price-range.js" type="text/javascript"></script>
-<script src="{{ asset('/frontend/assets/') }}/js/price-range-sm.js" type="text/javascript"></script>
+@yield('footer_js')
 
 <!-- Select 2 -->
 <script src="{{ asset('/frontend/assets/') }}/js/select2.min.js"></script>
 
 <!-- Nice Select -->
 <script src="{{ asset('/frontend/assets/') }}/js/jquery.nice-select.min.js"></script>
-<!-- Nice Number -->
-<script src="{{ asset('/frontend/assets/') }}/js/jquery.nice-number.min.js"></script>
+
 <!-- HS Menu -->
 <script src="{{ asset('/frontend/assets/') }}/js/jquery.hsmenu.min.js"></script>
 <!-- Owl carousel  -->

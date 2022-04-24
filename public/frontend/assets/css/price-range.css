@@ -1,12 +1,12 @@
 .price-input,
-.price-input-sm {
+.price-filter-sm {
   width: 100%;
   display: flex;
   margin: 0px 0 30px;
 }
 
 .price-input .field,
-.price-input-sm .field {
+.price-filter-sm .field {
   display: flex;
   width: 100%;
   height: 45px;
