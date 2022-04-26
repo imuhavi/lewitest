@@ -36,4 +36,14 @@ class FrontendController extends Controller
   {
     return view('frontend.pages.checkout');
   }
+
+  function subscription()
+  {
+    return view('frontend.pages.subscription');
+  }
+
+  function sellerRegister()
+  {
+    return view('frontend.pages.sellerRegister');
+  }
 }
