@@ -38,6 +38,9 @@
     10) Default category
     11) Website setting
     12) Social config
+    13) Products CRUD
+    14) Draft Products CRUD
+    15) Coupon CRUD
 
 Profile (Seller section)
 
