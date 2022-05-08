@@ -27,7 +27,7 @@
 
             <div class="col-lg-6">
               <label for="fullName" class="form-label">Selected Package</label>
-              <input type="text" class="form-control" id="fullName" value="Basic" readonly>
+              <input type="text" class="form-control" id="fullName" value="{{ $subscription->name }}" readonly>
             </div>
 
             <div class="col-lg-6">
@@ -79,10 +79,10 @@
           </div>
           <div class="row order-item">
             <div class="col-9">
-              <h5>Package Name: <strong>Basic</strong></h5>
+              <h5>Package Name: <strong>{{ $subscription->name }}</strong></h5>
             </div>
             <div class="col-3 text-end">
-              <h4><strong>SAR 2280</strong></h4>
+              <h4><strong>SAR {{ $subscription->price }}</strong></h4>
             </div>
           </div>
 
@@ -99,15 +99,15 @@
           </div>
           <ul class="payment-method-list">
             <li>
-              <input id="bank" type="checkbox">
+              <input id="bank" name="payment_method" type="radio">
               <label for="bank">Direct Bank Transfer</label>
             </li>
             <li>
-              <input id="paypal" type="checkbox">
+              <input id="paypal" name="payment_method" type="radio">
               <label for="paypal">Paypal</label>
             </li>
             <li>
-              <input id="card" type="checkbox">
+              <input id="card" name="payment_method" type="radio">
               <label for="card">Credit Card</label>
             </li>
           </ul>
@@ -122,7 +122,7 @@
               <h6>Subtotal:</h6>
             </div>
             <div class="col-6">
-              <h6 class="price-text sub-total-text text-end"> SAR 2880.00 </h6>
+              <h6 class="price-text sub-total-text text-end"> SAR {{ $subscription->price }} </h6>
             </div>
 
 
@@ -130,7 +130,10 @@
               <h6>Tax:</h6>
             </div>
             <div class="col-6">
-              <h6 class="price-text sub-total-text text-end"> SAR 41.40 </h6>
+            @php
+              $tax = 15.00;
+            @endphp
+              <h6 class="price-text sub-total-text text-end"> SAR {{ $tax }} </h6>
             </div>
 
             <hr>
@@ -138,7 +141,7 @@
               <h5>Total Amount</h5>
             </div>
             <div class="col-6">
-              <h5 class="price-text sub-total-text text-end"> SAR 441.40 </h5>
+              <h5 class="price-text sub-total-text text-end"> SAR {{ $subscription->price + $tax }} </h5>
             </div>
           </div>
         </div>

@@ -15,10 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//   return view('welcome');
-// });
-
 Route::get('/', [FrontendController::class, 'frontend'])->name('home');
 Route::get('/shop', [FrontendController::class, 'shop'])->name('shop');
 Route::get('/product/{slug}', [FrontendController::class, 'singleProductView'])->name('singleProductView');
@@ -26,7 +22,7 @@ Route::get('/cart', [FrontendController::class, 'cart'])->name('cart');
 Route::get('/wishlist', [FrontendController::class, 'wishlist'])->name('wishlist');
 Route::get('/subscription', [FrontendController::class, 'subscription'])->name('subscription');
 
-Route::get('/seller-register', [FrontendController::class, 'sellerRegister'])->name('sellerRegister');
+Route::get('/seller-register/{subscription}', [FrontendController::class, 'sellerRegister'])->name('sellerRegister');
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
   Route::get('/profile', [UserProfileController::class, 'userProfile'])->name('userProfile');

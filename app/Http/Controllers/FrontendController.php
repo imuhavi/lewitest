@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
 use App\Models\Slider;
 use App\Models\Subcategory;
+=======
+use App\Models\Subscription;
+>>>>>>> 97d2956ef70bdf8628fd8688679a9fe970602365
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -52,11 +56,12 @@ class FrontendController extends Controller
 
   function subscription()
   {
-    return view('frontend.pages.subscription');
+    $data = Subscription::with('subscriptionOptions')->get();
+    return view('frontend.pages.subscription', compact('data'));
   }
 
-  function sellerRegister()
+  function sellerRegister(Subscription $subscription)
   {
-    return view('frontend.pages.sellerRegister');
+    return view('frontend.pages.sellerRegister', compact('subscription'));
   }
 }
