@@ -11,7 +11,7 @@ class SubcategoryController extends Controller
 {
   private $VIEW_PATH = 'backend.subcategory.index';
   private $VIEW_ROUTE = '/subcategory';
-  
+
   public function index()
   {
     $page = 'index';
@@ -51,12 +51,12 @@ class SubcategoryController extends Controller
       $subcategory->category_id = $request->category_id;
 
       if ($request->file('icon')) {
-        uploadImage($request->file('icon'));
+        uploadImage($request->file('icon'), 281);
         $subcategory->icon = session('fileName');
       }
 
       if ($request->file('banner')) {
-        uploadImage($request->file('banner'));
+        uploadImage($request->file('banner'), 1024);
         $subcategory->banner = session('fileName');
       }
 
@@ -104,13 +104,13 @@ class SubcategoryController extends Controller
 
       if ($request->file('icon')) {
         removeImage($subcategory->icon);
-        uploadImage($request->file('icon'));
+        uploadImage($request->file('icon'), 281);
         $subcategory->icon = session('fileName');
       }
 
       if ($request->file('banner')) {
         removeImage($subcategory->banner);
-        uploadImage($request->file('banner'));
+        uploadImage($request->file('banner'), 1024);
         $subcategory->banner = session('fileName');
       }
 

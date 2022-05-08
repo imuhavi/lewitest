@@ -7,50 +7,28 @@
   <section id="showcase" class="bg-dark">
     <div id="myCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
       <ol class="carousel-indicators">
-        <li data-bs-slide-to="0" data-bs-target="#myCarousel" class="active"></li>
-        <li data-bs-slide-to="1" data-bs-target="#myCarousel"></li>
-        <li data-bs-slide-to="2" data-bs-target="#myCarousel"></li>
+        @foreach($slider as $key => $citem)
+        <li data-bs-slide-to="{{ $citem->id }}" data-bs-target="#myCarousel" class="{{$key == 0 ? 'active' : '' }}">
+        </li>
+        @endforeach
       </ol>
       <div class="carousel-inner">
-        <div class="carousel-item carousel-img-1 active" data-bs-interval="3000">
+
+        @foreach($slider as $key => $item)
+        <div class="carousel-item carousel-img-{{ $item->id }} {{$key == 0 ? 'active' : '' }}" data-bs-interval="3000">
           <div class="container">
             <div class="carousel-caption text-dark text-left">
               <div class="carousel-text">
                 <p class="wow bounceInDown" data-wow-duration="1s" data-wow-delay="0s">50% off in all products</p>
-                <h1 class=" wow bounceInDown" data-wow-duration="1.2s" data-wow-delay=".2s">office furniture</h1>
+
+                <h1 class=" wow bounceInDown" data-wow-duration="1.2s" data-wow-delay=".2s">{{ $item->title }}</h1>
                 <a class="btn fivedots-btn wow bounceInDown" data-wow-duration="1.5s" data-wow-delay=".5s" href="#">Shop
-                  Now <img class="icon" src="{{ asset('frontend/assets') }}/images/btn-arrow-light.png" alt=""></a>
+                  Now <img class="icon" src="{{ asset('/backend/uploads/'. $item->banner) }}" alt=""></a>
               </div>
             </div>
           </div>
         </div>
-        <div class="carousel-item carousel-img-2" data-bs-interval="3000">
-          <div class="container">
-            <div class="container">
-              <div class="carousel-caption text-dark text-left">
-                <div class="carousel-text">
-                  <p class="wow bounceInDown" data-wow-duration="1s" data-wow-delay="0s">50% off in all products</p>
-                  <h1 class=" wow bounceInDown" data-wow-duration="1.2s" data-wow-delay=".2s">office furnicture</h1>
-                  <a class="btn fivedots-btn wow bounceInDown" data-wow-duration="1.5s" data-wow-delay=".5s"
-                    href="#">Shop Now <img class="icon" src="{{ asset('frontend/assets') }}/images/btn-arrow-light.png"
-                      alt=""></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item carousel-img-3" data-bs-interval="3000">
-          <div class="container">
-            <div class="carousel-caption text-dark text-left">
-              <div class="carousel-text">
-                <p class="wow bounceInDown" data-wow-duration="1s" data-wow-delay="0s">50% off in all products</p>
-                <h1 class=" wow bounceInDown" data-wow-duration="1.2s" data-wow-delay=".2s">office furniture</h1>
-                <a class="btn fivedots-btn wow bounceInDown" data-wow-duration="1.5s" data-wow-delay=".5s" href="#">Shop
-                  Now <img class="icon" src="{{ asset('frontend/assets') }}/images/btn-arrow-light.png" alt=""></a>
-              </div>
-            </div>
-          </div>
-        </div>
+        @endforeach
       </div>
       <a href="#myCarousel" class="carousel-control-prev" data-bs-slide="prev">
         <span class="carousel-control-prev-icon"></span>
@@ -68,22 +46,15 @@
     <div class="container">
       <div class="row">
         <div class="col-md-3 child-category">
+          @foreach($womensSub1 as $item)
           <div class="child-cat-item ">
-            <a href="pages/categorie-shop.html"><img class="w-100"
-                src="{{ asset('frontend/assets') }}/images/womens-1.png" alt="womens-1"></a>
-            <h3>Women's Clothes</h3>
+            <a href="pages/categorie-shop.html"><img class="w-100" src="{{ asset('/backend/uploads/'. $item->icon) }}"
+                alt="womens-{{ $item->icon }}"></a>
+            <h3>{{ $item->name }}</h3>
             <a class="explore-btn" href="pages/categorie-shop.html">Explore <img class="icon"
                 src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
           </div>
-
-          <div class="child-cat-item">
-            <a href="pages/categorie-shop.html"><img class="w-100"
-                src="{{ asset('frontend/assets') }}/images/womens-2.png" alt="womens-1"></a>
-            <h3>Women's Watches</h3>
-            <a class="explore-btn" href="pages/categorie-shop.html">Explore <img class="icon"
-                src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
-          </div>
-
+          @endforeach
         </div>
 
         <div class="col-md-6 category-main">
@@ -101,21 +72,15 @@
         </div>
 
         <div class="col-md-3 child-category">
+          @foreach($womensSub2 as $item)
           <div class="child-cat-item">
-            <a href="pages/categorie-shop.html"><img class="w-100"
-                src="{{ asset('frontend/assets') }}/images/womens-3.png" alt="womans-1"></a>
-            <h3>Footwear</h3>
+            <a href="pages/categorie-shop.html"><img class="w-100" src="{{ asset('/backend/uploads/'. $item->icon) }}"
+                alt="womans-{{ $item->icon }}"></a>
+            <h3>{{ $item->name }}</h3>
             <a class="explore-btn" href="pages/categorie-shop.html">Explore <img class="icon"
                 src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
           </div>
-
-          <div class="child-cat-item mt-2">
-            <a href="pages/categorie-shop.html"><img class="w-100"
-                src="{{ asset('frontend/assets') }}/images/womens-4.png" alt="womans-1"></a>
-            <h3>Sportswear</h3>
-            <a class="explore-btn" href="pages/categorie-shop.html">Explore <img class="icon"
-                src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
-          </div>
+          @endforeach
         </div>
 
       </div>
@@ -145,40 +110,19 @@
       ----------------------------->
   <section id="mens-category" class="container">
     <div class="row">
-      <div class="col-md-3 child-category">
-        <div class="child-cat-item">
-          <a href="pages/categorie-shop.html"><img class="img-fluid"
-              src="{{ asset('frontend/assets') }}/images/mens-1.png" alt="women's-1"></a>
-          <h3>Mens Clothes</h3>
-          <a class="explore-btn" href="pages/categorie-shop.html">Explore <img class="icon"
-              src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
-        </div>
-
-        <div class="child-cat-item text-center mt-2">
-          <a href="pages/categorie-shop.html"><img class="img-fluid"
-              src="{{ asset('frontend/assets') }}/images/mens-2.png" alt="women's-1"></a>
-          <h3>Mens Footwear</h3>
-          <a class="explore-btn" href="pages/categorie-shop.html">Explore <img class="icon"
-              src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
-        </div>
-
-      </div>
-
-      <div class="col-md-3 child-category">
-        <div class="child-cat-item">
-          <a href="pages/categorie-shop.html"><img class="img-fluid"
-              src="{{ asset('frontend/assets') }}/images/mens-3.png" alt="women's-1"></a>
-          <h3>Mens Watches</h3>
-          <a class="explore-btn" href="pages/categorie-shop.html">Explore <img class="icon"
-              src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
-        </div>
-
-        <div class="child-cat-item mt-2">
-          <a href="pages/categorie-shop.html"><img class="img-fluid"
-              src="{{ asset('frontend/assets') }}/images/mens-4.png" alt="women's-1"></a>
-          <h3>Mens Sportswear</h3>
-          <a class="explore-btn" href="pages/categorie-shop.html">Explore <img class="icon"
-              src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
+      <div class="col-md-6">
+        <div class="row gy-5">
+          @foreach($mensSub as $item)
+          <div class="col-md-6">
+            <div class="child-cat-item">
+              <a href="pages/categorie-shop.html"><img class="img-fluid"
+                  src="{{ asset('/backend/uploads/'. $item->icon) }}" alt="women's-1"></a>
+              <h3>{{ $item->name }}</h3>
+              <a class="explore-btn" href="pages/categorie-shop.html">Explore <img class="icon"
+                  src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
+            </div>
+          </div>
+          @endforeach
         </div>
       </div>
 
@@ -239,42 +183,23 @@
           </div>
         </div>
 
-        <div class="col-md-3 child-category">
-          <div class="child-cat-item">
-            <a href="pages/categorie-shop.html"><img class="img-fluid"
-                src="{{ asset('frontend/assets') }}/images/accesories-1.png" alt="womens-1"></a>
-            <h3>Begs</h3>
-            <a class="explore-btn" href="pages/categorie-shop.html">Explore <img class="icon"
-                src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
-          </div>
-
-          <div class="child-cat-item mt-2">
-            <a href="pages/categorie-shop.html"><img class="img-fluid"
-                src="{{ asset('frontend/assets') }}/images/accesories-2.png" alt="womens-1"></a>
-            <h3>Perfumes</h3>
-            <a class="explore-btn" href="pages/categorie-shop.html">Explore <img class="icon"
-                src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
-          </div>
-
-        </div>
-
-        <div class="col-md-3 child-category">
-          <div class="child-cat-item">
-            <a href="pages/categorie-shop.html"><img class="img-fluid"
-                src="{{ asset('frontend/assets') }}/images/accesories-3.png" alt="womens-1"></a>
-            <h3>Makeups</h3>
-            <a class="explore-btn" href="pages/categorie-shop.html">Explore <img class="icon"
-                src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
-          </div>
-
-          <div class="child-cat-item mt-2">
-            <a href="pages/categorie-shop.html"><img class="img-fluid"
-                src="{{ asset('frontend/assets') }}/images/accesories-4.png" alt="womens-1"></a>
-            <h3>Jewellary</h3>
-            <a class="explore-btn" href="pages/categorie-shop.html">Explore <img class="icon"
-                src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
+        <div class="col-md-6">
+          <div class="row gy-5">
+            @foreach($accesoriesSub as $item)
+            <div class="col-md-6">
+              <div class="child-cat-item">
+                <a href="pages/categorie-shop.html"><img class="img-fluid"
+                    src="{{ asset('/backend/uploads/'. $item->icon) }}" alt="womens-1"></a>
+                <h3>{{ $item->name }}</h3>
+                <a class="explore-btn" href="pages/categorie-shop.html">Explore <img class="icon"
+                    src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
+              </div>
+            </div>
+            @endforeach
           </div>
         </div>
+
+
       </div>
     </div>
   </section>

@@ -48,12 +48,12 @@ class CategoryController extends Controller
       $category->name = $request->name;
 
       if ($request->file('icon')) {
-        uploadImage($request->file('icon'));
+        uploadImage($request->file('icon'), 100);
         $category->icon = session('fileName');
       }
 
       if ($request->file('banner')) {
-        uploadImage($request->file('banner'));
+        uploadImage($request->file('banner'), 586);
         $category->banner = session('fileName');
       }
 
@@ -100,13 +100,13 @@ class CategoryController extends Controller
 
       if ($request->file('icon')) {
         removeImage($category->icon);
-        uploadImage($request->file('icon'));
+        uploadImage($request->file('icon'), 100);
         $category->icon = session('fileName');
       }
 
       if ($request->file('banner')) {
         removeImage($category->banner);
-        uploadImage($request->file('banner'));
+        uploadImage($request->file('banner'), 586);
         $category->banner = session('fileName');
       }
 

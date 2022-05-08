@@ -142,9 +142,10 @@ Add Subcategory
                 <div class="form-group">
                   <label for="category">Choose Parent Category</label>
                   <select name="category_id" id="category" class="form-control">
-                    <option value="" disabled selected>Select One</option>
+                    <option value="" disabled>Select One</option>
                     @foreach ( $category as $cat_item )
-                    <option value="{{ $cat_item->id }}" @if ( $page=='edit' ) {{ $cat_item->id == $data->id ? 'selected'
+                    <option value="{{ $cat_item->id }}" @if ( $page=='edit' ) {{ $cat_item->id == $data->category_id ?
+                      'selected'
                       : '' }} @endif
                       >{{ $cat_item->name }}</option>
                     @endforeach

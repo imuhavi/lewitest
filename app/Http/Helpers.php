@@ -1,20 +1,21 @@
 <?php
+
 use Illuminate\Support\Str;
 
 if (!function_exists('uploadImage')) {
-  function uploadImage($image, $size = 100)
+  function uploadImage($image, $size)
   {
     $ext = $image->getClientOriginalExtension();
     $imageFile = time() . '_' . Str::random() . '.' . $ext;
     $destination = public_path('backend/uploads');
 
-    if($ext == 'pdf'){
+    if ($ext == 'pdf') {
       $image->move($destination, $imageFile);
-    }else{
+    } else {
       $imgFile = Image::make($image->getRealPath());
       $imgFile->resize($size, $size, function ($constraint) {
-          $constraint->aspectRatio();
-      })->save($destination.'/'.$imageFile);
+        $constraint->aspectRatio();
+      })->save($destination . '/' . $imageFile);
     }
 
     return back()->with('success', 'Image has successfully uploaded.')
@@ -42,14 +43,14 @@ if (!function_exists('routePrefix')) {
 if (!function_exists('hasFile')) {
   function hasFile($file)
   {
-    if(!empty($file) && file_exists(public_path('backend/uploads/' . $file))){
+    if (!empty($file) && file_exists(public_path('backend/uploads/' . $file))) {
       return true;
     }
     return false;
   }
 }
 
-if(!function_exists('set_env')){
+if (!function_exists('set_env')) {
   function set_env(string $key, string $value, $env_path = null)
   {
     $value = preg_replace('/\s+/', '', $value); //replace special ch
