@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use App\Models\Slider;
 use App\Models\Subcategory;
-=======
 use App\Models\Subscription;
->>>>>>> 97d2956ef70bdf8628fd8688679a9fe970602365
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
