@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         Intervention\Image\ImageServiceProvider::class,
+        Basel\MyFatoorah\MyFatoorahServiceProvider::class,
         /*
          * Application Service Providers...
          */

@@ -1,164 +1,169 @@
 @extends('frontend.master')
 @section('content')
 <section class="seller-register">
+<form action="{{ route('MyFatoorah.index') }}" method="get">
   <div class="container">
     <div class="row">
-      <!-- Shipping Address -->
-      <div class="col-lg-7 p-0 left">
-        <div class="shipping-form">
-          <div class="heading-checkout">
-            <h4>Seller Information</h4>
-          </div>
-          <div class="row mt-3 g-3">
-            <div class="col-lg-6">
-              <label for="fullName" class="form-label">Full Name</label>
-              <input type="text" class="form-control" id="fullName" placeholder="Your Full Name">
+        <!-- Shipping Address -->
+        <div class="col-lg-7 p-0 left">
+          <div class="shipping-form">
+            <div class="heading-checkout">
+              <h4>Seller Information</h4>
             </div>
+            <div class="row mt-3 g-3">
+              <div class="col-lg-6">
+                <label for="fullName" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="fullName" placeholder="Your Full Name">
+              </div>
 
-            <div class="col-lg-6">
-              <label for="fullName" class="form-label">Shop Name</label>
-              <input type="text" class="form-control" id="fullName" placeholder="Your Full Name">
-            </div>
+              <div class="col-lg-6">
+                <label for="fullName" class="form-label">Shop Name</label>
+                <input type="text" class="form-control" id="fullName" placeholder="Your Full Name">
+              </div>
 
-            <div class="col-lg-6">
-              <label for="fullName" class="form-label">Shop Logo</label>
-              <input type="file" class="form-control" id="fullName" placeholder="Your Full Name">
-            </div>
+              <div class="col-lg-6">
+                <label for="fullName" class="form-label">Shop Logo</label>
+                <input type="file" class="form-control" id="fullName" placeholder="Your Full Name">
+              </div>
 
-            <div class="col-lg-6">
-              <label for="fullName" class="form-label">Selected Package</label>
-              <input type="text" class="form-control" id="fullName" value="{{ $subscription->name }}" readonly>
-            </div>
+              <div class="col-lg-6">
+                <label for="fullName" class="form-label">Selected Package</label>
+                <input type="text" class="form-control" id="fullName" value="{{ $subscription->name }}" readonly>
+              </div>
 
-            <div class="col-lg-6">
-              <label for="email" class="form-label">Email Address</label>
-              <input type="email" class="form-control" id="email" placeholder="Your Email Address">
-            </div>
-            <div class="col-5 col-md-6 col-lg-6">
-              <label for="email" class="form-label">Phone Number</label>
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">05</div>
+              <div class="col-lg-6">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="email" placeholder="Your Email Address">
+              </div>
+              <div class="col-5 col-md-6 col-lg-6">
+                <label for="email" class="form-label">Phone Number</label>
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">05</div>
+                  </div>
+                  <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Phone Number">
                 </div>
-                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Phone Number">
+              </div>
+
+              <div class="col-lg-5 col-md-6">
+                <label for="state" class="form-label">State</label>
+                <select id="state" class="form-select state">
+                  <option selected>Choose State</option>
+                  <option>Eastern Provence</option>
+                </select>
+              </div>
+
+              <div class="col-lg-4 col-md-6">
+                <label for="city" class="form-label">City</label>
+                <select id="city" class="form-select city">
+                  <option selected>Choose City</option>
+                  <option>Dammam</option>
+                </select>
+              </div>
+
+              <div class="col-lg-3 col-md-6">
+                <label for="inputZip" class="form-label">Postal Code</label>
+                <input type="text" class="form-control" id="inputZip">
+              </div>
+
+              <div class="col-12">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address" placeholder="Apartment, studio, or floor">
+              </div>
+
+            </div>
+          </div>
+
+          <div class="order-summary">
+            <div class="heading-checkout">
+              <h4>Your Selected Package</h4>
+            </div>
+            <div class="row order-item">
+              <div class="col-9">
+                <h5>Package Name: <strong>{{ $subscription->name }}</strong></h5>
+              </div>
+              <div class="col-3 text-end">
+                <h4><strong>SAR {{ $subscription->price }}</strong></h4>
               </div>
             </div>
 
-            <div class="col-lg-5 col-md-6">
-              <label for="state" class="form-label">State</label>
-              <select id="state" class="form-select state">
-                <option selected>Choose State</option>
-                <option>Eastern Provence</option>
-              </select>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-              <label for="city" class="form-label">City</label>
-              <select id="city" class="form-select city">
-                <option selected>Choose City</option>
-                <option>Dammam</option>
-              </select>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-              <label for="inputZip" class="form-label">Postal Code</label>
-              <input type="text" class="form-control" id="inputZip">
-            </div>
-
-            <div class="col-12">
-              <label for="address" class="form-label">Address</label>
-              <input type="text" class="form-control" id="address" placeholder="Apartment, studio, or floor">
-            </div>
-
           </div>
         </div>
 
-        <div class="order-summary">
-          <div class="heading-checkout">
-            <h4>Your Selected Package</h4>
+        <!-- Order Item % Calculation -->
+        <div class="col-lg-5 p-0 right">
+
+          <div class="payment-method">
+            <div class="heading-checkout">
+              <h4>Select Payment Method</h4>
+            </div>
+            <ul class="payment-method-list">
+              <li>
+                <input id="bank" name="payment_method" value="MyFatoorah" checked type="radio">
+                <label for="bank">MyFatoorah</label>
+              </li>
+              <!-- <li>
+                <input id="bank" name="payment_method" type="radio">
+                <label for="bank">Direct Bank Transfer</label>
+              </li> -->
+              <!-- <li>
+                <input id="paypal" name="payment_method" type="radio">
+                <label for="paypal">Paypal</label>
+              </li>
+              <li>
+                <input id="card" name="payment_method" type="radio">
+                <label for="card">Credit Card</label>
+              </li> -->
+            </ul>
           </div>
-          <div class="row order-item">
-            <div class="col-9">
-              <h5>Package Name: <strong>{{ $subscription->name }}</strong></h5>
+
+          <div class="order-calculation">
+            <div class="heading-checkout">
+              <h4>Payment Calculation</h4>
             </div>
-            <div class="col-3 text-end">
-              <h4><strong>SAR {{ $subscription->price }}</strong></h4>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- Order Item % Calculation -->
-      <div class="col-lg-5 p-0 right">
-
-        <div class="payment-method">
-          <div class="heading-checkout">
-            <h4>Select Payment Method</h4>
-          </div>
-          <ul class="payment-method-list">
-            <li>
-              <input id="bank" name="payment_method" type="radio">
-              <label for="bank">Direct Bank Transfer</label>
-            </li>
-            <li>
-              <input id="paypal" name="payment_method" type="radio">
-              <label for="paypal">Paypal</label>
-            </li>
-            <li>
-              <input id="card" name="payment_method" type="radio">
-              <label for="card">Credit Card</label>
-            </li>
-          </ul>
-        </div>
-
-        <div class="order-calculation">
-          <div class="heading-checkout">
-            <h4>Payment Calculation</h4>
-          </div>
-          <div class="row mt-3 g-3">
-            <div class="col-6">
-              <h6>Subtotal:</h6>
-            </div>
-            <div class="col-6">
-              <h6 class="price-text sub-total-text text-end"> SAR {{ $subscription->price }} </h6>
-            </div>
+            <div class="row mt-3 g-3">
+              <div class="col-6">
+                <h6>Subtotal:</h6>
+              </div>
+              <div class="col-6">
+                <h6 class="price-text sub-total-text text-end"> SAR {{ $subscription->price }} </h6>
+              </div>
 
 
-            <div class="col-6">
-              <h6>Tax:</h6>
-            </div>
-            <div class="col-6">
-            @php
-              $tax = 15.00;
-            @endphp
-              <h6 class="price-text sub-total-text text-end"> SAR {{ $tax }} </h6>
-            </div>
+              <div class="col-6">
+                <h6>Tax:</h6>
+              </div>
+              <div class="col-6">
+              @php
+                $tax = 15.00;
+              @endphp
+                <h6 class="price-text sub-total-text text-end"> SAR {{ $tax }} </h6>
+              </div>
 
-            <hr>
-            <div class="col-6">
-              <h5>Total Amount</h5>
-            </div>
-            <div class="col-6">
-              <h5 class="price-text sub-total-text text-end"> SAR {{ $subscription->price + $tax }} </h5>
+              <hr>
+              <div class="col-6">
+                <h5>Total Amount</h5>
+              </div>
+              <div class="col-6">
+                <h5 class="price-text sub-total-text text-end"> SAR {{ $subscription->price + $tax }} </h5>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="gridCheck">
-          <label class="form-check-label" for="gridCheck">
-            By Clicking Registraion, you agree to Terms of Service and Privacy Policy
-          </label>
-        </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <label class="form-check-label" for="gridCheck">
+              By Clicking Registraion, you agree to Terms of Service and Privacy Policy
+            </label>
+          </div>
 
-        <div class="place-order">
-          <button class="place-order-button">Register</button>
+          <div class="place-order">
+            <button type="submit" class="place-order-button">Register</button>
+          </div>
         </div>
-      </div>
     </div>
   </div>
+</form>
 </section>
 
 <!------------------------------- 
