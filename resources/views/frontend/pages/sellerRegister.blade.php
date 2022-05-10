@@ -1,9 +1,9 @@
 @extends('frontend.master')
 @section('content')
 <section class="seller-register">
-<form action="{{ route('MyFatoorah.index') }}" method="get">
-  <div class="container">
-    <div class="row">
+  <form action="{{ route('MyFatoorah.index') }}" method="get">
+    <div class="container">
+      <div class="row">
         <!-- Shipping Address -->
         <div class="col-lg-7 p-0 left">
           <div class="shipping-form">
@@ -17,12 +17,12 @@
               </div>
 
               <div class="col-lg-6">
-                <label for="fullName" class="form-label">Shop Name</label>
+                <label for="fullName" class="form-label">Brand Name</label>
                 <input type="text" class="form-control" id="fullName" placeholder="Your Full Name">
               </div>
 
               <div class="col-lg-6">
-                <label for="fullName" class="form-label">Shop Logo</label>
+                <label for="fullName" class="form-label">Brand Logo</label>
                 <input type="file" class="form-control" id="fullName" placeholder="Your Full Name">
               </div>
 
@@ -100,7 +100,7 @@
             <ul class="payment-method-list">
               <li>
                 <input id="bank" name="payment_method" value="MyFatoorah" checked type="radio">
-                <label for="bank">MyFatoorah</label>
+                <label for="bank">Pay With Card</label>
               </li>
               <!-- <li>
                 <input id="bank" name="payment_method" type="radio">
@@ -134,9 +134,9 @@
                 <h6>Tax:</h6>
               </div>
               <div class="col-6">
-              @php
+                @php
                 $tax = 15.00;
-              @endphp
+                @endphp
                 <h6 class="price-text sub-total-text text-end"> SAR {{ $tax }} </h6>
               </div>
 
@@ -161,9 +161,9 @@
             <button type="submit" class="place-order-button">Register</button>
           </div>
         </div>
+      </div>
     </div>
-  </div>
-</form>
+  </form>
 </section>
 
 <!------------------------------- 

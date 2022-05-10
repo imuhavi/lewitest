@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Slider;
 use App\Models\Subcategory;
 use App\Models\Subscription;
@@ -9,20 +10,19 @@ use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
+  private $VIEW_PATH = 'frontend.frontend';
   function frontend()
   {
     $slider = Slider::where('status', 'active')->get();
-    $womensSub1 = Subcategory::where('category_id', 3)->get()->slice(0, 2);
-    $womensSub2 = Subcategory::where('category_id', 3)->get()->slice(2, 4);
-    $mensSub = Subcategory::where('category_id', 2)->get()->slice(0, 4);
+    $womensSub1 = Subcategory::where('category_id', 2)->get()->slice(0, 2);
+    $womensSub2 = Subcategory::where('category_id', 2)->get()->slice(2, 4);
+    $mensSub = Subcategory::where('category_id', 3)->get()->slice(0, 4);
     $accesoriesSub = Subcategory::where('category_id', 4)->get()->slice(0, 4);
-    return view('frontend.frontend', [
-      'slider' => $slider,
-      'womensSub1' => $womensSub1,
-      'womensSub2' => $womensSub2,
-      'mensSub' => $mensSub,
-      'accesoriesSub' => $accesoriesSub
-    ]);
+    $mensMain = Category::where('slug', 'mens')->where('status', 'Active')->first();
+    $womensMain = Category::where('slug', 'womens')->where('status', 'Active')->first();
+    $accesoriesMain = Category::where('slug', 'accessories')->where('status', 'Active')->first();
+    $accesoriesSub = Subcategory::where('category_id', 4)->get()->slice(0, 4);
+    return view($this->VIEW_PATH, compact('slider', 'womensSub1', 'womensSub2', 'mensSub', 'accesoriesSub', 'mensMain', 'womensMain', 'accesoriesMain', 'accesoriesSub'));
   }
 
   function shop()
