@@ -19,8 +19,11 @@ class FrontendController extends Controller
     $mensSub = Subcategory::where('category_id', 3)->get()->slice(0, 4);
     $accesoriesSub = Subcategory::where('category_id', 4)->get()->slice(0, 4);
     $mensMain = Category::where('slug', 'mens')->where('status', 'Active')->first();
-    $womensMain = Category::where('slug', 'womens')->where('status', 'Active')->first();
+    // $womensMain = Category::where('slug', 'womens')->where('status', 'Active')->first();
     $accesoriesMain = Category::where('slug', 'accessories')->where('status', 'Active')->first();
+
+    $categories = Category::whereIn('slug', ['mens', 'womens', 'accessories'])->whereStatus('Active')->take(3)->get();
+    $womensMain = $categories->where('slug', 'womens')->first();
     $accesoriesSub = Subcategory::where('category_id', 4)->get()->slice(0, 4);
     return view($this->VIEW_PATH, compact('slider', 'womensSub1', 'womensSub2', 'mensSub', 'accesoriesSub', 'mensMain', 'womensMain', 'accesoriesMain', 'accesoriesSub'));
   }
