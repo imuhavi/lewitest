@@ -49,6 +49,7 @@
     <!---------------------------
           Navbar Top Start 
   ---------------------------->
+    @if(request()->path() !== 'subscription')
     <div class="nav-top">
       <div class="container d-flex justify-content-between align-items-center py-2">
         <form action="" class="search-box-desk d-flex align-items-center py-1 order-sm-1 order-1 order-lg-0">
@@ -465,6 +466,7 @@
       </div>
     </nav>
 
+
     <!---------------------------
         SIGN IN START Modal
     ---------------------------->
@@ -720,7 +722,7 @@
 
       </div>
     </div>
-
+    @endif
   </header>
 
   <!----------------------

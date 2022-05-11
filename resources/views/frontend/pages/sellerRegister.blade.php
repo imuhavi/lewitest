@@ -157,9 +157,9 @@
                 <h6>Tax:</h6>
               </div>
               <div class="col-6">
-              @php
+                @php
                 $tax = 15.00;
-              @endphp
+                @endphp
                 <h6 class="price-text sub-total-text text-end"> SAR {{ $tax }} </h6>
               </div>
 
@@ -186,9 +186,9 @@
             <button type="submit" class="place-order-button">Register</button>
           </div>
         </div>
+      </div>
     </div>
-  </div>
-</form>
+  </form>
 </section>
 
 <!------------------------------- 

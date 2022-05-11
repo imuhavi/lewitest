@@ -23,7 +23,7 @@
 
                 <h1 class=" wow bounceInDown" data-wow-duration="1.2s" data-wow-delay=".2s">{{ $item->title }}</h1>
                 <a class="btn fivedots-btn wow bounceInDown" data-wow-duration="1.5s" data-wow-delay=".5s" href="#">Shop
-                  Now <img class="icon" src="{{ asset('/backend/uploads/'. $item->banner) }}" alt=""></a>
+                  Now <img class="icon" src="{{ asset('frontend/assets') }}/images/btn-arrow-light.png" alt=""></a>
               </div>
             </div>
           </div>
@@ -60,9 +60,9 @@
         <div class="col-md-6 category-main">
           <div class="parent-cat-item">
             <div class="overflow"></div>
-            <img class="img-fluid" src="{{ asset('frontend/assets') }}/images/womens-main-1.jpeg" alt="women's Main">
+            <img class="img-fluid" src="{{ asset('/backend/uploads/'. $womensMain->banner) }}" alt="women's Main">
             <div class="parent-cat-content">
-              <h4>Weekend Sale</h4>
+              <h4>{{ $womensMain->name }}</h4>
               <h2>New Fashion Collection</h2>
               <p>From only $180.00</p>
               <a class="fivedots-btn mt-4" href="#">Shop Now <img class="icon"
@@ -95,10 +95,10 @@
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
           <div class="banner-content">
-            <h5 class="banner-sub-heading">20% off in all Products</h5>
+            <h5 class="banner-sub-heading">{{ $mensMain->name }}</h5>
             <h3 class="banner-heading">Mens Special</h3>
             <a class="fivedots-btn" href="">Shop Now <img class="icon"
-                src="{{ asset('frontend/assets') }}/images/btn-arrow-light.png" alt=""></a>
+                src="{{ asset('/backend/uploads'. $mensMain->banner) }}" alt=""></a>
           </div>
         </div>
       </div>
@@ -171,11 +171,11 @@
         <div class="col-md-6 category-main">
           <div class="parent-cat-item">
             <div class="overflow"></div>
-            <img class="img-fluid parent-cat-banner" src="{{ asset('frontend/assets') }}/images/Accesories-main-1.png"
+            <img class="img-fluid parent-cat-banner" src="{{ asset('/backend/uploads/'. $accesoriesMain->banner) }}"
               alt="women's Main">
             <div class="parent-cat-content">
-              <h4>Weekend Sale</h4>
-              <h2>New Fashion Collection</h2>
+              <h4>{{ $accesoriesMain->name }}</h4>
+              <h2>Accories Collection</h2>
               <p>From only $180.00</p>
               <a class="fivedots-btn mt-4" href="#">Shop Now <img class="icon"
                   src="{{ asset('frontend/assets') }}/images/btn-arrow-light.png" alt=""></a>

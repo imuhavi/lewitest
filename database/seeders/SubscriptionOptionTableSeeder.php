@@ -16,63 +16,51 @@ class SubscriptionOptionTableSeeder extends Seeder
   {
     SubscriptionOption::create([
       'subscription_id' => 1,
-      'option' => 'Full space access'
+      'option' => 'Marketing'
     ]);
     SubscriptionOption::create([
       'subscription_id' => 1,
-      'option' => 'Dedicated team'
+      'option' => 'Storage'
     ]);
     SubscriptionOption::create([
       'subscription_id' => 1,
-      'option' => 'Buffet food'
+      'option' => 'Packaging'
     ]);
     SubscriptionOption::create([
       'subscription_id' => 1,
-      'option' => 'Premium Decoration'
-    ]);
-    SubscriptionOption::create([
-      'subscription_id' => 1,
-      'option' => 'Pay as plan'
+      'option' => 'Shipping'
     ]);
     SubscriptionOption::create([
       'subscription_id' => 2,
-      'option' => 'Full space access'
+      'option' => '1 Months free Marketing'
     ]);
     SubscriptionOption::create([
       'subscription_id' => 2,
-      'option' => 'Dedicated team'
+      'option' => 'Storage'
     ]);
     SubscriptionOption::create([
       'subscription_id' => 2,
-      'option' => 'Buffet food'
+      'option' => 'Packaging'
     ]);
     SubscriptionOption::create([
       'subscription_id' => 2,
-      'option' => 'Premium Decoration'
-    ]);
-    SubscriptionOption::create([
-      'subscription_id' => 2,
-      'option' => 'Pay as plan'
+      'option' => 'Shipping'
     ]);
     SubscriptionOption::create([
       'subscription_id' => 3,
-      'option' => 'Full space access'
+      'option' => '3 Months Free Marketing'
     ]);
     SubscriptionOption::create([
       'subscription_id' => 3,
-      'option' => 'Dedicated team'
+      'option' => 'Storage'
     ]);
     SubscriptionOption::create([
       'subscription_id' => 3,
-      'option' => 'Buffet food'
+      'option' => 'Packaging'
     ]);
     SubscriptionOption::create([
       'subscription_id' => 3,
-      'option' => 'Premium Decoration'
-    ]);
-    SubscriptionOption::create([
-      'subscription_id' => 3,
-      'option' => 'Pay as plan'
+      'option' => 'Shipping'
     ]);
   }
 }
