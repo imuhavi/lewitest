@@ -3,7 +3,7 @@
 use Illuminate\Support\Str;
 
 if (!function_exists('uploadImage')) {
-  function uploadImage($image, $size)
+  function uploadImage($image, $size = 100)
   {
     $ext = $image->getClientOriginalExtension();
     $imageFile = time() . '_' . Str::random() . '.' . $ext;

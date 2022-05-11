@@ -1,9 +1,22 @@
 @extends('frontend.master')
 @section('content')
 <section class="seller-register">
-<form action="{{ route('MyFatoorah.index') }}" method="get">
+<!-- <form action="{{ url('/subscribe-subscription/' . $subscription->id) }}" method="post" enctype="multipart/form-data"> -->
+<form action="{{ route('MyFatoorah.index') }}" method="get" enctype="multipart/form-data">
+@csrf
   <div class="container">
     <div class="row">
+      
+      @if ($errors->any())
+        <div class="alert alert-danger">
+          <ul>
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+      @endif
+
         <!-- Shipping Address -->
         <div class="col-lg-7 p-0 left">
           <div class="shipping-form">
@@ -13,17 +26,17 @@
             <div class="row mt-3 g-3">
               <div class="col-lg-6">
                 <label for="fullName" class="form-label">Full Name</label>
-                <input type="text" class="form-control" id="fullName" placeholder="Your Full Name">
+                <input type="text" name="full_name" class="form-control" id="fullName" placeholder="Your Full Name">
               </div>
 
               <div class="col-lg-6">
                 <label for="fullName" class="form-label">Shop Name</label>
-                <input type="text" class="form-control" id="fullName" placeholder="Your Full Name">
+                <input type="text" name="shop_name" class="form-control" id="fullName" placeholder="Your Full Name">
               </div>
 
               <div class="col-lg-6">
                 <label for="fullName" class="form-label">Shop Logo</label>
-                <input type="file" class="form-control" id="fullName" placeholder="Your Full Name">
+                <input type="file" name="shop_logo" class="form-control" id="fullName" placeholder="Your Full Name">
               </div>
 
               <div class="col-lg-6">
@@ -33,7 +46,7 @@
 
               <div class="col-lg-6">
                 <label for="email" class="form-label">Email Address</label>
-                <input type="email" class="form-control" id="email" placeholder="Your Email Address">
+                <input type="email" name="email" class="form-control" id="email" placeholder="Your Email Address">
               </div>
               <div class="col-5 col-md-6 col-lg-6">
                 <label for="email" class="form-label">Phone Number</label>
@@ -41,34 +54,44 @@
                   <div class="input-group-prepend">
                     <div class="input-group-text">05</div>
                   </div>
-                  <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Phone Number">
+                  <input type="text" name="phone" class="form-control" id="inlineFormInputGroup" placeholder="Phone Number">
                 </div>
+              </div>
+
+              <div class="col-lg-6">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" id="password" placeholder="Enter a strong Password">
+              </div>
+
+              <div class="col-lg-6">
+                <label for="ConfirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" name="confirm_password" class="form-control" id="ConfirmPassword" placeholder="Retype the password">
               </div>
 
               <div class="col-lg-5 col-md-6">
                 <label for="state" class="form-label">State</label>
-                <select id="state" class="form-select state">
-                  <option selected>Choose State</option>
-                  <option>Eastern Provence</option>
+                <select id="state" name="state" class="form-select state">
+                  <option selected hidden disabled value="">Choose State</option>
+                  <option value="Eastern Provence">Eastern Provence</option>
                 </select>
               </div>
 
               <div class="col-lg-4 col-md-6">
                 <label for="city" class="form-label">City</label>
-                <select id="city" class="form-select city">
-                  <option selected>Choose City</option>
-                  <option>Dammam</option>
+                <select id="city" name="city" class="form-select city">
+                  <option selected hidden disabled value="">Choose City</option>
+                  <option value="Dammam">Dammam</option>
                 </select>
               </div>
 
               <div class="col-lg-3 col-md-6">
                 <label for="inputZip" class="form-label">Postal Code</label>
-                <input type="text" class="form-control" id="inputZip">
+                <input type="text" name="postal_code" class="form-control" id="inputZip">
               </div>
 
               <div class="col-12">
                 <label for="address" class="form-label">Address</label>
-                <input type="text" class="form-control" id="address" placeholder="Apartment, studio, or floor">
+                <input type="text" name="address" class="form-control" id="address" placeholder="Apartment, studio, or floor">
               </div>
 
             </div>
@@ -99,7 +122,7 @@
             </div>
             <ul class="payment-method-list">
               <li>
-                <input id="bank" name="payment_method" value="MyFatoorah" checked type="radio">
+                <input name="payment_method" id="bank" value="MyFatoorah" checked type="radio">
                 <label for="bank">MyFatoorah</label>
               </li>
               <!-- <li>
@@ -149,9 +172,11 @@
               </div>
             </div>
           </div>
+          
+          <input type="hidden" name="payable_amount" value="{{ $subscription->price + $tax }}">
 
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <input class="form-check-input" type="checkbox" required id="gridCheck">
             <label class="form-check-label" for="gridCheck">
               By Clicking Registraion, you agree to Terms of Service and Privacy Policy
             </label>

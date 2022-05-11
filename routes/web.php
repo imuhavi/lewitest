@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Backend\UserProfileController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\SubscriptionController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +33,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
   Route::get('/checkout', [FrontendController::class, 'checkout'])->name('checkout');
 });
+
+# Subscribe & register for seller
+Route::post('/subscribe-subscription/{subscription}', [SubscriptionController::class, 'subscribe']);
 
 # MyFatoorah Start
 Route::group(['namespace' => 'App\Http\Controllers'], function () {
