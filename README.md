@@ -173,14 +173,4 @@ Profile (Seller section)
 
 ### Checkout Process Demo
 
-Please use these ‘test card’ details for your demo
-
-```php
-
-"card": {
-	"Number":"5123450000000008",
-       	"expiryMonth":"05",
-       	"expiryYear":"21",
-       	"securityCode":"100"
-	},
-```
+https://myfatoorah.readme.io/docs/test-cards

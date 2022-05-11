@@ -2,7 +2,7 @@
 @section('content')
 <section class="seller-register">
 <!-- <form action="{{ url('/subscribe-subscription/' . $subscription->id) }}" method="post" enctype="multipart/form-data"> -->
-<form action="{{ route('MyFatoorah.index') }}" method="get" enctype="multipart/form-data">
+<form action="{{ url('/subscribe-subscription/' . $subscription->id) }}" method="post" enctype="multipart/form-data">
 @csrf
   <div class="container">
     <div class="row">
@@ -58,6 +58,7 @@
                 </div>
               </div>
 
+            @if(auth()->guest())
               <div class="col-lg-6">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" name="password" class="form-control" id="password" placeholder="Enter a strong Password">
@@ -67,6 +68,7 @@
                 <label for="ConfirmPassword" class="form-label">Confirm Password</label>
                 <input type="password" name="confirm_password" class="form-control" id="ConfirmPassword" placeholder="Retype the password">
               </div>
+            @endif
 
               <div class="col-lg-5 col-md-6">
                 <label for="state" class="form-label">State</label>
