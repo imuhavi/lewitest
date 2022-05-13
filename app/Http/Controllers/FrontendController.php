@@ -13,7 +13,7 @@ class FrontendController extends Controller
   private $VIEW_PATH = 'frontend.frontend';
   function frontend()
   {
-    $slider = Slider::where('status', 'active')->get();
+    $slider = Slider::where('status', 'Active')->get();
     $womensSub1 = Subcategory::where('category_id', 2)->get()->slice(0, 2);
     $womensSub2 = Subcategory::where('category_id', 2)->get()->slice(2, 4);
     $mensSub = Subcategory::where('category_id', 3)->get()->slice(0, 4);

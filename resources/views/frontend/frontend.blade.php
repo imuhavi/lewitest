@@ -5,17 +5,17 @@
             Slider Start Here 
       ----------------------------->
   <section id="showcase" class="bg-dark">
-    <div id="myCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
+    <div id="myCarousel" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
       <ol class="carousel-indicators">
         @foreach($slider as $key => $citem)
-        <li data-bs-slide-to="{{ $citem->id }}" data-bs-target="#myCarousel" class="{{$key == 0 ? 'active' : '' }}">
+        <li data-bs-slide-to="{{ $key }}" data-bs-target="#myCarousel" class="{{$key == 0 ? 'active' : '' }}">
         </li>
         @endforeach
       </ol>
       <div class="carousel-inner">
-
         @foreach($slider as $key => $item)
-        <div class="carousel-item carousel-img-{{ $item->id }} {{$key == 0 ? 'active' : '' }}" data-bs-interval="3000">
+        <div style="background-image: url({{asset('backend/uploads/'. $item->banner)}})"
+          class="carousel-item carousel-img {{$key == 0 ? 'active' : '' }}" data-bs-interval="3000">
           <div class="container">
             <div class="carousel-caption text-dark text-left">
               <div class="carousel-text">

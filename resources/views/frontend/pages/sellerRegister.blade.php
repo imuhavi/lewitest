@@ -1,21 +1,21 @@
 @extends('frontend.master')
 @section('content')
 <section class="seller-register">
-<!-- <form action="{{ url('/subscribe-subscription/' . $subscription->id) }}" method="post" enctype="multipart/form-data"> -->
-<form action="{{ url('/subscribe-subscription/' . $subscription->id) }}" method="post" enctype="multipart/form-data">
-@csrf
-  <div class="container">
-    <div class="row">
-      
-      @if ($errors->any())
+  <!-- <form action="{{ url('/subscribe-subscription/' . $subscription->id) }}" method="post" enctype="multipart/form-data"> -->
+  <form action="{{ url('/subscribe-subscription/' . $subscription->id) }}" method="post" enctype="multipart/form-data">
+    @csrf
+    <div class="container">
+      <div class="row">
+
+        @if ($errors->any())
         <div class="alert alert-danger">
           <ul>
             @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
+            <li>{{ $error }}</li>
             @endforeach
           </ul>
         </div>
-      @endif
+        @endif
 
         <!-- Shipping Address -->
         <div class="col-lg-7 p-0 left">
@@ -30,12 +30,12 @@
               </div>
 
               <div class="col-lg-6">
-                <label for="fullName" class="form-label">Shop Name</label>
+                <label for="fullName" class="form-label">Brand Name</label>
                 <input type="text" name="shop_name" class="form-control" id="fullName" placeholder="Your Full Name">
               </div>
 
               <div class="col-lg-6">
-                <label for="fullName" class="form-label">Shop Logo</label>
+                <label for="fullName" class="form-label">Brand Logo</label>
                 <input type="file" name="shop_logo" class="form-control" id="fullName" placeholder="Your Full Name">
               </div>
 
@@ -54,21 +54,24 @@
                   <div class="input-group-prepend">
                     <div class="input-group-text">05</div>
                   </div>
-                  <input type="text" name="phone" class="form-control" id="inlineFormInputGroup" placeholder="Phone Number">
+                  <input type="text" name="phone" class="form-control" id="inlineFormInputGroup"
+                    placeholder="Phone Number">
                 </div>
               </div>
 
-            @if(auth()->guest())
+              @if(auth()->guest())
               <div class="col-lg-6">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" name="password" class="form-control" id="password" placeholder="Enter a strong Password">
+                <input type="password" name="password" class="form-control" id="password"
+                  placeholder="Enter a strong Password">
               </div>
 
               <div class="col-lg-6">
                 <label for="ConfirmPassword" class="form-label">Confirm Password</label>
-                <input type="password" name="confirm_password" class="form-control" id="ConfirmPassword" placeholder="Retype the password">
+                <input type="password" name="confirm_password" class="form-control" id="ConfirmPassword"
+                  placeholder="Retype the password">
               </div>
-            @endif
+              @endif
 
               <div class="col-lg-5 col-md-6">
                 <label for="state" class="form-label">State</label>
@@ -93,7 +96,8 @@
 
               <div class="col-12">
                 <label for="address" class="form-label">Address</label>
-                <input type="text" name="address" class="form-control" id="address" placeholder="Apartment, studio, or floor">
+                <input type="text" name="address" class="form-control" id="address"
+                  placeholder="Apartment, studio, or floor">
               </div>
 
             </div>
@@ -125,7 +129,7 @@
             <ul class="payment-method-list">
               <li>
                 <input name="payment_method" id="bank" value="MyFatoorah" checked type="radio">
-                <label for="bank">MyFatoorah</label>
+                <label for="bank">Pay with Card</label>
               </li>
               <!-- <li>
                 <input id="bank" name="payment_method" type="radio">
@@ -174,7 +178,7 @@
               </div>
             </div>
           </div>
-          
+
           <input type="hidden" name="payable_amount" value="{{ $subscription->price + $tax }}">
 
           <div class="form-check">

@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
       SocialConfigTableSeeder::class,
       SellerTableSeeder::class,
       SubscriptionTableSeeder::class,
-      SubscriptionOptionTableSeeder::class
+      SubscriptionOptionTableSeeder::class,
+      ProductTableSeeder::class
     ]);
   }
 }

@@ -6,22 +6,7 @@
     height: 500px;
 }
 
-.carousel-img-1{
-    background: url('../images/banner-1.png');
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-}
-
-.carousel-img-2{
-    background: url('../images/banner-2.png');
-     background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-}
-
-.carousel-img-3{
-    background: url('../images/banner-3.png');
+.carousel-img{
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
