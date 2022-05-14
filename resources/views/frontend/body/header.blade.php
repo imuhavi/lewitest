@@ -45,11 +45,12 @@
 </head>
 
 <body>
+  @if(request()->path() !== 'subscription')
   <header>
     <!---------------------------
           Navbar Top Start 
   ---------------------------->
-    @if(request()->path() !== 'subscription')
+
     <div class="nav-top">
       <div class="container d-flex justify-content-between align-items-center py-2">
         <form action="" class="search-box-desk d-flex align-items-center py-1 order-sm-1 order-1 order-lg-0">
@@ -721,537 +722,538 @@
 
       </div>
     </div>
-    @endif
+
+    <!----------------------
+              Mobile Menu 
+      ----------------------->
+    <div class="menu-trigger hs-menubar"> <i class="fas fa-bars"></i></div>
+
+    <nav class="hs-navigation">
+      <ul class="nav-links">
+        <li class="has-child">
+          <span class="its-parent">
+            <span class="icon"></span>new arrival<i class="fas fa-angle-down"></i></span>
+          <ul class="its-children">
+            <li class="has-child">
+              <a href="product.html">all item</a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="has-child">
+          <span class="its-parent">
+            <span class="icon"></span>living <i class="fas fa-angle-down"></i></span>
+          <ul class="its-children">
+
+            <li class="has-child">
+              <span class="its-parent">sofa <i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">sofa 1</a> </li>
+                <li> <a href="#1">sofa 2</a> </li>
+                <li> <a href="#1">sofa 3</a> </li>
+                <li> <a href="#1">sofa 4</a> </li>
+                <li> <a href="#1">sofa 5</a> </li>
+              </ul>
+            </li>
+
+            <li class="has-child">
+              <span class="its-parent">center table <i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">center table 1 </a> </li>
+                <li> <a href="#1">center table 2 </a> </li>
+                <li> <a href="#1">center table 3 </a> </li>
+                <li> <a href="#1">center table 4 </a> </li>
+                <li> <a href="#1">center table 5 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">tv cabinet<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">tv cabinet 1 </a> </li>
+                <li> <a href="#1">tv cabinet 2 </a> </li>
+                <li> <a href="#1">tv cabinet 3 </a> </li>
+                <li> <a href="#1">tv cabinet 4 </a> </li>
+                <li> <a href="#1">tv cabinet 5 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">open shelves<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">open shelves 1 </a> </li>
+                <li> <a href="#1">open shelves 2 </a> </li>
+                <li> <a href="#1">open shelves 3 </a> </li>
+                <li> <a href="#1">open shelves 4 </a> </li>
+                <li> <a href="#1">open shelves 5 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">shoe rack<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">shoe rack 1 </a> </li>
+                <li> <a href="#1">shoe rack 2 </a> </li>
+                <li> <a href="#1">shoe rack 3 </a> </li>
+                <li> <a href="#1">shoe rack 4 </a> </li>
+                <li> <a href="#1">shoe rack 5 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">lobby<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">lobby 1 </a> </li>
+                <li> <a href="#1">lobby 2 </a> </li>
+                <li> <a href="#1">lobby 3 </a> </li>
+                <li> <a href="#1">lobby 4 </a> </li>
+                <li> <a href="#1">lobby 5 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">divan<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">divan 1 </a> </li>
+                <li> <a href="#1">divan 2 </a> </li>
+                <li> <a href="#1">divan 3 </a> </li>
+                <li> <a href="#1">divan 4 </a> </li>
+                <li> <a href="#1">divan 5 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">chair<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">chair 1 </a> </li>
+                <li> <a href="#1">chair 2 </a> </li>
+                <li> <a href="#1">chair 3 </a> </li>
+                <li> <a href="#1">chair 4 </a> </li>
+                <li> <a href="#1">chair 5 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">Cradle<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">Cradle 1 </a> </li>
+                <li> <a href="#1">Cradle 2 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">stand<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">stand 1 </a> </li>
+                <li> <a href="#1">stand 2 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">File Rack<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">File Rack 1 </a> </li>
+                <li> <a href="#1">File Rack 2 </a> </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li class="has-child">
+          <span class="its-parent">
+            <span class="icon"></span>bedroom<i class="fas fa-angle-down"></i></span>
+          <ul class="its-children">
+
+            <li class="has-child">
+              <span class="its-parent">bed<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">bed 1</a> </li>
+                <li> <a href="#1">bed 2</a> </li>
+                <li> <a href="#1">bed 3</a> </li>
+                <li> <a href="#1">bed 4</a> </li>
+                <li> <a href="#1">bed 5</a> </li>
+              </ul>
+            </li>
+
+            <li class="has-child">
+              <span class="its-parent">Wardrobe<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">Wardrobe 1 </a> </li>
+                <li> <a href="#1">Wardrobe 2 </a> </li>
+                <li> <a href="#1">Wardrobe 3 </a> </li>
+                <li> <a href="#1">Wardrobe 4 </a> </li>
+                <li> <a href="#1">Wardrobe 5 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">Chest Of Drawers<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">Chest Of Drawers 1 </a> </li>
+                <li> <a href="#1">Chest Of Drawers 2 </a> </li>
+                <li> <a href="#1">Chest Of Drawers 3 </a> </li>
+                <li> <a href="#1">Chest Of Drawers 4 </a> </li>
+                <li> <a href="#1">Chest Of Drawers 5 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">Dressing Table<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">Dressing Table 1 </a> </li>
+                <li> <a href="#1">Dressing Table 2 </a> </li>
+                <li> <a href="#1">Dressing Table 3 </a> </li>
+                <li> <a href="#1">Dressing Table 4 </a> </li>
+                <li> <a href="#1">Dressing Table 5 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">Bed-side Table<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">Bed-side Table 1 </a> </li>
+                <li> <a href="#1">Bed-side Table 2 </a> </li>
+                <li> <a href="#1">Bed-side Table 3 </a> </li>
+                <li> <a href="#1">Bed-side Table 4 </a> </li>
+                <li> <a href="#1">Bed-side Table 5 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">Mattress<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">Mattress 1 </a> </li>
+                <li> <a href="#1">Mattress 2 </a> </li>
+                <li> <a href="#1">Mattress 3 </a> </li>
+                <li> <a href="#1">Mattress 4 </a> </li>
+                <li> <a href="#1">Mattress 5 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">Reading Table<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">Reading Table 1 </a> </li>
+                <li> <a href="#1">Reading Table 2 </a> </li>
+                <li> <a href="#1">Reading Table 3 </a> </li>
+                <li> <a href="#1">Reading Table 4 </a> </li>
+                <li> <a href="#1">Reading Table 5 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">Almirah<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">Almirah 1 </a> </li>
+                <li> <a href="#1">Almirah 2 </a> </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li class="has-child">
+          <span class="its-parent">
+            <span class="icon"></span>Dining<i class="fas fa-angle-down"></i></span>
+          <ul class="its-children">
+
+            <li class="has-child">
+              <span class="its-parent">Dining<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">Dining 1</a> </li>
+                <li> <a href="#1">Dining 2</a> </li>
+                <li> <a href="#1">Dining 3</a> </li>
+                <li> <a href="#1">Dining 4</a> </li>
+                <li> <a href="#1">Dining 5</a> </li>
+              </ul>
+            </li>
+
+            <li class="has-child">
+              <span class="its-parent">Chair<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">Chair 1 </a> </li>
+                <li> <a href="#1">Chair 2 </a> </li>
+                <li> <a href="#1">Chair 3 </a> </li>
+                <li> <a href="#1">Chair 4 </a> </li>
+                <li> <a href="#1">Chair 5 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">Cafeteria<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">Cafeteria 1 </a> </li>
+                <li> <a href="#1">Cafeteria 2 </a> </li>
+                <li> <a href="#1">Cafeteria 3 </a> </li>
+                <li> <a href="#1">Cafeteria 4 </a> </li>
+                <li> <a href="#1">Cafeteria 5 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">Dinner Wagon<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">Dinner Wagon 1 </a> </li>
+                <li> <a href="#1">Dinner Wagon 2 </a> </li>
+                <li> <a href="#1">Dinner Wagon 3 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">Tea Trolley<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">Tea Trolley 1 </a> </li>
+                <li> <a href="#1">Tea Trolley 2 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">Showcase<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">Showcase 1 </a> </li>
+                <li> <a href="#1">Showcase 2 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">Mini Cabinet<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">Mini Cabinet 1 </a> </li>
+                <li> <a href="#1">Mini Cabinet 2 </a> </li>
+                <li> <a href="#1">Mini Cabinet 3 </a> </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li class="has-child">
+          <span class="its-parent">
+            <span class="icon"></span>office<i class="fas fa-angle-down"></i></span>
+          <ul class="its-children">
+
+            <li class="has-child">
+              <span class="its-parent">Sofa<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">Sofa 1</a> </li>
+                <li> <a href="#1">Sofa 2</a> </li>
+                <li> <a href="#1">Sofa 3</a> </li>
+                <li> <a href="#1">Sofa 4</a> </li>
+                <li> <a href="#1">Sofa 5</a> </li>
+              </ul>
+            </li>
+
+            <li class="has-child">
+              <span class="its-parent">Side Rack<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">Side Rack 1 </a> </li>
+                <li> <a href="#1">Side Rack 2 </a> </li>
+                <li> <a href="#1">Side Rack 3 </a> </li>
+                <li> <a href="#1">Side Rack 4 </a> </li>
+                <li> <a href="#1">Side Rack 5 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">Swivel Chair<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">Swivel Chair 1 </a> </li>
+                <li> <a href="#1">Swivel Chair 2 </a> </li>
+                <li> <a href="#1">Swivel Chair 3 </a> </li>
+                <li> <a href="#1">Swivel Chair 4 </a> </li>
+                <li> <a href="#1">Swivel Chair 5 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">Executive Table<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">Executive Table 1 </a> </li>
+                <li> <a href="#1">Executive Table 2 </a> </li>
+                <li> <a href="#1">Executive Table 3 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">Office Almirah<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">Office Almirah 1 </a> </li>
+                <li> <a href="#1">Office Almirah 2 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">Computer Table<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">Computer Table 1 </a> </li>
+                <li> <a href="#1">Computer Table 2 </a> </li>
+                <li> <a href="#1">Computer Table 3 </a> </li>
+                <li> <a href="#1">Computer Table 4 </a> </li>
+                <li> <a href="#1">Computer Table 5 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">Director Table<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">Director Table 1 </a> </li>
+                <li> <a href="#1">Director Table 2 </a> </li>
+                <li> <a href="#1">Director Table 3 </a> </li>
+                <li> <a href="#1">Director Table 4 </a> </li>
+                <li> <a href="#1">Director Table 5 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">Conference Table<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">Conference Table 1 </a> </li>
+                <li> <a href="#1">Conference Table 2 </a> </li>
+                <li> <a href="#1">Conference Table 3 </a> </li>
+                <li> <a href="#1">Conference Table 4 </a> </li>
+                <li> <a href="#1">Conference Table 5 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">Fixed Chair<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">Fixed Chair 1 </a> </li>
+                <li> <a href="#1">Fixed Chair 2 </a> </li>
+                <li> <a href="#1">Fixed Chair 3 </a> </li>
+                <li> <a href="#1">Fixed Chair 4 </a> </li>
+                <li> <a href="#1">Fixed Chair 5 </a> </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li class="has-child">
+          <span class="its-parent">
+            <span class="icon"></span> Institutional<i class="fas fa-angle-down"></i></span>
+          <ul class="its-children">
+            <li class="has-child">
+              <a href="#">all Institutional </a>
+              <a href="#">Hotel &amp; Restaurant</a>
+              <a href="#">Hospital</a>
+              <a href="#">Academic</a>
+              <a href="#">Auditori</a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="has-child">
+          <span class="its-parent">
+            <span class="icon"></span>showpiece<i class="fas fa-angle-down"></i></span>
+          <ul class="its-children">
+
+            <li class="has-child">
+              <span class="its-parent">title<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">showpiece 1</a> </li>
+                <li> <a href="#1">showpiece 2</a> </li>
+                <li> <a href="#1">showpiece 3</a> </li>
+                <li> <a href="#1">showpiece 4</a> </li>
+                <li> <a href="#1">showpiece 5</a> </li>
+              </ul>
+            </li>
+
+            <li class="has-child">
+              <span class="its-parent">title<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">showpiece 1 </a> </li>
+                <li> <a href="#1">showpiece 2 </a> </li>
+                <li> <a href="#1">showpiece 3 </a> </li>
+                <li> <a href="#1">showpiece 4 </a> </li>
+                <li> <a href="#1">showpiece 5 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">title<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">showpiece 1 </a> </li>
+                <li> <a href="#1">showpiece 2 </a> </li>
+                <li> <a href="#1">showpiece 3 </a> </li>
+                <li> <a href="#1">showpiece 4 </a> </li>
+                <li> <a href="#1">showpiece 5 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">title<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">showpiece 1 </a> </li>
+                <li> <a href="#1">showpiece 2 </a> </li>
+                <li> <a href="#1">showpiece 3 </a> </li>
+              </ul>
+            </li>
+
+            <li class="has-child">
+              <span class="its-parent">title<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">showpiece 1 </a> </li>
+                <li> <a href="#1">showpiece 2 </a> </li>
+                <li> <a href="#1">showpiece 3 </a> </li>
+                <li> <a href="#1">showpiece 4 </a> </li>
+                <li> <a href="#1">showpiece 5 </a> </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li class="has-child">
+          <span class="its-parent">
+            <span class="icon"></span>home appliance<i class="fas fa-angle-down"></i></span>
+          <ul class="its-children">
+
+            <li class="has-child">
+              <span class="its-parent">title<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">home appliance 1</a> </li>
+                <li> <a href="#1">home appliance 2</a> </li>
+                <li> <a href="#1">home appliance 3</a> </li>
+                <li> <a href="#1">home appliance 4</a> </li>
+                <li> <a href="#1">home appliance 5</a> </li>
+              </ul>
+            </li>
+
+            <li class="has-child">
+              <span class="its-parent">title<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">home appliance 1 </a> </li>
+                <li> <a href="#1">home appliance 2 </a> </li>
+                <li> <a href="#1">home appliance 3 </a> </li>
+                <li> <a href="#1">home appliance 4 </a> </li>
+                <li> <a href="#1">home appliance 5 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">title<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">home appliance 1 </a> </li>
+                <li> <a href="#1">home appliance 2 </a> </li>
+                <li> <a href="#1">home appliance 3 </a> </li>
+                <li> <a href="#1">home appliance 4 </a> </li>
+                <li> <a href="#1">home appliance 5 </a> </li>
+              </ul>
+            </li>
+            <li class="has-child">
+              <span class="its-parent">title<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">home appliance 1 </a> </li>
+                <li> <a href="#1">home appliance 2 </a> </li>
+                <li> <a href="#1">home appliance 3 </a> </li>
+              </ul>
+            </li>
+
+            <li class="has-child">
+              <span class="its-parent">title<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">home appliance 1 </a> </li>
+                <li> <a href="#1">home appliance 2 </a> </li>
+                <li> <a href="#1">home appliance 3 </a> </li>
+                <li> <a href="#1">home appliance 4 </a> </li>
+                <li> <a href="#1">home appliance 5 </a> </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li class="has-child">
+          <span class="its-parent">
+            <span class="icon"></span>Kid’s<i class="fas fa-angle-down"></i></span>
+          <ul class="its-children">
+
+            <li class="has-child">
+              <span class="its-parent">Bed<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">Kids’ Bunk Bed</a> </li>
+              </ul>
+            </li>
+
+            <li class="has-child">
+              <span class="its-parent">Study Table<i class="fas fa-angle-down"></i></span>
+              <ul class="its-children">
+                <li> <a href="#1">Kids’ Study Table </a> </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
   </header>
-
-  <!----------------------
-          Mobile Menu 
-  ----------------------->
-  <div class="menu-trigger hs-menubar"> <i class="fas fa-bars"></i></div>
-
-  <nav class="hs-navigation">
-    <ul class="nav-links">
-      <li class="has-child">
-        <span class="its-parent">
-          <span class="icon"></span>new arrival<i class="fas fa-angle-down"></i></span>
-        <ul class="its-children">
-          <li class="has-child">
-            <a href="product.html">all item</a>
-          </li>
-        </ul>
-      </li>
-
-      <li class="has-child">
-        <span class="its-parent">
-          <span class="icon"></span>living <i class="fas fa-angle-down"></i></span>
-        <ul class="its-children">
-
-          <li class="has-child">
-            <span class="its-parent">sofa <i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">sofa 1</a> </li>
-              <li> <a href="#1">sofa 2</a> </li>
-              <li> <a href="#1">sofa 3</a> </li>
-              <li> <a href="#1">sofa 4</a> </li>
-              <li> <a href="#1">sofa 5</a> </li>
-            </ul>
-          </li>
-
-          <li class="has-child">
-            <span class="its-parent">center table <i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">center table 1 </a> </li>
-              <li> <a href="#1">center table 2 </a> </li>
-              <li> <a href="#1">center table 3 </a> </li>
-              <li> <a href="#1">center table 4 </a> </li>
-              <li> <a href="#1">center table 5 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">tv cabinet<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">tv cabinet 1 </a> </li>
-              <li> <a href="#1">tv cabinet 2 </a> </li>
-              <li> <a href="#1">tv cabinet 3 </a> </li>
-              <li> <a href="#1">tv cabinet 4 </a> </li>
-              <li> <a href="#1">tv cabinet 5 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">open shelves<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">open shelves 1 </a> </li>
-              <li> <a href="#1">open shelves 2 </a> </li>
-              <li> <a href="#1">open shelves 3 </a> </li>
-              <li> <a href="#1">open shelves 4 </a> </li>
-              <li> <a href="#1">open shelves 5 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">shoe rack<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">shoe rack 1 </a> </li>
-              <li> <a href="#1">shoe rack 2 </a> </li>
-              <li> <a href="#1">shoe rack 3 </a> </li>
-              <li> <a href="#1">shoe rack 4 </a> </li>
-              <li> <a href="#1">shoe rack 5 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">lobby<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">lobby 1 </a> </li>
-              <li> <a href="#1">lobby 2 </a> </li>
-              <li> <a href="#1">lobby 3 </a> </li>
-              <li> <a href="#1">lobby 4 </a> </li>
-              <li> <a href="#1">lobby 5 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">divan<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">divan 1 </a> </li>
-              <li> <a href="#1">divan 2 </a> </li>
-              <li> <a href="#1">divan 3 </a> </li>
-              <li> <a href="#1">divan 4 </a> </li>
-              <li> <a href="#1">divan 5 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">chair<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">chair 1 </a> </li>
-              <li> <a href="#1">chair 2 </a> </li>
-              <li> <a href="#1">chair 3 </a> </li>
-              <li> <a href="#1">chair 4 </a> </li>
-              <li> <a href="#1">chair 5 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">Cradle<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">Cradle 1 </a> </li>
-              <li> <a href="#1">Cradle 2 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">stand<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">stand 1 </a> </li>
-              <li> <a href="#1">stand 2 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">File Rack<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">File Rack 1 </a> </li>
-              <li> <a href="#1">File Rack 2 </a> </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-
-      <li class="has-child">
-        <span class="its-parent">
-          <span class="icon"></span>bedroom<i class="fas fa-angle-down"></i></span>
-        <ul class="its-children">
-
-          <li class="has-child">
-            <span class="its-parent">bed<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">bed 1</a> </li>
-              <li> <a href="#1">bed 2</a> </li>
-              <li> <a href="#1">bed 3</a> </li>
-              <li> <a href="#1">bed 4</a> </li>
-              <li> <a href="#1">bed 5</a> </li>
-            </ul>
-          </li>
-
-          <li class="has-child">
-            <span class="its-parent">Wardrobe<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">Wardrobe 1 </a> </li>
-              <li> <a href="#1">Wardrobe 2 </a> </li>
-              <li> <a href="#1">Wardrobe 3 </a> </li>
-              <li> <a href="#1">Wardrobe 4 </a> </li>
-              <li> <a href="#1">Wardrobe 5 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">Chest Of Drawers<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">Chest Of Drawers 1 </a> </li>
-              <li> <a href="#1">Chest Of Drawers 2 </a> </li>
-              <li> <a href="#1">Chest Of Drawers 3 </a> </li>
-              <li> <a href="#1">Chest Of Drawers 4 </a> </li>
-              <li> <a href="#1">Chest Of Drawers 5 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">Dressing Table<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">Dressing Table 1 </a> </li>
-              <li> <a href="#1">Dressing Table 2 </a> </li>
-              <li> <a href="#1">Dressing Table 3 </a> </li>
-              <li> <a href="#1">Dressing Table 4 </a> </li>
-              <li> <a href="#1">Dressing Table 5 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">Bed-side Table<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">Bed-side Table 1 </a> </li>
-              <li> <a href="#1">Bed-side Table 2 </a> </li>
-              <li> <a href="#1">Bed-side Table 3 </a> </li>
-              <li> <a href="#1">Bed-side Table 4 </a> </li>
-              <li> <a href="#1">Bed-side Table 5 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">Mattress<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">Mattress 1 </a> </li>
-              <li> <a href="#1">Mattress 2 </a> </li>
-              <li> <a href="#1">Mattress 3 </a> </li>
-              <li> <a href="#1">Mattress 4 </a> </li>
-              <li> <a href="#1">Mattress 5 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">Reading Table<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">Reading Table 1 </a> </li>
-              <li> <a href="#1">Reading Table 2 </a> </li>
-              <li> <a href="#1">Reading Table 3 </a> </li>
-              <li> <a href="#1">Reading Table 4 </a> </li>
-              <li> <a href="#1">Reading Table 5 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">Almirah<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">Almirah 1 </a> </li>
-              <li> <a href="#1">Almirah 2 </a> </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-
-      <li class="has-child">
-        <span class="its-parent">
-          <span class="icon"></span>Dining<i class="fas fa-angle-down"></i></span>
-        <ul class="its-children">
-
-          <li class="has-child">
-            <span class="its-parent">Dining<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">Dining 1</a> </li>
-              <li> <a href="#1">Dining 2</a> </li>
-              <li> <a href="#1">Dining 3</a> </li>
-              <li> <a href="#1">Dining 4</a> </li>
-              <li> <a href="#1">Dining 5</a> </li>
-            </ul>
-          </li>
-
-          <li class="has-child">
-            <span class="its-parent">Chair<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">Chair 1 </a> </li>
-              <li> <a href="#1">Chair 2 </a> </li>
-              <li> <a href="#1">Chair 3 </a> </li>
-              <li> <a href="#1">Chair 4 </a> </li>
-              <li> <a href="#1">Chair 5 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">Cafeteria<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">Cafeteria 1 </a> </li>
-              <li> <a href="#1">Cafeteria 2 </a> </li>
-              <li> <a href="#1">Cafeteria 3 </a> </li>
-              <li> <a href="#1">Cafeteria 4 </a> </li>
-              <li> <a href="#1">Cafeteria 5 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">Dinner Wagon<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">Dinner Wagon 1 </a> </li>
-              <li> <a href="#1">Dinner Wagon 2 </a> </li>
-              <li> <a href="#1">Dinner Wagon 3 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">Tea Trolley<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">Tea Trolley 1 </a> </li>
-              <li> <a href="#1">Tea Trolley 2 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">Showcase<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">Showcase 1 </a> </li>
-              <li> <a href="#1">Showcase 2 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">Mini Cabinet<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">Mini Cabinet 1 </a> </li>
-              <li> <a href="#1">Mini Cabinet 2 </a> </li>
-              <li> <a href="#1">Mini Cabinet 3 </a> </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-
-      <li class="has-child">
-        <span class="its-parent">
-          <span class="icon"></span>office<i class="fas fa-angle-down"></i></span>
-        <ul class="its-children">
-
-          <li class="has-child">
-            <span class="its-parent">Sofa<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">Sofa 1</a> </li>
-              <li> <a href="#1">Sofa 2</a> </li>
-              <li> <a href="#1">Sofa 3</a> </li>
-              <li> <a href="#1">Sofa 4</a> </li>
-              <li> <a href="#1">Sofa 5</a> </li>
-            </ul>
-          </li>
-
-          <li class="has-child">
-            <span class="its-parent">Side Rack<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">Side Rack 1 </a> </li>
-              <li> <a href="#1">Side Rack 2 </a> </li>
-              <li> <a href="#1">Side Rack 3 </a> </li>
-              <li> <a href="#1">Side Rack 4 </a> </li>
-              <li> <a href="#1">Side Rack 5 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">Swivel Chair<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">Swivel Chair 1 </a> </li>
-              <li> <a href="#1">Swivel Chair 2 </a> </li>
-              <li> <a href="#1">Swivel Chair 3 </a> </li>
-              <li> <a href="#1">Swivel Chair 4 </a> </li>
-              <li> <a href="#1">Swivel Chair 5 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">Executive Table<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">Executive Table 1 </a> </li>
-              <li> <a href="#1">Executive Table 2 </a> </li>
-              <li> <a href="#1">Executive Table 3 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">Office Almirah<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">Office Almirah 1 </a> </li>
-              <li> <a href="#1">Office Almirah 2 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">Computer Table<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">Computer Table 1 </a> </li>
-              <li> <a href="#1">Computer Table 2 </a> </li>
-              <li> <a href="#1">Computer Table 3 </a> </li>
-              <li> <a href="#1">Computer Table 4 </a> </li>
-              <li> <a href="#1">Computer Table 5 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">Director Table<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">Director Table 1 </a> </li>
-              <li> <a href="#1">Director Table 2 </a> </li>
-              <li> <a href="#1">Director Table 3 </a> </li>
-              <li> <a href="#1">Director Table 4 </a> </li>
-              <li> <a href="#1">Director Table 5 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">Conference Table<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">Conference Table 1 </a> </li>
-              <li> <a href="#1">Conference Table 2 </a> </li>
-              <li> <a href="#1">Conference Table 3 </a> </li>
-              <li> <a href="#1">Conference Table 4 </a> </li>
-              <li> <a href="#1">Conference Table 5 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">Fixed Chair<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">Fixed Chair 1 </a> </li>
-              <li> <a href="#1">Fixed Chair 2 </a> </li>
-              <li> <a href="#1">Fixed Chair 3 </a> </li>
-              <li> <a href="#1">Fixed Chair 4 </a> </li>
-              <li> <a href="#1">Fixed Chair 5 </a> </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-
-      <li class="has-child">
-        <span class="its-parent">
-          <span class="icon"></span> Institutional<i class="fas fa-angle-down"></i></span>
-        <ul class="its-children">
-          <li class="has-child">
-            <a href="#">all Institutional </a>
-            <a href="#">Hotel &amp; Restaurant</a>
-            <a href="#">Hospital</a>
-            <a href="#">Academic</a>
-            <a href="#">Auditori</a>
-          </li>
-        </ul>
-      </li>
-
-      <li class="has-child">
-        <span class="its-parent">
-          <span class="icon"></span>showpiece<i class="fas fa-angle-down"></i></span>
-        <ul class="its-children">
-
-          <li class="has-child">
-            <span class="its-parent">title<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">showpiece 1</a> </li>
-              <li> <a href="#1">showpiece 2</a> </li>
-              <li> <a href="#1">showpiece 3</a> </li>
-              <li> <a href="#1">showpiece 4</a> </li>
-              <li> <a href="#1">showpiece 5</a> </li>
-            </ul>
-          </li>
-
-          <li class="has-child">
-            <span class="its-parent">title<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">showpiece 1 </a> </li>
-              <li> <a href="#1">showpiece 2 </a> </li>
-              <li> <a href="#1">showpiece 3 </a> </li>
-              <li> <a href="#1">showpiece 4 </a> </li>
-              <li> <a href="#1">showpiece 5 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">title<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">showpiece 1 </a> </li>
-              <li> <a href="#1">showpiece 2 </a> </li>
-              <li> <a href="#1">showpiece 3 </a> </li>
-              <li> <a href="#1">showpiece 4 </a> </li>
-              <li> <a href="#1">showpiece 5 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">title<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">showpiece 1 </a> </li>
-              <li> <a href="#1">showpiece 2 </a> </li>
-              <li> <a href="#1">showpiece 3 </a> </li>
-            </ul>
-          </li>
-
-          <li class="has-child">
-            <span class="its-parent">title<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">showpiece 1 </a> </li>
-              <li> <a href="#1">showpiece 2 </a> </li>
-              <li> <a href="#1">showpiece 3 </a> </li>
-              <li> <a href="#1">showpiece 4 </a> </li>
-              <li> <a href="#1">showpiece 5 </a> </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-
-      <li class="has-child">
-        <span class="its-parent">
-          <span class="icon"></span>home appliance<i class="fas fa-angle-down"></i></span>
-        <ul class="its-children">
-
-          <li class="has-child">
-            <span class="its-parent">title<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">home appliance 1</a> </li>
-              <li> <a href="#1">home appliance 2</a> </li>
-              <li> <a href="#1">home appliance 3</a> </li>
-              <li> <a href="#1">home appliance 4</a> </li>
-              <li> <a href="#1">home appliance 5</a> </li>
-            </ul>
-          </li>
-
-          <li class="has-child">
-            <span class="its-parent">title<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">home appliance 1 </a> </li>
-              <li> <a href="#1">home appliance 2 </a> </li>
-              <li> <a href="#1">home appliance 3 </a> </li>
-              <li> <a href="#1">home appliance 4 </a> </li>
-              <li> <a href="#1">home appliance 5 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">title<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">home appliance 1 </a> </li>
-              <li> <a href="#1">home appliance 2 </a> </li>
-              <li> <a href="#1">home appliance 3 </a> </li>
-              <li> <a href="#1">home appliance 4 </a> </li>
-              <li> <a href="#1">home appliance 5 </a> </li>
-            </ul>
-          </li>
-          <li class="has-child">
-            <span class="its-parent">title<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">home appliance 1 </a> </li>
-              <li> <a href="#1">home appliance 2 </a> </li>
-              <li> <a href="#1">home appliance 3 </a> </li>
-            </ul>
-          </li>
-
-          <li class="has-child">
-            <span class="its-parent">title<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">home appliance 1 </a> </li>
-              <li> <a href="#1">home appliance 2 </a> </li>
-              <li> <a href="#1">home appliance 3 </a> </li>
-              <li> <a href="#1">home appliance 4 </a> </li>
-              <li> <a href="#1">home appliance 5 </a> </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-
-      <li class="has-child">
-        <span class="its-parent">
-          <span class="icon"></span>Kid’s<i class="fas fa-angle-down"></i></span>
-        <ul class="its-children">
-
-          <li class="has-child">
-            <span class="its-parent">Bed<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">Kids’ Bunk Bed</a> </li>
-            </ul>
-          </li>
-
-          <li class="has-child">
-            <span class="its-parent">Study Table<i class="fas fa-angle-down"></i></span>
-            <ul class="its-children">
-              <li> <a href="#1">Kids’ Study Table </a> </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </nav>
+  @endif
 
   <script>
     // Logout
