@@ -44,8 +44,9 @@
   <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/responsive.css">
 </head>
 
+
 <body>
-  @if(request()->path() !== 'subscription')
+  @if(request()->path() !== 'subscription' )
   <header>
     <!---------------------------
           Navbar Top Start 

@@ -1,6 +1,9 @@
 @extends('frontend.master')
 @section('content')
 <section class="seller-register">
+  <div class="heading-checkout text-center">
+    <h3>Seller Information</h3>
+  </div>
   <!-- <form action="{{ url('/subscribe-subscription/' . $subscription->id) }}" method="post" enctype="multipart/form-data"> -->
   <form action="{{ url('/subscribe-subscription/' . $subscription->id) }}" method="post" enctype="multipart/form-data">
     @csrf
@@ -20,9 +23,7 @@
         <!-- Shipping Address -->
         <div class="col-lg-7 p-0 left">
           <div class="shipping-form">
-            <div class="heading-checkout">
-              <h4>Seller Information</h4>
-            </div>
+
             <div class="row mt-3 g-3">
               <div class="col-lg-6">
                 <label for="fullName" class="form-label">Full Name</label>
