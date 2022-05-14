@@ -68,6 +68,7 @@ class SubscriptionController extends Controller
     }
 
     if (!auth()->user()->shop) {
+      
       if ($r->file('shop_logo')) {
         uploadImage($r->file('shop_logo'));
       }
