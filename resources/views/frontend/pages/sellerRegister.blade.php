@@ -20,11 +20,13 @@
         </div>
         @endif
 
+        @if(session('error'))
         <div class="alert alert-danger">
           <ul>
             <li>{{ session('error') }}</li>
           </ul>
         </div>
+        @endif
 
         <!-- Shipping Address -->
         <div class="col-lg-7 p-0 left">
