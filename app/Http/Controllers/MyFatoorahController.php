@@ -62,7 +62,6 @@ class MyFatoorahController extends Controller
     public function failCallback(Request $request){
         if (array_key_exists('paymentId', $request->all())) {
             $result = $this->myfatoorah->getPaymentStatus('paymentId', $request->paymentId);
-            dd($result);
             if ($result && $result['IsSuccess'] == true && $result['Data']['InvoiceStatus'] == "Pending") {
                 $error = end($result['Data']['InvoiceTransactions'])['Error'];
                 echo "Error => " . $error;
