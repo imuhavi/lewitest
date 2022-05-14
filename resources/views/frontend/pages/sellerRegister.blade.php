@@ -20,6 +20,12 @@
         </div>
         @endif
 
+        <div class="alert alert-danger">
+          <ul>
+            <li>{{ session('error') }}</li>
+          </ul>
+        </div>
+
         <!-- Shipping Address -->
         <div class="col-lg-7 p-0 left">
           <div class="shipping-form">
