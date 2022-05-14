@@ -46,11 +46,7 @@
 
 
 <body>
-<<<<<<< HEAD
-  @if(request()->path() !== 'subscription' )
-=======
   @if(request()->path() !== 'subscription' && explode('/', request()->path())[0] !== 'seller-register')
->>>>>>> ebda98bff6247746cff1150359fbaed5f538ed7b
   <header>
     <!---------------------------
           Navbar Top Start 

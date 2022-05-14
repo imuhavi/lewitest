@@ -9,7 +9,6 @@
     @csrf
     <div class="container">
       <div class="row">
-
         @if ($errors->any())
         <div class="alert alert-danger">
           <ul>
@@ -19,12 +18,6 @@
           </ul>
         </div>
         @endif
-
-        <div class="alert alert-danger">
-          <ul>
-            <li>{{ session('error') }}</li>
-          </ul>
-        </div>
 
         <!-- Shipping Address -->
         <div class="col-lg-7 p-0 left">

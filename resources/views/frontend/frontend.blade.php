@@ -362,19 +362,12 @@
         <h2 class="section-title text-center text-white mb-3">Shop By Brand</h2>
         <div class="col-md-12">
           <div id="brand" class="owl-carousel">
-            <div class="items"><a href="#"><img src="{{ asset('frontend/assets') }}/images/brand-logo/calvin-klein.jpeg"
-                  alt=""></a></div>
-            <div class="items"><a href="#"><img src="{{ asset('frontend/assets') }}/images/brand-logo/Adidas.jpeg"
-                  alt=""></a></div>
-            <div class="items"><a href="#"><img src="{{ asset('frontend/assets') }}/images/brand-logo/calvin-klein.jpeg"
-                  alt=""></a></div>
-            <div class="items"><a href="#"><img src="{{ asset('frontend/assets') }}/images/brand-logo/gues.jpeg"
-                  alt=""></a></div>
-            <div class="items"><a href="#"><img src="{{ asset('frontend/assets') }}/images/brand-logo/new-balance.jpeg"
-                  alt=""></a></div>
-            <div class="items"><a href="#"><img src="{{ asset('frontend/assets') }}/images/brand-logo/skechers.jpeg"
-                  alt=""></a></div>
+            @foreach( $shops as $shop)
+            <div class="items"><a href="#"><img src="{{ asset('backend/uploads/'. $shop->shop_logo) }}" alt=""></a>
+            </div>
+            @endforeach
           </div>
+
         </div>
 
       </div>
