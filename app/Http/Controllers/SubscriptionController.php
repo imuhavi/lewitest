@@ -65,32 +65,5 @@ class SubscriptionController extends Controller
                 ]));
             };
         }
-    }
-
-    if (!auth()->user()->shop) {
-      if ($r->file('shop_logo')) {
-        uploadImage($r->file('shop_logo'));
-      }
-      Shop::create([
-        'user_id' => $user->id,
-        'subscription_id' => $subscription->id,
-        'shop_name' => $r->shop_name,
-        'shop_logo' => session('fileName'),
-        'state' => $r->state,
-        'city' => $r->city,
-        'postal_code' => $r->postal_code,
-        'address' => $r->address
-      ]);
-
-      if ($r->payment_method == 'MyFatoorah') {
-        return redirect(route('MyFatoorah.index', [
-          'user' => $user,
-          'subscription' => $subscription,
-          'payable_amount' => $r->payable_amount
-        ]));
-      };
-    } else {
-      return redirect()->back()->with('You have already subscribed a subscription !');
-    }
   }
 }
