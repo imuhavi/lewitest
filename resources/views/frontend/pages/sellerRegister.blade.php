@@ -120,7 +120,7 @@
                 <h5>Package Name: <strong>{{ $subscription->name }}</strong></h5>
               </div>
               <div class="col-3 text-end">
-                <h4><strong>SAR {{ $subscription->price }}</strong></h4>
+                <h4><strong>SAR {{ number_format($subscription->price, 2) }}</strong></h4>
               </div>
             </div>
 
@@ -163,7 +163,7 @@
                 <h6>Subtotal:</h6>
               </div>
               <div class="col-6">
-                <h6 class="price-text sub-total-text text-end"> SAR {{ $subscription->price }} </h6>
+                <h6 class="price-text sub-total-text text-end"> SAR {{ number_format($subscription->price, 2) }} </h6>
               </div>
 
 
@@ -172,7 +172,7 @@
               </div>
               <div class="col-6">
                 @php
-                $tax = 15.00;
+                  $tax = number_format($subscription->price * 0.15, 2);
                 @endphp
                 <h6 class="price-text sub-total-text text-end"> SAR {{ $tax }} </h6>
               </div>
@@ -182,7 +182,7 @@
                 <h5>Total Amount</h5>
               </div>
               <div class="col-6">
-                <h5 class="price-text sub-total-text text-end"> SAR {{ $subscription->price + $tax }} </h5>
+                <h5 class="price-text sub-total-text text-end"> SAR {{ number_format($subscription->price + $tax, 2) }} </h5>
               </div>
             </div>
           </div>
