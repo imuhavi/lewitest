@@ -136,8 +136,12 @@
             </div>
             <ul class="payment-method-list">
               <li>
-                <input name="payment_method" id="bank" value="MyFatoorah" checked type="radio">
-                <label for="bank">Pay with Card</label>
+                <input name="payment_method" id="MY_FATOORAH" value="MY_FATOORAH" type="radio">
+                <label for="MY_FATOORAH">Pay with Card</label>
+              </li>
+              <li>
+                <input name="payment_method" id="CASH_ON_DELIVERY" value="CASH_ON_DELIVERY" checked type="radio">
+                <label for="CASH_ON_DELIVERY">Cash on delivery</label>
               </li>
               <!-- <li>
                 <input id="bank" name="payment_method" type="radio">

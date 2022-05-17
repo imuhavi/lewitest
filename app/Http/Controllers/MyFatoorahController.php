@@ -83,5 +83,7 @@ class MyFatoorahController extends Controller
         Shop::where('user_id', $UserDefinedField->user_id)->first()->update([
             'status' => 'Active'
         ]);
+
+        // Create a transaction table including user_id, payment method, payment invoice, amount, status
     }
 }
