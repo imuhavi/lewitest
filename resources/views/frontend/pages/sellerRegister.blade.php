@@ -147,20 +147,13 @@
               </li>
               <li>
                 <input name="payment_method" id="CASH_ON_DELIVERY" value="CASH_ON_DELIVERY" checked type="radio">
-                <label for="CASH_ON_DELIVERY">Cash on delivery</label>
-              </li>
-              <li>
-                <input id="bank" name="payment_method" type="radio">
-                <label for="cash">Pay Cash</label>
+                <label for="CASH_ON_DELIVERY">Pay in Cash</label>
               </li>
               <!-- <li>
                 <input id="paypal" name="payment_method" type="radio">
                 <label for="paypal">Paypal</label>
               </li>
-              <li>
-                <input id="card" name="payment_method" type="radio">
-                <label for="card">Credit Card</label>
-              </li> -->
+              <li> -->
             </ul>
           </div>
 

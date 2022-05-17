@@ -64,7 +64,7 @@ class SubscriptionController extends Controller
           'subscription' => $subscription,
           'payable_amount' => $r->payable_amount
         ]));
-      }elseif ($r->payment_method == 'CASH_ON_DELIVERY') {
+      } elseif ($r->payment_method == 'CASH_ON_DELIVERY') {
         return redirect('/');
       }
     }
