@@ -484,152 +484,132 @@
 
                 <p>Login with your email & password.</p>
               </div>
-              <div class="modal-body">
-                <div class="row mt-3 g-3">
-                  <div class="col-12">
-                    <label for="email" class="form-label">Email Address</label>
-                    <input type="email" class="form-control" id="email" placeholder="Your Email Address">
-                  </div>
-                  <div class="col-12">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="Password">
-                  </div>
-
-                  <div class="col-12 d-flex justify-content-between">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                      <label class="form-check-label" for="flexCheckDefault">
-                        Remember Me
-                      </label>
+                @csrf
+                <div class="modal-body">
+                  <div class="row mt-3 g-3">
+                    <div class="col-12">
+                      <label for="email" class="form-label">Email Address</label>
+                      <input type="email" class="form-control" id="email" placeholder="Your Email Address" name="email"
+                        value="{{ old('email') }}">
+                    </div>
+                    <div class="col-12">
+                      <label for="password" class="form-label">Password</label>
+                      <input type="text" class="form-control" id="inputAddress" placeholder="Password" name="password"
+                        value="{{ old('password') }}">
                     </div>
 
-                    <a href="#" class="fs-6 fw-bold" data-bs-toggle="modal" data-bs-target="#forgetPassword">Forget
-                      Password?</a>
-                  </div>
+                    <div class="col-12 d-flex justify-content-between">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Remember Me
+                        </label>
+                      </div>
+                      @if (Route::has('password.request'))
+                      <a href="#" class="fs-6 fw-bold" data-bs-toggle="modal" data-bs-target="#forgetPassword">Forget
+                        Password?</a>
+                      @endif
+                    </div>
 
-                  <div class="col-12">
-                    <button class="login-btn">Log In</button>
-                  </div>
+                    <div class="col-12">
+                      <button class="login-btn">Log In</button>
+                    </div>
+              </form>
 
-                  <div class="col-12 text-center">
-                    <p class="login_or">Or</p>
-                  </div>
+              <div class="col-12 text-center">
+                <p class="login_or">Or</p>
+              </div>
 
-                  <div class="col-12 login-with-google">
-                    <button class="google-login"><i class="fab fa-google"></i> Login With Google</button>
-                  </div>
+              <div class="col-12 login-with-google">
+                <button class="google-login"><i class="fab fa-google"></i> Login With Google</button>
+              </div>
 
-                  <div class="col-12 login-with-google">
-                    <button class="twitter-login"><i class="fab fa-twitter"></i> Login With Twitter</button>
-                  </div>
+              <div class="col-12 login-with-google">
+                <button class="twitter-login"><i class="fab fa-twitter"></i> Login With Twitter</button>
+              </div>
 
-                  <div class="col-12 login-with-google">
-                    <button class="apple-login"><i class="fab fa-apple"></i> Login With Apple</button>
-                  </div>
+              <div class="col-12 login-with-google">
+                <button class="apple-login"><i class="fab fa-apple"></i> Login With Apple</button>
+              </div>
 
-                  <div class="d-flex justify-content-center">
-                    <p>Don't have any account? <a href="#" class="fs-6 fw-bold" data-bs-toggle="modal"
-                        data-bs-target="#signUp">Register</a></p>
-                  </div>
-                </div>
+              <div class="d-flex justify-content-center">
+                <p>Don't have any account? <a href="#" class="fs-6 fw-bold" data-bs-toggle="modal"
+                    data-bs-target="#signUp">Register</a></p>
               </div>
             </div>
           </div>
+
         </div>
+      </div>
+      </div>
 
-        <!-- Modal For Sign Up -->
-        <div class="modal fade" id="signUp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h3><span class="logo">Five Dots</span></h3>
-                <!-- <button type="button"></button> -->
-                <a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></a>
+      <!-- Modal For Sign Up -->
+      <div class="modal fade" id="signUp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3><span class="logo">Five Dots</span></h3>
+              <!-- <button type="button"></button> -->
+              <a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></a>
 
-                <p>By Register, you agree to our <a href="#">terms</a> & <a href="#">policy.</a></p>
-              </div>
+              <p>By Register, you agree to our <a href="#">terms</a> & <a href="#">policy.</a></p>
+            </div>
+            <form method="POST" action="{{ route('register') }}">
+              @csrf
               <div class="modal-body">
                 <div class="row mt-3 g-3">
                   <div class="col-12">
-                    <label for="email" class="form-label">Email Address</label>
-                    <input type="email" class="form-control" id="email" placeholder="Your Email Address">
-                  </div>
-                  <div class="col-12">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="Password">
-                  </div>
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Your Name" name="name"
+                      value="{{ old('name') }}">
+            </div>
 
-                  <div class="col-12">
-                    <label for="password" class="form-label">Confirm Password</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="Confirm Password">
-                  </div>
+            <div class="d-flex justify-content-center">
+              <p>Already have an account? <a href="#" class="fs-6 fw-bold" data-bs-toggle="modal"
+                  data-bs-target="#signIn">Login</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
 
-                  <div class="col-12">
-                    <button class="login-btn">Register</button>
-                  </div>
+      <!-- Modal For Forget Password -->
+      <div class="modal fade" id="forgetPassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3><span class="logo">Five Dots</span></h3>
+              <!-- <button type="button"></button> -->
+              <a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></a>
 
-                  <div class="col-12 text-center">
-                    <p class="login_or">Or</p>
-                  </div>
+              <p>We'll send you a link to reset your password.</p>
+            </div>
+            <div class="modal-body forgetPassword-modal">
+              <div class="row mt-3 g-3">
+                <div class="col-12">
+                  <label for="email" class="form-label">Email Address *</label>
+                  <input type="email" class="form-control" id="email" placeholder="Your Email Address">
+                </div>
 
-                  <div class="col-12 login-with-google">
-                    <button class="google-login"><i class="fab fa-google"></i> Login With Google</button>
-                  </div>
+                <div class="col-12">
+                  <button class="login-btn">Submit Email</button>
+                </div>
 
-                  <div class="col-12 login-with-google">
-                    <button class="twitter-login"><i class="fab fa-twitter"></i> Login With Twitter</button>
-                  </div>
+                <div class="col-12 text-center">
+                  <p class="login_or">Or</p>
+                </div>
 
-                  <div class="col-12 login-with-google">
-                    <button class="apple-login"><i class="fab fa-apple"></i> Login With Apple</button>
-                  </div>
-
-                  <div class="d-flex justify-content-center">
-                    <p>Already have an account? <a href="#" class="fs-6 fw-bold" data-bs-toggle="modal"
-                        data-bs-target="#signIn">Login</a></p>
-                  </div>
+                <div class="d-flex justify-content-center">
+                  <p>Back to <a href="#" class="fs-6 fw-bold" data-bs-toggle="modal" data-bs-target="#signIn">Login</a>
+                  </p>
+>>>>>>> 3f2498e320ddd00010e32bd8a8ce4138d0dc414b
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-        <!-- Modal For Forget Password -->
-        <div class="modal fade" id="forgetPassword" tabindex="-1" aria-labelledby="exampleModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h3><span class="logo">Five Dots</span></h3>
-                <!-- <button type="button"></button> -->
-                <a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></a>
-
-                <p>We'll send you a link to reset your password.</p>
-              </div>
-              <div class="modal-body forgetPassword-modal">
-                <div class="row mt-3 g-3">
-                  <div class="col-12">
-                    <label for="email" class="form-label">Email Address *</label>
-                    <input type="email" class="form-control" id="email" placeholder="Your Email Address">
-                  </div>
-
-                  <div class="col-12">
-                    <button class="login-btn">Submit Email</button>
-                  </div>
-
-                  <div class="col-12 text-center">
-                    <p class="login_or">Or</p>
-                  </div>
-
-                  <div class="d-flex justify-content-center">
-                    <p>Back to <a href="#" class="fs-6 fw-bold" data-bs-toggle="modal"
-                        data-bs-target="#signIn">Login</a></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      </div>
 
       </div>
     </section>

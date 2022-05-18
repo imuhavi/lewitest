@@ -32,7 +32,11 @@ class SubscriptionOptionTableSeeder extends Seeder
     ]);
     SubscriptionOption::create([
       'subscription_id' => 2,
-      'option' => '1 Months free Marketing'
+      'option' => '1 Months free'
+    ]);
+    SubscriptionOption::create([
+      'subscription_id' => 2,
+      'option' => 'Marketing'
     ]);
     SubscriptionOption::create([
       'subscription_id' => 2,
@@ -48,7 +52,11 @@ class SubscriptionOptionTableSeeder extends Seeder
     ]);
     SubscriptionOption::create([
       'subscription_id' => 3,
-      'option' => '3 Months Free Marketing'
+      'option' => '3 Months Free'
+    ]);
+    SubscriptionOption::create([
+      'subscription_id' => 3,
+      'option' => 'Marketing'
     ]);
     SubscriptionOption::create([
       'subscription_id' => 3,

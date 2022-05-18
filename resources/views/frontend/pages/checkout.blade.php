@@ -219,8 +219,7 @@
             <div class="col-md-6 col-lg-7">
               <div class="subscribe-content">
                 <h2>Get your update news</h2>
-                <p>If you are going to use a passage of Lorem Ipsum, you need to <br>be sure there isn't anything
-                  embarrassing.</p>
+                <p>We connect the dots.</p>
               </div>
             </div>
             <div class="col-md-6 col-lg-5">

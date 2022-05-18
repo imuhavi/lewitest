@@ -172,7 +172,3 @@ Profile (Seller section)
 ## test card:
 
 ### Checkout Process Demo
-
-https://myfatoorah.readme.io/docs/test-cards
-
-

@@ -1,7 +1,7 @@
 @extends('frontend.master')
 @section('content')
 <section class="seller-register">
-  <div class="heading-checkout text-center">
+  <div class="heading-checkout text-center mb-3">
     <h3>Seller Information</h3>
   </div>
   <!-- <form action="{{ url('/subscribe-subscription/' . $subscription->id) }}" method="post" enctype="multipart/form-data"> -->
@@ -34,15 +34,17 @@
             <div class="row mt-3 g-3">
               <div class="col-lg-6">
                 <label for="fullName" class="form-label">Full Name</label>
-                <input type="text" name="full_name" class="form-control" id="fullName" placeholder="Your Full Name">
+                <input type="text" name="full_name" class="form-control" id="fullName" placeholder="Your Full Name"
+                  value="{{ old('full_name') }}">
               </div>
 
               <div class="col-lg-6">
                 <label for="fullName" class="form-label">Brand Name</label>
-                <input type="text" name="shop_name" class="form-control" id="fullName" placeholder="Your Full Name">
+                <input type="text" name="shop_name" class="form-control" id="fullName" placeholder="Your Full Name"
+                  value="{{ old('shop_name') }}">
               </div>
 
-              <div class="col-lg-6">
+              <div class=" col-lg-6">
                 <label for="fullName" class="form-label">Brand Logo</label>
                 <input type="file" name="shop_logo" class="form-control" id="fullName" placeholder="Your Full Name">
               </div>
@@ -54,62 +56,30 @@
 
               <div class="col-lg-6">
                 <label for="email" class="form-label">Email Address</label>
-                <input type="email" name="email" class="form-control" id="email" placeholder="Your Email Address">
+                  value="{{ old('email') }}">
               </div>
-              <div class="col-5 col-md-6 col-lg-6">
-                <label for="email" class="form-label">Phone Number</label>
-                <div class="input-group mb-2">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text">05</div>
-                  </div>
-                  <input type="text" name="phone" class="form-control" id="inlineFormInputGroup"
-                    placeholder="Phone Number">
-                </div>
-              </div>
-
-              @if(auth()->guest())
+              <div class="col-12 col-md-6 col-lg-6">
               <div class="col-lg-6">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" name="password" class="form-control" id="password"
-                  placeholder="Enter a strong Password">
-              </div>
-
               <div class="col-lg-6">
-                <label for="ConfirmPassword" class="form-label">Confirm Password</label>
                 <input type="password" name="confirm_password" class="form-control" id="ConfirmPassword"
-                  placeholder="Retype the password">
               </div>
-              @endif
-
-              <div class="col-lg-5 col-md-6">
                 <label for="state" class="form-label">State</label>
                 <select id="state" name="state" class="form-select state">
                   <option selected hidden disabled value="">Choose State</option>
-                  <option value="Eastern Provence">Eastern Provence</option>
-                </select>
-              </div>
-
-              <div class="col-lg-4 col-md-6">
-                <label for="city" class="form-label">City</label>
-                <select id="city" name="city" class="form-select city">
-                  <option selected hidden disabled value="">Choose City</option>
-                  <option value="Dammam">Dammam</option>
                 </select>
               </div>
 
               <div class="col-lg-3 col-md-6">
                 <label for="inputZip" class="form-label">Postal Code</label>
-                <input type="text" name="postal_code" class="form-control" id="inputZip">
-              </div>
+                <input type="text" name="postal_code" class="form-control" id="inputZip"
+                  value="{{ old('postal_code') }}">
 
               <div class="col-12">
                 <label for="address" class="form-label">Address</label>
                 <input type="text" name="address" class="form-control" id="address"
-                  placeholder="Apartment, studio, or floor">
               </div>
-
-            </div>
-          </div>
 
           <div class="order-summary">
             <div class="heading-checkout">
@@ -172,11 +142,11 @@
 
 
               <div class="col-6">
-                <h6>Tax:</h6>
+                <h6>Tax: 15%</h6>
               </div>
               <div class="col-6">
                 @php
-                  $tax = number_format($subscription->price * 0.15, 2);
+                $tax = number_format($subscription->price * 0.15, 2);
                 @endphp
                 <h6 class="price-text sub-total-text text-end"> SAR {{ $tax }} </h6>
               </div>
@@ -186,7 +156,8 @@
                 <h5>Total Amount</h5>
               </div>
               <div class="col-6">
-                <h5 class="price-text sub-total-text text-end"> SAR {{ number_format($subscription->price + $tax, 2) }} </h5>
+                <h5 class="price-text sub-total-text text-end"> SAR {{ number_format($subscription->price + $tax, 2) }}
+                </h5>
               </div>
             </div>
           </div>
@@ -220,8 +191,7 @@
           <div class="col-md-6 col-lg-7">
             <div class="subscribe-content">
               <h2>Get your update news</h2>
-              <p>If you are going to use a passage of Lorem Ipsum, you need to <br>be sure there isn't anything
-                embarrassing.</p>
+              <p>We connect the dots.</p>
             </div>
           </div>
           <div class="col-md-6 col-lg-5">
@@ -238,4 +208,30 @@
     </div>
   </div>
 </section>
+@section('footer_js')
+<script>
+  $('#state').change(function () {
+    var stateId = $(this).val();
+    if (stateId) {
+      $.ajax({
+        type: "GET",
+        url: "{{url('get-cities')}}/" + stateId,
+        success: function (res) {
+          if (res) {
+            $("#city").empty();
+            $("#city").append('<option>Choose City</option>');
+            $.each(res, function (key, value) {
+              $("#city").append('<option value="' + value.id + '">' + value.name + '</option>');
+            });
+
+          } else {
+            $("#city").empty();
+          }
+        }
+      });
+    } else {
+      $("#city").empty();
+    }
+  });
+</script>
 @endsection

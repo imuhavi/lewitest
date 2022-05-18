@@ -8,11 +8,11 @@
         <div class="col-md-4 col-7 pe-0">
           <div class="contact-info text-dark">
             <h3 class="footer-title">Contact</h3>
-            <p><i class="fas fa-envelope"></i><a href="mailto:contact@5dots.sa"><span
-                  class="ps-3">contact@5dots.sa</span></a>
+            <p><i class="fas fa-envelope"></i><a href="mailto:info@5dots.sa"><span class="ps-3">info@5dots.sa</span></a>
             </p>
-            <p><i class="fas fa-phone"></i><span class="ps-3">+00 1234567890</span></p>
-            <p><i class="fas fa-map-marker-alt"></i></i><span class="ps-3">123, Al-khubar city, Dammam, KSA</span>
+            <p><i class="fas fa-phone"></i><span class="ps-3">+966 53 458 8012</span></p>
+            <p><i class="fas fa-map-marker-alt"></i></i><span class="ps-3">Made with <i
+                  class="fas fa-heart text-denger"></i> in Al-Khobar</span>
             </p>
           </div>
         </div>
@@ -21,11 +21,11 @@
           <div class="contact-info">
             <h3 class="footer-title">Qucik Link</h3>
             <ul>
-              <li><a href="">Home</a></li>
+              <li><a href="#">Home</a></li>
               <li><a href="{{ route('subscription') }}">Become Seller</a></li>
-              <li><a href="">Contact Us</a></li>
+              <li><a href="#">Contact Us</a></li>
               <li><a href="{{ route('subscription') }}">Join Us</a></li>
-              <li><a href="">Login</a></li>
+              <li><a href="{{ route('subscription') }}">Login</a></li>
             </ul>
           </div>
         </div>
@@ -34,10 +34,8 @@
           <div class="contact-info">
             <h3 class="footer-title">Company</h3>
             <h2 class="logo">Five Dots</h2>
-            <p class="py-3">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores iusto quam fugit
-              expedita
-              dignissimos laborum, in at iure accusantium, voluptas voluptate sint recusandae suscipit, delectus neque
-              odit ad molestiae nam?</p>
+            <p class="py-3">Collecting the dots. Then connecting them. And then sharing the connections with those
+              around you. This is how a creative human works. Collecting, connecting, sharing.</p>
 
             <a class="btn btn-outline-secondary" href="{{ route('subscription') }}">Join As Designer</a>
           </div>
@@ -53,9 +51,11 @@
 
             <p>Social Link:</p>
             <ul class="d-flex social-icon">
-              <li><a href=""><i class="fab fa-twitter"></i></a></li>
-              <li><a href=""><i class="fab fa-instagram"></i></a></li>
-              <li><a href=""><i class="fab fa-linkedin-in"></i></a></li>
+              <li><a href=""><i class="fab fa-twitter" target="_blank"></i></a></li>
+              <li><a href="https://www.instagram.com/p/CZ0gGHloQZl/?utm_medium=copy_link" target="_blank"><i
+                    class="fab fa-instagram"></i></a></li>
+              <li><a href="https://wa.me/message/N7U5REXGD3ODN1" target="_blank"><i class="fab fa-whatsapp"></i></a>
+              </li>
             </ul>
 
           </div>

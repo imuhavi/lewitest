@@ -37,6 +37,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 # Subscribe & register for seller
 Route::post('/subscribe-subscription/{subscription}', [SubscriptionController::class, 'subscribe']);
 
+# Get States and Cities.
+Route::get('get-cities/{stateId}', [FrontendController::class, 'getCity'])->name('getCity');
+
 # MyFatoorah Start
 Route::group(['namespace' => 'App\Http\Controllers'], function () {
   Route::get('/payment/index', 'MyFatoorahController@index')->name('MyFatoorah.index');

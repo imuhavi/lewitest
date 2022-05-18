@@ -4,40 +4,37 @@
 <section class="container py-5 position-relative" id="package">
   <div class="text-center mb-5">
     <h2 class=" section-title">Merchant Pricing</h2>
-    <p>Pricing is the process whereby a business sets the price at which it will sell its products and services,<br>
-      and
-      may be
-      part of the business marketing plan</p>
+    <p>Dream big, start small, and connect the dots.</p>
   </div>
 
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5 position-relative">
     @foreach($data as $item)
-      <div class="col">
-        <div class="card shadow">
-          <div class="card-header text-center bg-dark p-2">
-            <h3 class="text-white">{{ $item->name }}</h3>
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header text-center bg-dark p-2">
+          <h3 class="text-white">{{ $item->name }}</h3>
+        </div>
+        <div class="card-body bg-light">
+          <div class="package-price text-center mb-4">
+            <h2 class="card-title">{{ $item->price }} SAR</h2>
+            <p><small>{{ ($item->days / 30) }} Month(s)</small></p>
           </div>
-          <div class="card-body bg-light">
-            <div class="package-price text-center mb-4">
-              <h2 class="card-title">{{ $item->price }} SAR</h2>
-              <p><small>{{ ($item->days / 30) }} Month(s)</small></p>
-            </div>
-            <ul class="list-unstyled package-feature ">
-              @foreach($item->subscriptionOptions as $item2)
-                <li class="bg-white px-4 py-3 m-3 shadow-sm rounded-pill">
-                  <i class="fas fa-check-circle">
-                    {{ $item2->option }}
-                  </i>
-                </li>
-              @endforeach
-            </ul>
+          <ul class="list-unstyled package-feature ">
+            @foreach($item->subscriptionOptions as $item2)
+            <li class="bg-white px-4 py-3 m-3 shadow-sm rounded-pill">
+              <i class="fas fa-check-circle">
+                {{ $item2->option }}
+              </i>
+            </li>
+            @endforeach
+          </ul>
 
-          </div>
-          <div class="card-footer text-center">
-            <a href="{{ route('sellerRegister', $item->id) }}" class="btn btn-dark w-75 p-2">Get Started</a>
-          </div>
+        </div>
+        <div class="card-footer text-center">
+          <a href="{{ route('sellerRegister', $item->id) }}" class="btn btn-dark w-75 p-2">Get Started</a>
         </div>
       </div>
+    </div>
     @endforeach
   </div>
 
@@ -54,8 +51,7 @@
           <div class="col-md-6 col-lg-7">
             <div class="subscribe-content">
               <h2>Get your update news</h2>
-              <p>If you are going to use a passage of Lorem Ipsum, you need to <br>be sure there isn't anything
-                embarrassing.</p>
+              <p>We connect the dots.</p>
             </div>
           </div>
           <div class="col-md-6 col-lg-5">

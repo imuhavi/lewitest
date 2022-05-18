@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Cities;
 use App\Models\Shop;
 use App\Models\Slider;
+use App\Models\States;
 use App\Models\Subcategory;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
@@ -27,11 +29,6 @@ class FrontendController extends Controller
     $womensMain = $categories->where('slug', 'womens')->first();
     $accesoriesSub = Subcategory::where('category_id', 4)->get()->slice(0, 4);
 
-    $shops = Shop::get(['id', 'shop_logo']);
-    return view($this->VIEW_PATH, compact('slider', 'womensSub1', 'womensSub2', 'mensSub', 'accesoriesSub', 'mensMain', 'womensMain', 'accesoriesMain', 'accesoriesSub', 'shops'));
-  }
-
-  function shop()
   {
     return view('frontend.pages.shop');
   }
@@ -63,8 +60,16 @@ class FrontendController extends Controller
     return view('frontend.pages.subscription', compact('data'));
   }
 
+  function getCity($stateId)
+  {
+    // return Cities::all();
+    $city = Cities::where('state_id', $stateId)->get();
+    return response()->json($city);
+  }
+
   function sellerRegister(Subscription $subscription)
   {
-    return view('frontend.pages.sellerRegister', compact('subscription'));
+    $sates = States::get();
+    return view('frontend.pages.sellerRegister', compact('subscription', 'sates'));
   }
 }
