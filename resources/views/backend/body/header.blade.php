@@ -128,7 +128,7 @@
           </a>
         </div>
         <div class="logo-box">
-          <a href="{{ url( routePrefix() . '/dashboard') }}" class="logo-text"><span>{{ str_replace('-', ' ',
+          <a href="{{ route('home') }}" target="_blank" class=" logo-text"><span>{{ str_replace('-', ' ',
               config('app.name')) }}</span></a>
         </div><!-- Logo Box -->
         <div class="search-button">

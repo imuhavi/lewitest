@@ -595,167 +595,48 @@
         </div>
 
         <div class="row gy-5">
+          @foreach( $products as $product)
+
+          @php
+          $discountAmount = ($product->price - ($product->discount / 100) * $product->price);
+
+          $discount = (($product->discount * 100) / $product->price)
+          @endphp
+
           <div class="col-md-4 text-center">
             <div class="product-content">
-              <p class="label">30%</p>
+              @if($product->discount !== null && $product->discount_type !== 'Flat')
+              <p class="label">{{ $product->discount}}%</p>
+
+              @elseif($product->discount !== null && $product->discount_type == 'Flat')
+              <p class="label">{{$discount}}%</p>
+              @endif
               <div class="proudct-img">
-                <img class="img-fluid" src="{{ asset('frontend/assets/') }}/images/product-img-10.jpg" alt="product-12">
+                <img class="img-fluid" src="{{ asset('backend/uploads/' . $product->thumbnail) }}" alt="product-12">
                 <div class="overlay">
                   <div class="action">
-                    <span><a href="product-details.html"><i class="fas fa-eye"></i></a></span>
+                    <span><a href="{{ route('productView', $product->slug) }}"><i class="fas fa-eye"></i></a></span>
                     <span><a href="#"><i class="far fa-heart"></i></a></span>
                   </div>
                 </div>
               </div>
-              <a href="product-details.html" class="product-title d-block mt-3">Mens Gray T-shirt</a>
-              <h3 class="new-price my-2">SAR <span>230.00</span></h3>
-              <p class="old-price text-danger">SAR 340</p>
-            </div>
-          </div>
-
-          <div class="col-md-4 text-center">
-            <div class="product-content">
-              <div class="proudct-img">
-                <img class="img-fluid" src="{{ asset('frontend/assets/') }}/images/product-img-2.png" alt="product-12">
-                <div class="overlay">
-                  <div class="action">
-                    <span><a href="product-details.html"><i class="fas fa-eye"></i></a></span>
-                    <span><a href="#"><i class="far fa-heart"></i></a></span>
-                  </div>
-                </div>
-              </div>
-              <a href="product-details.html" class="product-title d-block mt-3">Mens Gray T-shirt</a>
-              <h3 class="new-price my-2">SAR <span>230.00</span></h3>
-              <p class="old-price text-danger">SAR 340</p>
-            </div>
-          </div>
+              <a href="{{ route('productView', $product->slug) }}" class="product-title d-block mt-3">{{
+                Str::limit($product->name, 25)
+                }}</a>
 
 
-          <div class="col-md-4 text-center">
-            <div class="product-content">
-              <p class="label">25%</p>
-              <div class="proudct-img">
-                <img class="img-fluid" src="{{ asset('frontend/assets/') }}/images/product-img-1.png" alt="product-12">
-                <div class="overlay">
-                  <div class="action">
-                    <span><a href="product-details.html"><i class="fas fa-eye"></i></a></span>
-                    <span><a href="#"><i class="far fa-heart"></i></a></span>
-                  </div>
-                </div>
-              </div>
-              <a href="product-details.html" class="product-title d-block mt-3">Mens Gray T-shirt</a>
-              <h3 class="new-price my-2">SAR <span>230.00</span></h3>
-              <p class="old-price text-danger">SAR 340</p>
+              @if($product->discount !== null && $product->discount_type !== 'Flat')
+              <h3 class="new-price my-2">{{ $discountAmount}}</h3>
+              <p class="old-price text-danger">{{ $product->price }}</p>
+              @elseif($product->discount !== null && $product->discount_type == 'Flat')
+              <h3 class="new-price my-2">{{ $product->price- $product->discount }}</h3>
+              <p class="old-price text-danger">{{ $product->price }}</p>
+              @else
+              <h3 class="new-price my-2">{{ $product->price }}</h3>
+              @endif
             </div>
           </div>
-
-          <div class="col-md-4 text-center">
-            <div class="product-content">
-              <p class="label">25%</p>
-              <div class="proudct-img">
-                <img class="img-fluid" src="{{ asset('frontend/assets/') }}/images/product-img-1.png" alt="product-12">
-                <div class="overlay">
-                  <div class="action">
-                    <span><a href="product-details.html"><i class="fas fa-eye"></i></a></span>
-                    <span><a href="#"><i class="far fa-heart"></i></a></span>
-                  </div>
-                </div>
-              </div>
-              <a href="product-details.html" class="product-title d-block mt-3">Mens Gray T-shirt</a>
-              <h3 class="new-price my-2">SAR <span>230.00</span></h3>
-              <p class="old-price text-danger">SAR 340</p>
-            </div>
-          </div>
-
-          <div class="col-md-4 text-center">
-            <div class="product-content">
-              <p class="label">25%</p>
-              <div class="proudct-img">
-                <img class="img-fluid" src="{{ asset('frontend/assets/') }}/images/product-img-3.png" alt="product-12">
-                <div class="overlay">
-                  <div class="action">
-                    <span><a href="product-details.html"><i class="fas fa-eye"></i></a></span>
-                    <span><a href="#"><i class="far fa-heart"></i></a></span>
-                  </div>
-                </div>
-              </div>
-              <a href="product-details.html" class="product-title d-block mt-3">Mens Gray T-shirt</a>
-              <h3 class="new-price my-2">SAR <span>230.00</span></h3>
-              <p class="old-price text-danger">SAR 340</p>
-            </div>
-          </div>
-
-          <div class="col-md-4 text-center">
-            <div class="product-content">
-              <p class="label">25%</p>
-              <div class="proudct-img">
-                <img class="img-fluid" src="{{ asset('frontend/assets/') }}/images/product-img-4.png" alt="product-12">
-                <div class="overlay">
-                  <div class="action">
-                    <span><a href="product-details.html"><i class="fas fa-eye"></i></a></span>
-                    <span><a href="#"><i class="far fa-heart"></i></a></span>
-                  </div>
-                </div>
-              </div>
-              <a href="product-details.html" class="product-title d-block mt-3">Mens Gray T-shirt</a>
-              <h3 class="new-price my-2">SAR <span>230.00</span></h3>
-              <p class="old-price text-danger">SAR 340</p>
-            </div>
-          </div>
-
-          <div class="col-md-4 text-center">
-            <div class="product-content">
-              <p class="label">25%</p>
-              <div class="proudct-img">
-                <img class="img-fluid" src="{{ asset('frontend/assets/') }}/images/product-img-7.png" alt="product-12">
-                <div class="overlay">
-                  <div class="action">
-                    <span><a href="product-details.html"><i class="fas fa-eye"></i></a></span>
-                    <span><a href="#"><i class="far fa-heart"></i></a></span>
-                  </div>
-                </div>
-              </div>
-              <a href="product-details.html" class="product-title d-block mt-3">Mens Gray T-shirt</a>
-              <h3 class="new-price my-2">SAR <span>230.00</span></h3>
-              <p class="old-price text-danger">SAR 340</p>
-            </div>
-          </div>
-
-          <div class="col-md-4 text-center">
-            <div class="product-content">
-              <p class="label">25%</p>
-              <div class="proudct-img">
-                <img class="img-fluid" src="{{ asset('frontend/assets/') }}/images/product-img-6.png" alt="product-12">
-                <div class="overlay">
-                  <div class="action">
-                    <span><a href="product-details.html"><i class="fas fa-eye"></i></a></span>
-                    <span><a href="#"><i class="far fa-heart"></i></a></span>
-                  </div>
-                </div>
-              </div>
-              <a href="product-details.html" class="product-title d-block mt-3">Mens Gray T-shirt</a>
-              <h3 class="new-price my-2">SAR <span>230.00</span></h3>
-              <p class="old-price text-danger">SAR 340</p>
-            </div>
-          </div>
-
-          <div class="col-md-4 text-center">
-            <div class="product-content">
-              <p class="label">25%</p>
-              <div class="proudct-img">
-                <img class="img-fluid" src="{{ asset('frontend/assets/') }}/images/product-img-5.jpeg" alt="product-12">
-                <div class="overlay">
-                  <div class="action">
-                    <span><a href="product-details.html"><i class="fas fa-eye"></i></a></span>
-                    <span><a href="#"><i class="far fa-heart"></i></a></span>
-                  </div>
-                </div>
-              </div>
-              <a href="product-details.html" class="product-title d-block mt-3">Mens Gray T-shirt</a>
-              <h3 class="new-price my-2">SAR <span>230.00</span></h3>
-              <p class="old-price text-danger">SAR 340</p>
-            </div>
-          </div>
+          @endforeach
 
         </div>
       </div>
