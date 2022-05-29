@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 class FrontendController extends Controller
 {
   private $VIEW_PATH = 'frontend.frontend';
+
   function frontend()
   {
     $slider = Slider::where('status', 'Active')->get();
@@ -24,7 +25,6 @@ class FrontendController extends Controller
     $mensMain = Category::where('slug', 'mens')->where('status', 'Active')->first();
     // $womensMain = Category::where('slug', 'womens')->where('status', 'Active')->first();
     $accesoriesMain = Category::where('slug', 'accessories')->where('status', 'Active')->first();
-
     $categories = Category::whereIn('slug', ['mens', 'womens', 'accessories'])->whereStatus('Active')->take(3)->get();
     $womensMain = $categories->where('slug', 'womens')->first();
     $accesoriesSub = Subcategory::where('category_id', 4)->get()->slice(0, 4); {

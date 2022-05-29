@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use Illuminate\Support\Str;
 
 if (!function_exists('uploadImage')) {
@@ -59,5 +60,12 @@ if (!function_exists('set_env')) {
     $env = str_replace("$key=" . env($key), "$key=" . $value, $env); //replace value
     /** Save file eith new content */
     $env = file_put_contents(isset($env_path) ? $env_path : base_path('.env'), $env);
+  }
+}
+
+if (!function_exists('getCategories')) {
+  function getCategories()
+  {
+    return Category::whereType('Deleteable')->orderBy('updated_at', 'desc')->get();
   }
 }
