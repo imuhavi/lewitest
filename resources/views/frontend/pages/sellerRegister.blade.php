@@ -56,18 +56,49 @@
 
               <div class="col-lg-6">
                 <label for="email" class="form-label">Email Address</label>
+                <input type="email" name="email" class="form-control" id="email" placeholder="Your Email Address"
                   value="{{ old('email') }}">
               </div>
               <div class="col-12 col-md-6 col-lg-6">
+                <label for="email" class="form-label">Phone Number</label>
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">05</div>
+                  </div>
+                  <input type="text" name="phone" class="form-control" id="inlineFormInputGroup"
+                    placeholder="Phone Number" value="{{ old('phone') }}">
+                </div>
+              </div>
+
+              @if(auth()->guest())
               <div class="col-lg-6">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" name="password" class="form-control" id="password"
-              <div class="col-lg-6">
-                <input type="password" name="confirm_password" class="form-control" id="ConfirmPassword"
+                  placeholder="Enter a strong Password" value="{{ old('password') }}">
               </div>
+
+              <div class="col-lg-6">
+                <label for="ConfirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" name="confirm_password" class="form-control" id="ConfirmPassword"
+                  placeholder="Retype the password" value="{{ old('confirm_password') }}">
+              </div>
+              @endif
+
+              <div class="col-lg-5 col-md-6">
                 <label for="state" class="form-label">State</label>
                 <select id="state" name="state" class="form-select state">
                   <option selected hidden disabled value="">Choose State</option>
+                  @foreach($sates as $state)
+                  <option value="{{ $state->id }}">{{ $state->name }}</option>
+                  @endforeach
+                </select>
+              </div>
+
+
+              <div class="col-lg-4 col-md-6">
+                <label for="city" class="form-label">City</label>
+                <select name="city" id="city" class="form-select city">
+                  <option selected hidden disabled value="">Choose City</option>
                 </select>
               </div>
 
@@ -75,11 +106,16 @@
                 <label for="inputZip" class="form-label">Postal Code</label>
                 <input type="text" name="postal_code" class="form-control" id="inputZip"
                   value="{{ old('postal_code') }}">
+              </div>
 
               <div class="col-12">
                 <label for="address" class="form-label">Address</label>
                 <input type="text" name="address" class="form-control" id="address"
+                  placeholder="Apartment, studio, or floor" value="{{ old('address') }}">
               </div>
+
+            </div>
+          </div>
 
           <div class="order-summary">
             <div class="heading-checkout">
@@ -111,20 +147,13 @@
               </li>
               <li>
                 <input name="payment_method" id="CASH_ON_DELIVERY" value="CASH_ON_DELIVERY" checked type="radio">
-                <label for="CASH_ON_DELIVERY">Cash on delivery</label>
+                <label for="CASH_ON_DELIVERY">Pay in Cash</label>
               </li>
-              <!-- <li>
-                <input id="bank" name="payment_method" type="radio">
-                <label for="bank">Direct Bank Transfer</label>
-              </li> -->
               <!-- <li>
                 <input id="paypal" name="payment_method" type="radio">
                 <label for="paypal">Paypal</label>
               </li>
-              <li>
-                <input id="card" name="payment_method" type="radio">
-                <label for="card">Credit Card</label>
-              </li> -->
+              <li> -->
             </ul>
           </div>
 
@@ -208,6 +237,8 @@
     </div>
   </div>
 </section>
+@endsection
+
 @section('footer_js')
 <script>
   $('#state').change(function () {
