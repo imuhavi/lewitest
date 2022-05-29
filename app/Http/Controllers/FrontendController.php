@@ -27,49 +27,53 @@ class FrontendController extends Controller
 
     $categories = Category::whereIn('slug', ['mens', 'womens', 'accessories'])->whereStatus('Active')->take(3)->get();
     $womensMain = $categories->where('slug', 'womens')->first();
-    $accesoriesSub = Subcategory::where('category_id', 4)->get()->slice(0, 4);
+    $accesoriesSub = Subcategory::where('category_id', 4)->get()->slice(0, 4); {
+      return view('frontend.pages.shop');
+    }
 
-  {
-    return view('frontend.pages.shop');
-  }
-
-  function singleProductView($slug)
-  {
-    return view('frontend.pages.productView');
-  }
+    function singleProductView($slug)
+    {
+      return view('frontend.pages.productView');
+    }
 
 
-  function cart()
-  {
-    return view('frontend.pages.cart');
-  }
+    function cart()
+    {
+      return view('frontend.pages.cart');
+    }
 
-  function wishlist()
-  {
-    return view('frontend.pages.wishlist');
-  }
+    function wishlist()
+    {
+      return view('frontend.pages.wishlist');
+    }
 
-  function checkout()
-  {
-    return view('frontend.pages.checkout');
-  }
+    function checkout()
+    {
+      return view('frontend.pages.checkout');
+    }
 
-  function subscription()
-  {
-    $data = Subscription::with('subscriptionOptions')->get();
-    return view('frontend.pages.subscription', compact('data'));
-  }
+    function subscription()
+    {
+      $data = Subscription::with('subscriptionOptions')->get();
+      return view('frontend.pages.subscription', compact('data'));
+    }
 
-  function getCity($stateId)
-  {
-    // return Cities::all();
-    $city = Cities::where('state_id', $stateId)->get();
-    return response()->json($city);
-  }
+    function getCity($stateId)
+    {
+      // return Cities::all();
+      $city = Cities::where('state_id', $stateId)->get();
+      return response()->json($city);
+    }
 
-  function sellerRegister(Subscription $subscription)
-  {
-    $sates = States::get();
-    return view('frontend.pages.sellerRegister', compact('subscription', 'sates'));
+    function termsAndCondition()
+    {
+      return view('frontend.pages.termsAndCondition');
+    }
+
+    function sellerRegister(Subscription $subscription)
+    {
+      $sates = States::get();
+      return view('frontend.pages.sellerRegister', compact('subscription', 'sates'));
+    }
   }
 }

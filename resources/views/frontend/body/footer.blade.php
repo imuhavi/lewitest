@@ -46,7 +46,7 @@
             <h3 class="footer-title">Legal</h3>
             <ul>
               <li><a href="">Privacy Policy</a></li>
-              <li><a href="">Terms & Conditions </a></li>
+              <li><a href="{{ route('termsAndCondition') }}">Terms & Conditions </a></li>
             </ul>
 
             <p>Social Link:</p>

@@ -24,6 +24,9 @@ Route::get('/cart', [FrontendController::class, 'cart'])->name('cart');
 Route::get('/wishlist', [FrontendController::class, 'wishlist'])->name('wishlist');
 Route::get('/subscription', [FrontendController::class, 'subscription'])->name('subscription');
 
+Route::get('/terms-and-condition', [FrontendController::class, 'termsAndCondition'])->name('termsAndCondition');
+
+
 Route::get('/seller-register/{subscription}', [FrontendController::class, 'sellerRegister'])->name('sellerRegister');
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
