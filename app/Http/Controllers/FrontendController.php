@@ -60,7 +60,6 @@ class FrontendController extends Controller
 
     function getCity($stateId)
     {
-      // return Cities::all();
       $city = Cities::where('state_id', $stateId)->get();
       return response()->json($city);
     }
