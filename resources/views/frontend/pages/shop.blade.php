@@ -11,9 +11,9 @@
     <div class="d-flex justify-content-between my-3">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
           <li class="breadcrumb-item"><a href="#">Category</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Shop</li>
+          <li class="breadcrumb-item active" aria-current="page">{{ $subcategory->name }}</li>
         </ol>
       </nav>
 
@@ -583,7 +583,7 @@
       <div class="col-md-12 col-lg-9">
         <div class="row mb-5">
           <div class="col-12 d-flex justify-content-between">
-            <h2>Clothing & Apparel</h2>
+            <h2>{{ $subcategory->name }}</h2>
             <div class="filter">
               <select id="select_js">
                 <option>Filter By</option>
