@@ -54,7 +54,7 @@ class ProductController extends Controller
   {
     $request->validate([
       'name' => 'required|max:199',
-      'slug' => 'required|max:199',
+      'slug' => 'required|max:199|unique:products',
       'purchase_price' => 'required',
       'price' => 'required',
       'shipping_cost' => 'required',
