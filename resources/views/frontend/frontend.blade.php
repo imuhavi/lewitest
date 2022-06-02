@@ -48,10 +48,10 @@
         <div class="col-md-3 child-category">
           @foreach($womensSub1 as $item)
           <div class="child-cat-item ">
-            <a href="pages/categorie-shop.html"><img class="w-100" src="{{ asset('/backend/uploads/'. $item->icon) }}"
-                alt="womens-{{ $item->icon }}"></a>
+            <a href="{{ route('categoryShop', $item) }}"><img class="w-100"
+                src="{{ asset('/backend/uploads/'. $item->icon) }}" alt="womens-{{ $item->icon }}"></a>
             <h3>{{ $item->name }}</h3>
-            <a class="explore-btn" href="pages/categorie-shop.html">Explore <img class="icon"
+            <a class="explore-btn" href="{{ route('categoryShop', $item) }}">Explore <img class="icon"
                 src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
           </div>
           @endforeach
@@ -74,10 +74,10 @@
         <div class="col-md-3 child-category">
           @foreach($womensSub2 as $item)
           <div class="child-cat-item">
-            <a href="pages/categorie-shop.html"><img class="w-100" src="{{ asset('/backend/uploads/'. $item->icon) }}"
-                alt="womans-{{ $item->icon }}"></a>
+            <a href="{{ route('categoryShop', $item) }}"><img class="w-100"
+                src="{{ asset('/backend/uploads/'. $item->icon) }}" alt="womans-{{ $item->icon }}"></a>
             <h3>{{ $item->name }}</h3>
-            <a class="explore-btn" href="pages/categorie-shop.html">Explore <img class="icon"
+            <a class="explore-btn" href="{{ route('categoryShop', $item) }}">Explore <img class="icon"
                 src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
           </div>
           @endforeach
@@ -115,10 +115,10 @@
           @foreach($mensSub as $item)
           <div class="col-md-6">
             <div class="child-cat-item">
-              <a href="pages/categorie-shop.html"><img class="img-fluid"
+              <a href="{{ route('categoryShop', $item) }}"><img class="img-fluid"
                   src="{{ asset('/backend/uploads/'. $item->icon) }}" alt="women's-1"></a>
               <h3>{{ $item->name }}</h3>
-              <a class="explore-btn" href="pages/categorie-shop.html">Explore <img class="icon"
+              <a class="explore-btn" href="{{ route('categoryShop', $item) }}">Explore <img class="icon"
                   src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
             </div>
           </div>
@@ -188,10 +188,10 @@
             @foreach($accesoriesSub as $item)
             <div class="col-md-6">
               <div class="child-cat-item">
-                <a href="pages/categorie-shop.html"><img class="img-fluid"
+                <a href="{{ route('categoryShop', $item) }}"><img class="img-fluid"
                     src="{{ asset('/backend/uploads/'. $item->icon) }}" alt="womens-1"></a>
                 <h3>{{ $item->name }}</h3>
-                <a class="explore-btn" href="pages/categorie-shop.html">Explore <img class="icon"
+                <a class="explore-btn" href="{{ route('categoryShop', $item) }}">Explore <img class="icon"
                     src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
               </div>
             </div>
@@ -211,52 +211,25 @@
     <div class="container">
       <h2 class="section-title text-center text-white mb-md-4">styles based on your shopping habits</h2>
       <div id="product" class="owl-carousel">
-        <div class="item">
-          <div class="product-item">
-            <a class="w-100" href="pages/product-details.html"><img class="img-fluid"
-                src="{{ asset('frontend/assets') }}/images/product-img-1.png" alt="product-img-1"></a>
 
-            <div class="product-content">
-              <a href="pages/product-details.html" class="product-title-home">Black Snikers shoes</a>
-              <h3 class="new-price my-3">SAR <span>230.00</span></h3>
-              <div class="d-flex justify-content-between">
-                <div class="off">
-                  <span class="old-price">SAR 340</span>
-                  <span class="discount">30% OFF</span>
-                </div>
-                <span class="wishlist"><i class="far fa-heart"></i></span>
-              </div>
-            </div>
-          </div>
-        </div class="item">
+        @foreach($products as $product)
+
+        @php
+        $discountAmount = ($product->price - ($product->discount / 100) * $product->price);
+
+        $discount = (($product->discount * 100) / $product->price)
+        @endphp
+
 
         <div class="item">
           <div class="product-item">
-            <a class="w-100" href="pages/product-details.html"><img class="img-fluid"
-                src="{{ asset('frontend/assets') }}/images/product-img-2.png" alt="product-img-1"></a>
+            <a class="w-100" href="{{ route('productView', $product->slug) }}"><img class="img-fluid"
+                src="{{ asset('backend/uploads/' . $product->thumbnail) }}" alt="product-img-1"></a>
 
             <div class="product-content">
-              <a href="pages/product-details.html" class="product-title-home">Womens Fahsion Clothes</a>
-              <h3 class="new-price my-3">SAR <span>230.00</span></h3>
-              <div class="d-flex justify-content-between">
-                <div class="off">
-                  <span class="old-price">SAR 340</span>
-                  <span class="discount">30% OFF</span>
-                </div>
-                <span class="wishlist"><i class="far fa-heart"></i></span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="product-item">
-            <a class="w-100" href="pages/product-details.html"><img class="img-fluid"
-                src="{{ asset('frontend/assets') }}/images/product-img-3.png" alt="product-img-1"></a>
-
-            <div class="product-content">
-              <a href="pages/product-details.html" class="product-title-home">Black causal boat shoes</a>
-              <h3 class="new-price my-3">SAR <span>230.00</span></h3>
+              <a href="{{ route('productView', $product->slug) }}" class="product-title-home">{{
+                Str::limit($product->name, 25) }}</a>
+              <h3 class="new-price my-3">SAR<span>230.00</span></h3>
               <div class="d-flex justify-content-between">
                 <div class="off">
                   <span class="old-price">SAR 340</span>
@@ -267,63 +240,7 @@
             </div>
           </div>
         </div>
-
-        <div class="item">
-          <div class="product-item">
-            <a class="w-100" href="pages/product-details.html"><img class="img-fluid"
-                src="{{ asset('frontend/assets') }}/images/product-img-4.png" alt="product-img-1"></a>
-
-            <div class="product-content">
-              <a href="pages/product-details.html" class="product-title-home">Color convers shoes</a>
-              <h3 class="new-price my-3">SAR <span>230.00</span></h3>
-              <div class="d-flex justify-content-between">
-                <div class="off">
-                  <span class="old-price">SAR 340</span>
-                  <span class="discount">30% OFF</span>
-                </div>
-                <span class="wishlist"><i class="far fa-heart"></i></span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="product-item">
-            <a class="w-100" href="pages/product-details.html"><img class="img-fluid"
-                src="{{ asset('frontend/assets') }}/images/product-img-4.png" alt="product-img-1"></a>
-
-            <div class="product-content">
-              <a href="pages/product-details.html" class="product-title-home">Color convers shoes</a>
-              <h3 class="new-price my-3">SAR <span>230.00</span></h3>
-              <div class="d-flex justify-content-between">
-                <div class="off">
-                  <span class="old-price">SAR 340</span>
-                  <span class="discount">30% OFF</span>
-                </div>
-                <span class="wishlist"><i class="far fa-heart"></i></span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="product-item">
-            <a class="w-100" href="pages/product-details.html"><img class="img-fluid"
-                src="{{ asset('frontend/assets') }}/images/product-img-4.png" alt="product-img-1"></a>
-
-            <div class="product-content">
-              <a href="pages/product-details.html" class="product-title-home">Color convers shoes</a>
-              <h3 class="new-price my-3">SAR <span>230.00</span></h3>
-              <div class="d-flex justify-content-between">
-                <div class="off">
-                  <span class="old-price">SAR 340</span>
-                  <span class="discount">30% OFF</span>
-                </div>
-                <span class="wishlist"><i class="far fa-heart"></i></span>
-              </div>
-            </div>
-          </div>
-        </div>
+        @endforeach
 
       </div>
 
