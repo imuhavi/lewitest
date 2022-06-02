@@ -612,7 +612,9 @@
               <p class="label">{{$discount}}%</p>
               @endif
               <div class="proudct-img">
-                <img class="img-fluid" src="{{ asset('backend/uploads/' . $product->thumbnail) }}" alt="product-12">
+                <a href="{{ route('productView', $product->slug) }}">
+                  <img class="img-fluid" src="{{ asset('backend/uploads/' . $product->thumbnail) }}" alt="product-12">
+                </a>
                 <div class="overlay">
                   <div class="action">
                     <span><a href="{{ route('productView', $product->slug) }}"><i class="fas fa-eye"></i></a></span>

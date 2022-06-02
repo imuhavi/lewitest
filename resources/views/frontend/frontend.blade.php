@@ -232,14 +232,30 @@
               <a href="{{ route('productView', $product->slug) }}" class="product-title-home">{{
                 Str::limit($product->name,
                 25) }}</a>
-              <h3 class="new-price my-3">SAR<span>230.00</span></h3>
+              @if($product->discount == null )
+              <h3 class="new-price my-3">SAR <span> {{ $product->price }}</span></h3>
+              @endif
+              @if($product->discount !== null && $product->discount_type == 'Flat')
+              <h3 class="new-price my-3">SAR <span>{{ $product->price- $product->discount }}</span></h3>
+
               <div class="d-flex justify-content-between">
                 <div class="off">
-                  <span class="old-price">SAR 340</span>
-                  <span class="discount">30% OFF</span>
+                  <span class="old-price">{{ $product->price }}</span>
+                  <span class="discount">{{ round($discount) }}% OFF</span>
                 </div>
                 <span class="wishlist"><i class="far fa-heart"></i></span>
               </div>
+              @endif
+              @if($product->discount !== null && $product->discount_type == 'Percent')
+              <h3 class="new-price my-3">SAR <span>{{ $product->price- $product->discount }}</span></h3>
+              <div class="d-flex justify-content-between">
+                <div class="off">
+                  <span class="old-price">{{ $product->price }}</span>
+                  <span class="discount">{{ round($discount) }}% OFF</span>
+                </div>
+                <span class="wishlist"><i class="far fa-heart"></i></span>
+              </div>
+              @endif
             </div>
           </div>
         </div>

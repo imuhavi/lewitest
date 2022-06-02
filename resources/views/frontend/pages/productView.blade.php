@@ -10,48 +10,31 @@
         <div class="col-md-6">
           <div class="product-image">
             <div class="slider">
+
               <div class="slide-item">
-                <img id="img_01" class="img-fluid" src="{{ asset('frontend/assets/') }}/images/feature-img.jpeg"
+                <img id="img_01" class="img-fluid" src="{{ asset('backend/uploads/' . $product->thumbnail) }}"
                   alt="Feature Images">
               </div>
 
-              <div class="slide-nav-item">
-
-                <img id="img_02" class="img-fluid" src="{{ asset('frontend/assets/') }}/images/accesories-1.png"
+              @foreach($product->images as $image)
+              <div class="slide-item">
+                <img id="img_01" class="img-fluid" src="{{ asset('backend/uploads/' . $image->image) }}"
                   alt="Feature Images">
               </div>
-              <div class="slide-nav-item">
+              @endforeach
 
-                <img id="img_03" class="img-fluid" src="{{ asset('frontend/assets/') }}/images/accesories-2.png"
-                  alt="Feature Images">
-              </div>
-              <div class="slide-nav-item">
-
-                <img id="img_04" class="img-fluid" src="{{ asset('frontend/assets/') }}/images/accesories-3.png"
-                  alt="Feature Images">
-              </div>
-              <div class="slide-nav-item">
-
-                <img id="img_05" class="img-fluid" src="{{ asset('frontend/assets/') }}/images/accesories-4.png"
-                  alt="Feature Images">
-              </div>
             </div>
+
             <div class="slide-nav">
               <div class="slide-nav-item">
-                <img class="w-75" src="{{ asset('frontend/assets/') }}/images/feature-img.jpeg" alt="">
+                <img class="w-75" src="{{ asset('backend/uploads/' . $product->thumbnail) }}" alt="">
               </div>
+
+              @foreach($product->images as $image)
               <div class="slide-nav-item">
-                <img class="w-75" src="{{ asset('frontend/assets/') }}/images/accesories-1.png" alt="">
+                <img class="w-75" src="{{ asset('backend/uploads/' . $image->image) }}" alt="">
               </div>
-              <div class="slide-nav-item">
-                <img class="w-75" src="{{ asset('frontend/assets/') }}/images/accesories-2.png" alt="">
-              </div>
-              <div class="slide-nav-item">
-                <img class="w-75" src="{{ asset('frontend/assets/') }}/images/accesories-3.png" alt="">
-              </div>
-              <div class="slide-nav-item">
-                <img class="w-75" src="{{ asset('frontend/assets/') }}/images/accesories-4.png" alt="">
-              </div>
+              @endforeach
 
             </div>
           </div>
@@ -60,13 +43,37 @@
         <!--------------------------
               Product Content Details
           ---------------------------->
+        @php
+        $discountAmount = ($product->price - ($product->discount / 100) * $product->price);
+
+        $discount = (($product->discount * 100) / $product->price)
+        @endphp
+
         <div class="col-md-6">
           <div class="product-content">
-            <h3 class="title">Etiam rhoncus. Maecenas tempus, tellus eget condimentum</h3>
-            <p class="summary">Loremipsum: Adolorsit amet</p>
-            <h3 class="price">SAR 77.50</h3>
-            <p class="previous-price">SAR <span class="old-price">100.00</span> <span class="discount">OFF 35%</span>
+            <h3 class="title">{{ $product->name }}</h3>
+            <p class="summary">{!! Str::limit($product->description, 120) !!}</p>
+
+            @if($product->discount == null )
+            <h3 class="price">SAR {{ $product->price }}</h3>
+            @endif
+
+            @if($product->discount !== null && $product->discount_type == 'Flat')
+            <h3 class="price">SAR {{ $product->price- $product->discount }}</h3>
+
+            <p class="previous-price">SAR <span class="old-price">{{ $product->price }}</span> <span
+                class="discount">OFF {{ round($discount) }}%</span>
             </p>
+            @endif
+
+            @if($product->discount !== null && $product->discount_type == 'Percent')
+            <h3 class="price">SAR {{ $product->price- $product->discount }}</h3>
+
+            <p class="previous-price">SAR <span class="old-price">{{ $product->price }}</span> <span
+                class="discount">OFF {{
+                round($discount) }}%</span>
+            </p>
+            @endif
             <div class="product-color">
               <p>Color: </p>
               <ul class="d-flex">

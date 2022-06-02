@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Cities;
 use App\Models\Product;
+use App\Models\ProductImage;
 use App\Models\Shop;
 use App\Models\Slider;
 use App\Models\States;
@@ -48,10 +49,11 @@ class FrontendController extends Controller
     return view($this->VIEW_PATH . 'shop', compact('products', 'subcategory'));
   }
 
-  function singleProductView($slug)
+  function productView($slug)
   {
-
-    return view($this->VIEW_PATH . 'productView');
+    $product = Product::where('slug', $slug)->first();
+    // return $product;
+    return view($this->VIEW_PATH . 'productView', compact('product'));
   }
 
 
