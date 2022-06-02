@@ -112,7 +112,8 @@
                   <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>
-                      <img src="{{ asset('backend/uploads/' . $item->thumbnail) }}" alt="Product thumbnail">
+                      <img style="width: 50px" src="{{ asset('backend/uploads/' . $item->thumbnail) }}"
+                        alt="Product thumbnail">
                     </td>
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->category ? $item->category->name : 'N/A' }}</td>

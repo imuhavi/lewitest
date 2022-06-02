@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Cities;
+use App\Models\Product;
 use App\Models\Shop;
 use App\Models\Slider;
 use App\Models\States;
@@ -13,7 +14,8 @@ use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
-  private $VIEW_PATH = 'frontend.frontend';
+  private $HOME_PATH = 'frontend.frontend';
+  private $VIEW_PATH = 'frontend.pages.';
 
   function frontend()
   {
@@ -23,56 +25,62 @@ class FrontendController extends Controller
     $mensSub = Subcategory::where('category_id', 3)->get()->slice(0, 4);
     $accesoriesSub = Subcategory::where('category_id', 4)->get()->slice(0, 4);
     $mensMain = Category::where('slug', 'mens')->where('status', 'Active')->first();
-    // $womensMain = Category::where('slug', 'womens')->where('status', 'Active')->first();
     $accesoriesMain = Category::where('slug', 'accessories')->where('status', 'Active')->first();
     $categories = Category::whereIn('slug', ['mens', 'womens', 'accessories'])->whereStatus('Active')->take(3)->get();
     $womensMain = $categories->where('slug', 'womens')->first();
-    $accesoriesSub = Subcategory::where('category_id', 4)->get()->slice(0, 4); {
-      return view('frontend.pages.shop');
-    }
+    $accesoriesSub = Subcategory::where('category_id', 4)->get()->slice(0, 4);
+    $shops = Shop::where('status', 'Active')->get(['id', 'shop_logo']);
+    return view($this->HOME_PATH, compact('slider', 'categories', 'accesoriesSub', 'womensSub1', 'womensSub2', 'mensSub', 'accesoriesMain', 'mensMain', 'womensMain', 'shops'));
+  }
 
-    function singleProductView($slug)
-    {
-      return view('frontend.pages.productView');
-    }
+  function shop()
+  {
+    $products = Product::orderBy('id', 'asc')->get();
+    return view($this->VIEW_PATH . 'shop', compact('products'));
+  }
+
+  function singleProductView($slug)
+  {
+
+    return view($this->VIEW_PATH . 'productView');
+  }
 
 
-    function cart()
-    {
-      return view('frontend.pages.cart');
-    }
+  function cart()
+  {
+    return view($this->VIEW_PATH . 'cart');
+  }
 
-    function wishlist()
-    {
-      return view('frontend.pages.wishlist');
-    }
+  function wishlist()
+  {
+    return view($this->VIEW_PATH . 'wishlist');
+  }
 
-    function checkout()
-    {
-      return view('frontend.pages.checkout');
-    }
+  function checkout()
+  {
+    return view($this->VIEW_PATH . 'checkout');
+  }
 
-    function subscription()
-    {
-      $data = Subscription::with('subscriptionOptions')->get();
-      return view('frontend.pages.subscription', compact('data'));
-    }
+  function subscription()
+  {
+    $data = Subscription::with('subscriptionOptions')->get();
+    return view($this->VIEW_PATH . 'subscription', compact('data'));
+  }
 
-    function getCity($stateId)
-    {
-      $city = Cities::where('state_id', $stateId)->get();
-      return response()->json($city);
-    }
+  function getCity($stateId)
+  {
+    $city = Cities::where('state_id', $stateId)->get();
+    return response()->json($city);
+  }
 
-    function termsAndCondition()
-    {
-      return view('frontend.pages.termsAndCondition');
-    }
+  function termsAndCondition()
+  {
+    return view($this->VIEW_PATH . 'termsAndCondition');
+  }
 
-    function sellerRegister(Subscription $subscription)
-    {
-      $sates = States::get();
-      return view('frontend.pages.sellerRegister', compact('subscription', 'sates'));
-    }
+  function sellerRegister(Subscription $subscription)
+  {
+    $sates = States::get();
+    return view($this->VIEW_PATH . 'sellerRegister', compact('subscription', 'sates'));
   }
 }

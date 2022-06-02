@@ -21,20 +21,20 @@ class ProductController extends Controller
   {
     $page = 'index';
     $sql = Product::with('category', 'brand')->where('is_draft', 0)->orderBy('created_at', 'DESC');
-    
+
     $keyword = '';
-    if($request->keyword){
+    if ($request->keyword) {
       $keyword = $request->keyword;
       $sql->where('name', 'like', '%' . $keyword . '%')
-          ->orWhere('slug', 'like', '%' . $keyword . '%')
-          ->orWhere('purchase_price', 'like', '%' . $keyword . '%')
-          ->orWhere('price', 'like', '%' . $keyword . '%')
-          ->orWhere('discount_type', 'like', '%' . $keyword . '%')
-          ->orWhere('discount', 'like', '%' . $keyword . '%')
-          ->orWhere('unit', 'like', '%' . $keyword . '%');
+        ->orWhere('slug', 'like', '%' . $keyword . '%')
+        ->orWhere('purchase_price', 'like', '%' . $keyword . '%')
+        ->orWhere('price', 'like', '%' . $keyword . '%')
+        ->orWhere('discount_type', 'like', '%' . $keyword . '%')
+        ->orWhere('discount', 'like', '%' . $keyword . '%')
+        ->orWhere('unit', 'like', '%' . $keyword . '%');
     }
 
-    $data = $sql->paginate(2);
+    $data = $sql->paginate(10);
     return view($this->VIEW_PATH, compact('page', 'data', 'keyword'));
   }
 
@@ -69,29 +69,29 @@ class ProductController extends Controller
     try {
       $data = $request->except(['_token', 'images']);
 
-      if(!empty($data['attributes'])){
-        $data['attributes'] = json_encode(array_map(function($item){
+      if (!empty($data['attributes'])) {
+        $data['attributes'] = json_encode(array_map(function ($item) {
           return json_encode(explode('-', $item));
         }, $data['attributes']));
       }
-      
-      if($request->status == 'on'){
+
+      if ($request->status == 'on') {
         $data['status'] = 1;
-      }else{
+      } else {
         $data['status'] = 0;
       }
-      
-      if($request->is_draft == 'on'){
+
+      if ($request->is_draft == 'on') {
         $data['is_draft'] = 1;
-      }else{
+      } else {
         $data['is_draft'] = 0;
       }
-      if($request->isCashAvailable == 'on'){
+      if ($request->isCashAvailable == 'on') {
         $data['isCashAvailable'] = 1;
-      }else{
+      } else {
         $data['isCashAvailable'] = 0;
       }
-      
+
       if ($request->file('meta_image')) {
         uploadImage($request->file('meta_image'));
         $data['meta_image'] = session('fileName');
@@ -101,15 +101,15 @@ class ProductController extends Controller
         $data['pdf'] = session('fileName');
       }
       if ($request->file('thumbnail')) {
-        uploadImage($request->file('thumbnail'));
+        uploadImage($request->file('thumbnail'), 647);
         $data['thumbnail'] = session('fileName');
       }
-      
+
       $product = Product::create($data);
-      
-      if(!empty($request->images)){
+
+      if (!empty($request->images)) {
         foreach ($request->images as $image) {
-          uploadImage($image);
+          uploadImage($image, 647);
           ProductImage::create([
             'product_id' => $product->id,
             'image' => session('fileName')
@@ -161,30 +161,30 @@ class ProductController extends Controller
     try {
       $data = $request->except(['_token', 'images']);
 
-      if(!empty($data['attributes'])){
-        $data['attributes'] = json_encode(array_map(function($item){
+      if (!empty($data['attributes'])) {
+        $data['attributes'] = json_encode(array_map(function ($item) {
           return json_encode(explode('-', $item));
         }, $data['attributes']));
       }
-      
-      if($request->status == 'on'){
+
+      if ($request->status == 'on') {
         $data['status'] = 1;
-      }else{
+      } else {
         $data['status'] = 0;
       }
 
-      if($request->is_draft == 'on'){
+      if ($request->is_draft == 'on') {
         $data['is_draft'] = 1;
-      }else{
+      } else {
         $data['is_draft'] = 0;
       }
-      
-      if($request->isCashAvailable == 'on'){
+
+      if ($request->isCashAvailable == 'on') {
         $data['isCashAvailable'] = 1;
-      }else{
+      } else {
         $data['isCashAvailable'] = 0;
       }
-      
+
       if ($request->file('meta_image')) {
         removeImage($product->meta_image);
         uploadImage($request->file('meta_image'));
@@ -200,10 +200,10 @@ class ProductController extends Controller
         uploadImage($request->file('thumbnail'));
         $data['thumbnail'] = session('fileName');
       }
-      
+
       $product->update($data);
-      
-      if(!empty($request->images)){
+
+      if (!empty($request->images)) {
         foreach ($request->images as $image) {
           uploadImage($image);
           ProductImage::create([
@@ -220,16 +220,16 @@ class ProductController extends Controller
 
   public function destroy(Product $product)
   {
-    if($product->thumbnail){
+    if ($product->thumbnail) {
       removeImage($product->thumbnail);
     }
-    if($product->pdf){
+    if ($product->pdf) {
       removeImage($product->pdf);
     }
-    if($product->meta_image){
+    if ($product->meta_image) {
       removeImage($product->meta_image);
     }
-    
+
     foreach ($product->images as $image) {
       removeImage($image->image);
     }
@@ -249,17 +249,17 @@ class ProductController extends Controller
   {
     $page = 'index';
     $sql = Product::with('category', 'brand')->where('is_draft', 1)->orderBy('created_at', 'DESC');
-    
+
     $keyword = '';
-    if($request->keyword){
+    if ($request->keyword) {
       $keyword = $request->keyword;
       $sql->where('name', 'like', '%' . $keyword . '%')
-          ->orWhere('slug', 'like', '%' . $keyword . '%')
-          ->orWhere('purchase_price', 'like', '%' . $keyword . '%')
-          ->orWhere('price', 'like', '%' . $keyword . '%')
-          ->orWhere('discount_type', 'like', '%' . $keyword . '%')
-          ->orWhere('discount', 'like', '%' . $keyword . '%')
-          ->orWhere('unit', 'like', '%' . $keyword . '%');
+        ->orWhere('slug', 'like', '%' . $keyword . '%')
+        ->orWhere('purchase_price', 'like', '%' . $keyword . '%')
+        ->orWhere('price', 'like', '%' . $keyword . '%')
+        ->orWhere('discount_type', 'like', '%' . $keyword . '%')
+        ->orWhere('discount', 'like', '%' . $keyword . '%')
+        ->orWhere('unit', 'like', '%' . $keyword . '%');
     }
 
     $data = $sql->paginate(2);
