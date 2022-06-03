@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 17, 2022 at 01:42 PM
+-- Generation Time: Jun 03, 2022 at 12:52 PM
 -- Server version: 5.7.34
 -- PHP Version: 8.0.8
 
@@ -468,7 +468,7 @@ CREATE TABLE `products` (
   `purchase_price` decimal(8,2) DEFAULT NULL,
   `price` decimal(8,2) DEFAULT NULL,
   `discount_type` enum('Percent','Flat') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Flat',
-  `discount` decimal(8,2) DEFAULT NULL,
+  `discount` int(11) DEFAULT NULL,
   `shipping_cost` decimal(8,2) DEFAULT NULL,
   `shipping_days` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `unit` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -492,8 +492,9 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `seller_id`, `category_id`, `sub_category_id`, `brand_id`, `name`, `slug`, `description`, `thumbnail`, `pdf`, `status`, `purchase_price`, `price`, `discount_type`, `discount`, `shipping_cost`, `shipping_days`, `unit`, `min`, `max`, `quantity`, `tags`, `isCashAvailable`, `tax`, `attributes`, `meta_title`, `meta_description`, `meta_image`, `is_draft`, `created_at`, `updated_at`) VALUES
-(1, 2, 4, 9, 6, 'Micro Form Bag', 'micro-form-bag', '<p>Meet your new go-to going-out bag. Handcrafted from premium Italian leather, the Micro Form Bag features a button-snap closure, an adjustable strap, and a polished, streamlined shape. Plus,</p>\r\n\r\n<p>it&rsquo;s micro but mighty, which means it can hold all of your essentials&mdash;like your phone, keys, wallet, and lipstick&mdash;without weighing you down. Turns out the best things really do come in small packages.</p>', '1652460340_mP0xR60RJerTrIHv.jpg', '1652460340_jfLc0doOLpkoIekT.pdf', 'Active', '200.00', '230.00', 'Percent', '10.00', '30.00', '7', 'Piece', 1, 10, 20, 'bag,womens', 1, '15.00', '[\"[\\\"2\\\",\\\"Red\\\"]\",\"[\\\"2\\\",\\\"Green\\\"]\",\"[\\\"2\\\",\\\"Blue\\\"]\",\"[\\\"1\\\",\\\"medium\\\"]\",\"[\\\"1\\\",\\\"Large\\\"]\"]', 'Micro Form Bag', 'Meet your new go-to going-out bag. Handcrafted from premium Italian leather, the Micro Form Bag features a button-', '1652460340_llBcwmRCnm4C8JLh.jpg', 0, '2022-05-13 13:45:40', '2022-05-13 13:45:40'),
-(2, 3, 3, 1, 1, 'Cream Square Shirt', 'cream-square-shirt', '<p>Roomy shirt with round neck and short sleeves. Contrasting front print.</p>\r\n\r\n<p>Typewriter neutra seitan subway tile trust fund fingerstache pork belly swag listicle austin kogi whatever. Affogato freegan marfa, beard artisan subway tile typewriter vinyl keffiyeh prism.</p>\r\n\r\n<p>Gentrify prism activated charcoal iceland skateboard, neutra direct trade la croix man braid craft beer truffaut cliche poke.</p>', '1652460956_5nfPC0aZ3n9ruRm5.webp', NULL, 'Active', '120.00', '150.00', 'Percent', '12.00', '30.00', '15', 'Pieces', 1, 15, 30, 'mens,shirt', 0, '15.00', NULL, 'Roomy shirt with round neck and short sleeves. Contrasting front print.', 'Typewriter neutra seitan subway tile trust fund fingerstache pork belly swag listicle austin kogi whatever. Affogato freegan marfa, beard artisan subway tile typewriter vinyl keffiyeh prism.', NULL, 0, '2022-05-13 13:55:56', '2022-05-13 13:55:56');
+(1, NULL, 1, 1, 1, 'Micro Form Bag', 'micro-form-bag', '<p>Meet your new go-to going-out bag. Handcrafted from premium Italian leather, the Micro Form Bag features a button-snap closure, an adjustable strap, and a polished, streamlined shape. Plus,</p>\r\n\r\n<p>it&rsquo;s micro but mighty, which means it can hold all of your essentials&mdash;like your phone, keys, wallet, and lipstick&mdash;without weighing you down. Turns out the best things really do come in small packages.</p>', '1654207763_GXpwcwuuGQLnwToB.jpg', '1652460340_jfLc0doOLpkoIekT.pdf', 'Active', '200.00', '230.00', 'Percent', 10, '30.00', '7', 'Piece', 1, 10, 20, 'bag,womens', 1, '15.00', '[\"[\\\"2\\\",\\\"Red\\\"]\",\"[\\\"2\\\",\\\"Green\\\"]\",\"[\\\"2\\\",\\\"Blue\\\"]\",\"[\\\"1\\\",\\\"medium\\\"]\",\"[\\\"1\\\",\\\"Large\\\"]\"]', 'Micro Form Bag', 'Meet your new go-to going-out bag. Handcrafted from premium Italian leather, the Micro Form Bag features a button-', '1652460340_llBcwmRCnm4C8JLh.jpg', 0, '2022-05-13 13:45:40', '2022-06-02 19:09:23'),
+(3, 3, 2, 5, 3, 'Ina Moonen', 'ina-moonen', '<p>Vero deserunt mollit.&nbsp;Grammatical mistakes can be easy to make. But fear not! Our team at Grammarly has compiled a handy list of common grammatical errors to help make your writing accurate,</p>', '1653853215_QYoLPs9rwpRsNCOP.jpeg', NULL, 'Active', '400.00', '500.00', 'Flat', 100, '30.00', '7', 'Quantity', 4, 61, 980, 'Quam laborum volupta', 0, '15.00', NULL, 'Aliquam rerum et fac', 'Quia excepteur ipsam', NULL, 0, '2022-05-29 16:40:15', '2022-05-29 16:40:15'),
+(4, 7, 2, 9, 8, 'Womens Mordern Bag', 'womens-mordern-bag', '<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable.</p>\r\n\r\n<p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#39;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>\r\n\r\n<p>It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>', '1654208611_S17jU87tWfrfbNW6.jpg', NULL, 'Active', '500.00', '400.00', 'Percent', 12, '30.00', '7', 'Quantity', 2, 10, 20, 'bags', 1, '15.00', '[\"[\\\"2\\\",\\\"Green\\\"]\",\"[\\\"2\\\",\\\"Blue\\\"]\",\"[\\\"1\\\",\\\"medium\\\"]\",\"[\\\"1\\\",\\\"Large\\\"]\"]', 'There are many variations of passages', 'There are many variations of passages there are many variations of passages.', NULL, 0, '2022-06-02 19:23:31', '2022-06-02 19:23:31');
 
 -- --------------------------------------------------------
 
@@ -516,11 +517,16 @@ CREATE TABLE `product_images` (
 INSERT INTO `product_images` (`id`, `product_id`, `image`, `created_at`, `updated_at`) VALUES
 (1, 1, '1652460340_sf9hTL0tSc1Tbuqc.jpg', '2022-05-13 13:45:40', '2022-05-13 13:45:40'),
 (2, 1, '1652460340_rCuNGUGtgM7o3JQc.jpg', '2022-05-13 13:45:40', '2022-05-13 13:45:40'),
-(3, 2, '1652460956_QBU1aRNqBBASJ9AP.webp', '2022-05-13 13:55:56', '2022-05-13 13:55:56'),
-(4, 2, '1652460956_MhgT3xamYUH3OPKc.webp', '2022-05-13 13:55:56', '2022-05-13 13:55:56'),
-(5, 2, '1652460956_vVgFoJIgD1ItRPMr.webp', '2022-05-13 13:55:56', '2022-05-13 13:55:56'),
-(6, 2, '1652460956_h6vTKWu3uLfdQ9UY.webp', '2022-05-13 13:55:56', '2022-05-13 13:55:56'),
-(7, 2, '1652460956_bSOH66rAw6Xgznyn.webp', '2022-05-13 13:55:56', '2022-05-13 13:55:56');
+(8, 3, '1653853215_PscaIXIl0fTNbPHm.png', '2022-05-29 16:40:15', '2022-05-29 16:40:15'),
+(9, 3, '1653853215_qITVHYUdG5uMw4fo.png', '2022-05-29 16:40:15', '2022-05-29 16:40:15'),
+(10, 3, '1653853215_FTLIYBVUDjPekOtn.png', '2022-05-29 16:40:16', '2022-05-29 16:40:16'),
+(11, 3, '1653853216_tUUkaRBfWiQ6wezV.png', '2022-05-29 16:40:16', '2022-05-29 16:40:16'),
+(12, 4, '1654208611_b96gn9tJxVGzzrcn.jpg', '2022-06-02 19:23:31', '2022-06-02 19:23:31'),
+(13, 4, '1654208611_3I3RvzQ3300rxde8.jpg', '2022-06-02 19:23:31', '2022-06-02 19:23:31'),
+(14, 4, '1654208611_APTlRkXCyWiOKG6P.jpg', '2022-06-02 19:23:31', '2022-06-02 19:23:31'),
+(15, 4, '1654208611_AhZMG8L8g9Ywhdc4.jpg', '2022-06-02 19:23:31', '2022-06-02 19:23:31'),
+(16, 4, '1654208611_1Zkt0d7QhblnHHPs.jpg', '2022-06-02 19:23:31', '2022-06-02 19:23:31'),
+(17, 4, '1654208611_gfKyP6vxQ8QBS6MO.jpg', '2022-06-02 19:23:31', '2022-06-02 19:23:31');
 
 -- --------------------------------------------------------
 
@@ -988,13 +994,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `cities`
 --
 ALTER TABLE `cities`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146225;
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102899;
 
 --
 -- AUTO_INCREMENT for table `countries`
 --
 ALTER TABLE `countries`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=251;
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=195;
 
 --
 -- AUTO_INCREMENT for table `coupons`
@@ -1036,13 +1042,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `sellers`
@@ -1072,7 +1078,7 @@ ALTER TABLE `social_configs`
 -- AUTO_INCREMENT for table `states`
 --
 ALTER TABLE `states`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4915;
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2862;
 
 --
 -- AUTO_INCREMENT for table `subcategories`
