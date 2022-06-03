@@ -48,11 +48,11 @@
         <div class="col-md-3 child-category">
           @foreach($womensSub1 as $item)
           <div class="child-cat-item ">
-            <a href="{{ route('categoryShop', $item) }}"><img class="w-100"
+            <a href="{{ route('categoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}"><img class="w-100"
                 src="{{ asset('/backend/uploads/'. $item->icon) }}" alt="womens-{{ $item->icon }}"></a>
             <h3>{{ $item->name }}</h3>
-            <a class="explore-btn" href="{{ route('categoryShop', $item) }}">Explore <img class="icon"
-                src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
+            <a class="explore-btn" href="{{ route('categoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}">Explore
+              <img class="icon" src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
           </div>
           @endforeach
         </div>
@@ -74,11 +74,11 @@
         <div class="col-md-3 child-category">
           @foreach($womensSub2 as $item)
           <div class="child-cat-item">
-            <a href="{{ route('categoryShop', $item) }}"><img class="w-100"
+            <a href="{{ route('categoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}"><img class="w-100"
                 src="{{ asset('/backend/uploads/'. $item->icon) }}" alt="womans-{{ $item->icon }}"></a>
             <h3>{{ $item->name }}</h3>
-            <a class="explore-btn" href="{{ route('categoryShop', $item) }}">Explore <img class="icon"
-                src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
+            <a class="explore-btn" href="{{ route('categoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}">Explore
+              <img class="icon" src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
           </div>
           @endforeach
         </div>
@@ -115,10 +115,11 @@
           @foreach($mensSub as $item)
           <div class="col-md-6">
             <div class="child-cat-item">
-              <a href="{{ route('categoryShop', $item) }}"><img class="img-fluid"
+              <a href="{{ route('categoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}"><img class="img-fluid"
                   src="{{ asset('/backend/uploads/'. $item->icon) }}" alt="women's-1"></a>
               <h3>{{ $item->name }}</h3>
-              <a class="explore-btn" href="{{ route('categoryShop', $item) }}">Explore <img class="icon"
+              <a class="explore-btn"
+                href="{{ route('categoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}">Explore <img class="icon"
                   src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
             </div>
           </div>
@@ -188,11 +189,12 @@
             @foreach($accesoriesSub as $item)
             <div class="col-md-6">
               <div class="child-cat-item">
-                <a href="{{ route('categoryShop', $item) }}"><img class="img-fluid"
+                <a href="{{ route('categoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}"><img class="img-fluid"
                     src="{{ asset('/backend/uploads/'. $item->icon) }}" alt="womens-1"></a>
                 <h3>{{ $item->name }}</h3>
-                <a class="explore-btn" href="{{ route('categoryShop', $item) }}">Explore <img class="icon"
-                    src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
+                <a class="explore-btn"
+                  href="{{ route('categoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}">Explore <img
+                    class="icon" src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
               </div>
             </div>
             @endforeach
@@ -228,15 +230,32 @@
 
             <div class="product-content">
               <a href="{{ route('productView', $product->slug) }}" class="product-title-home">{{
-                Str::limit($product->name, 25) }}</a>
-              <h3 class="new-price my-3">SAR<span>230.00</span></h3>
+                Str::limit($product->name,
+                25) }}</a>
+              @if($product->discount == null )
+              <h3 class="new-price my-3">SAR <span> {{ $product->price }}</span></h3>
+              @endif
+              @if($product->discount !== null && $product->discount_type == 'Flat')
+              <h3 class="new-price my-3">SAR <span>{{ $product->price- $product->discount }}</span></h3>
+
               <div class="d-flex justify-content-between">
                 <div class="off">
-                  <span class="old-price">SAR 340</span>
-                  <span class="discount">30% OFF</span>
+                  <span class="old-price">{{ $product->price }}</span>
+                  <span class="discount">{{ round($discount) }}% OFF</span>
                 </div>
                 <span class="wishlist"><i class="far fa-heart"></i></span>
               </div>
+              @endif
+              @if($product->discount !== null && $product->discount_type == 'Percent')
+              <h3 class="new-price my-3">SAR <span>{{ $product->price- $product->discount }}</span></h3>
+              <div class="d-flex justify-content-between">
+                <div class="off">
+                  <span class="old-price">{{ $product->price }}</span>
+                  <span class="discount">{{ round($discount) }}% OFF</span>
+                </div>
+                <span class="wishlist"><i class="far fa-heart"></i></span>
+              </div>
+              @endif
             </div>
           </div>
         </div>

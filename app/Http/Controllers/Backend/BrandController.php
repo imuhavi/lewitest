@@ -48,7 +48,7 @@ class BrandController extends Controller
       'name' => 'required|max:100',
       'logo' => 'required|mimes:jpg,jpeg,bmp,png',
       'banner' => 'required|mimes:jpg,jpeg,bmp,png',
-      'slug' => 'required|max:100',
+      'slug' => 'required|max:100|unique:brand',
       'meta_title' => 'required|max:100',
       'meta_description' => 'required|max:1000'
     ]);
@@ -166,10 +166,10 @@ class BrandController extends Controller
   public function destroy(Brand $brand)
   {
     try {
-      if(hasFile($brand->logo)){
+      if (hasFile($brand->logo)) {
         removeImage($brand->logo);
       }
-      if(hasFile($brand->banner)){
+      if (hasFile($brand->banner)) {
         removeImage($brand->banner);
       }
       $brand->delete();

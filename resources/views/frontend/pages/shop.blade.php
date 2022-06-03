@@ -13,7 +13,7 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
           <li class="breadcrumb-item"><a href="#">Category</a></li>
-          <li class="breadcrumb-item active" aria-current="page">{{ $subcategory->name }}</li>
+          <li class="breadcrumb-item active" aria-current="page">{{ $subcategory->name ?? '' }}</li>
         </ol>
       </nav>
 
@@ -583,7 +583,7 @@
       <div class="col-md-12 col-lg-9">
         <div class="row mb-5">
           <div class="col-12 d-flex justify-content-between">
-            <h2>{{ $subcategory->name }}</h2>
+            <h2>{{ $subcategory->name ?? ''}}</h2>
             <div class="filter">
               <select id="select_js">
                 <option>Filter By</option>
@@ -612,7 +612,9 @@
               <p class="label">{{$discount}}%</p>
               @endif
               <div class="proudct-img">
-                <img class="img-fluid" src="{{ asset('backend/uploads/' . $product->thumbnail) }}" alt="product-12">
+                <a href="{{ route('productView', $product->slug) }}">
+                  <img class="img-fluid" src="{{ asset('backend/uploads/' . $product->thumbnail) }}" alt="product-12">
+                </a>
                 <div class="overlay">
                   <div class="action">
                     <span><a href="{{ route('productView', $product->slug) }}"><i class="fas fa-eye"></i></a></span>

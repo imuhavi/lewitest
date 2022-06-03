@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductImage extends Model
 {
-    use HasFactory;
+  use HasFactory;
+  protected $guarded = [];
 
-    protected $guarded = [];
+  function product()
+  {
+    return $this->belongsTo(Product::class, 'product_id');
+  }
 }

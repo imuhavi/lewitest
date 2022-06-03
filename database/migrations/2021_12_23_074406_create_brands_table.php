@@ -20,7 +20,7 @@ class CreateBrandsTable extends Migration
       $table->text('logo')->nullable();
       $table->text('banner')->nullable();
       $table->enum('status', ['Active', 'Inactive'])->default('Active');
-      $table->string('slug')->nullable();
+      $table->string('slug')->nullable()->unique();
       $table->string('meta_title')->nullable();
       $table->text('meta_description')->nullable();
       $table->timestamps();

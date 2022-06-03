@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Cities;
 use App\Models\Product;
+use App\Models\ProductImage;
 use App\Models\Shop;
 use App\Models\Slider;
 use App\Models\States;
@@ -29,7 +30,7 @@ class FrontendController extends Controller
     $categories = Category::whereIn('slug', ['mens', 'womens', 'accessories'])->whereStatus('Active')->take(3)->get();
     $womensMain = $categories->where('slug', 'womens')->first();
     $accesoriesSub = Subcategory::where('category_id', 4)->get()->slice(0, 4);
-    $products = Product::orderBy('id', 'desc')->get();
+    $products = Product::orderBy('id', 'desc')->take(8)->get();
     $shops = Shop::where('status', 'Active')->get(['id', 'shop_logo']);
     return view($this->HOME_PATH, compact('slider', 'categories', 'accesoriesSub', 'womensSub1', 'womensSub2', 'mensSub', 'accesoriesMain', 'mensMain', 'womensMain', 'shops', 'products'));
   }
@@ -40,18 +41,19 @@ class FrontendController extends Controller
     return view($this->VIEW_PATH . 'shop', compact('products'));
   }
 
-  function categoryShop($id)
+  function categoryShop($slug, $id)
   {
     $products = Product::where('sub_category_id', $id)->orderBy('id', 'asc')->get();
-    $subcategory = Subcategory::where('id', $id)->first();
-    // return $subcategory;
+
+    $subcategory = Subcategory::where('slug', $slug)->first();
     return view($this->VIEW_PATH . 'shop', compact('products', 'subcategory'));
   }
 
-  function singleProductView($slug)
+  function productView($slug)
   {
-
-    return view($this->VIEW_PATH . 'productView');
+    $product = Product::where('slug', $slug)->first();
+    // return $product;
+    return view($this->VIEW_PATH . 'productView', compact('product'));
   }
 
 

@@ -54,7 +54,7 @@ class ProductController extends Controller
   {
     $request->validate([
       'name' => 'required|max:199',
-      'slug' => 'required|max:199',
+      'slug' => 'required|max:199|unique:products',
       'purchase_price' => 'required',
       'price' => 'required',
       'shipping_cost' => 'required',
@@ -101,7 +101,7 @@ class ProductController extends Controller
         $data['pdf'] = session('fileName');
       }
       if ($request->file('thumbnail')) {
-        uploadImage($request->file('thumbnail'), 647);
+        uploadImage($request->file('thumbnail'), 500);
         $data['thumbnail'] = session('fileName');
       }
 
@@ -109,7 +109,7 @@ class ProductController extends Controller
 
       if (!empty($request->images)) {
         foreach ($request->images as $image) {
-          uploadImage($image, 647);
+          uploadImage($image, 500);
           ProductImage::create([
             'product_id' => $product->id,
             'image' => session('fileName')
@@ -187,7 +187,7 @@ class ProductController extends Controller
 
       if ($request->file('meta_image')) {
         removeImage($product->meta_image);
-        uploadImage($request->file('meta_image'));
+        uploadImage($request->file('meta_image'), 647);
         $data['meta_image'] = session('fileName');
       }
       if ($request->file('pdf')) {
@@ -197,7 +197,7 @@ class ProductController extends Controller
       }
       if ($request->file('thumbnail')) {
         removeImage($product->thumbnail);
-        uploadImage($request->file('thumbnail'));
+        uploadImage($request->file('thumbnail'), 647);
         $data['thumbnail'] = session('fileName');
       }
 
