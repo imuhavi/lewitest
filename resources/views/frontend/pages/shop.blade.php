@@ -18,13 +18,13 @@
       </nav>
 
       <button class="btn btn-outline-secondary d-lg-none" type="button" data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fas fa-filter"></i></button>
+        data-bs-target="#filter" aria-controls="filter"><i class="fas fa-filter"></i></button>
     </div>
 
     <!-----------------------------
             Filter For Mobile 
       ------------------------------>
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="filter" aria-labelledby="offcanvasRightLabel"
       data-bs-scroll="true">
       <div class="offcanvas-header">
         <h5 id="offcanvasRightLabel">Filter By</h5>
@@ -49,23 +49,25 @@
                     aria-labelledby="panelsStayOpen-headingOne">
                     <div class="accordion-body">
 
-                      <div class="price-range-wraper-sm">
-                        <div class="price-filter-sm">
+                      <div class="price-range-wraper">
+                        <div class="price-input">
                           <div class="field">
                             <span>Min</span>
-                            <input type="number" class="input-min" value="100">
+                            <input type="number" id="input-min" value="{{ $min }}" min="{{ $min }}" max="{{ $max }}">
                           </div>
                           <div class="field">
                             <span>Max</span>
-                            <input type="number" class="input-max" value="7500">
+                            <input type="number" id="input-max" value="{{ $max }}" min="{{ $min }}" max="{{ $max }}">
                           </div>
                         </div>
-                        <div class="slider-sm">
-                          <div class="progress-sm"></div>
+                        <div class="slider">
+                          <div class="progress"></div>
                         </div>
-                        <div class="range-input-sm">
-                          <input type="range" class="range-min" min="0" max="10000" value="100" step="100">
-                          <input type="range" class="range-max" min="0" max="10000" value="7500" step="100">
+                        <div class="range-input">
+                          <input type="range" id="range-min" min="{{ $min }}" max="{{ $max }}" value="{{ $min }}"
+                            step="5" onchange="minPrice()">
+                          <input type="range" id="range-max" min="{{ $min }}" max="{{ $max }}" value="{{ $max }}"
+                            step="10" onchange="maxPrice()">
                         </div>
                       </div>
 
@@ -232,16 +234,17 @@
                     aria-labelledby="panelsStayOpen-headingFour">
                     <div class="accordion-body">
                       <ul class="filter-brand">
-                      @foreach($brands as $item)
+                        @foreach($brands as $item)
                         <li>
                           <div class="form-check">
-                            <input class="form-check-input filter-select" value="{{ $item->id }}" type="radio" name="brand" id="brand-{{ $item->id }}">
+                            <input class="form-check-input filter-select" value="{{ $item->id }}" type="radio"
+                              name="brand" id="brand-{{ $item->id }}">
                             <label class="form-check-label" for="brand-{{ $item->id }}">
                               {{ $item->name }}
                             </label>
                           </div>
                         </li>
-                      @endforeach
+                        @endforeach
                       </ul>
                       <button class="btn fivedots-filter-btn">Filter</button>
                     </div>
@@ -283,19 +286,21 @@
                       <div class="price-input">
                         <div class="field">
                           <span>Min</span>
-                          <input type="number" class="input-min" value="{{ $min }}" min="{{ $min }}" max="{{ $max }}">
+                          <input type="number" id="input-min" value="{{ $min }}" min="{{ $min }}" max="{{ $max }}">
                         </div>
                         <div class="field">
                           <span>Max</span>
-                          <input type="number" class="input-max" value="{{ $max }}" min="{{ $min }}" max="{{ $max }}">
+                          <input type="number" id="input-max" value="{{ $max }}" min="{{ $min }}" max="{{ $max }}">
                         </div>
                       </div>
                       <div class="slider">
                         <div class="progress"></div>
                       </div>
                       <div class="range-input">
-                        <input type="range" class="range-min" min="{{ $min }}" max="{{ $max }}" value="{{ $min }}" step="10">
-                        <input type="range" class="range-max" min="{{ $min }}" max="{{ $max }}" value="{{ $max }}" step="10">
+                        <input type="range" id="range-min" min="{{ $min }}" max="{{ $max }}" value="{{ $min }}" step="5"
+                          onchange="minPrice()">
+                        <input type="range" id="range-max" min="{{ $min }}" max="{{ $max }}" value="{{ $max }}"
+                          step="10" onchange="maxPrice()">
                       </div>
                     </div>
 
@@ -468,14 +473,15 @@
                 <div class="accordion-body">
                   <ul class="filter-brand">
                     @foreach($brands as $item)
-                      <li>
-                        <div class="form-check">
-                          <input class="form-check-input filter-select" value="{{ $item->id }}" type="radio" name="brand" id="brand-{{ $item->id }}">
-                          <label class="form-check-label" for="brand-{{ $item->id }}">
-                            {{ $item->name }}
-                          </label>
-                        </div>
-                      </li>
+                    <li>
+                      <div class="form-check">
+                        <input class="form-check-input filter-select" value="{{ $item->id }}" type="radio" name="brand"
+                          id="brand-{{ $item->id }}">
+                        <label class="form-check-label" for="brand-{{ $item->id }}">
+                          {{ $item->name }}
+                        </label>
+                      </div>
+                    </li>
                     @endforeach
                   </ul>
 

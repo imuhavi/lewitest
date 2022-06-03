@@ -1,41 +1,28 @@
-const rangeInput = document.querySelectorAll(".range-input input"),
-priceInput = document.querySelectorAll(".price-input input"),
-range = document.querySelector(".slider .progress");
-let priceGap = 1000;
+let minValue = document.getElementById("range-min");
+let maxValue = document.getElementById("range-max");
+let minDisplay = document.getElementById("input-min");
+let maxDisplay = document.getElementById("input-max");
+let minGap = 0;
+let sliderTrack = document.querySelector(".progress");
+let sliderMaxValue = document.getElementById("range-max").max;
 
-priceInput.forEach(input =>{
-    input.addEventListener("input", e =>{
-        let minPrice = parseInt(priceInput[0].value),
-        maxPrice = parseInt(priceInput[1].value);
-        
-        if((maxPrice - minPrice >= priceGap) && maxPrice <= rangeInput[1].max){
-            if(e.target.className === "input-min"){
-                rangeInput[0].value = minPrice;
-                range.style.left = ((minPrice / rangeInput[0].max) * 100) + "%";
-            }else{
-                rangeInput[1].value = maxPrice;
-                range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
-            }
-        }
-    });
-});
-
-rangeInput.forEach(input =>{
-    input.addEventListener("input", e =>{
-        let minVal = parseInt(rangeInput[0].value),
-        maxVal = parseInt(rangeInput[1].value);
-
-        if((maxVal - minVal) < priceGap){
-            if(e.target.className === "range-min"){
-                rangeInput[0].value = maxVal - priceGap
-            }else{
-                rangeInput[1].value = minVal + priceGap;
-            }
-        }else{
-            priceInput[0].value = minVal;
-            priceInput[1].value = maxVal;
-            range.style.left = ((minVal / rangeInput[0].max) * 100) + "%";
-            range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
-        }
-    });
-});
+function minPrice() {
+  if (parseInt(maxValue.value) - parseInt(minValue.value) <= minGap) {
+    minValue.value = parseInt(maxValue.value) - minGap;
+  }
+  console.log(minValue.value)
+  minDisplay.value = minValue.value;
+  fillColor();
+}
+function maxPrice() {
+  if (parseInt(maxValue.value) - parseInt(minValue.value) <= minGap) {
+    maxValue.value = parseInt(minValue.value) + minGap;
+  }
+  maxDisplay.value = maxValue.value;
+  fillColor();
+}
+function fillColor() {
+  percent1 = (minValue.value / sliderMaxValue) * 100;
+  percent2 = (maxValue.value / sliderMaxValue) * 100;
+  sliderTrack.style.background = `linear-gradient(to right, #dadae5 ${percent1}% , #3264fe ${percent1}% , #3264fe ${percent2}%, #dadae5 ${percent2}%)`;
+}
