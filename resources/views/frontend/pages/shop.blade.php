@@ -232,62 +232,17 @@
                     aria-labelledby="panelsStayOpen-headingFour">
                     <div class="accordion-body">
                       <ul class="filter-brand">
+                      @foreach($brands as $item)
                         <li>
                           <div class="form-check">
-                            <input class="form-check-input filter-select" type="radio" name="brand" id="brand-1">
-                            <label class="form-check-label" for="brand-1">
-                              Adidas
+                            <input class="form-check-input filter-select" value="{{ $item->id }}" type="radio" name="brand" id="brand-{{ $item->id }}">
+                            <label class="form-check-label" for="brand-{{ $item->id }}">
+                              {{ $item->name }}
                             </label>
                           </div>
                         </li>
-
-                        <li>
-                          <div class="form-check">
-                            <input class="form-check-input filter-select" type="radio" name="brand" id="brand-2">
-                            <label class="form-check-label" for="brand-2">
-                              Naki
-                            </label>
-                          </div>
-                        </li>
-
-                        <li>
-                          <div class="form-check">
-                            <input class="form-check-input filter-select" type="radio" name="brand" id="brand-3">
-                            <label class="form-check-label" for="brand-3">
-                              Reebok
-                            </label>
-                          </div>
-                        </li>
-
-                        <li>
-                          <div class="form-check">
-                            <input class="form-check-input filter-select" type="radio" name="brand" id="brand-4">
-                            <label class="form-check-label" for="brand-4">
-                              Skechers
-                            </label>
-                          </div>
-                        </li>
-
-                        <li>
-                          <div class="form-check">
-                            <input class="form-check-input filter-select" type="radio" name="brand" id="brand-5">
-                            <label class="form-check-label" for="brand-5">
-                              New Balance
-                            </label>
-                          </div>
-                        </li>
-
-
-                        <li>
-                          <div class="form-check">
-                            <input class="form-check-input filter-select" type="radio" name="brand" id="brand-6">
-                            <label class="form-check-label" for="brand-6">
-                              Calvin Klein
-                            </label>
-                          </div>
-                        </li>
+                      @endforeach
                       </ul>
-
                       <button class="btn fivedots-filter-btn">Filter</button>
                     </div>
                   </div>
@@ -328,19 +283,19 @@
                       <div class="price-input">
                         <div class="field">
                           <span>Min</span>
-                          <input type="number" class="input-min" value="0">
+                          <input type="number" class="input-min" value="{{ $min }}" min="{{ $min }}" max="{{ $max }}">
                         </div>
                         <div class="field">
                           <span>Max</span>
-                          <input type="number" class="input-max" value="7500">
+                          <input type="number" class="input-max" value="{{ $max }}" min="{{ $min }}" max="{{ $max }}">
                         </div>
                       </div>
                       <div class="slider">
                         <div class="progress"></div>
                       </div>
                       <div class="range-input">
-                        <input type="range" class="range-min" min="0" max="10000" value="100" step="100">
-                        <input type="range" class="range-max" min="0" max="10000" value="7500" step="100">
+                        <input type="range" class="range-min" min="{{ $min }}" max="{{ $max }}" value="{{ $min }}" step="10">
+                        <input type="range" class="range-max" min="{{ $min }}" max="{{ $max }}" value="{{ $max }}" step="10">
                       </div>
                     </div>
 
@@ -512,60 +467,16 @@
                 aria-labelledby="panelsStayOpen-headingFour">
                 <div class="accordion-body">
                   <ul class="filter-brand">
-                    <li>
-                      <div class="form-check">
-                        <input class="form-check-input filter-select" type="radio" name="brand" id="brand-1">
-                        <label class="form-check-label" for="brand-1">
-                          Adidas
-                        </label>
-                      </div>
-                    </li>
-
-                    <li>
-                      <div class="form-check">
-                        <input class="form-check-input filter-select" type="radio" name="brand" id="brand-2">
-                        <label class="form-check-label" for="brand-2">
-                          Naki
-                        </label>
-                      </div>
-                    </li>
-
-                    <li>
-                      <div class="form-check">
-                        <input class="form-check-input filter-select" type="radio" name="brand" id="brand-3">
-                        <label class="form-check-label" for="brand-3">
-                          Reebok
-                        </label>
-                      </div>
-                    </li>
-
-                    <li>
-                      <div class="form-check">
-                        <input class="form-check-input filter-select" type="radio" name="brand" id="brand-4">
-                        <label class="form-check-label" for="brand-4">
-                          Skechers
-                        </label>
-                      </div>
-                    </li>
-
-                    <li>
-                      <div class="form-check">
-                        <input class="form-check-input filter-select" type="radio" name="brand" id="brand-5">
-                        <label class="form-check-label" for="brand-5">
-                          New Balance
-                        </label>
-                      </div>
-                    </li>
-
-
-                    <li>
-                      <div class="form-check">
-                        <input class="form-check-input filter-select" type="radio" name="brand" id="brand-6">
-                        <label class="form-check-label" for="brand-6">
-                          Calvin Klein
-                        </label>
-                      </div>
-                    </li>
+                    @foreach($brands as $item)
+                      <li>
+                        <div class="form-check">
+                          <input class="form-check-input filter-select" value="{{ $item->id }}" type="radio" name="brand" id="brand-{{ $item->id }}">
+                          <label class="form-check-label" for="brand-{{ $item->id }}">
+                            {{ $item->name }}
+                          </label>
+                        </div>
+                      </li>
+                    @endforeach
                   </ul>
 
                   <button class="btn fivedots-filter-btn">Filter</button>

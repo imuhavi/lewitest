@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Cities;
 use App\Models\Product;
@@ -45,8 +46,20 @@ class FrontendController extends Controller
   {
     $products = Product::where('sub_category_id', $id)->orderBy('id', 'asc')->get();
 
-    $subcategory = Subcategory::where('slug', $slug)->first();
-    return view($this->VIEW_PATH . 'shop', compact('products', 'subcategory'));
+    $subcategory = Subcategory::with('products')->find($id);
+    
+    $productSQL = $subcategory->products;
+
+    $brandIds = array_unique($productSQL->pluck('brand_id')->toArray());
+    $brands = Brand::find($brandIds);
+
+    // $min = min($productSQL->pluck('price')->toArray());
+    // $max = max($productSQL->pluck('price')->toArray());
+
+    $min = 10;
+    $max = 90;
+
+    return view($this->VIEW_PATH . 'shop', compact('products', 'subcategory', 'brands', 'min', 'max'));
   }
 
   function productView($slug)
