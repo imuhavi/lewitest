@@ -26,6 +26,7 @@ Route::get('/wishlist', [FrontendController::class, 'wishlist'])->name('wishlist
 Route::get('/subscription', [FrontendController::class, 'subscription'])->name('subscription');
 
 Route::get('/terms-and-condition', [FrontendController::class, 'termsAndCondition'])->name('termsAndCondition');
+Route::get('/privacy-policy', [FrontendController::class, 'privacyPolicy'])->name('privacyPolicy');
 
 
 Route::get('/seller-register/{subscription}', [FrontendController::class, 'sellerRegister'])->name('sellerRegister');

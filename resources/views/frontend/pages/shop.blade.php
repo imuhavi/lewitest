@@ -286,19 +286,21 @@
                       <div class="price-input">
                         <div class="field">
                           <span>Min</span>
-                          <input type="number" onchange="filter()" id="input-min-lg" value="{{ $min }}" min="{{ $min }}" max="{{ $max }}">
+                          <input type="number" onchange="filter()" id="input-min-lg" value="{{ $min }}" min="{{ $min }}"
+                            max="{{ $max }}">
                         </div>
                         <div class="field">
                           <span>Max</span>
-                          <input type="number" onchange="filter()" id="input-max-lg" value="{{ $max }}" min="{{ $min }}" max="{{ $max }}">
+                          <input type="number" onchange="filter()" id="input-max-lg" value="{{ $max }}" min="{{ $min }}"
+                            max="{{ $max }}">
                         </div>
                       </div>
                       <div class="slider">
                         <div class="progress"></div>
                       </div>
                       <div class="range-input">
-                        <input type="range" id="range-min-lg" min="{{ $min }}" max="{{ $max }}" value="{{ $min }}" step="5"
-                          oninput="minPrice()" onchange="filter()">
+                        <input type="range" id="range-min-lg" min="{{ $min }}" max="{{ $max }}" value="{{ $min }}"
+                          step="5" oninput="minPrice()" onchange="filter()">
                         <input type="range" id="range-max-lg" min="{{ $min }}" max="{{ $max }}" value="{{ $max }}"
                           step="10" oninput="maxPrice()" onchange="filter()">
                       </div>
@@ -328,14 +330,15 @@
                   <input type="text" id="selectedColor" value="">
                   <ul class="filter-color" id="filter-color">
                     @foreach($colorAttributesArr as $item)
-                      <li>
-                        <div class="form-check">
-                          <input class="form-check-input filter-select" onchange="setCurrentValue('color', this.value)" value="{{ $item }}" type="radio" name="color" id="color-{{ $item }}">
-                          <label class="form-check-label" for="color-{{ $item }}">
-                            {{ ucfirst($item) }}
-                          </label>
-                        </div>
-                      </li>
+                    <li>
+                      <div class="form-check">
+                        <input class="form-check-input filter-select" onchange="setCurrentValue('color', this.value)"
+                          value="{{ $item }}" type="radio" name="color" id="color-{{ $item }}">
+                        <label class="form-check-label" for="color-{{ $item }}">
+                          {{ ucfirst($item) }}
+                        </label>
+                      </div>
+                    </li>
                     @endforeach
                   </ul>
 
@@ -358,14 +361,15 @@
                   <input type="text" id="selectedSize" value="">
                   <ul class="filter-size" id="filter-size">
                     @foreach($sizeAttributesArr as $item)
-                      <li>
-                        <div class="form-check">
-                          <input class="form-check-input filter-select"  onchange="setCurrentValue('size', this.value)" value="{{ $item }}" type="radio" name="size" id="size-{{ $item }}">
-                          <label class="form-check-label" for="size-{{ $item }}">
-                            {{ ucfirst($item) }}
-                          </label>
-                        </div>
-                      </li>
+                    <li>
+                      <div class="form-check">
+                        <input class="form-check-input filter-select" onchange="setCurrentValue('size', this.value)"
+                          value="{{ $item }}" type="radio" name="size" id="size-{{ $item }}">
+                        <label class="form-check-label" for="size-{{ $item }}">
+                          {{ ucfirst($item) }}
+                        </label>
+                      </div>
+                    </li>
                     @endforeach
                   </ul>
                   <button class="btn fivedots-filter-btn">Filter</button>
@@ -390,8 +394,8 @@
                     @foreach($brands as $item)
                     <li>
                       <div class="form-check">
-                        <input class="form-check-input filter-select"  onchange="setCurrentValue('brand', this.value)" value="{{ $item->id }}" type="radio" name="brand"
-                          id="brand-{{ $item->id }}">
+                        <input class="form-check-input filter-select" onchange="setCurrentValue('brand', this.value)"
+                          value="{{ $item->id }}" type="radio" name="brand" id="brand-{{ $item->id }}">
                         <label class="form-check-label" for="brand-{{ $item->id }}">
                           {{ $item->name }}
                         </label>
@@ -482,12 +486,12 @@
 
 <script>
   let min = getElement('input-min-lg'),
-      max = getElement('input-max-lg'),
-      filterBy = getElement('select_js'),
-      color = getElement('selectedColor'),
-      size = getElement('selectedSize'),
-      brand = getElement('selectedBrand')
-  function filter(){
+    max = getElement('input-max-lg'),
+    filterBy = getElement('select_js'),
+    color = getElement('selectedColor'),
+    size = getElement('selectedSize'),
+    brand = getElement('selectedBrand')
+  function filter() {
     console.log(min.value, max.value, filterBy.value, color.value, size.value, brand.value)
   }
   filter()

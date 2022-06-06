@@ -46,7 +46,7 @@ class FrontendController extends Controller
   function categoryShop($slug, $id)
   {
     $subcategory = Subcategory::with('products')->find($id);
-    
+
     $productSQL = $subcategory->products;
 
     $products = $productSQL->skip(0)->take(12);
@@ -64,27 +64,34 @@ class FrontendController extends Controller
     $sizeAttributesArr = [];
 
     foreach ($allAttributes as $key => $attributes) {
-      foreach(json_decode($attributes) as $attribute){
+      foreach (json_decode($attributes) as $attribute) {
         $itemArr = json_decode($attribute);
         $item = Attribute::find($itemArr[0]);
-        if($item->name == 'Color'){
+        if ($item->name == 'Color') {
           array_push($colorAttributesArr, $itemArr[1]);
-        }elseif ($item->name == 'Size') {
+        } elseif ($item->name == 'Size') {
           array_push($sizeAttributesArr, $itemArr[1]);
         }
       }
     }
 
     return view($this->VIEW_PATH . 'shop', compact(
-      'products', 'subcategory', 'brands', 'min', 'max', 'colorAttributesArr', 'sizeAttributesArr'
+      'products',
+      'subcategory',
+      'brands',
+      'min',
+      'max',
+      'colorAttributesArr',
+      'sizeAttributesArr'
     ));
   }
 
   function productView($slug)
   {
     $product = Product::where('slug', $slug)->first();
+    $reletedProduct = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->take(8);
     // return $product;
-    return view($this->VIEW_PATH . 'productView', compact('product'));
+    return view($this->VIEW_PATH . 'productView', compact('product', 'reletedProduct'));
   }
 
 
@@ -118,6 +125,11 @@ class FrontendController extends Controller
   function termsAndCondition()
   {
     return view($this->VIEW_PATH . 'termsAndCondition');
+  }
+
+  function privacyPolicy()
+  {
+    return view($this->VIEW_PATH . 'privacyPolicy');
   }
 
   function sellerRegister(Subscription $subscription)
