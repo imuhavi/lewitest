@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attribute;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Cities;
@@ -44,22 +45,39 @@ class FrontendController extends Controller
 
   function categoryShop($slug, $id)
   {
-    $products = Product::where('sub_category_id', $id)->orderBy('id', 'asc')->get();
-
     $subcategory = Subcategory::with('products')->find($id);
     
     $productSQL = $subcategory->products;
+
+    $products = $productSQL->skip(0)->take(12);
 
     $brandIds = array_unique($productSQL->pluck('brand_id')->toArray());
     $brands = Brand::find($brandIds);
 
     // $min = min($productSQL->pluck('price')->toArray());
     // $max = max($productSQL->pluck('price')->toArray());
-
     $min = 10;
-    $max = 90;
+    $max = 9000;
 
-    return view($this->VIEW_PATH . 'shop', compact('products', 'subcategory', 'brands', 'min', 'max'));
+    $allAttributes = Product::where('attributes', '!=', null)->pluck('attributes');
+    $colorAttributesArr = [];
+    $sizeAttributesArr = [];
+
+    foreach ($allAttributes as $key => $attributes) {
+      foreach(json_decode($attributes) as $attribute){
+        $itemArr = json_decode($attribute);
+        $item = Attribute::find($itemArr[0]);
+        if($item->name == 'Color'){
+          array_push($colorAttributesArr, $itemArr[1]);
+        }elseif ($item->name == 'Size') {
+          array_push($sizeAttributesArr, $itemArr[1]);
+        }
+      }
+    }
+
+    return view($this->VIEW_PATH . 'shop', compact(
+      'products', 'subcategory', 'brands', 'min', 'max', 'colorAttributesArr', 'sizeAttributesArr'
+    ));
   }
 
   function productView($slug)

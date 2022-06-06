@@ -65,9 +65,9 @@
                         </div>
                         <div class="range-input">
                           <input type="range" id="range-min" min="{{ $min }}" max="{{ $max }}" value="{{ $min }}"
-                            step="5" onchange="minPrice()">
+                            step="5" oninput="minPrice()">
                           <input type="range" id="range-max" min="{{ $min }}" max="{{ $max }}" value="{{ $max }}"
-                            step="10" onchange="maxPrice()">
+                            step="10" oninput="maxPrice()">
                         </div>
                       </div>
 
@@ -286,22 +286,23 @@
                       <div class="price-input">
                         <div class="field">
                           <span>Min</span>
-                          <input type="number" id="input-min" value="{{ $min }}" min="{{ $min }}" max="{{ $max }}">
+                          <input type="number" onchange="filter()" id="input-min-lg" value="{{ $min }}" min="{{ $min }}" max="{{ $max }}">
                         </div>
                         <div class="field">
                           <span>Max</span>
-                          <input type="number" id="input-max" value="{{ $max }}" min="{{ $min }}" max="{{ $max }}">
+                          <input type="number" onchange="filter()" id="input-max-lg" value="{{ $max }}" min="{{ $min }}" max="{{ $max }}">
                         </div>
                       </div>
                       <div class="slider">
                         <div class="progress"></div>
                       </div>
                       <div class="range-input">
-                        <input type="range" id="range-min" min="{{ $min }}" max="{{ $max }}" value="{{ $min }}" step="5"
-                          onchange="minPrice()">
-                        <input type="range" id="range-max" min="{{ $min }}" max="{{ $max }}" value="{{ $max }}"
-                          step="10" onchange="maxPrice()">
+                        <input type="range" id="range-min-lg" min="{{ $min }}" max="{{ $max }}" value="{{ $min }}" step="5"
+                          oninput="minPrice()" onchange="filter()">
+                        <input type="range" id="range-max-lg" min="{{ $min }}" max="{{ $max }}" value="{{ $max }}"
+                          step="10" oninput="maxPrice()" onchange="filter()">
                       </div>
+                      <small class="price-range-error text-danger mt-1"></small>
                     </div>
 
 
@@ -324,62 +325,18 @@
               <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show"
                 aria-labelledby="panelsStayOpen-headingTwo">
                 <div class="accordion-body">
-
+                  <input type="text" id="selectedColor" value="">
                   <ul class="filter-color" id="filter-color">
-                    <li>
-                      <div class="form-check">
-                        <input class="form-check-input filter-select" type="radio" name="color" id="color-1">
-                        <label class="form-check-label" for="color-1">
-                          Green
-                        </label>
-                      </div>
-                    </li>
-
-                    <li>
-                      <div class="form-check">
-                        <input class="form-check-input filter-select" type="radio" name="color" id="color-2">
-                        <label class="form-check-label" for="color-2">
-                          Red
-                        </label>
-                      </div>
-                    </li>
-
-                    <li>
-                      <div class="form-check">
-                        <input class="form-check-input filter-select" type="radio" name="color" id="color-3">
-                        <label class="form-check-label" for="color-3">
-                          Blue
-                        </label>
-                      </div>
-                    </li>
-
-                    <li>
-                      <div class="form-check">
-                        <input class="form-check-input filter-select" type="radio" name="color" id="color-4">
-                        <label class="form-check-label" for="color-4">
-                          Yellow
-                        </label>
-                      </div>
-                    </li>
-
-                    <li>
-                      <div class="form-check">
-                        <input class="form-check-input filter-select" type="radio" name="color" id="color-5">
-                        <label class="form-check-label" for="color-5">
-                          Samon
-                        </label>
-                      </div>
-                    </li>
-
-
-                    <li>
-                      <div class="form-check">
-                        <input class="form-check-input filter-select" type="radio" name="color" id="color-6">
-                        <label class="form-check-label" for="color-6">
-                          Ocene
-                        </label>
-                      </div>
-                    </li>
+                    @foreach($colorAttributesArr as $item)
+                      <li>
+                        <div class="form-check">
+                          <input class="form-check-input filter-select" onchange="setCurrentValue('color', this.value)" value="{{ $item }}" type="radio" name="color" id="color-{{ $item }}">
+                          <label class="form-check-label" for="color-{{ $item }}">
+                            {{ ucfirst($item) }}
+                          </label>
+                        </div>
+                      </li>
+                    @endforeach
                   </ul>
 
                   <button class="btn fivedots-filter-btn">Filter</button>
@@ -398,61 +355,18 @@
               <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show"
                 aria-labelledby="panelsStayOpen-headingThree">
                 <div class="accordion-body">
+                  <input type="text" id="selectedSize" value="">
                   <ul class="filter-size" id="filter-size">
-                    <li>
-                      <div class="form-check">
-                        <input class="form-check-input filter-select" type="radio" name="size" id="size-1">
-                        <label class="form-check-label" for="size-1">
-                          Small
-                        </label>
-                      </div>
-                    </li>
-
-                    <li>
-                      <div class="form-check">
-                        <input class="form-check-input filter-select" type="radio" name="size" id="size-2">
-                        <label class="form-check-label" for="size-2">
-                          Medium
-                        </label>
-                      </div>
-                    </li>
-
-                    <li>
-                      <div class="form-check">
-                        <input class="form-check-input filter-select" type="radio" name="size" id="size-3">
-                        <label class="form-check-label" for="size-3">
-                          Large
-                        </label>
-                      </div>
-                    </li>
-
-                    <li>
-                      <div class="form-check">
-                        <input class="form-check-input filter-select" type="radio" name="size" id="size-4">
-                        <label class="form-check-label" for="size-4">
-                          Extra Large
-                        </label>
-                      </div>
-                    </li>
-
-                    <li>
-                      <div class="form-check">
-                        <input class="form-check-input filter-select" type="radio" name="size" id="size-5">
-                        <label class="form-check-label" for="size-5">
-                          Extra extra large
-                        </label>
-                      </div>
-                    </li>
-
-
-                    <li>
-                      <div class="form-check">
-                        <input class="form-check-input filter-select" type="radio" name="size" id="size-6">
-                        <label class="form-check-label" for="size-6">
-                          Extra Small
-                        </label>
-                      </div>
-                    </li>
+                    @foreach($sizeAttributesArr as $item)
+                      <li>
+                        <div class="form-check">
+                          <input class="form-check-input filter-select"  onchange="setCurrentValue('size', this.value)" value="{{ $item }}" type="radio" name="size" id="size-{{ $item }}">
+                          <label class="form-check-label" for="size-{{ $item }}">
+                            {{ ucfirst($item) }}
+                          </label>
+                        </div>
+                      </li>
+                    @endforeach
                   </ul>
                   <button class="btn fivedots-filter-btn">Filter</button>
                 </div>
@@ -471,11 +385,12 @@
               <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse show"
                 aria-labelledby="panelsStayOpen-headingFour">
                 <div class="accordion-body">
+                  <input type="text" id="selectedBrand" value="">
                   <ul class="filter-brand">
                     @foreach($brands as $item)
                     <li>
                       <div class="form-check">
-                        <input class="form-check-input filter-select" value="{{ $item->id }}" type="radio" name="brand"
+                        <input class="form-check-input filter-select"  onchange="setCurrentValue('brand', this.value)" value="{{ $item->id }}" type="radio" name="brand"
                           id="brand-{{ $item->id }}">
                         <label class="form-check-label" for="brand-{{ $item->id }}">
                           {{ $item->name }}
@@ -502,10 +417,10 @@
           <div class="col-12 d-flex justify-content-between">
             <h2>{{ $subcategory->name ?? ''}}</h2>
             <div class="filter">
-              <select id="select_js">
-                <option>Filter By</option>
-                <option>Low To High</option>
-                <option>High to Low</option>
+              <select id="select_js" onchange="filter()">
+                <option value="">Filter By</option>
+                <option value="desc">Low To High</option>
+                <option value="asc">High to Low</option>
               </select>
             </div>
           </div>
@@ -564,6 +479,37 @@
 
   </section>
 </main>
+
+<script>
+  let min = getElement('input-min-lg'),
+      max = getElement('input-max-lg'),
+      filterBy = getElement('select_js'),
+      color = getElement('selectedColor'),
+      size = getElement('selectedSize'),
+      brand = getElement('selectedBrand')
+  function filter(){
+    console.log(min.value, max.value, filterBy.value, color.value, size.value, brand.value)
+  }
+  filter()
+  function setCurrentValue(field, value) {
+    switch (field) {
+      case 'color':
+        color.value = value
+        break;
+      case 'size':
+        size.value = value
+        break;
+      case 'brand':
+        brand.value = value
+        break;
+    }
+    filter()
+  }
+  function getElement(id) {
+    return document.getElementById(id)
+  }
+</script>
+
 @endsection
 
 @section('footer_js')
