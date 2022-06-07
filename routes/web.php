@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\UserProfileController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\SubscriptionController;
@@ -31,6 +32,9 @@ Route::get('/privacy-policy', [FrontendController::class, 'privacyPolicy'])->nam
 
 Route::get('/seller-register/{subscription}', [FrontendController::class, 'sellerRegister'])->name('sellerRegister');
 
+
+
+
 Route::group(['middleware' => ['auth', 'verified']], function () {
   Route::get('/profile', [UserProfileController::class, 'userProfile'])->name('userProfile');
   Route::post('/update-profile', [UserProfileController::class, 'updateProfile'])->name('updateProfile');
@@ -44,6 +48,9 @@ Route::post('/subscribe-subscription/{subscription}', [SubscriptionController::c
 
 # Get States and Cities.
 Route::get('get-cities/{stateId}', [FrontendController::class, 'getCity'])->name('getCity');
+
+# Get Subcategories.
+Route::get('get-subcategory/{categoryId}', [ProductController::class, 'getSubcategory'])->name('getSubcategory');
 
 # MyFatoorah Start
 Route::group(['namespace' => 'App\Http\Controllers'], function () {

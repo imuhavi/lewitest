@@ -205,7 +205,7 @@
                   <td>{{ $product->brand->name }}</td>
                 </tr>
 
-                <tr>
+                <!-- <tr>
                   <td class="w-25">Attributes</td>
                   @php
                   $attributes = json_decode($product->attributes);
@@ -215,7 +215,7 @@
                     {{ $items }}
                     @endforeach
                   </td>
-                </tr>
+                </tr> -->
               </table>
             </div>
           </div>

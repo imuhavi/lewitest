@@ -23,7 +23,7 @@ class SubcategoryController extends Controller
   {
     $data = '';
     $page = 'create';
-    $category = Category::orderBy('name', 'asc')->get();
+    $category = Category::where('id', '!=', 1)->orderBy('name', 'asc')->get();
     return view($this->VIEW_PATH, compact('data', 'page', 'category'));
   }
 

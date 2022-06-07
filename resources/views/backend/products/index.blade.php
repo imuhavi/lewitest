@@ -412,10 +412,7 @@
 
             </div>
 
-
-
             <div class="col-md-4">
-
               <div class="panel panel-info">
                 <div class="panel-heading">
                   <h3 class="panel-title">Product Categories</h3>
@@ -426,7 +423,7 @@
                     <div class="form-group">
                       <label for="category">Choose Parent Category</label>
                       <select name="category_id" id="category" class="form-control">
-                        <option value="" disabled selected>Select One</option>
+                        <option value="" selected>Select One</option>
                         @foreach ($category as $cat_item )
                         <option value="{{ $cat_item->id }}" @if ( $page=='edit' ) {{ $cat_item->id == $data->id ?
                           'selected'
@@ -440,6 +437,7 @@
                     </div>
                   </div>
 
+                  @if($page == 'edit')
                   <div class="form-row">
                     <div class="form-group">
                       <label for="sub_category">Choose Child Category</label>
@@ -454,6 +452,17 @@
                       </select>
                     </div>
                   </div>
+                  @else
+
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="sub_category">Choose Child Category</label>
+                      <select name="sub_category_id" id="sub_category" class="form-control">
+                        <option selected hidden disabled value="">Choose Subcategory</option>
+                      </select>
+                    </div>
+                  </div>
+                  @endif
 
                   <div class="form-row">
                     <div class="form-group">
@@ -772,4 +781,32 @@
     <p class="no-s">Made with <i class="fa fa-heart"></i> by stacks</p>
   </div>
 </div><!-- Page Inner -->
+@endsection
+
+@section('footer_js')
+<script>
+  $('#category').change(function () {
+    let categoryId = $(this).val();
+    if (categoryId) {
+      $.ajax({
+        type: "GET",
+        url: "{{url('get-subcategory')}}/" + categoryId,
+        success: function (res) {
+          if (res) {
+            $("#sub_category").empty();
+            $("#sub_category").append('<option>Choose Subcategory</option>');
+            $.each(res, function (key, value) {
+              $("#sub_category").append('<option value="' + value.id + '">' + value.name + '</option>');
+            });
+
+          } else {
+            $("#sub_category").empty();
+          }
+        }
+      });
+    } else {
+      $("#sub_category").empty();
+    }
+  });
+</script>
 @endsection

@@ -15,7 +15,7 @@ class CategoryController extends Controller
   public function index()
   {
     $page = 'index';
-    $data = Category::orderBy('created_at', 'DESC')->get();
+    $data = Category::where('id', '!=', 1)->orderBy('created_at', 'DESC')->get();
     return view($this->VIEW_PATH, compact('data', 'page'));
   }
 
