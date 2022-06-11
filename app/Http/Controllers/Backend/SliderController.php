@@ -37,7 +37,8 @@ class SliderController extends Controller
     Slider::create([
       'title' => $request->title,
       'category_id' => $request->category_id,
-      'banner' => session('fileName')
+      'banner' => session('fileName'),
+      'statud' => 'Active'
     ]);
     return redirect($this->URL)->with('success', 'Slider added successfully.');
   }

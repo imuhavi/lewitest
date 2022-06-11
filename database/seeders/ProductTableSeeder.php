@@ -28,8 +28,6 @@ class ProductTableSeeder extends Seeder
       'purchase_price' => 345,
       'discount_type' => 3,
       'discount' => 3,
-      'shipping_cost' => 3,
-      'shipping_days' => 3,
       'category_id' => 3
     ]);
   }

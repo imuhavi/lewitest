@@ -46,11 +46,8 @@ class FrontendController extends Controller
   function categoryShop($slug, $id)
   {
     $subcategory = Subcategory::with('products')->find($id);
-
     $productSQL = $subcategory->products;
-
     $products = $productSQL->skip(0)->take(12);
-
     $brandIds = array_unique($productSQL->pluck('brand_id')->toArray());
     $brands = Brand::find($brandIds);
 
