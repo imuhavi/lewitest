@@ -47,7 +47,39 @@ class FrontendController extends Controller
   function shop()
   {
     $products = Product::orderBy('id', 'asc')->get();
-    return view($this->VIEW_PATH . 'shop', compact('products'));
+    $brands = Brand::get();
+
+    $min = 10;
+    $max = 9000;
+
+    $allAttributes = Product::where('attributes', '!=', null)->pluck('attributes');
+    $colorAttributesArr = [];
+    $sizeAttributesArr = [];
+
+
+    foreach ($allAttributes as $key => $attributes) {
+      foreach (json_decode($attributes) as $attribute) {
+        $itemArr = json_decode($attribute);
+        $item = Attribute::find($itemArr[0]);
+        if ($item->name == 'Color') {
+          array_push($colorAttributesArr, $itemArr[1]);
+        } elseif ($item->name == 'Size') {
+          array_push($sizeAttributesArr, $itemArr[1]);
+        }
+      }
+    }
+
+    $colorAttributesArr = array_unique($colorAttributesArr);
+    $sizeAttributesArr = array_unique($sizeAttributesArr);
+
+    return view($this->VIEW_PATH . 'shop', compact(
+      'products',
+      'brands',
+      'min',
+      'max',
+      'colorAttributesArr',
+      'sizeAttributesArr'
+    ));
   }
 
   function categoryShop($slug, $id)
@@ -78,6 +110,9 @@ class FrontendController extends Controller
         }
       }
     }
+
+    $colorAttributesArr = array_unique($colorAttributesArr);
+    $sizeAttributesArr = array_unique($sizeAttributesArr);
 
     return view($this->VIEW_PATH . 'shop', compact(
       'products',

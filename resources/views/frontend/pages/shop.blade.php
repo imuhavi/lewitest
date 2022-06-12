@@ -49,26 +49,32 @@
                     aria-labelledby="panelsStayOpen-headingOne">
                     <div class="accordion-body">
 
+
+
                       <div class="price-range-wraper">
                         <div class="price-input">
                           <div class="field">
                             <span>Min</span>
-                            <input type="number" id="input-min" value="{{ $min }}" min="{{ $min }}" max="{{ $max }}">
+                            <input type="number" onchange="filter()" id="input-min-lg" value="{{ $min }}"
+                              min="{{ $min }}" max="{{ $max }}">
                           </div>
                           <div class="field">
                             <span>Max</span>
-                            <input type="number" id="input-max" value="{{ $max }}" min="{{ $min }}" max="{{ $max }}">
+                            <input type="number" onchange="filter()" id="input-max-lg" value="{{ $max }}"
+                              min="{{ $min }}" max="{{ $max }}">
                           </div>
                         </div>
                         <div class="slider">
                           <div class="progress"></div>
                         </div>
+
                         <div class="range-input">
                           <input type="range" id="range-min" min="{{ $min }}" max="{{ $max }}" value="{{ $min }}"
-                            step="5" oninput="minPrice()">
+                            step="5" oninput="minPrice()" onchange="filter()">
                           <input type="range" id="range-max" min="{{ $min }}" max="{{ $max }}" value="{{ $max }}"
-                            step="10" oninput="maxPrice()">
+                            step="10" oninput="maxPrice()" onchange="filter()">
                         </div>
+
                       </div>
 
                     </div>
@@ -88,60 +94,20 @@
                     <div class="accordion-body">
 
                       <ul class="filter-color" id="filter-color">
+
+                        @foreach($colorAttributesArr as $item)
                         <li>
                           <div class="form-check">
-                            <input class="form-check-input filter-select" type="radio" name="color" id="color-1">
-                            <label class="form-check-label" for="color-1">
-                              Green
+                            <input class="form-check-input filter-select"
+                              onchange="setCurrentValue('color', this.value)" value="{{ $item }}" type="radio"
+                              name="color" id="color-{{ $item }}">
+                            <label class="form-check-label" for="color-{{ $item }}">
+                              {{ ucfirst($item) }}
                             </label>
                           </div>
                         </li>
+                        @endforeach
 
-                        <li>
-                          <div class="form-check">
-                            <input class="form-check-input filter-select" type="radio" name="color" id="color-2">
-                            <label class="form-check-label" for="color-2">
-                              Red
-                            </label>
-                          </div>
-                        </li>
-
-                        <li>
-                          <div class="form-check">
-                            <input class="form-check-input filter-select" type="radio" name="color" id="color-3">
-                            <label class="form-check-label" for="color-3">
-                              Blue
-                            </label>
-                          </div>
-                        </li>
-
-                        <li>
-                          <div class="form-check">
-                            <input class="form-check-input filter-select" type="radio" name="color" id="color-4">
-                            <label class="form-check-label" for="color-4">
-                              Yellow
-                            </label>
-                          </div>
-                        </li>
-
-                        <li>
-                          <div class="form-check">
-                            <input class="form-check-input filter-select" type="radio" name="color" id="color-5">
-                            <label class="form-check-label" for="color-5">
-                              Samon
-                            </label>
-                          </div>
-                        </li>
-
-
-                        <li>
-                          <div class="form-check">
-                            <input class="form-check-input filter-select" type="radio" name="color" id="color-6">
-                            <label class="form-check-label" for="color-6">
-                              Ocene
-                            </label>
-                          </div>
-                        </li>
                       </ul>
 
                       <button class="btn fivedots-filter-btn">Filter</button>
@@ -161,60 +127,19 @@
                     aria-labelledby="panelsStayOpen-headingThree">
                     <div class="accordion-body">
                       <ul class="filter-size">
+
+                        @foreach($sizeAttributesArr as $item)
                         <li>
                           <div class="form-check">
-                            <input class="form-check-input filter-select" type="radio" name="size" id="size-1">
-                            <label class="form-check-label" for="size-1">
-                              Small
+                            <input class="form-check-input filter-select" onchange="setCurrentValue('size', this.value)"
+                              value="{{ $item }}" type="radio" name="size" id="size-{{ $item }}">
+                            <label class="form-check-label" for="size-{{ $item }}">
+                              {{ ucfirst($item) }}
                             </label>
                           </div>
                         </li>
+                        @endforeach
 
-                        <li>
-                          <div class="form-check">
-                            <input class="form-check-input filter-select" type="radio" name="size" id="size-2">
-                            <label class="form-check-label" for="size-2">
-                              Medium
-                            </label>
-                          </div>
-                        </li>
-
-                        <li>
-                          <div class="form-check">
-                            <input class="form-check-input filter-select" type="radio" name="size" id="size-3">
-                            <label class="form-check-label" for="size-3">
-                              Large
-                            </label>
-                          </div>
-                        </li>
-
-                        <li>
-                          <div class="form-check">
-                            <input class="form-check-input filter-select" type="radio" name="size" id="size-4">
-                            <label class="form-check-label" for="size-4">
-                              Extra Large
-                            </label>
-                          </div>
-                        </li>
-
-                        <li>
-                          <div class="form-check">
-                            <input class="form-check-input filter-select" type="radio" name="size" id="size-5">
-                            <label class="form-check-label" for="size-5">
-                              Extra extra large
-                            </label>
-                          </div>
-                        </li>
-
-
-                        <li>
-                          <div class="form-check">
-                            <input class="form-check-input filter-select" type="radio" name="size" id="size-6">
-                            <label class="form-check-label" for="size-6">
-                              Extra Small
-                            </label>
-                          </div>
-                        </li>
                       </ul>
                       <button class="btn fivedots-filter-btn">Filter</button>
                     </div>
@@ -327,7 +252,7 @@
               <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show"
                 aria-labelledby="panelsStayOpen-headingTwo">
                 <div class="accordion-body">
-                  <input type="text" id="selectedColor" value="">
+                  <input type="hidden" id="selectedColor" value="">
                   <ul class="filter-color" id="filter-color">
                     @foreach($colorAttributesArr as $item)
                     <li>
@@ -358,7 +283,7 @@
               <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show"
                 aria-labelledby="panelsStayOpen-headingThree">
                 <div class="accordion-body">
-                  <input type="text" id="selectedSize" value="">
+                  <input type="hidden" id="selectedSize" value="">
                   <ul class="filter-size" id="filter-size">
                     @foreach($sizeAttributesArr as $item)
                     <li>
@@ -389,7 +314,7 @@
               <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse show"
                 aria-labelledby="panelsStayOpen-headingFour">
                 <div class="accordion-body">
-                  <input type="text" id="selectedBrand" value="">
+                  <input type="hidden" id="selectedBrand" value="">
                   <ul class="filter-brand">
                     @foreach($brands as $item)
                     <li>
@@ -462,21 +387,21 @@
                 Str::limit($product->name, 25)
                 }}</a>
 
-
               @if($product->discount !== null && $product->discount_type !== 'Flat')
-              <h3 class="new-price my-2">{{ $discountAmount}}</h3>
-              <p class="old-price text-danger">{{ $product->price }}</p>
+              <h3 class="new-price my-2">{{ $discountAmount}} SAR</h3>
+              <p class="old-price text-danger">{{ $product->price }}SAR</p>
               @elseif($product->discount !== null && $product->discount_type == 'Flat')
-              <h3 class="new-price my-2">{{ $product->price- $product->discount }}</h3>
-              <p class="old-price text-danger">{{ $product->price }}</p>
+              <h3 class="new-price my-2">{{ $product->price- $product->discount }}SAR</h3>
+              <p class="old-price text-danger">{{ $product->price }}SAR</p>
               @else
-              <h3 class="new-price my-2">{{ $product->price }}</h3>
+              <h3 class="new-price my-2">{{ $product->price }}SAR</h3>
               @endif
             </div>
           </div>
           @endforeach
 
         </div>
+
       </div>
 
     </div>

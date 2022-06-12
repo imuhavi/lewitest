@@ -46,6 +46,7 @@
         <li><a href="{{ url(routePrefix(). '/product') }}">Product</a></li>
         <li class="active"> {{ (str_replace(routePrefix() . '/', '', Request::path()) == 'product-draft') ? 'Draft' : ''
           }} Product-list</li>
+
       </ol>
     </div>
   </div>
@@ -58,6 +59,7 @@
           <div class="col-md-8">
             <h4 class="panel-title">{{ (str_replace(routePrefix() . '/', '', Request::path()) == 'product-draft') ?
               'Draft' : '' }} Product List</h4>
+
           </div>
 
           <div class="col-md-2">
@@ -108,9 +110,9 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach($data as $item)
+                  @foreach($data as $key => $item)
                   <tr>
-                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $data->firstitem() + $key }}</td>
                     <td>
                       <img style="width: 50px" src="{{ asset('backend/uploads/' . $item->thumbnail) }}"
                         alt="Product thumbnail">
@@ -285,7 +287,7 @@
                       <div class="col-md-4">
                         <div class="form-row">
                           <div class="form-group">
-                            <label for="unit">Unit</label>
+                            <label for="unit">Unit(Kg, Cm, Pieces etc.)</label>
                             <input type="text" name="unit" id="unit" value="{{ $data ? $data->unit : old('unit') }}"
                               class="form-control">
                             @error('unit')
@@ -392,7 +394,8 @@
                       <select name="category_id" id="category" class="form-control">
                         <option value="" selected>Select One</option>
                         @foreach ($category as $cat_item )
-                        <option value="{{ $cat_item->id }}" @if ( $page=='edit' ) {{ $cat_item->id == $data->id ?
+                        <option value="{{ $cat_item->id }}" @if ( $page=='edit' ) {{ $cat_item->id == $data->category_id
+                          ?
                           'selected'
                           : '' }} @endif
                           >{{ $cat_item->name }}</option>
@@ -411,7 +414,8 @@
                       <select name="sub_category_id" id="sub_category" class="form-control">
                         <option value="" selected>Select One</option>
                         @foreach ( $subCategory as $child_item )
-                        <option value="{{ $child_item->id }}" @if ( $page=='edit' ) {{ $child_item->id == $data->id ?
+                        <option value="{{ $child_item->id }}" @if ( $page=='edit' ) {{ $child_item->id ==
+                          $data->sub_category_id ?
                           'selected'
                           : '' }} @endif
                           >{{ $child_item->name }}</option>
@@ -437,7 +441,8 @@
                       <select name="brand_id" id="brand_name" class="form-control">
                         <option value="" selected>Select One</option>
                         @foreach ( $brand as $brand_item )
-                        <option value="{{ $brand_item->id }}" @if ( $page=='edit' ) {{ $brand_item->id == $data->id ?
+                        <option value="{{ $brand_item->id }}" @if ( $page=='edit' ) {{ $brand_item->id ==
+                          $data->brand_id ?
                           'selected'
                           : '' }} @endif
                           >{{ $brand_item->name }}</option>
@@ -452,7 +457,8 @@
                       <select name="seller_id" id="seller" class="form-control">
                         <option value="" selected>Select One</option>
                         @foreach ( $sellers as $seller_item )
-                        <option value="{{ $seller_item->id }}" @if ( $page=='edit' ) {{ $seller_item->id == $data->id ?
+                        <option value="{{ $seller_item->id }}" @if ( $page=='edit' ) {{ $seller_item->id ==
+                          $data->seller_id ?
                           'selected'
                           : '' }} @endif
                           >{{ $seller_item->name }}</option>
