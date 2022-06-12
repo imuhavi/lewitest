@@ -120,11 +120,12 @@
                     <td>{{ $item->brand ? $item->brand->name : 'N/A' }}</td>
                     <td>{{ $item->status }}</td>
                     <td>
-                      <a class="btn btn-info" href="{{ url(routePrefix(). '/product/' . $item->id) }}">View</a>
-                      <a class="btn btn-info"
-                        href="{{ url(routePrefix(). '/product/' . $item->id . '/edit') }}">Edit</a>
-                      <a class="btn btn-danger"
-                        href="{{ url(routePrefix(). '/product/delete/' . $item->id) }}">Delete</a>
+                      <a class="btn btn-info" href="{{ url(routePrefix(). '/product/' . $item->id) }}"><i
+                          class="fa fa-eye"></i></a>
+                      <a class="btn btn-warning" href="{{ url(routePrefix(). '/product/' . $item->id . '/edit') }}"><i
+                          class="fa fa-edit"></i></a>
+                      <a class="btn btn-danger" href="{{ url(routePrefix(). '/product/delete/' . $item->id) }}"><i
+                          class="fa fa-trash"></i></a>
                     </td>
                   </tr>
                   @endforeach
@@ -263,6 +264,7 @@
                           <div class="form-group">
                             <label for="discount_type">Discount type</label>
                             <select name="discount_type" id="discount_type" class="form-control">
+                              <option selected value="">Select Discount Type</option>
                               <option value="Percent">Percent</option>
                               <option value="Flat">Flat</option>
                             </select>
@@ -283,32 +285,6 @@
                       <div class="col-md-4">
                         <div class="form-row">
                           <div class="form-group">
-                            <label for="shipping_cost">shipping_cost</label>
-                            <input type="number" min="0"
-                              value="{{ $data ? $data->shipping_cost : old('shipping_cost') }}" name="shipping_cost"
-                              class="form-control" id="shipping_cost" placeholder="shipping_cost">
-                            @error('shipping_cost')
-                            <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-row">
-                          <div class="form-group">
-                            <label for="shipping_days">Shipping days</label>
-                            <input type="text" name="shipping_days"
-                              value="{{ $data ? $data->shipping_days : old('shipping_days') }}" id="shipping_days"
-                              class="form-control">
-                            @error('shipping_days')
-                            <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-row">
-                          <div class="form-group">
                             <label for="unit">Unit</label>
                             <input type="text" name="unit" id="unit" value="{{ $data ? $data->unit : old('unit') }}"
                               class="form-control">
@@ -321,7 +297,7 @@
                       <div class="col-md-4">
                         <div class="form-row">
                           <div class="form-group">
-                            <label for="min">Min</label>
+                            <label for="min">Minimum Quanity Order</label>
                             <input type="number" min="1" value="{{ $data ? $data->min : old('min') }}" name="min"
                               class="form-control" id="min" placeholder="Min">
                             @error('min')
@@ -334,7 +310,7 @@
                       <div class="col-md-4">
                         <div class="form-row">
                           <div class="form-group">
-                            <label for="max">Max</label>
+                            <label for="max">Maximum Quanity Order</label>
                             <input type="number" min="0" value="{{ $data ? $data->max : old('max') }}" name="max"
                               class="form-control" id="max" placeholder="Max">
                             @error('max')
@@ -344,15 +320,6 @@
                         </div>
                       </div>
 
-                      <div class="col-md-4">
-                        <div class="form-row">
-                          <div class="form-group">
-                            <label for="tax">Tax</label>
-                            <input type="number" min="0" value="{{ $data ? $data->tax : old('tax') }}" name="tax"
-                              class="form-control" id="tax" placeholder="Tax">
-                          </div>
-                        </div>
-                      </div>
                     </div>
 
                   </div>
@@ -653,9 +620,6 @@
         </div>
       </form>
       @elseif($page == 'show')
-      {{
-      $data
-      }}
 
       <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-info">
@@ -713,7 +677,7 @@
                 <tr>
                   <th width="45%">Brand Name</th>
                   <td width="10%">:</td>
-                  <td width="45%">{{ $data->brand->name }}</td>
+                  <td width="45%">{{ $data->brand->name ?? 'NA' }}</td>
                 </tr>
 
                 <tr>

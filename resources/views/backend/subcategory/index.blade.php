@@ -53,8 +53,8 @@ Add Subcategory
                     <th>Sl</th>
                     <th>Name</th>
                     <th>Parent Category</th>
-                    <th>Icon</th>
-                    <th>Banner</th>
+                    <th>Total Product</th>
+                    <th>Image</th>
                     <th>Status</th>
                     <th width="120" style="text-align: center">Action</th>
                   </tr>
@@ -65,6 +65,7 @@ Add Subcategory
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $subcatItem->name }}</td>
                     <td>{{ $subcatItem->category->name }}</td>
+                    <td>{{ $subcatItem->products->count() }}</td>
                     <td>
                       @if ($subcatItem->icon)
                       <img src="{{ asset('/backend/uploads/' . $subcatItem->icon) }}" class="small-image"
@@ -72,15 +73,6 @@ Add Subcategory
                       @else
                       <img src="{{ asset('backend/assets/default-img/noimage.jpg') }}" class="small-image"
                         alt="Default category icon">
-                      @endif
-                    </td>
-                    <td>
-                      @if($subcatItem->banner)
-                      <img src="{{ asset('/backend/uploads/' . $subcatItem->banner) }}" class="small-image"
-                        alt="Category banner - {{ $subcatItem->banner }}">
-                      @else
-                      <img src="{{ asset('backend/assets/default-img/noimage.jpg') }}" class="small-image"
-                        alt="Default category banner">
                       @endif
                     </td>
 
@@ -142,7 +134,7 @@ Add Subcategory
                 <div class="form-group">
                   <label for="category">Choose Parent Category</label>
                   <select name="category_id" id="category" class="form-control">
-                    <option value="" disabled>Select One</option>
+                    <option value="" selected>Select One</option>
                     @foreach ( $category as $cat_item )
                     <option value="{{ $cat_item->id }}" @if ( $page=='edit' ) {{ $cat_item->id == $data->category_id ?
                       'selected'
@@ -168,7 +160,7 @@ Add Subcategory
                   id="icon" width="100" height="100" />
               </div>
 
-              <div class="form-row">
+              <!-- <div class="form-row">
                 <div class="form-group">
                   <label for="subcategory_banner">Upload Banner</label>
                   <input type="file" class="form-control" name="banner" id="subcategory_banner"
@@ -181,7 +173,7 @@ Add Subcategory
                 <img class="img-thumbnail"
                   src="{{ ($page == 'create' || !$data->banner) ? asset('backend/assets/default-img/noimage.jpg') : asset('backend/uploads/' . $data->banner) }}"
                   id="banner" width="100" height="100" />
-              </div>
+              </div> -->
 
               <div class="from-row status">
                 <label>Publication status : </label>

@@ -1,11 +1,11 @@
 @extends('backend.master')
 @section('slider_active') active open @endsection
 @section('meta_title')
-  Slider Create
+Slider Create
 @endsection
 
 @section('meta_description')
-  Slider Create
+Slider Create
 @endsection
 
 @section('slider') active @endsection @section('content')
@@ -28,10 +28,10 @@
     <div class="row">
       <div class="col-md-12">
         <div class="panel panel-white">
-        <a href="{{ url(routePrefix(). '/sliders') }}" class="btn btn-info btn-sm">Go back</a>
+          <a href="{{ url(routePrefix(). '/sliders') }}" class="btn btn-info btn-sm">Go back</a>
           <div class="panel-body">
             <div class="table-responsive">
-            <form action="{{ route('sliderStore') }}" method="post" enctype="multipart/form-data">
+              <form action="{{ route('sliderStore') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                   <div class="row">
@@ -50,11 +50,23 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
+                      <p class="mb-0">Sub Title</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <input type="text" name="sub_title" placeholder="Enter a Sub title" id="title"
+                        class="form-control">
+                      @error('title')
+                      <small class="text-danger">{{ $message }}</small>
+                      @enderror
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
                       <p class="mb-0">Title</p>
                     </div>
                     <div class="col-sm-9">
-                      <input type="text" name="title" placeholder="Enter a title" id="title"
-                        class="form-control">
+                      <input type="text" name="title" placeholder="Enter a title" id="title" class="form-control">
                       @error('title')
                       <small class="text-danger">{{ $message }}</small>
                       @enderror
@@ -69,7 +81,7 @@
                       <select name="category_id" id="category_id" class="form-control">
                         <option value="" selected disabled>Select Category</option>
                         @foreach($category as $item)
-                          <option value="{{ $item->id }}">{{ $item->name }}</option>
+                        <option value="{{ $item->id }}">{{ $item->name }}</option>
                         @endforeach
                       </select>
                       @error('category_id')

@@ -30,7 +30,6 @@ class CategoryController extends Controller
   {
     $request->validate([
       'name' => 'required|max:100',
-      'icon' => 'required|mimes:jpg,jpeg,bmp,png',
       'banner' => 'required|mimes:jpg,jpeg,bmp,png',
       'slug' => 'required|max:100|unique:categories',
       'meta_title' => 'required|max:100',

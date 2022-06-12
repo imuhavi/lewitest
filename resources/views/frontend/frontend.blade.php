@@ -19,7 +19,7 @@
           <div class="container">
             <div class="carousel-caption text-dark text-left">
               <div class="carousel-text">
-                <p class="wow bounceInDown" data-wow-duration="1s" data-wow-delay="0s">50% off in all products</p>
+                <p class="wow bounceInDown" data-wow-duration="1s" data-wow-delay="0s">{{ $item->sub_title }}</p>
 
                 <h1 class=" wow bounceInDown" data-wow-duration="1.2s" data-wow-delay=".2s">{{ $item->title }}</h1>
                 <a class="btn fivedots-btn wow bounceInDown" data-wow-duration="1.5s" data-wow-delay=".5s" href="#">Shop
@@ -166,6 +166,8 @@
   <!--------------------------------
             Accessories Category Start 
       --------------------------------->
+
+  @if($accesoriesMain !== null)
   <section id="accessories-category">
     <div class="container">
       <div class="row">
@@ -205,7 +207,7 @@
       </div>
     </div>
   </section>
-
+  @endif
   <!---------------------------------
             Product BY Category one 
       ---------------------------------->
