@@ -55,12 +55,12 @@
                         <div class="price-input">
                           <div class="field">
                             <span>Min</span>
-                            <input type="number" onchange="filter()" id="input-min-lg" value="{{ $min }}"
+                            <input type="number" onchange="filter()" id="input-min-sm" value="{{ $min }}"
                               min="{{ $min }}" max="{{ $max }}">
                           </div>
                           <div class="field">
                             <span>Max</span>
-                            <input type="number" onchange="filter()" id="input-max-lg" value="{{ $max }}"
+                            <input type="number" onchange="filter()" id="input-max-sm" value="{{ $max }}"
                               min="{{ $min }}" max="{{ $max }}">
                           </div>
                         </div>
