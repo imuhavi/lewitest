@@ -90,10 +90,8 @@ class FrontendController extends Controller
     $brandIds = array_unique($productSQL->pluck('brand_id')->toArray());
     $brands = Brand::find($brandIds);
 
-    // $min = min($productSQL->pluck('price')->toArray());
-    // $max = max($productSQL->pluck('price')->toArray());
-    $min = 10;
-    $max = 9000;
+    $min = min($productSQL->pluck('price')->toArray());
+    $max = max($productSQL->pluck('price')->toArray());
 
     $allAttributes = Product::where('attributes', '!=', null)->pluck('attributes');
     $colorAttributesArr = [];
@@ -129,8 +127,24 @@ class FrontendController extends Controller
   {
     $product = Product::where('slug', $slug)->first();
     $reletedProduct = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->take(8);
-    // return $product;
-    return view($this->VIEW_PATH . 'productView', compact('product', 'reletedProduct'));
+
+    $colors = [];
+    $sizes = [];
+
+    foreach (json_decode($product->attributes) as $attribute) {
+      $itemArr = json_decode($attribute);
+      $item = Attribute::find($itemArr[0]);
+      if ($item->name == 'Color') {
+        array_push($colors, $itemArr[1]);
+      } elseif ($item->name == 'Size') {
+        array_push($sizes, $itemArr[1]);
+      }
+    }
+
+    $colors = array_unique($colors);
+    $sizes = array_unique($sizes);
+
+    return view($this->VIEW_PATH . 'productView', compact('product', 'reletedProduct', 'colors', 'sizes'));
   }
 
 

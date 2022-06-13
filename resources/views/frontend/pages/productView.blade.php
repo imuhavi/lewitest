@@ -77,21 +77,18 @@
             <div class="product-color">
               <p>Color: </p>
               <ul class="d-flex">
-                <li><a href="#" class="color-1"></a></li>
-                <li><a href="#" class="color-2"></a></li>
-                <li><a href="#" class="color-3"></a></li>
-                <li><a href="#" class="color-4"></a></li>
+                @foreach($colors as $item)
+                  <li><a href="#" class="color-1" style="background-color: {{ strtolower($item) }} !important;"></a></li>
+                @endforeach
               </ul>
             </div>
 
             <div class="product-size">
               <p>Size: </p>
               <ul class="d-flex">
-                <li><a href="#">S</a></li>
-                <li><a href="#">M</a></li>
-                <li><a href="#">L</a></li>
-                <li><a href="#">XL</a></li>
-                <li><a href="#">2XL</a></li>
+                @foreach($sizes as $item)
+                  <li><a href="#">{{ ucfirst($item) }}</a></li>
+                @endforeach
               </ul>
             </div>
 
@@ -114,7 +111,7 @@
               </ul>
             </div>
 
-            <p class="category">Available Quantity: {{ $product->quantity }}</p>
+            <p class="category">Available Quantity: {{ $product->quantity }} {{ $product->unit }}</p>
 
             <!-- <div class="installment-payment d-flex border justify-content-between align-items-center">
               <p>or 4 interest-free payment of <br> 300 AED. <a href="#">Learn More</a></p>
@@ -183,12 +180,8 @@
                   <td class="w-25">Discount:</td>
                   <td>
                     <h6>
-                      @if($product->discount !== null && $product->discount_type == 'Flat')
-                      <span class="discount">OFF {{round($discount) }}%</span>
-                      @endif
-
-                      @if($product->discount !== null && $product->discount_type == 'Percent')
-                      <span class="discount">OFF {{ round($discount) }}%</span>
+                      @if($product->discount !== null && ($product->discount_type == 'Flat' || $product->discount_type == 'Percent'))
+                        <span class="discount">OFF {{round($discount) }}%</span>
                       @endif
                     </h6>
                   </td>
@@ -196,26 +189,28 @@
                 <tr>
                   <td class="w-25">Available Quantity:</td>
                   <td>
-                    <h6>{{ $product->quantity }}</h6>
+                    <h6>{{ $product->quantity }} {{ $product->unit }}</h6>
                   </td>
                 </tr>
 
                 <tr>
                   <td class="w-25">Brand Name:</td>
-                  <td>{{ $product->brand->name }}</td>
+                  <td>{{ $product->brand ? $product->brand->name : 'N/A' }}</td>
                 </tr>
 
-                <!-- <tr>
-                  <td class="w-25">Attributes</td>
-                  @php
-                  $attributes = json_decode($product->attributes);
-                  @endphp
+                <tr>
+                  <td class="w-25">Color(s)</td>
                   <td>
-                    @foreach($attributes as $items)
-                    {{ $items }}
-                    @endforeach
+                    {{ implode(', ', $colors) }}
                   </td>
-                </tr> -->
+                </tr>
+                <tr>
+                  <td class="w-25">Size(s)</td>
+                  <td>
+                    {{ implode(', ', $sizes) }}
+                  </td>
+                </tr>
+
               </table>
             </div>
           </div>
