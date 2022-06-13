@@ -17,6 +17,7 @@
 
 <!-- Price Range -->
 @yield('footer_js')
+@include('sweetalert::alert')
 
 <!-- Select 2 -->
 <script src="{{ asset('/frontend/assets/') }}/js/select2.min.js"></script>

@@ -55,11 +55,12 @@
             <p class="summary">{!! Str::limit($product->description, 120) !!}</p>
 
             @if($product->discount == null )
-            <h3 class="price">SAR {{ $product->price }}</h3>
+            <h3 class="price" data-price="{{ $product->price }}">SAR {{ $product->price }}</h3>
             @endif
 
             @if($product->discount !== null && $product->discount_type == 'Flat')
-            <h3 class="price">SAR {{ $product->price- $product->discount }}</h3>
+            <h3 class="price" data-price="{{ $product->price- $product->discount }}">SAR {{ $product->price-
+              $product->discount }}</h3>
 
             <p class="previous-price">SAR <span class="old-price">{{ $product->price }}</span> <span
                 class="discount">OFF {{ round($discount) }}%</span>
@@ -67,7 +68,8 @@
             @endif
 
             @if($product->discount !== null && $product->discount_type == 'Percent')
-            <h3 class="price">SAR {{ $product->price- $product->discount }}</h3>
+            <h3 class="price" data-price="{{ $product->price- $product->discount }}">SAR {{ $product->price-
+              $product->discount }}</h3>
 
             <p class="previous-price">SAR <span class="old-price">{{ $product->price }}</span> <span
                 class="discount">OFF {{
@@ -78,7 +80,8 @@
               <p>Color: </p>
               <ul class="d-flex">
                 @foreach($colors as $item)
-                  <li><a href="#" class="color-1" style="background-color: {{ strtolower($item) }} !important;"></a></li>
+                <li><a href="" onclick="return false" title="{{ $item }}" data-color="{{ $item }}" class="color"
+                    style="background-color: {{ strtolower($item) }} !important"></a></li>
                 @endforeach
               </ul>
             </div>
@@ -87,7 +90,7 @@
               <p>Size: </p>
               <ul class="d-flex">
                 @foreach($sizes as $item)
-                  <li><a href="#">{{ ucfirst($item) }}</a></li>
+                <li><a href="" onclick="return false" class="size" data-size="{{ $item }}">{{ ucfirst($item) }}</a></li>
                 @endforeach
               </ul>
             </div>
@@ -96,8 +99,9 @@
               <div class="nice-number">
                 <input class="qty-input" type="number" value="1" min="0">
               </div>
-              <a href="#" class="cart-btn">add to cart</a>
-              <a href="#" class="add-wishlist"><img src="{{ asset('frontend/assets/') }}/images/heart.png"
+              <a href="javascript:window.location.href=window.location.href" class="cart-btn"
+                data-productId="{{ $product->id }}">add to cart</a>
+              <a href="" class="add-wishlist"><img src="{{ asset('frontend/assets/') }}/images/heart.png"
                   alt="user-profile"></a>
             </div>
 
@@ -180,8 +184,9 @@
                   <td class="w-25">Discount:</td>
                   <td>
                     <h6>
-                      @if($product->discount !== null && ($product->discount_type == 'Flat' || $product->discount_type == 'Percent'))
-                        <span class="discount">OFF {{round($discount) }}%</span>
+                      @if($product->discount !== null && ($product->discount_type == 'Flat' || $product->discount_type
+                      == 'Percent'))
+                      <span class="discount">OFF {{round($discount) }}%</span>
                       @endif
                     </h6>
                   </td>
@@ -259,4 +264,70 @@
 @section('footer_js')
 <!-- Nice Number -->
 <script src="{{ asset('/frontend/assets/') }}/js/jquery.nice-number.min.js"></script>
+
+<script>
+  // Actice Attributes
+  $(document).ready(function () {
+    $('.color').click(function () {
+      $('li a').removeClass("color-active");
+      $(this).addClass("color-active");
+    });
+
+    $('.size').click(function () {
+      $('li a').removeClass("size-active");
+      $(this).addClass("size-active");
+    })
+  });
+
+  $(document).ready(function () {
+
+    $('.cart-btn').on('click', function (e) {
+
+      e.preventDefault();
+      let productId = $(this).attr('data-productId');
+      let quantity = $('.qty-input').val();
+      let price = $('.price').attr('data-price');
+      let color = $('.color-active').attr('data-color');
+      let size = $('.size-active').attr('data-size');
+
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+
+      $.ajax({
+        url: "{{ url('add-to-cart') }}",
+        method: 'POST',
+        data: {
+          'productId': productId,
+          'quantity': quantity,
+          'price': price,
+          'color': color,
+          'size': size
+        },
+
+        datType: 'json',
+        success: function (data) {
+          console.log(data)
+        }
+      })
+
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+  });
+</script>
 @endsection

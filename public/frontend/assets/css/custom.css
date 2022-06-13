@@ -750,28 +750,18 @@ nav .main_menu li a.active_menu {
   color: var(--hover-color);
 }
 
-.color-1 {
-  width: 16px;
-  height: 16px;
-  background-color: #f64d52;
+.color-active {
+box-shadow: 0px 0px 3px 1px black;
 }
 
-.color-2 {
-  width: 16px;
-  height: 16px;
-  background-color: #00d9ff;
+.size-active {
+  box-shadow: 0px 0px 3px 1px black;
 }
 
-.color-3 {
-  width: 16px;
-  height: 16px;
-  background-color: #fc842d;
-}
-
-.color-4 {
-  width: 16px;
-  height: 16px;
-  background-color: #f64d52;
+.color {
+  width: 35px;
+  height: 35px;
+  border: 2px solid rgba(34, 34, 34, 0.15);
 }
 
 .nice-number {

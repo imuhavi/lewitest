@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\UserProfileController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\SubscriptionController;
 use Illuminate\Http\Request;
@@ -22,7 +23,8 @@ Route::get('/', [FrontendController::class, 'frontend'])->name('home');
 Route::get('/shop', [FrontendController::class, 'shop'])->name('shop');
 Route::get('/shop/{slug}/{id}', [FrontendController::class, 'categoryShop'])->name('categoryShop');
 Route::get('/product/{slug}', [FrontendController::class, 'productView'])->name('productView');
-Route::get('/cart', [FrontendController::class, 'cart'])->name('cart');
+
+Route::post('add-to-cart', [CartController::class, 'addToCart']);
 Route::get('/wishlist', [FrontendController::class, 'wishlist'])->name('wishlist');
 Route::get('/subscription', [FrontendController::class, 'subscription'])->name('subscription');
 
