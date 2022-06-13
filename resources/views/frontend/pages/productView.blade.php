@@ -104,7 +104,7 @@
                   alt="user-profile"></a>
             </div>
 
-            <p class="category">Category: Beauty</p>
+            <p class="category">Category: {{ $product->subcategory->name }}</p>
             <div class="d-flex share-product">
               <p>Share This Item:</p>
               <ul class="d-flex">
@@ -114,12 +114,14 @@
               </ul>
             </div>
 
-            <div class="installment-payment d-flex border justify-content-between align-items-center">
+            <p class="category">Available Quantity: {{ $product->quantity }}</p>
+
+            <!-- <div class="installment-payment d-flex border justify-content-between align-items-center">
               <p>or 4 interest-free payment of <br> 300 AED. <a href="#">Learn More</a></p>
 
               <a href="#"><img class="img-fluid" src="{{ asset('frontend/assets/') }}/images/fitbit-logo.png"
                   alt=""></a>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -140,46 +142,80 @@
             </li>
             <li class="nav-item" role="presentation">
               <a class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
-                type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Additional
+                type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Product
                 Information</a>
             </li>
           </ul>
           <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque cupiditate veritatis quisquam. Ut eaque
-              autem asperiores consequuntur hic, repellat unde. Adipisci alias numquam labore eius porro facere
-              necessitatibus cum, accusamus, qui quia ut provident. Quam error aperiam, eveniet iusto voluptas est
-              quasi
-              molestiae tempore autem consequuntur adipisci deserunt delectus. Accusantium, ea at expedita delectus
-              nisi
-              fuga maiores doloremque praesentium earum libero in repellendus quidem officiis, ducimus suscipit
-              eligendi
-              quia. Similique tempore incidunt et. Quas aliquam sequi dolorum dolor consequuntur natus deleniti, nisi
-              nam illo excepturi corporis ducimus, quidem inventore, nostrum soluta quaerat quis perspiciatis
-              voluptatum
-              suscipit voluptas beatae qui dicta.<br> <br> Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Excepturi voluptatem quod ipsum sed nisi error dolor nobis eligendi commodi quis unde doloribus ea optio
-              consectetur blanditiis non iure quam, corporis veniam harum ex eaque neque, mollitia quas. Rem
-              recusandae,
-              iure culpa eos harum voluptate at, labore tempore commodi neque consequuntur nobis sit non. Inventore
-              praesentium deleniti nam neque corrupti harum, perspiciatis laudantium minus vitae quia laboriosam
-              molestiae est odit beatae at optio id esse fugiat ipsam. Perferendis porro tempora illum perspiciatis
-              dolores autem. Placeat, ullam est quaerat dolores impedit voluptatibus sit rerum aliquam temporibus
-              incidunt, autem vero, obcaecati quae distinctio?</div>
+            <div class="tab-pane show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">{!!
+              $product->description !!}</div>
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
               <table class="table table-bordered">
                 <tr>
-                  <td>Product Name</td>
-                  <td>Mobile Phone</td>
+                  <td class="w-25">Product Name</td>
+                  <td>
+                    <h6>{{ $product->name }}</h6>
+                  </td>
                 </tr>
                 <tr>
-                  <td>Product Name</td>
-                  <td>Product detailse</td>
+                  <td class="w-25">Product Category: </td>
+                  <td>
+                    <h6>{{ $product->subcategory->name }}</h6>
+                  </td>
                 </tr>
                 <tr>
-                  <td>Product Name</td>
-                  <td>Product detailse</td>
+                  <td class="w-25">Product Price:</td>
+                  <td>
+                    @if($product->discount == null )
+                    <h6 class="price">SAR {{ $product->price }}</h6>
+                    @endif
+
+                    @if($product->discount !== null && $product->discount_type == 'Flat')
+                    <h6>SAR {{ $product->price- $product->discount }}</h6>
+                    @endif
+
+                    @if($product->discount !== null && $product->discount_type == 'Percent')
+                    <h6>SAR {{ $product->price- $product->discount }}</h6>
+                    @endif
+                  </td>
                 </tr>
+                <tr>
+                  <td class="w-25">Discount:</td>
+                  <td>
+                    <h6>
+                      @if($product->discount !== null && $product->discount_type == 'Flat')
+                      <span class="discount">OFF {{round($discount) }}%</span>
+                      @endif
+
+                      @if($product->discount !== null && $product->discount_type == 'Percent')
+                      <span class="discount">OFF {{ round($discount) }}%</span>
+                      @endif
+                    </h6>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="w-25">Available Quantity:</td>
+                  <td>
+                    <h6>{{ $product->quantity }}</h6>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="w-25">Brand Name:</td>
+                  <td>{{ $product->brand->name }}</td>
+                </tr>
+
+                <!-- <tr>
+                  <td class="w-25">Attributes</td>
+                  @php
+                  $attributes = json_decode($product->attributes);
+                  @endphp
+                  <td>
+                    @foreach($attributes as $items)
+                    {{ $items }}
+                    @endforeach
+                  </td>
+                </tr> -->
               </table>
             </div>
           </div>
@@ -195,6 +231,8 @@
     <div class="container">
       <div class="row g-4">
         <h2 class="section-title text-center mb-4">Related Product</h2>
+
+        @foreach($reletedProduct as $item)
         <div class="col-md-3">
           <div class="related-product-container">
             <div class="product-img">
@@ -214,63 +252,8 @@
             </div>
           </div>
         </div>
+        @endforeach
 
-        <div class="col-md-3">
-          <div class="related-product-container">
-            <a class="w-100" href="#"><img class="img-fluid"
-                src="{{ asset('frontend/assets/') }}/images/product-img-6.png" alt="product-img-1"></a>
-
-            <div class="p-3">
-              <a href="#" class="product-title">Womens Red Clothes</a>
-              <h3 class="new-price my-3 text-dark">SAR <span class="text-dark">230.00</span></h3>
-              <div class="d-flex justify-content-between">
-                <div class="off">
-                  <span class="old-price text-dark">SAR 340</span>
-                  <span class="discount">30% OFF</span>
-                </div>
-                <span class="wishlist"><i class="far fa-heart"></i></span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="related-product-container">
-            <a class="w-100" href="#"><img class="img-fluid"
-                src="{{ asset('frontend/assets/') }}/images/product-img-7.png" alt="product-img-1"></a>
-
-            <div class="p-3">
-              <a href="#" class="product-title">Womens White Jeckets</a>
-              <h3 class="new-price my-3 text-dark">SAR <span class="text-dark">230.00</span></h3>
-              <div class="d-flex justify-content-between">
-                <div class="off">
-                  <span class="old-price text-dark">SAR 340</span>
-                  <span class="discount">30% OFF</span>
-                </div>
-                <span class="wishlist"><i class="far fa-heart"></i></span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="related-product-container">
-            <a class="w-100" href="#"><img class="img-fluid"
-                src="{{ asset('frontend/assets/') }}/images/product-img-9.png" alt="product-img-1"></a>
-
-            <div class="p-3">
-              <a href="#" class="product-title">Womens sunglass</a>
-              <h3 class="new-price my-3 text-dark">SAR <span class="text-dark">230.00</span></h3>
-              <div class="d-flex justify-content-between">
-                <div class="off">
-                  <span class="old-price text-dark">SAR 340</span>
-                  <span class="discount">30% OFF</span>
-                </div>
-                <span class="wishlist"><i class="far fa-heart"></i></span>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
     </div>

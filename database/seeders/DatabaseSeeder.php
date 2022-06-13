@@ -21,7 +21,6 @@ class DatabaseSeeder extends Seeder
       SellerTableSeeder::class,
       SubscriptionTableSeeder::class,
       SubscriptionOptionTableSeeder::class,
-      ProductTableSeeder::class
     ]);
   }
 }

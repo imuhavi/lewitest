@@ -36,8 +36,10 @@ class SliderController extends Controller
     }
     Slider::create([
       'title' => $request->title,
+      'sub_title' => $request->sub_title,
       'category_id' => $request->category_id,
-      'banner' => session('fileName')
+      'banner' => session('fileName'),
+      'status' => 'Active'
     ]);
     return redirect($this->URL)->with('success', 'Slider added successfully.');
   }
@@ -61,6 +63,7 @@ class SliderController extends Controller
     }
     $slider->update([
       'title' => $request->title ?? $slider->title,
+      'sub_title' => $request->sub_title ?? $slider->sub_title,
       'category_id' => $request->category_id,
       'banner' => session('fileName') ?? $slider->banner
     ]);

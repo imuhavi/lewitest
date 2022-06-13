@@ -19,7 +19,7 @@
           <div class="container">
             <div class="carousel-caption text-dark text-left">
               <div class="carousel-text">
-                <p class="wow bounceInDown" data-wow-duration="1s" data-wow-delay="0s">50% off in all products</p>
+                <p class="wow bounceInDown" data-wow-duration="1s" data-wow-delay="0s">{{ $item->sub_title }}</p>
 
                 <h1 class=" wow bounceInDown" data-wow-duration="1.2s" data-wow-delay=".2s">{{ $item->title }}</h1>
                 <a class="btn fivedots-btn wow bounceInDown" data-wow-duration="1.5s" data-wow-delay=".5s" href="#">Shop
@@ -166,6 +166,8 @@
   <!--------------------------------
             Accessories Category Start 
       --------------------------------->
+
+  @if($accesoriesMain !== null)
   <section id="accessories-category">
     <div class="container">
       <div class="row">
@@ -205,7 +207,7 @@
       </div>
     </div>
   </section>
-
+  @endif
   <!---------------------------------
             Product BY Category one 
       ---------------------------------->
@@ -256,6 +258,17 @@
                 <span class="wishlist"><i class="far fa-heart"></i></span>
               </div>
               @endif
+              @if($product->discount != null && $product->discount_type !== 'Percent' && $product->discount_type !==
+              'Flat')
+              <h3 class="new-price my-3">SAR <span>{{ $product->price- $product->discount }}</span></h3>
+              <div class="d-flex justify-content-between">
+                <div class="off">
+                  <span class="old-price">{{ $product->price }}</span>
+                  <span class="discount">{{ round($discount) }}% OFF</span>
+                </div>
+                <span class="wishlist"><i class="far fa-heart"></i></span>
+              </div>
+              @endif
             </div>
           </div>
         </div>
@@ -264,7 +277,7 @@
       </div>
 
       <div class="text-center mt-4">
-        <a class="fivedots-btn" href="#">View More <img class="icon"
+        <a class="fivedots-btn" href="{{ route('shop') }}">View More <img class="icon"
             src="{{ asset('frontend/assets') }}/images/btn-arrow-light.png" alt=""></a>
       </div>
     </div>

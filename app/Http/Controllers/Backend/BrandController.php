@@ -47,8 +47,7 @@ class BrandController extends Controller
     $request->validate([
       'name' => 'required|max:100',
       'logo' => 'required|mimes:jpg,jpeg,bmp,png',
-      'banner' => 'required|mimes:jpg,jpeg,bmp,png',
-      'slug' => 'required|max:100|unique:brand',
+      'slug' => 'required|max:100|unique:brands',
       'meta_title' => 'required|max:100',
       'meta_description' => 'required|max:1000'
     ]);
@@ -64,14 +63,14 @@ class BrandController extends Controller
       $brand->name = $request->name;
 
       if ($request->file('logo')) {
-        uploadImage($request->file('logo'));
+        uploadImage($request->file('logo'), 80);
         $brand->logo = session('fileName');
       }
 
-      if ($request->file('banner')) {
-        uploadImage($request->file('banner'));
-        $brand->banner = session('fileName');
-      }
+      // if ($request->file('banner')) {
+      //   uploadImage($request->file('banner'), 80);
+      //   $brand->banner = session('fileName');
+      // }
 
       $brand->slug = strtolower($request->slug);
       $brand->status = $status;

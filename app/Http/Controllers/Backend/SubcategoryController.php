@@ -23,7 +23,7 @@ class SubcategoryController extends Controller
   {
     $data = '';
     $page = 'create';
-    $category = Category::orderBy('name', 'asc')->get();
+    $category = Category::where('id', '!=', 1)->orderBy('name', 'asc')->get();
     return view($this->VIEW_PATH, compact('data', 'page', 'category'));
   }
 
@@ -33,7 +33,6 @@ class SubcategoryController extends Controller
       'name' => 'required|max:100',
       'category_id' => 'required',
       'icon' => 'required|mimes:jpg,jpeg,bmp,png',
-      'banner' => 'required|mimes:jpg,jpeg,bmp,png',
       'slug' => 'required|max:100|unique:subcategories',
       'meta_title' => 'required|max:100',
       'meta_description' => 'required|max:1000'

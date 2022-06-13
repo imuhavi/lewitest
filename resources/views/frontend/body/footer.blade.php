@@ -45,7 +45,7 @@
           <div class="contact-info">
             <h3 class="footer-title">Legal</h3>
             <ul>
-              <li><a href="">Privacy Policy</a></li>
+              <li><a href="{{ route('privacyPolicy') }}">Privacy Policy</a></li>
               <li><a href="{{ route('termsAndCondition') }}">Terms & Conditions </a></li>
             </ul>
 

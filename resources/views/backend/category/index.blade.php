@@ -52,9 +52,8 @@ Add Category
                 <thead>
                   <tr>
                     <th>SL</th>
-                    <th>Name</th>
-                    <th>Icon</th>
-                    <th>Banner</th>
+                    <th>Name</th>=
+                    <th>Image</th>
                     <th>Status</th>
                     <th width="120" style="text-align: center">Action</th>
                   </tr>
@@ -64,7 +63,7 @@ Add Category
                   <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $item->name }}</td>
-                    <td>
+                    <!-- <td>
                       @if($item->icon)
                       <img src="{{ asset('/backend/uploads/' . $item->icon) }}" class="small-image"
                         alt="Category icon - {{ $item->icon }}">
@@ -72,7 +71,7 @@ Add Category
                       <img src="{{ asset('backend/assets/default-img/noimage.jpg') }}" class="small-image"
                         alt="Default category icon">
                       @endif
-                    </td>
+                    </td> -->
                     <td>
                       @if($item->banner)
                       <img src="{{ asset('/backend/uploads/' . $item->banner) }}" class="small-image"
@@ -140,7 +139,7 @@ Add Category
                 </div>
               </div>
 
-              <div class="form-row">
+              <!-- <div class="form-row">
                 <div class="form-group">
                   <label for="category_img">Upload Icon</label>
                   <input type="file" class="form-control" name="icon" id="category_img"
@@ -153,7 +152,7 @@ Add Category
                 <img for="category_img" class="img-thumbnail"
                   src="{{ ($page == 'create' || !$data->icon) ? asset('backend/assets/default-img/noimage.jpg') : asset('backend/uploads/' . $data->icon) }}"
                   id="icon" width="100" height="100" />
-              </div>
+              </div> -->
 
               <div class="form-row">
                 <div class="form-group">

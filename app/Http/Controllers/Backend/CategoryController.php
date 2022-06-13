@@ -15,7 +15,7 @@ class CategoryController extends Controller
   public function index()
   {
     $page = 'index';
-    $data = Category::orderBy('created_at', 'DESC')->get();
+    $data = Category::where('id', '!=', 1)->orderBy('created_at', 'DESC')->get();
     return view($this->VIEW_PATH, compact('data', 'page'));
   }
 
@@ -30,7 +30,6 @@ class CategoryController extends Controller
   {
     $request->validate([
       'name' => 'required|max:100',
-      'icon' => 'required|mimes:jpg,jpeg,bmp,png',
       'banner' => 'required|mimes:jpg,jpeg,bmp,png',
       'slug' => 'required|max:100|unique:categories',
       'meta_title' => 'required|max:100',

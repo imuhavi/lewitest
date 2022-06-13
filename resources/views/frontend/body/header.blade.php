@@ -48,7 +48,7 @@
 <body>
 
   @php
-    $categories = getCategories()
+  $categories = getCategories()
   @endphp
 
   @if(request()->path() !== 'subscription' && explode('/', request()->path())[0] !== 'seller-register')
@@ -119,19 +119,22 @@
         <div class="collapse navbar-collapse mobile-menu" id="navbarNavDropdown">
           <ul class="main_menu navbar-nav">
             @foreach($categories as $category)
-              <li class="static"><a href="">{{ $category->name }} <i class="fas fa-angle-down"></i></a>
-                <div class="mega_full">
-                  <div class="row">
-                    @foreach($category->subcategory as $subcategory)
-                      <div class="col-lg-2">
-                        <ul class="mega_item">
-                          <li><a href="">{{ $subcategory->name }}</a></li>
-                        </ul>
-                      </div>
-                    @endforeach
+            <li class="static"><a href="#">{{
+                $category->name }} <i class="fas fa-angle-down"></i></a>
+              <div class="mega_full">
+                <div class="row">
+                  @foreach($category->subcategory as $subcategory)
+                  <div class="col-lg-2">
+                    <ul class="mega_item">
+                      <li><a
+                          href="{{ route('categoryShop', ['id'=> $subcategory->id, 'slug' => $subcategory->slug]) }}">{{
+                          $subcategory->name }}</a></li>
+                    </ul>
                   </div>
+                  @endforeach
                 </div>
-              </li>
+              </div>
+            </li>
             @endforeach
           </ul>
         </div>
@@ -165,131 +168,133 @@
 
                 <p>Login with your email & password.</p>
               </div>
-                @csrf
-                <div class="modal-body">
-                  <div class="row mt-3 g-3">
-                    <div class="col-12">
-                      <label for="email" class="form-label">Email Address</label>
-                      <input type="email" class="form-control" id="email" placeholder="Your Email Address" name="email"
-                        value="{{ old('email') }}">
-                    </div>
-                    <div class="col-12">
-                      <label for="password" class="form-label">Password</label>
-                      <input type="text" class="form-control" id="inputAddress" placeholder="Password" name="password"
-                        value="{{ old('password') }}">
-                    </div>
-
-                    <div class="col-12 d-flex justify-content-between">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                          Remember Me
-                        </label>
-                      </div>
-                      @if (Route::has('password.request'))
-                      <a href="#" class="fs-6 fw-bold" data-bs-toggle="modal" data-bs-target="#forgetPassword">Forget
-                        Password?</a>
-                      @endif
-                    </div>
-
-                    <div class="col-12">
-                      <button class="login-btn">Log In</button>
-                    </div>
-              </form>
-
-              <div class="col-12 text-center">
-                <p class="login_or">Or</p>
-              </div>
-
-              <div class="col-12 login-with-google">
-                <button class="google-login"><i class="fab fa-google"></i> Login With Google</button>
-              </div>
-
-              <div class="col-12 login-with-google">
-                <button class="twitter-login"><i class="fab fa-twitter"></i> Login With Twitter</button>
-              </div>
-
-              <div class="col-12 login-with-google">
-                <button class="apple-login"><i class="fab fa-apple"></i> Login With Apple</button>
-              </div>
-
-              <div class="d-flex justify-content-center">
-                <p>Don't have any account? <a href="#" class="fs-6 fw-bold" data-bs-toggle="modal"
-                    data-bs-target="#signUp">Register</a></p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-      </div>
-
-      <!-- Modal For Sign Up -->
-      <div class="modal fade" id="signUp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h3><span class="logo">Five Dots</span></h3>
-              <!-- <button type="button"></button> -->
-              <a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></a>
-
-              <p>By Register, you agree to our <a href="#">terms</a> & <a href="#">policy.</a></p>
-            </div>
-            <form method="POST" action="{{ route('register') }}">
               @csrf
               <div class="modal-body">
                 <div class="row mt-3 g-3">
                   <div class="col-12">
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Your Name" name="name"
-                      value="{{ old('name') }}">
-            </div>
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" class="form-control" id="email" placeholder="Your Email Address" name="email"
+                      value="{{ old('email') }}">
+                  </div>
+                  <div class="col-12">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="Password" name="password"
+                      value="{{ old('password') }}">
+                  </div>
 
-            <div class="d-flex justify-content-center">
-              <p>Already have an account? <a href="#" class="fs-6 fw-bold" data-bs-toggle="modal"
-                  data-bs-target="#signIn">Login</a></p>
+                  <div class="col-12 d-flex justify-content-between">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Remember Me
+                      </label>
+                    </div>
+                    @if (Route::has('password.request'))
+                    <a href="#" class="fs-6 fw-bold" data-bs-toggle="modal" data-bs-target="#forgetPassword">Forget
+                      Password?</a>
+                    @endif
+                  </div>
+
+                  <div class="col-12">
+                    <button class="login-btn">Log In</button>
+                  </div>
+                  </form>
+
+                  <div class="col-12 text-center">
+                    <p class="login_or">Or</p>
+                  </div>
+
+                  <div class="col-12 login-with-google">
+                    <button class="google-login"><i class="fab fa-google"></i> Login With Google</button>
+                  </div>
+
+                  <div class="col-12 login-with-google">
+                    <button class="twitter-login"><i class="fab fa-twitter"></i> Login With Twitter</button>
+                  </div>
+
+                  <div class="col-12 login-with-google">
+                    <button class="apple-login"><i class="fab fa-apple"></i> Login With Apple</button>
+                  </div>
+
+                  <div class="d-flex justify-content-center">
+                    <p>Don't have any account? <a href="#" class="fs-6 fw-bold" data-bs-toggle="modal"
+                        data-bs-target="#signUp">Register</a></p>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
-      </div>
-      </div>
-      </div>
 
-      <!-- Modal For Forget Password -->
-      <div class="modal fade" id="forgetPassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h3><span class="logo">Five Dots</span></h3>
-              <!-- <button type="button"></button> -->
-              <a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></a>
+        <!-- Modal For Sign Up -->
+        <div class="modal fade" id="signUp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3><span class="logo">Five Dots</span></h3>
+                <!-- <button type="button"></button> -->
+                <a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></a>
 
-              <p>We'll send you a link to reset your password.</p>
+                <p>By Register, you agree to our <a href="#">terms</a> & <a href="#">policy.</a></p>
+              </div>
+              <form method="POST" action="{{ route('register') }}">
+                @csrf
+                <div class="modal-body">
+                  <div class="row mt-3 g-3">
+                    <div class="col-12">
+                      <label for="name" class="form-label">Name</label>
+                      <input type="text" class="form-control" id="name" placeholder="Your Name" name="name"
+                        value="{{ old('name') }}">
+                    </div>
+
+                    <div class="d-flex justify-content-center">
+                      <p>Already have an account? <a href="#" class="fs-6 fw-bold" data-bs-toggle="modal"
+                          data-bs-target="#signIn">Login</a></p>
+                    </div>
+                  </div>
+                </div>
             </div>
-            <div class="modal-body forgetPassword-modal">
-              <div class="row mt-3 g-3">
-                <div class="col-12">
-                  <label for="email" class="form-label">Email Address *</label>
-                  <input type="email" class="form-control" id="email" placeholder="Your Email Address">
-                </div>
+          </div>
+        </div>
 
-                <div class="col-12">
-                  <button class="login-btn">Submit Email</button>
-                </div>
+        <!-- Modal For Forget Password -->
+        <div class="modal fade" id="forgetPassword" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3><span class="logo">Five Dots</span></h3>
+                <!-- <button type="button"></button> -->
+                <a href="#" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></a>
 
-                <div class="col-12 text-center">
-                  <p class="login_or">Or</p>
-                </div>
+                <p>We'll send you a link to reset your password.</p>
+              </div>
+              <div class="modal-body forgetPassword-modal">
+                <div class="row mt-3 g-3">
+                  <div class="col-12">
+                    <label for="email" class="form-label">Email Address *</label>
+                    <input type="email" class="form-control" id="email" placeholder="Your Email Address">
+                  </div>
 
-                <div class="d-flex justify-content-center">
-                  <p>Back to <a href="#" class="fs-6 fw-bold" data-bs-toggle="modal" data-bs-target="#signIn">Login</a>
-                  </p>
+                  <div class="col-12">
+                    <button class="login-btn">Submit Email</button>
+                  </div>
+
+                  <div class="col-12 text-center">
+                    <p class="login_or">Or</p>
+                  </div>
+
+                  <div class="d-flex justify-content-center">
+                    <p>Back to <a href="#" class="fs-6 fw-bold" data-bs-toggle="modal"
+                        data-bs-target="#signIn">Login</a>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
       </div>
     </section>
@@ -392,19 +397,19 @@
     <nav class="hs-navigation">
       <ul class="nav-links">
 
-      @foreach($categories as $category)
+        @foreach($categories as $category)
         <li class="has-child">
           <span class="its-parent">
             <span class="icon"></span> {{ $category->name }} <i class="fas fa-angle-down"></i></span>
           <ul class="its-children">
             <li class="has-child">
               @foreach($category->subcategory as $subcategory)
-                <a href="#"> {{ $subcategory->name }} </a>
+              <a href="#"> {{ $subcategory->name }} </a>
               @endforeach
             </li>
           </ul>
         </li>
-      @endforeach
+        @endforeach
       </ul>
     </nav>
 

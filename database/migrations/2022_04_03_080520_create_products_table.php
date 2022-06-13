@@ -27,17 +27,14 @@ class CreateProductsTable extends Migration
       $table->enum('status', ['Active', 'Inactive'])->default('Active');
       $table->decimal('purchase_price')->nullable();
       $table->decimal('price')->nullable();
-      $table->enum('discount_type', ['Percent', 'Flat'])->default('Flat');
+      $table->enum('discount_type', ['Percent', 'Flat'])->nullable();
       $table->integer('discount')->nullable();
-      $table->decimal('shipping_cost')->nullable();
-      $table->string('shipping_days')->nullable();
       $table->string('unit')->nullable(); // PC, KG, L
       $table->integer('min')->nullable();
       $table->integer('max')->nullable();
       $table->integer('quantity')->nullable();
       $table->text('tags')->nullable(); // This is used for search. Input those words by which cutomer can find this product.
       $table->boolean('isCashAvailable')->default(true);
-      $table->integer('tax')->nullable();
       $table->text('attributes')->nullable();
       $table->text('meta_title')->nullable();
       $table->text('meta_description')->nullable();

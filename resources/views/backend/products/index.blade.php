@@ -46,6 +46,7 @@
         <li><a href="{{ url(routePrefix(). '/product') }}">Product</a></li>
         <li class="active"> {{ (str_replace(routePrefix() . '/', '', Request::path()) == 'product-draft') ? 'Draft' : ''
           }} Product-list</li>
+
       </ol>
     </div>
   </div>
@@ -58,6 +59,7 @@
           <div class="col-md-8">
             <h4 class="panel-title">{{ (str_replace(routePrefix() . '/', '', Request::path()) == 'product-draft') ?
               'Draft' : '' }} Product List</h4>
+
           </div>
 
           <div class="col-md-2">
@@ -108,9 +110,9 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach($data as $item)
+                  @foreach($data as $key => $item)
                   <tr>
-                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $data->firstitem() + $key }}</td>
                     <td>
                       <img style="width: 50px" src="{{ asset('backend/uploads/' . $item->thumbnail) }}"
                         alt="Product thumbnail">
@@ -120,11 +122,12 @@
                     <td>{{ $item->brand ? $item->brand->name : 'N/A' }}</td>
                     <td>{{ $item->status }}</td>
                     <td>
-                      <a class="btn btn-info" href="{{ url(routePrefix(). '/product/' . $item->id) }}">View</a>
-                      <a class="btn btn-info"
-                        href="{{ url(routePrefix(). '/product/' . $item->id . '/edit') }}">Edit</a>
-                      <a class="btn btn-danger"
-                        href="{{ url(routePrefix(). '/product/delete/' . $item->id) }}">Delete</a>
+                      <a class="btn btn-info" href="{{ url(routePrefix(). '/product/' . $item->id) }}"><i
+                          class="fa fa-eye"></i></a>
+                      <a class="btn btn-warning" href="{{ url(routePrefix(). '/product/' . $item->id . '/edit') }}"><i
+                          class="fa fa-edit"></i></a>
+                      <a class="btn btn-danger" href="{{ url(routePrefix(). '/product/delete/' . $item->id) }}"><i
+                          class="fa fa-trash"></i></a>
                     </td>
                   </tr>
                   @endforeach
@@ -263,6 +266,7 @@
                           <div class="form-group">
                             <label for="discount_type">Discount type</label>
                             <select name="discount_type" id="discount_type" class="form-control">
+                              <option selected value="">Select Discount Type</option>
                               <option value="Percent">Percent</option>
                               <option value="Flat">Flat</option>
                             </select>
@@ -283,33 +287,7 @@
                       <div class="col-md-4">
                         <div class="form-row">
                           <div class="form-group">
-                            <label for="shipping_cost">shipping_cost</label>
-                            <input type="number" min="0"
-                              value="{{ $data ? $data->shipping_cost : old('shipping_cost') }}" name="shipping_cost"
-                              class="form-control" id="shipping_cost" placeholder="shipping_cost">
-                            @error('shipping_cost')
-                            <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-row">
-                          <div class="form-group">
-                            <label for="shipping_days">Shipping days</label>
-                            <input type="text" name="shipping_days"
-                              value="{{ $data ? $data->shipping_days : old('shipping_days') }}" id="shipping_days"
-                              class="form-control">
-                            @error('shipping_days')
-                            <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-row">
-                          <div class="form-group">
-                            <label for="unit">Unit</label>
+                            <label for="unit">Unit(Kg, Cm, Pieces etc.)</label>
                             <input type="text" name="unit" id="unit" value="{{ $data ? $data->unit : old('unit') }}"
                               class="form-control">
                             @error('unit')
@@ -321,7 +299,7 @@
                       <div class="col-md-4">
                         <div class="form-row">
                           <div class="form-group">
-                            <label for="min">Min</label>
+                            <label for="min">Minimum Quanity Order</label>
                             <input type="number" min="1" value="{{ $data ? $data->min : old('min') }}" name="min"
                               class="form-control" id="min" placeholder="Min">
                             @error('min')
@@ -334,7 +312,7 @@
                       <div class="col-md-4">
                         <div class="form-row">
                           <div class="form-group">
-                            <label for="max">Max</label>
+                            <label for="max">Maximum Quanity Order</label>
                             <input type="number" min="0" value="{{ $data ? $data->max : old('max') }}" name="max"
                               class="form-control" id="max" placeholder="Max">
                             @error('max')
@@ -344,15 +322,6 @@
                         </div>
                       </div>
 
-                      <div class="col-md-4">
-                        <div class="form-row">
-                          <div class="form-group">
-                            <label for="tax">Tax</label>
-                            <input type="number" min="0" value="{{ $data ? $data->tax : old('tax') }}" name="tax"
-                              class="form-control" id="tax" placeholder="Tax">
-                          </div>
-                        </div>
-                      </div>
                     </div>
 
                   </div>
@@ -412,10 +381,7 @@
 
             </div>
 
-
-
             <div class="col-md-4">
-
               <div class="panel panel-info">
                 <div class="panel-heading">
                   <h3 class="panel-title">Product Categories</h3>
@@ -426,9 +392,10 @@
                     <div class="form-group">
                       <label for="category">Choose Parent Category</label>
                       <select name="category_id" id="category" class="form-control">
-                        <option value="" disabled selected>Select One</option>
+                        <option value="" selected>Select One</option>
                         @foreach ($category as $cat_item )
-                        <option value="{{ $cat_item->id }}" @if ( $page=='edit' ) {{ $cat_item->id == $data->id ?
+                        <option value="{{ $cat_item->id }}" @if ( $page=='edit' ) {{ $cat_item->id == $data->category_id
+                          ?
                           'selected'
                           : '' }} @endif
                           >{{ $cat_item->name }}</option>
@@ -440,13 +407,15 @@
                     </div>
                   </div>
 
+                  @if($page == 'edit')
                   <div class="form-row">
                     <div class="form-group">
                       <label for="sub_category">Choose Child Category</label>
                       <select name="sub_category_id" id="sub_category" class="form-control">
                         <option value="" selected>Select One</option>
                         @foreach ( $subCategory as $child_item )
-                        <option value="{{ $child_item->id }}" @if ( $page=='edit' ) {{ $child_item->id == $data->id ?
+                        <option value="{{ $child_item->id }}" @if ( $page=='edit' ) {{ $child_item->id ==
+                          $data->sub_category_id ?
                           'selected'
                           : '' }} @endif
                           >{{ $child_item->name }}</option>
@@ -454,6 +423,17 @@
                       </select>
                     </div>
                   </div>
+                  @else
+
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="sub_category">Choose Child Category</label>
+                      <select name="sub_category_id" id="sub_category" class="form-control">
+                        <option selected hidden disabled value="">Choose Subcategory</option>
+                      </select>
+                    </div>
+                  </div>
+                  @endif
 
                   <div class="form-row">
                     <div class="form-group">
@@ -461,7 +441,8 @@
                       <select name="brand_id" id="brand_name" class="form-control">
                         <option value="" selected>Select One</option>
                         @foreach ( $brand as $brand_item )
-                        <option value="{{ $brand_item->id }}" @if ( $page=='edit' ) {{ $brand_item->id == $data->id ?
+                        <option value="{{ $brand_item->id }}" @if ( $page=='edit' ) {{ $brand_item->id ==
+                          $data->brand_id ?
                           'selected'
                           : '' }} @endif
                           >{{ $brand_item->name }}</option>
@@ -476,7 +457,8 @@
                       <select name="seller_id" id="seller" class="form-control">
                         <option value="" selected>Select One</option>
                         @foreach ( $sellers as $seller_item )
-                        <option value="{{ $seller_item->id }}" @if ( $page=='edit' ) {{ $seller_item->id == $data->id ?
+                        <option value="{{ $seller_item->id }}" @if ( $page=='edit' ) {{ $seller_item->id ==
+                          $data->seller_id ?
                           'selected'
                           : '' }} @endif
                           >{{ $seller_item->name }}</option>
@@ -644,9 +626,6 @@
         </div>
       </form>
       @elseif($page == 'show')
-      {{
-      $data
-      }}
 
       <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-info">
@@ -704,7 +683,7 @@
                 <tr>
                   <th width="45%">Brand Name</th>
                   <td width="10%">:</td>
-                  <td width="45%">{{ $data->brand->name }}</td>
+                  <td width="45%">{{ $data->brand->name ?? 'NA' }}</td>
                 </tr>
 
                 <tr>
@@ -772,4 +751,32 @@
     <p class="no-s">Made with <i class="fa fa-heart"></i> by stacks</p>
   </div>
 </div><!-- Page Inner -->
+@endsection
+
+@section('footer_js')
+<script>
+  $('#category').change(function () {
+    let categoryId = $(this).val();
+    if (categoryId) {
+      $.ajax({
+        type: "GET",
+        url: "{{url('get-subcategory')}}/" + categoryId,
+        success: function (res) {
+          if (res) {
+            $("#sub_category").empty();
+            $("#sub_category").append('<option>Choose Subcategory</option>');
+            $.each(res, function (key, value) {
+              $("#sub_category").append('<option value="' + value.id + '">' + value.name + '</option>');
+            });
+
+          } else {
+            $("#sub_category").empty();
+          }
+        }
+      });
+    } else {
+      $("#sub_category").empty();
+    }
+  });
+</script>
 @endsection

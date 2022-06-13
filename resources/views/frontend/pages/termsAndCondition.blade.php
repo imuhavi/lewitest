@@ -1,6 +1,10 @@
 @extends('frontend.master')
 @section('content')
 <div class="container mt-5">
+  <div class="heading-checkout text-center mb-3">
+    <h3>Terms and Conditions</h3>
+  </div>
+
   <p dir="rtl"><strong>المقدّمة</strong><strong>:</strong></p>
 
   <p dir="rtl">منصة Five Dots المملوكة لمؤسسة النقط الخمس التجارية والمسجلة في المملكة العربية السعودية بموجب سجل تجاري
@@ -20,7 +24,7 @@
     الرئيسية
     المستخدمة في هذه الاتفاقية :</p>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li dir="rtl">(منصة Five Dots المملوكة لمؤسسة النقط الخمس التجارية): يقصَد بهذه العبارة تطبيق Five Dots الالكتروني،
       ويشمل هذا التعريف كافة أشكال تطبيق Five Dots على الشبكة العنكبوتية، سواءً كانت تطبيق الكتروني أو موقع الكتروني،
       وسيشار إليها أينما وردت في هذه الأحكام بـ(المنصة).</li>
@@ -41,7 +45,7 @@
     </strong><strong>أهلية</strong><strong> </strong><strong>التاجر</strong><strong>
     </strong><strong>القانونية</strong><strong>:</strong>&nbsp;</p>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li dir="rtl">يقر التاجر بأنه ذا أهلية معتبرة شرعًا ونظامًا وأنه غير مصاب بأي عارض من عوارض الأهلية، وأن عمره لا يقل
       عن ثمانية عشرة عامًا، كما هو معتبر في القوانين والأنظمة المرعية بالمملكة العربية السعودية، وأنه على دراية كافية
       لعرض
@@ -65,7 +69,7 @@
     </strong><strong>طبيعة</strong><strong> </strong><strong>التزام</strong><strong>
     </strong><strong>منصة</strong><strong> </strong>Five Dots<strong>:</strong>&nbsp;</p>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li dir="rtl">إن مهمة المنصة هي عرض منتجات التاجر، حيث أن التزامها بموجب هذه الاتفاقية يقتصر على عرض منتجات التاجر
       داخل المنصة، ووضع المنتجات أمام المستخدمين وتوفير وسائل الدفع للمستهلك .</li>
     <li dir="rtl">قد توفّر المنصة خدمات أخرى للتاجر أو الحساب كخدمات الدعم التسويقي أو خدمات التوجيه والإرشاد، وجميع
@@ -81,7 +85,7 @@
     </strong><strong>ضوابط</strong><strong> </strong><strong>عرض</strong><strong> </strong><strong>وشحن</strong><strong>
     </strong><strong>المنتجات</strong>:</p>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li dir="rtl">يجوز لكل شخص توافرت فيه الأهلية القانونية المعتبرة نظاماً وشرعاً عرض المنتجات الخاصة به وفقاً لقواعد
       وأحكام اتفاقية الاستخدام وعلى وجه الخصوص &rdquo; المادة الأولى &ndash; أهلية التاجر القانونية &ldquo;.</li>
     <li dir="rtl">يجب أن يكون الحساب الخاص بالتاجر وفقاً لاتفاقية استخدام المنصة غير مخالف للأنظمة والقوانين في المملكة
@@ -135,7 +139,7 @@
     عن معلومات محددة واختيار اسم مستخدم وكلمة مرور سرية لاستعمالها عند تسجيل الدخول لخدمات المنصة، وبعد تنشيط حسابك سوف
     تصبح مستخدمًا لخدمات المنصة، وبذلك تكون قد وافقت على:</p>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li dir="rtl">أن تكون مسؤولاً عن المحافظة على سرية معلومات حسابك وسرية كلمة المرور، وتكون بذلك موافقاً على
       إعلام&nbsp;المنصة حالاً بأي استخدام غير مفوض به لمعلومات حسابك لديها أو أي اختراق آخر لمعلوماتك السرية.</li>
     <li dir="rtl">لن تكون المنصة بأي حال من الأحوال مسؤولًة عن أي خسارة قد تلحق بك بشكل مباشر أو غير مباشر معنوية أو
@@ -176,7 +180,7 @@
     </strong><strong>ووسائل</strong><strong> </strong><strong>التواصل</strong><strong>
     </strong><strong>الرسمية</strong><strong>:</strong></p>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li dir="rtl">يوافق التاجر في المنصة أن يتم التواصل معه عبر البريد الإلكتروني، أو من خلال قيام إدارة المنصة ببث
       رسائل
       عامة ترد إلى كافة المستخدمين أو إلى مستخدمين محددين حال الدخول إلى حساباتهم داخل المنصة. كما يوافق التاجر في
@@ -193,7 +197,7 @@
     </strong><strong>اتفاقية</strong><strong> </strong><strong>الاستخدام</strong><strong>
     </strong><strong>والرسوم</strong><strong>:</strong>&nbsp;</p>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li dir="rtl">يوافق التاجر على أن&nbsp;منصة Five Dots تملك بمطلق صلاحيتها ودون تحملها المسؤولية القانونية أن تجري أي
       تعديلات أساسية أو فرعية على هذه الاتفاقية، ويتم إعلام المستخدمين عن هذا التعديل بأي وسيلة تقنية يتم توفيرها، ويجوز
       أن يكون ذلك عن طريق البريد الإلكتروني أو ببث رسالة عامة لكافة المستخدمين، وتوفّر المنصة وسائل تقنية لإظهار قبول
@@ -212,7 +216,7 @@
     </strong><strong>والسداد</strong><strong> </strong><strong>للمتاجر</strong><strong>
     </strong><strong>في</strong><strong>&nbsp;</strong><strong>منصة</strong><strong> Five Dots:</strong>&nbsp;</p>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li dir="rtl">توفّر منصة Five Dots عبر شركائها نظام الدفع والسداد في المنصة فيمكن أن يتم عبر الانترنت كليا من خلال
       خيارات الدفع المتوفرة في المنصة أو من خلال أي طريقة دفع توفرها من حين لآخر، وتشترط المنصة أن تتم عمليات الدفع
       مباشرةً بين المستهلك والمنصة.</li>
@@ -243,7 +247,7 @@
     </strong><strong>ومعلومات</strong><strong> </strong><strong>تفاصيل</strong><strong>
     </strong><strong>العمليات</strong><strong>:</strong></p>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li dir="rtl">تمنح&nbsp;المنصة حقاً غير محدود، وعالمي، ودائم وغير قابل للإلغاء، ومعفي من المصاريف، ومرخص باستخدام
       معلومات أو مواد شخصية أو غير ذلك مما وفرتها أو زودت بها المنصة أو أعلنتها على المنصة من خلال انضمامك إليها أو عرضك
       للمنتجات، وذلك عبر النماذج المخصصة للتواصل و التسجيل، أو عبر أية رسالة إلكترونية أو أي من قنوات الاتصال المتاحة
@@ -259,7 +263,7 @@
     </strong><strong>المملكة</strong><strong> </strong><strong>العربية</strong><strong>
     </strong><strong>السعودية</strong><strong> :</strong></p>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li dir="rtl">يتعهّد التاجر بالالتزام بكافة القوانين والأنظمة المعمول بها داخل المملكة العربية السعودية حيال منتجاته
       أو/و أثناء استخدامه للمنصة، وكذلك القوانين والشروط والأحكام المعمول بها والمُنظِّمة لاستخدام الإنترنت واتفاقية
       الاستخدام وسياسة الخصوصية وسرية المعلومات المعمول بها لدى المنصة.</li>
@@ -271,7 +275,7 @@
   <p dir="rtl"><strong>المادة</strong><strong> </strong><strong>الحادية</strong><strong>
     </strong><strong>عشرة</strong><strong> &ndash; </strong><strong>الحقوق</strong><strong>:</strong></p>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li dir="rtl">كافة المحتويات المتواجدة على المنصة الإلكترونية وهي على سبيل المثال لا الحصر: النصوص المكتوبة وغير
       المكتوبة &ndash; التصاميم الجرافيكية &ndash; الأفكار التقنية &ndash; الشعارات &ndash; العروض &ndash; أيقونات
       الأزرار
@@ -288,7 +292,7 @@
     </strong><strong>عشرة</strong><strong> &ndash; </strong><strong>الملكية</strong><strong>
     </strong><strong>الفكرية</strong><strong>:</strong></p>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li dir="rtl">تحترم إدارة المنصة حقوق الملكية الفكرية الخاصة بالتجار والتي كوّنوها عبر متاجرهم، سواءً كانت مملوكة
       لهم
       قبل تسجيل الحساب أم بعد تأسيسه.</li>
@@ -303,7 +307,7 @@
   <p dir="rtl"><strong>المادة</strong><strong> </strong><strong>الثالثة</strong><strong>
     </strong><strong>عشرة</strong><strong> &ndash; </strong><strong>المستهلك</strong><strong>:</strong></p>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li dir="rtl">يقوم المستهلك أثناء إتمامه لعمليات الشراء بتزويد منصة Five Dots بالمعلومات التالية، وهي على سبيل
       المثال
       لا الحصر: الاسم &ndash; البريد الالكتروني &ndash; الهاتف - العنوان.</li>
@@ -317,7 +321,7 @@
     Five
     Dots توضّح للتاجر التالي:</p>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li dir="rtl">في حال قام المستهلك بشراء بضاعة بأحد طرق الدفع المتوفرة على المنصة، ولم يستلم بضاعته أو أنه تسلم بضاعة
       تختلف عن ما عرض من مواصفات ذكرت بحساب التاجر من قبله، أو عن ما تم تسليمها للمنصة، حينها يكون من حق المستهلك إبلاغ
       منصة Five Dots وللمنصة الحق في اتخاذ ما تراه مناسب حيال التاجر الذي خالف قواعد هذه الاتفاقية، وفقاً لقواعد هذه
@@ -337,7 +341,7 @@
     </strong><strong>عشرة</strong><strong> &ndash;
     </strong><strong>مسئولية</strong><strong>&nbsp;</strong><strong>منصة</strong><strong> Five Dots:</strong></p>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li dir="rtl">لا تتحمل المنصة أي مطالبات تنشأ عن أخطاء أو إهمال، سواء كانت ناتجة بشكل مباشر أو غير مباشر أو عرضي أو
       عن
       طريق طرف ثالث.</li>
@@ -375,7 +379,7 @@
     </strong><strong>عشرة</strong><strong> &ndash; </strong><strong>سرية</strong><strong>
     </strong><strong>المعلومات</strong><strong>:</strong></p>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li dir="rtl">تحيطكم منصة Five Dots علمًا بأن الشبكة العنكبوتية ( الإنترنت ) ليس وسيلة آمنة، وسرية المعلومات الشخصية
       لا يمكن أن تكون مضمونة 100%.</li>
     <li dir="rtl">تتخذ منصة Five Dots معايير ( ملموسة وتنظيمية وتقنية ) ذات جودة عالية لحماية المستخدمين والمستهلكين
@@ -399,7 +403,7 @@
     </strong><strong>الحساب</strong><strong> </strong><strong>أو</strong><strong> </strong><strong>رفض</strong><strong>
     </strong><strong>المنتجات</strong><strong>:</strong></p>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li dir="rtl">إن&nbsp;منصة Five Dots بحسب اتفاقية الاستخدام وبحسب القوانين والأنظمة المرعية بالمملكة العربية
       السعودية
       قد تلجأ إلى وقف مؤقت أو دائم للمتجر أو سحب وإلغاء عضوية التاجر أو تحديد قدرات التجار على الدخول إلى خدماتها، وذلك
@@ -407,7 +411,7 @@
       حالة:</li>
   </ul>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li dir="rtl">انتهاك قواعد وأحكام اتفاقية الاستخدام.</li>
     <li dir="rtl">إذا لم يكن بإمكان&nbsp;المنصة توثيق أي من معلومات المستخدم المقدمة إليها.</li>
     <li dir="rtl">إذا قررت المنصة أن نشاطات المستخدم مخالفة للقانون أو أن نشاطات المستخدم قد تتسبب لمستخدمين آخرين أو
@@ -435,7 +439,7 @@
     </strong><strong>المتفق</strong><strong> </strong><strong>عليها</strong><strong>
     </strong><strong>وآلية</strong><strong> </strong><strong>الدفع</strong><strong>:</strong></p>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li dir="rtl">تستحق المنصة مبلغ اشتراك شهري بحسب الباقة التي تم اختيارها من قبل التاجر.</li>
     <li dir="rtl">تستحق المنصة نسبة وقدرها (١٠%) من المنتجات مقابل الحملات التسويقية التي تقوم بها للتاجر.</li>
     <li dir="rtl">تلتزم المنصة بتحصيل الأموال، ويكون صرف الأرباح شهريًا، ويتم حساب مدة الشهر بحسب تاريخ نشر المنتجات على
@@ -453,7 +457,7 @@
     </strong><strong>وتخزين</strong><strong> </strong><strong>وإعادة</strong><strong>
     </strong><strong>المنتجات</strong><strong>:</strong></p>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li dir="rtl">منصة Five Dots لها الحق في رفض أو إلغاء عمليات الشراء سواء تم الدفع أم لم يتم الدفع مع التزام المنصة
       بإبلاغ التاجر خلال خمسة أيام بأي من طرق التواصل المتاحة لها.</li>
     <li dir="rtl">يوافق مستخدم المنصة و يقر أنه لن يقوم بعمليات شراء غير حقيقية أو متلاعبة على المنصة، ولن يستخدم اسم
@@ -514,7 +518,7 @@
   <p dir="rtl"><strong>المادة</strong><strong> </strong><strong>الثانية</strong><strong>
     </strong><strong>والعشرون</strong><strong> &ndash; </strong><strong>الضمان</strong><strong>:</strong></p>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li dir="rtl">منصة Five Dots لا تضمن إصلاح الأعطال ولا تضمن خلو المنتجات التي يقدّمها التجار من أي عيوب أخرى وإنما
       يضمنها التاجر في حالة ذكر الضمان ومدته&nbsp;وذلك بوصف المنتج، وعلى التاجر أن يلتزم بحسن الجودة في منتجاته.</li>
     <li dir="rtl">يقر التاجر بأن منتجاته خاضعة لأحكام أنظمة حماية المستهلك وكافة الأنظمة واللوائح المعمول بها في المملكة
@@ -528,7 +532,7 @@
     </strong><strong>والعشرون</strong><strong> &ndash; </strong><strong>مسئولية</strong><strong>
     </strong><strong>التاجر</strong><strong>:</strong></p>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li dir="rtl">يوافق التاجر على تحمل المسئولية ووقاية المنصة أو منسوبيها أو مُلّاكها أو المتفرعين عنها من أي ضرر قد
       يقع
       على المنصة من جراء مخالفات التاجر، كما يلتزم برفع أي ضرر أو منع أي ضرر قد يلحق بالمنصة أو بمنسوبيها أو بأحدهم من
@@ -577,7 +581,7 @@
     </strong><strong>التي</strong><strong> </strong><strong>يجب</strong><strong> </strong><strong>على</strong><strong>
     </strong><strong>الحساب</strong><strong> </strong><strong>اتباعها</strong><strong>:</strong></p>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li dir="rtl">يلتزم التاجر عند تعامله مع المنصة بالصدق والأمانة والنزاهة.</li>
     <li dir="rtl">يلتزم التاجر عند تعامله مع المنصة بحُسن الأخلاق.</li>
     <li dir="rtl">يلتزم التاجر بشروط عرض المنتجات التالية: 1- تصوير المنتج بطريقة واضحة جدًا. 2- شرح بيانات المنتج على
@@ -602,7 +606,7 @@
     </strong><strong>والإلكترونية</strong><strong> </strong><strong>والعروض</strong><strong>
     </strong><strong>الخاصة</strong><strong> </strong><strong>بمنصة</strong><strong> Five Dots:</strong></p>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li dir="rtl">تسري قواعد وأحكام اتفاقية الاستخدام هذه على كافة المنشورات الدعائية الورقية والإلكترونية&nbsp;عبر
       مختلف
       منصات النشر وعبر مختلف وسائل التواصل الاجتماعي.</li>
@@ -620,7 +624,7 @@
     </strong><strong>واللوجستية</strong><strong> ( </strong><strong>خدمات</strong><strong>
     </strong><strong>الطرف</strong><strong> </strong><strong>الثالث</strong><strong> ) :</strong></p>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li dir="rtl">بموجب قواعد وأحكام اتفاقية الاستخدام هذه فإن منصة Five Dots توفّر بعض الخدمات الإستراتيجية أو
       اللوجستية
       عن طريق طرف ثالث أو أطراف ثالثة ، وقدّ تكون هذه الخدمات على سبيل المثال لا الحصر : خدمات شركات الشحن وتوصيل
@@ -657,15 +661,15 @@
     </strong><strong>بين</strong><strong> </strong><strong>المستهلك</strong><strong>
     </strong><strong>والتاجر</strong><strong>:</strong></p>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li>
-      <ul>
+      <ul style="list-style-type: circle;">
         <li dir="rtl">تأمل منكم منصة Five Dots في حال وجود شكوى بحق إحدى الحسابات، إتباع الخطوات التالية:</li>
       </ul>
     </li>
   </ul>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li dir="rtl">الخطوة الأولى:&nbsp;التقدم بإفادة شكوى عبر الرابط المخصص لذلك في المنصة، على أن تتضمّن الإفادة: نص
       الشكوى والمستندات المؤيدة لها &ndash; اسم الحساب المخالف. ومن ثم سوف تقوم إدارة المنصة بإحالة الشكوى إلى التاجر
       المعني بالحساب من أجل حلها.</li>
@@ -675,7 +679,7 @@
       حال عدم قناعة المستهلك برد التاجر فإنه يحق له طلب الحصول على نسخة من الهوية القانونية التاجر لاتخاذ ما يراه
       مناسباً
       بحق المتجر.
-      <ul>
+      <ul style="list-style-type: circle;">
         <li dir="rtl">كما تحتفظ منصة Five Dots بالحق في إغلاق الحساب المخالف في حال ثبوت ارتكابه للمخالفة.</li>
       </ul>
     </li>
@@ -713,7 +717,7 @@
     </strong><strong>والثلاثون</strong><strong> &ndash; </strong><strong>أحكام</strong><strong>
     </strong><strong>عامة</strong><strong>:</strong></p>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li dir="rtl">في حال إلغاء أي مادة واردة أو بند ورد في اتفاقية الاستخدام هذه أو أن هناك أي مادة واردة أو أي بند وارد
       في اتفاقية الاستخدام لم يعد نافذًا، فإن مثل هذا الأمر لا يلغي صلاحية باقي المواد والبنود والقواعد والأحكام الواردة
       في اتفاقية الاستخدام وتظل سارية حتى إشعار آخر من إدارة منصة Five Dots.</li>
@@ -722,7 +726,7 @@
       هذه الاتفاقية، كما يوافق التاجر على أن يوضع في عين الاعتبار ما يلي:</li>
   </ul>
 
-  <ul>
+  <ul style="list-style-type: circle;">
     <li dir="rtl">اتفاقية الاستخدام هذه سارية على كافة المستخدمين لمنصة Five Dots وهي المُنظّمة للعلاقة وهي العقد فيما
       بين
       التاجر و منصة Five Dots فقط لا غير، بغض النظر عن أي شكل نظامي أو كيان قانوني أو مؤسسي أو تجاري أو خيري يتخذه

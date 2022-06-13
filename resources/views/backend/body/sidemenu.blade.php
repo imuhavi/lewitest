@@ -12,7 +12,7 @@
       @if(routePrefix() === 'admin' || routePrefix() === 'seller')
       <li class="droplink @yield('product_active')"><a href="#" class="waves-effect waves-button"><span
             class="menu-icon icon-present"></span>
-          <p>Product Management</p><span class="arrow"></span>
+          <p>Product Manage</p><span class="arrow"></span>
         </a>
         <ul class="sub-menu">
           <li class="@yield('subproduct_active')"><a href="{{ url(routePrefix(). '/product') }}">Product
@@ -45,7 +45,7 @@
           <p>Sliders</p>
         </a>
       </li>
-      
+
       <li class="@yield('category_active')"><a href="{{ url( routePrefix() . '/category') }}"
           class="waves-effect waves-button"><span class="menu-icon icon-grid"></span>
           <p>Category</p>

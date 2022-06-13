@@ -57,7 +57,6 @@ Add Brand
                     <th>Sl</th>
                     <th>Name</th>
                     <th>Logo</th>
-                    <th>Banner</th>
                     <th>Status</th>
                     <th width="120" style="text-align: center">Action</th>
                   </tr>
@@ -74,15 +73,6 @@ Add Brand
                       @else
                       <img src="{{ asset('backend/assets/default-img/noimage.jpg') }}" class="small-image"
                         alt="Default Brand logo">
-                      @endif
-                    </td>
-                    <td>
-                      @if($brandItem->banner)
-                      <img src="{{ asset('/backend/uploads/' . $brandItem->banner) }}" class="small-image"
-                        alt="Category icon - {{ $brandItem->banner }}">
-                      @else
-                      <img src="{{ asset('backend/assets/default-img/noimage.jpg') }}" class="small-image"
-                        alt="Default Brand banner">
                       @endif
                     </td>
                     <td>
@@ -158,21 +148,6 @@ Add Brand
                 <img class="img-thumbnail"
                   src="{{ ($page == 'create' || !$data->logo) ? asset('backend/assets/default-img/noimage.jpg') : asset('backend/uploads/' . $data->logo) }}"
                   id="logo" width="100" height="100" />
-              </div>
-
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="brand_banner">Upload Banner</label>
-                  <input type="file" class="form-control" name="banner" id="brand_banner"
-                    onchange="previewImage('banner', this.files)">
-                  @error('banner')
-                  <small class="text-danger">{{ $message }}</small>
-                  @enderror
-                </div>
-
-                <img class="img-thumbnail"
-                  src="{{ ($page == 'create' || !$data->banner) ? asset('backend/assets/default-img/noimage.jpg') : asset('backend/uploads/' . $data->banner) }}"
-                  id="banner" width="100" height="100" />
               </div>
 
               <div class="from-row status">
