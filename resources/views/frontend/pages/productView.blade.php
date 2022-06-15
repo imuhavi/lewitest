@@ -190,6 +190,8 @@
                       @if($product->discount !== null && ($product->discount_type == 'Flat' || $product->discount_type
                       == 'Percent'))
                       <span class="discount">OFF {{round($discount) }}%</span>
+                      @else
+                      <span class="discount">Not Available</span>
                       @endif
                     </h6>
                   </td>
@@ -250,7 +252,8 @@
             </div>
 
             <div class="p-3">
-              <a href="#" class="product-title">{{ Str::limit($item->name, 25) }}</a>
+              <a href="{{ route('productView', $item->slug) }}" class="product-title">{{ Str::limit($item->name, 25)
+                }}</a>
 
               @if($item->discount == null )
               <div class="d-flex justify-content-between align-items-center">

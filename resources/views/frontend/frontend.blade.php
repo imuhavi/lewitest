@@ -219,7 +219,7 @@
       ---------------------------------->
   <section id="product-category-men">
     <div class="container">
-      <h2 class="section-title text-center text-white mb-md-4">styles based on your shopping habits</h2>
+      <h2 class="section-title text-center text-white mb-md-4">Our Latest Product</h2>
       <div id="product" class="owl-carousel">
 
         @foreach($products as $product)
