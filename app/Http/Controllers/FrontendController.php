@@ -147,12 +147,6 @@ class FrontendController extends Controller
     return view($this->VIEW_PATH . 'productView', compact('product', 'reletedProduct', 'colors', 'sizes'));
   }
 
-
-  function cart()
-  {
-    return view($this->VIEW_PATH . 'cart');
-  }
-
   function wishlist()
   {
     return view($this->VIEW_PATH . 'wishlist');

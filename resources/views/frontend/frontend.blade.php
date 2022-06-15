@@ -13,7 +13,11 @@
         @endforeach
       </ol>
       <div class="carousel-inner">
+
         @foreach($slider as $key => $item)
+
+        @if($item->category)
+
         <div style="background-image: url({{asset('backend/uploads/'. $item->banner)}})"
           class="carousel-item carousel-img {{$key == 0 ? 'active' : '' }}" data-bs-interval="3000">
           <div class="container">
@@ -22,12 +26,14 @@
                 <p class="wow bounceInDown" data-wow-duration="1s" data-wow-delay="0s">{{ $item->sub_title }}</p>
 
                 <h1 class=" wow bounceInDown" data-wow-duration="1.2s" data-wow-delay=".2s">{{ $item->title }}</h1>
-                <a class="btn fivedots-btn wow bounceInDown" data-wow-duration="1.5s" data-wow-delay=".5s" href="#">Shop
+                <a class="btn fivedots-btn wow bounceInDown" data-wow-duration="1.5s" data-wow-delay=".5s"
+                  href="{{ route('categoryShop', ['id'=> $item->category->id, 'slug' => $item->category->slug]) }}">Shop
                   Now <img class="icon" src="{{ asset('frontend/assets') }}/images/btn-arrow-light.png" alt=""></a>
               </div>
             </div>
           </div>
         </div>
+        @endif
         @endforeach
       </div>
       <a href="#myCarousel" class="carousel-control-prev" data-bs-slide="prev">
