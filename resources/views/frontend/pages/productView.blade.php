@@ -1,6 +1,8 @@
 @extends('frontend.master')
 @section('header_css')
 <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/jquery.nice-number.min.css">
+<link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/jquery-picZoomer.css">
+<link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/reset.css">
 @endsection
 @section('content')
 
@@ -13,14 +15,15 @@
             <div class="slider">
 
               <div class="slide-item">
-                <img id="img_01" class="img-fluid" src="{{ asset('backend/uploads/' . $product->thumbnail) }}"
-                  alt="Feature Images">
+                <img id="img_01" class="img-fluid"
+                  data-zoom-image="{{ asset('backend/uploads/' . $product->thumbnail ) }}"
+                  src="{{ asset('backend/uploads/' . $product->thumbnail) }}" alt="Feature Images">
               </div>
 
               @foreach($product->images as $image)
               <div class="slide-item">
-                <img id="img_01" class="img-fluid" src="{{ asset('backend/uploads/' . $image->image) }}"
-                  alt="Feature Images">
+                <img id="img_01" data-zoom-image="{{ asset('backend/uploads/' . $image->image) }}" class="img-fluid"
+                  src="{{ asset('backend/uploads/' . $image->image) }}" alt="Feature Images">
               </div>
               @endforeach
 
@@ -28,12 +31,12 @@
 
             <div class="slide-nav">
               <div class="slide-nav-item">
-                <img class="w-75" src="{{ asset('backend/uploads/' . $product->thumbnail) }}" alt="">
+                <img class="w-75" src="{{ asset('backend/uploads/' . $product->thumbnail) }}" alt="product-thubnail">
               </div>
 
               @foreach($product->images as $image)
               <div class="slide-nav-item">
-                <img class="w-75" src="{{ asset('backend/uploads/' . $image->image) }}" alt="">
+                <img class="w-75" src="{{ asset('backend/uploads/' . $image->image) }}" alt="product-thubnail">
               </div>
               @endforeach
 
@@ -233,7 +236,6 @@
 
       <div id="product" class="owl-carousel">
         @foreach($reletedProduct as $item)
-
         @php
         $discountAmount = ($item->price - ($item->discount / 100) * $item->price);
 
@@ -309,6 +311,7 @@
 @section('footer_js')
 <!-- Nice Number -->
 <script src="{{ asset('/frontend/assets/') }}/js/jquery.nice-number.min.js"></script>
+<script src="https://cdn.rawgit.com/igorlino/elevatezoom-plus/1.1.6/src/jquery.ez-plus.js"></script>
 
 <script>
   // Actice Attributes
