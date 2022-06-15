@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Support\Str;
 
 if (!function_exists('uploadImage')) {
@@ -67,5 +68,30 @@ if (!function_exists('getCategories')) {
   function getCategories()
   {
     return Category::whereType('Deleteable')->orderBy('updated_at', 'desc')->get();
+  }
+}
+
+if (!function_exists('getCart')) {
+  function getCart()
+  {
+    $data = [
+      'cart' => [],
+      'total' => 0
+    ];
+    $session = session('cart');
+    if(!empty($session)){
+      foreach ($session as $item) {
+        $product = Product::find($item['product_id']);
+        array_push($data['cart'], [
+          'product_name' => $product->name,
+          'product_price' => $product->price, // Here will be added the logic of discount
+          'quantity' => $item['quantity'],
+          'color' => $item['color'],
+          'size' => $item['size']
+        ]);
+        $data['total'] += $product->price;
+      }
+    }
+    return $data;
   }
 }

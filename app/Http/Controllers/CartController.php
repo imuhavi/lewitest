@@ -21,46 +21,18 @@ class CartController extends Controller
 
   public function addToCart(Request $request)
   {
-
-    // return $request->all();
-    $cart = new Cart;
-    $cart->product_id = $request->productId;
-    $cart->quantity = $request->quantity;
-    $cart->color = $request->color;
-    $cart->size = $request->size;
-    $cart->save();
-
-    // return ($request->all());
-    // $userId = Auth::id();
-    // $oldCookie_id = $request->cookie('cookie_id');
-    // if ($oldCookie_id) {
-    //   $cookie_id = $oldCookie_id;
-    // } else {
-    //   $minutes = 48900;
-    //   $cookie_id = Str::random(10);
-    //   Cookie::queue('cookie_id', $cookie_id, $minutes);
-    // }
-
-    // $product_id = Product::findOrFail($request->productId)->id;
-    // $carts = Cart::where('product_id', $product_id);
-
-    // if ($carts->exists()) {
-    //   $carts->increment('quantity', $request->quantity);
-    //   return back()->with('success', 'Cart product Update successfully');
-    // } else {
-    //   $cart = new Cart;
-    //   $cart->cookie_id = $cookie_id;
-    //   $cart->product_id = $product_id;
-    //   $cart->quantity = $request->quantity;
-    //   $cart->color = $request->color;
-    //   $cart->size = $request->size;
-    //   $cart->save();
-    //   $notification = array(
-    //     'message' => 'Add to cart product successfully',
-    //     'alert-type' => 'success'
-    //   );
-    //   // Toastr Alert
-    //   return back()->with($notification);
-    // }
+    $cart = [
+      'product_id' => $request->product_id,
+      'quantity' => $request->quantity,
+      'color' => $request->color,
+      'size' => $request->size
+    ];
+    /* Validations (add the validations here at first)
+      1. Already added product
+      2. Min qnty
+      3. Max qnty
+    */
+    session()->push('cart', $cart);
+    return response()->json('Product added successfully !', 200);
   }
 }

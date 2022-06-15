@@ -55,7 +55,7 @@
             <p class="summary">{!! Str::limit($product->description, 120) !!}</p>
 
             @if($product->discount == null )
-            <h3 class="price" data-price="{{ $product->price }}">SAR {{ $product->price }}</h3>
+            <h3 class="price">SAR {{ $product->price }}</h3>
             @endif
 
             @if($product->discount !== null && $product->discount_type == 'Flat')
@@ -99,7 +99,9 @@
               <div class="nice-number">
                 <input class="qty-input" type="number" value="1" min="0">
               </div>
-              <a href="javascript:window.location.href=window.location.href" class="cart-btn"
+              <a href="javascript:void(0)" class="cart-btn"
+                data-productId="{{ $product->id }}">add to cart</a>
+              <a href="javascript:void(0)" class="cart-btn-hidden"
                 data-productId="{{ $product->id }}">add to cart</a>
               <a href="" class="add-wishlist"><img src="{{ asset('frontend/assets/') }}/images/heart.png"
                   alt="user-profile"></a>
@@ -280,54 +282,36 @@
   });
 
   $(document).ready(function () {
-
     $('.cart-btn').on('click', function (e) {
-
-      e.preventDefault();
-      let productId = $(this).attr('data-productId');
-      let quantity = $('.qty-input').val();
-      let price = $('.price').attr('data-price');
-      let color = $('.color-active').attr('data-color');
-      let size = $('.size-active').attr('data-size');
-
+      e.preventDefault()
+      $('.cart-btn').hide()
+      $('.cart-btn-hidden').show()
+      let productId = $(this).attr('data-productId')
+      let quantity = $('.qty-input').val()
+      let color = $('.color-active').attr('data-color')
+      let size = $('.size-active').attr('data-size')
       $.ajaxSetup({
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
-      });
-
+      })
       $.ajax({
         url: "{{ url('add-to-cart') }}",
         method: 'POST',
         data: {
-          'productId': productId,
+          'product_id': productId,
           'quantity': quantity,
-          'price': price,
           'color': color,
           'size': size
         },
-
         datType: 'json',
         success: function (data) {
           console.log(data)
+          $('.cart-btn-hidden').hide()
+          $('.cart-btn').show()
         }
       })
-
-
-    });
-
-
-
-
-
-
-
-
-
-
-
-
-
-  });
+    })
+  })
 </script>
 @endsection
