@@ -48,9 +48,6 @@
                   <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
                     aria-labelledby="panelsStayOpen-headingOne">
                     <div class="accordion-body">
-
-
-
                       <div class="price-range-wraper">
                         <div class="price-input">
                           <div class="field">
@@ -67,20 +64,16 @@
                         <div class="slider">
                           <div class="progress"></div>
                         </div>
-
                         <div class="range-input">
                           <input type="range" id="range-min" min="{{ $min }}" max="{{ $max }}" value="{{ $min }}"
                             step="5" oninput="minPrice()" onchange="filter()">
                           <input type="range" id="range-max" min="{{ $min }}" max="{{ $max }}" value="{{ $max }}"
                             step="10" oninput="maxPrice()" onchange="filter()">
                         </div>
-
                       </div>
-
                     </div>
                   </div>
                 </div>
-
                 <div class="accordion-item mt-3">
                   <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
                     <button class="filter-button" type="button" data-bs-toggle="collapse"
