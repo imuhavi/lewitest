@@ -233,6 +233,13 @@
 
       <div id="product" class="owl-carousel">
         @foreach($reletedProduct as $item)
+
+        @php
+        $discountAmount = ($item->price - ($item->discount / 100) * $item->price);
+
+        $discount = (($item->discount * 100) / $item->price)
+        @endphp
+
         <div class="item">
           <div class="releted-product-item">
             <div class="product-img">
@@ -264,13 +271,12 @@
               @endif
 
               @if($item->discount !== null && $item->discount_type == 'Percent')
-              <h3 class="new-price my-3 text-dark">SAR <span class="text-dark">{{ $item->price- $item->discount
-                  }}</span></h3>
+              <h3 class="new-price my-3 text-dark">SAR <span class="text-dark">{{ $discountAmount }}</span></h3>
 
               <div class="d-flex justify-content-between">
                 <div class="off">
                   <span class="old-price text-dark">SAR {{ $item->price }}</span>
-                  <span class="discount">{{ round($discount) }}% OFF</span>
+                  <span class="discount">{{ round($item->discount) }}% OFF</span>
                 </div>
                 <span class="wishlist"><i class="far fa-heart"></i></span>
               </div>
