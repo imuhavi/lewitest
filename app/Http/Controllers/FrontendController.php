@@ -126,11 +126,12 @@ class FrontendController extends Controller
   function productView($slug)
   {
     $product = Product::where('slug', $slug)->first();
-    $reletedProduct = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->take(8);
+    $reletedProduct = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->take(8)->get();
 
     $colors = [];
     $sizes = [];
 
+    // return $reletedProduct;
     foreach (json_decode($product->attributes) as $attribute) {
       $itemArr = json_decode($attribute);
       $item = Attribute::find($itemArr[0]);

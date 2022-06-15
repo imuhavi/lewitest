@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/jquery.nice-number.min.css">
 @endsection
 @section('content')
+
 <main>
   <section id="product-detials">
     <div class="container">
@@ -68,12 +69,11 @@
             @endif
 
             @if($product->discount !== null && $product->discount_type == 'Percent')
-            <h3 class="price" data-price="{{ $product->price- $product->discount }}">SAR {{ $product->price-
-              $product->discount }}</h3>
+            <h3 class="price" data-price="{{ $product->price- $product->discount }}">SAR {{ $discountAmount }}</h3>
 
             <p class="previous-price">SAR <span class="old-price">{{ $product->price }}</span> <span
                 class="discount">OFF {{
-                round($discount) }}%</span>
+                round($product->discount) }}%</span>
             </p>
             @endif
             <div class="product-color">
@@ -99,10 +99,8 @@
               <div class="nice-number">
                 <input class="qty-input" type="number" value="1" min="0">
               </div>
-              <a href="javascript:void(0)" class="cart-btn"
-                data-productId="{{ $product->id }}">add to cart</a>
-              <a href="javascript:void(0)" class="cart-btn-hidden"
-                data-productId="{{ $product->id }}">add to cart</a>
+              <a href="javascript:void(0)" class="cart-btn" data-productId="{{ $product->id }}">add to cart</a>
+              <a href="javascript:void(0)" class="cart-btn-hidden" data-productId="{{ $product->id }}">add to cart</a>
               <a href="" class="add-wishlist"><img src="{{ asset('frontend/assets/') }}/images/heart.png"
                   alt="user-profile"></a>
             </div>
@@ -231,32 +229,71 @@
     --------------------------->
   <section id="related-category-product">
     <div class="container">
-      <div class="row g-4">
-        <h2 class="section-title text-center mb-4">Related Product</h2>
+      <h2 class="section-title text-center mb-4">Related Product</h2>
 
+      <div id="product" class="owl-carousel">
         @foreach($reletedProduct as $item)
-        <div class="col-md-3">
-          <div class="related-product-container">
+        <div class="item">
+          <div class="releted-product-item">
             <div class="product-img">
-              <a class="w-100" href="#"><img class="img-fluid"
-                  src="{{ asset('frontend/assets/') }}/images/product-img-5.jpeg" alt="product-img-1"></a>
+              <a class="w-100" href="{{ route('productView', $item->slug) }}"><img class="img-fluid"
+                  src="{{ asset('backend/uploads/' . $item->thumbnail) }}" alt="product-img-1"></a>
             </div>
+
             <div class="p-3">
-              <a href="#" class="product-title">Womes wihtie watches</a>
-              <h3 class="new-price my-3 text-dark">SAR <span class="text-dark">230.00</span></h3>
+              <a href="#" class="product-title">{{ Str::limit($item->name, 25) }}</a>
+
+              @if($item->discount == null )
+              <div class="d-flex justify-content-between align-items-center">
+                <h3 class="new-price my-3 text-dark">SAR <span> {{ $item->price }}</span></h3>
+
+                <span class="wishlist"><i class="far fa-heart"></i></span>
+              </div>
+              @endif
+              @if($item->discount !== null && $item->discount_type == 'Flat')
+              <h3 class="new-price my-3 text-dark">SAR <span class="text-dark">{{ $item->price- $item->discount
+                  }}</span></h3>
+
               <div class="d-flex justify-content-between">
                 <div class="off">
-                  <span class="old-price text-dark">SAR 340</span>
-                  <span class="discount">30% OFF</span>
+                  <span class="old-price text-dark">SAR {{ $item-price }}</span>
+                  <span class="discount">{{ round($discount) }}% OFF</span>
                 </div>
                 <span class="wishlist"><i class="far fa-heart"></i></span>
               </div>
+              @endif
+
+              @if($item->discount !== null && $item->discount_type == 'Percent')
+              <h3 class="new-price my-3 text-dark">SAR <span class="text-dark">{{ $item->price- $item->discount
+                  }}</span></h3>
+
+              <div class="d-flex justify-content-between">
+                <div class="off">
+                  <span class="old-price text-dark">SAR {{ $item->price }}</span>
+                  <span class="discount">{{ round($discount) }}% OFF</span>
+                </div>
+                <span class="wishlist"><i class="far fa-heart"></i></span>
+              </div>
+              @endif
+              @if($item->discount != null && $item->discount_type !== 'Percent' && $item->discount_type !==
+              'Flat')
+              <h3 class="new-price my-3 text-dark">SAR <span class="text-dark">{{ $item->price- $item->discount
+                  }}</span></h3>
+
+              <div class="d-flex justify-content-between">
+                <div class="off">
+                  <span class="old-price text-dark">SAR {{ $item->price }}</span>
+                  <span class="discount">{{ round($discount) }}% OFF</span>
+                </div>
+                <span class="wishlist"><i class="far fa-heart"></i></span>
+              </div>
+              @endif
             </div>
           </div>
         </div>
         @endforeach
-
       </div>
+
 
     </div>
   </section>

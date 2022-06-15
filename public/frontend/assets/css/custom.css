@@ -551,6 +551,11 @@ nav .main_menu li a.active_menu {
   margin: 10px;
 }
 
+.releted-product-item {
+  margin: 10px;
+  box-shadow: 0px 0px 4px -2px rgb(100, 100, 100);
+}
+
 .product-content {
   padding: 20px;
 }

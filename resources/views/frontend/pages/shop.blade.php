@@ -359,11 +359,11 @@
 
           <div class="col-md-4 text-center">
             <div class="product-content">
-              @if($product->discount !== null && $product->discount_type !== 'Flat')
-              <p class="label">{{ $product->discount}}%</p>
+              @if($product->discount !== null && $product->discount_type == 'Percent')
+              <p class="label">{{ round($product->discount)}}%</p>
 
               @elseif($product->discount !== null && $product->discount_type == 'Flat')
-              <p class="label">{{$discount}}%</p>
+              <p class="label">{{ round($discount)}}%</p>
               @endif
               <div class="proudct-img">
                 <a href="{{ route('productView', $product->slug) }}">
@@ -380,8 +380,8 @@
                 Str::limit($product->name, 25)
                 }}</a>
 
-              @if($product->discount !== null && $product->discount_type !== 'Flat')
-              <h3 class="new-price my-2">{{ $discountAmount}} SAR</h3>
+              @if($product->discount !== null && $product->discount_type == 'Percent')
+              <h3 class="new-price my-2">{{ round($discountAmount)}} SAR</h3>
               <p class="old-price text-danger">{{ $product->price }}SAR</p>
               @elseif($product->discount !== null && $product->discount_type == 'Flat')
               <h3 class="new-price my-2">{{ $product->price- $product->discount }}SAR</h3>

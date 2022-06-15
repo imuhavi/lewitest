@@ -230,7 +230,6 @@
         $discount = (($product->discount * 100) / $product->price)
         @endphp
 
-
         <div class="item">
           <div class="product-item">
             <a class="w-100" href="{{ route('productView', $product->slug) }}"><img class="img-fluid"
@@ -241,7 +240,10 @@
                 Str::limit($product->name,
                 25) }}</a>
               @if($product->discount == null )
-              <h3 class="new-price my-3">SAR <span> {{ $product->price }}</span></h3>
+              <div class="d-flex justify-content-between align-items-center">
+                <h3 class="new-price my-3">SAR <span> {{ $product->price }}</span></h3>
+                <span class="wishlist"><i class="far fa-heart"></i></span>
+              </div>
               @endif
               @if($product->discount !== null && $product->discount_type == 'Flat')
               <h3 class="new-price my-3">SAR <span>{{ $product->price- $product->discount }}</span></h3>
@@ -259,7 +261,7 @@
               <div class="d-flex justify-content-between">
                 <div class="off">
                   <span class="old-price">{{ $product->price }}</span>
-                  <span class="discount">{{ round($discount) }}% OFF</span>
+                  <span class="discount">{{ round($product->discount)}}% OFF</span>
                 </div>
                 <span class="wishlist"><i class="far fa-heart"></i></span>
               </div>
