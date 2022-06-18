@@ -314,10 +314,10 @@
             <h5>Your Order Items</h5>
           </div>
 
-        @php
+          @php
           $cart = getCart();
-        @endphp
-        @foreach($cart['cart'] as $item)
+          @endphp
+          @foreach($cart['cart'] as $item)
           <div class="row order-item">
             <div class="col-3">
               <img class="rounded w-75" src="{{ asset('frontend/assets') }}/images/product-img-2.png" alt="product">
@@ -329,13 +329,14 @@
                   (Color: {{ ucfirst($item['color']) }}, Size: {{ ucfirst($item['size']) }})
                 </small>
               </p>
+              <p>Quanity: {{ $item['quantity'] }}</p>
             </div>
             <div class="col-3 text-end">
-              <p>SAR {{ $item['product_price'] }}</p>
+              <p>SAR {{ $item['product_price'] * $item['quantity']}}</p>
               <span class="cart-item-del"><i class="fas fa-trash-alt"></i></span>
             </div>
           </div>
-        @endforeach
+          @endforeach
 
         </div>
         <div class="order-calculation">

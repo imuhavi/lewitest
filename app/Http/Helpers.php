@@ -79,7 +79,7 @@ if (!function_exists('getCart')) {
       'total' => 0
     ];
     $session = session('cart');
-    if(!empty($session)){
+    if (!empty($session)) {
       foreach ($session as $item) {
         $product = Product::find($item['product_id']);
         array_push($data['cart'], [
