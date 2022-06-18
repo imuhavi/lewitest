@@ -24,6 +24,9 @@ Route::get('/shop', [FrontendController::class, 'shop'])->name('shop');
 Route::get('/shop/{slug}/{id}', [FrontendController::class, 'categoryShop'])->name('categoryShop');
 Route::get('/product/{slug}', [FrontendController::class, 'productView'])->name('productView');
 
+# Filter products
+Route::get('/filter/products', [FrontendController::class, 'filterProducts']);
+
 Route::post('add-to-cart', [CartController::class, 'addToCart']);
 Route::get('/wishlist', [FrontendController::class, 'wishlist'])->name('wishlist');
 Route::get('/subscription', [FrontendController::class, 'subscription'])->name('subscription');
