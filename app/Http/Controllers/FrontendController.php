@@ -86,7 +86,6 @@ class FrontendController extends Controller
   {
     $subcategory = Subcategory::with('products')->find($id);
     $productSQL = $subcategory->products;
-    $products = $productSQL->skip(0)->take(12);
     $brandIds = array_unique($productSQL->pluck('brand_id')->toArray());
     $brands = Brand::find($brandIds);
 
@@ -113,7 +112,6 @@ class FrontendController extends Controller
     $sizeAttributesArr = array_unique($sizeAttributesArr);
 
     return view($this->VIEW_PATH . 'shop', compact(
-      'products',
       'subcategory',
       'brands',
       'min',
@@ -121,6 +119,33 @@ class FrontendController extends Controller
       'colorAttributesArr',
       'sizeAttributesArr'
     ));
+  }
+
+  public function filterProducts(Request $r)
+  {
+    $take = 1;
+    $sql = Product::where('category_id', $r->category)->orWhere('sub_category_id', $r->category);
+
+    if($r->min){
+      $sql->where('price', '>=', $r->min);
+    }
+    if($r->max){
+      $sql->where('price', '<=', $r->max);
+    }
+    if($r->brand){
+      $sql->where('brand_id', $r->brand);
+    }
+    if($r->filterBy){
+      $sql->orderBy('updated_at', $r->filterBy);
+    }
+    if($r->color){
+      return $r->color; // We have to work on this later / after cart & order
+    }
+    if($r->size){
+      return $r->size; // We have to work on this later / after cart & order
+    }
+    $data = $sql->skip($r->skip)->take($take)->get();
+    return view('frontend.includes.product', compact('data'));
   }
 
   function productView($slug)

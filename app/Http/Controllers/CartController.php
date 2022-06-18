@@ -19,7 +19,7 @@ class CartController extends Controller
   public function addToCart(Request $request)
   {
 
-    $cart = session('cart');
+    // $cart = session('cart');
 
     $newCart = [
       'product_id' => $request->product_id,
@@ -29,18 +29,10 @@ class CartController extends Controller
     ];
 
     // return $cart;
-    if ($request->session()->exists('cart')) {
-      $cart->increment('quantity');
-    }
+    // if ($request->session()->exists('cart')) {
+    //   $cart->increment('quantity');
+    // }
 
-
-
-
-    /* Validations (add the validations here at first)
-      1. Already added product
-      2. Min qnty
-      3. Max qnty
-    */
     session()->push('cart', $newCart);
     return response()->json('Product added successfully !');
   }

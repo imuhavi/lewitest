@@ -341,59 +341,17 @@
             <div class="filter">
               <select id="select_js" onchange="filter()">
                 <option value="">Filter By</option>
-                <option value="desc">Low To High</option>
-                <option value="asc">High to Low</option>
+                <option value="desc" selected>New to Old</option>
+                <option value="asc">Old to New</option>
               </select>
             </div>
           </div>
         </div>
 
-        <div class="row gy-5">
-          @foreach( $products as $product)
+        <div class="row gy-5" id="content"></div>
 
-          @php
-          $discountAmount = ($product->price - ($product->discount / 100) * $product->price);
-
-          $discount = (($product->discount * 100) / $product->price)
-          @endphp
-
-          <div class="col-md-4 text-center">
-            <div class="product-content">
-              @if($product->discount !== null && $product->discount_type == 'Percent')
-              <p class="label">{{ round($product->discount)}}%</p>
-
-              @elseif($product->discount !== null && $product->discount_type == 'Flat')
-              <p class="label">{{ round($discount)}}%</p>
-              @endif
-              <div class="proudct-img">
-                <a href="{{ route('productView', $product->slug) }}">
-                  <img class="img-fluid" src="{{ asset('backend/uploads/' . $product->thumbnail) }}" alt="product-12">
-                </a>
-                <div class="overlay">
-                  <div class="action">
-                    <span><a href="{{ route('productView', $product->slug) }}"><i class="fas fa-eye"></i></a></span>
-                    <span><a href="#"><i class="far fa-heart"></i></a></span>
-                  </div>
-                </div>
-              </div>
-              <a href="{{ route('productView', $product->slug) }}" class="product-title d-block mt-3">{{
-                Str::limit($product->name, 25)
-                }}</a>
-
-              @if($product->discount !== null && $product->discount_type == 'Percent')
-              <h3 class="new-price my-2">{{ round($discountAmount)}} SAR</h3>
-              <p class="old-price text-danger">{{ $product->price }}SAR</p>
-              @elseif($product->discount !== null && $product->discount_type == 'Flat')
-              <h3 class="new-price my-2">{{ $product->price- $product->discount }}SAR</h3>
-              <p class="old-price text-danger">{{ $product->price }}SAR</p>
-              @else
-              <h3 class="new-price my-2">{{ $product->price }}SAR</h3>
-              @endif
-            </div>
-          </div>
-          @endforeach
-
-        </div>
+        <button type="button" onclick="loadMore()" style="display: none;" id="loadMoreBtn" class="btn btn-sm btn-info mt-2">Load more..</button>
+        <button type="button" id="noDataBtn" style="display: none;" class="btn btn-sm btn-info mt-2">Loading..</button>
 
       </div>
 
@@ -404,15 +362,49 @@
 
 <script>
   let min = getElement('input-min-lg'),
-    max = getElement('input-max-lg'),
-    filterBy = getElement('select_js'),
-    color = getElement('selectedColor'),
-    size = getElement('selectedSize'),
-    brand = getElement('selectedBrand')
-  function filter() {
-    console.log(min.value, max.value, filterBy.value, color.value, size.value, brand.value)
+      max = getElement('input-max-lg'),
+      filterBy = getElement('select_js'),
+      color = getElement('selectedColor'),
+      size = getElement('selectedSize'),
+      brand = getElement('selectedBrand'),
+      skip = 0,
+      category = location.pathname.split('/')[3],
+      content = getElement('content'),
+      mode = 'filter',
+      loadMoreBtn = getElement('loadMoreBtn'),
+      noDataBtn = getElement('noDataBtn')
+  
+  function loadMore() {
+    skip += 1
+    mode = 'loadmore'
+    fetchProduct()
   }
-  filter()
+  function filter() {
+    skip = 0
+    mode = 'filter'
+    fetchProduct()
+  }
+  function fetchProduct() {
+    loadMoreBtn.style.display = 'none'
+    noDataBtn.style.display = 'block'
+    fetch(`/filter/products?min=${min.value}&max=${max.value}&filterBy=${filterBy.value}&color=${color.value}&size=${size.value}&brand=${brand.value}&skip=${skip}&category=${category}`)
+      .then(response => response.text())
+      .then(data => {
+        if(data.length != 0){
+          if(mode == 'filter'){
+            content.innerHTML = data
+          }else if(mode == 'loadmore'){
+            content.innerHTML += data
+          }
+          loadMoreBtn.style.display = 'block'
+          noDataBtn.style.display = 'none'
+        }else{
+          noDataBtn.textContent = 'No more product..'
+        }
+      })
+      .catch(error => console.log(error))
+  }
+  onload = () => filter()
   function setCurrentValue(field, value) {
     switch (field) {
       case 'color':
