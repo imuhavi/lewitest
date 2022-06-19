@@ -344,6 +344,7 @@
                 <option value="desc" selected>New to Old</option>
                 <option value="asc">Old to New</option>
               </select>
+              <a href="" class="btn btn-sm btn-info">Clear filter</a>
             </div>
           </div>
         </div>
