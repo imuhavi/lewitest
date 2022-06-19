@@ -21,7 +21,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontendController::class, 'frontend'])->name('home');
 Route::get('/shop', [FrontendController::class, 'shop'])->name('shop');
-Route::get('/shop/{slug}/{id}', [FrontendController::class, 'categoryShop'])->name('categoryShop');
+Route::get('/shop-subcategory/{slug}/{id}', [FrontendController::class, 'subCategoryShop'])->name('subCategoryShop');
+
+Route::get('/shop-category/{slug}/{id}', [FrontendController::class, 'categoryShop'])->name('categoryShop');
+
 Route::get('/product/{slug}', [FrontendController::class, 'productView'])->name('productView');
 
 # Filter products

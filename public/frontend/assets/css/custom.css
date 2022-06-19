@@ -1020,7 +1020,7 @@ box-shadow: 0px 0px 3px 1px black;
 .filter-color,
 .filter-brand,
 .filter-size {
-  height: 200px;
+  height: 175px;
   margin-top: 20px;
   margin-bottom: 20px;
   overflow-x: scroll;
