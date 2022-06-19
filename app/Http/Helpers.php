@@ -82,14 +82,25 @@ if (!function_exists('getCart')) {
     if (!empty($session)) {
       foreach ($session as $item) {
         $product = Product::find($item['product_id']);
+
+        $discount = 0;
+        if(!empty($product->discount_type)){
+          if($product->discount_type == 'Percent'){
+            $discount = $product->price * ($product->discount / 100);
+          }elseif ($product->discount_type == 'Flat') {
+            $discount = $product->discount;
+          }
+        }
+
         array_push($data['cart'], [
           'product_name' => $product->name,
-          'product_price' => $product->price, // Here will be added the logic of discount
+          'product_price' => $product->price,
+          'discount' => $item['quantity'] * $discount,
           'quantity' => $item['quantity'],
           'color' => $item['color'],
           'size' => $item['size']
         ]);
-        $data['total'] += $product->price;
+        $data['total'] += (($product->price * $item['quantity']) - ($item['quantity'] * $discount));
       }
     }
     return $data;

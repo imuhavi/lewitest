@@ -303,57 +303,9 @@
     <!---------------------------
         Cart Item Off canvas
     ---------------------------->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-      <div class="offcanvas-header">
-        <h5 id="offcanvasRightLabel">Shopping Cart</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-        <div class="order-summary">
-          <div class="heading-checkout">
-            <h5>Your Order Items</h5>
-          </div>
 
-          @php
-          $cart = getCart();
-          @endphp
-          @foreach($cart['cart'] as $item)
-          <div class="row order-item">
-            <div class="col-3">
-              <img class="rounded w-75" src="{{ asset('frontend/assets') }}/images/product-img-2.png" alt="product">
-            </div>
-            <div class="col-6">
-              <p>{{ $item['product_name'] }}</p>
-              <p>
-                <small>
-                  (Color: {{ ucfirst($item['color']) }}, Size: {{ ucfirst($item['size']) }})
-                </small>
-              </p>
-              <p>Quanity: {{ $item['quantity'] }}</p>
-            </div>
-            <div class="col-3 text-end">
-              <p>SAR {{ $item['product_price'] * $item['quantity']}}</p>
-              <span class="cart-item-del"><i class="fas fa-trash-alt"></i></span>
-            </div>
-          </div>
-          @endforeach
-
-        </div>
-        <div class="order-calculation">
-          <div class="row">
-            <div class="col-6">
-              <h5>Total Amount</h5>
-            </div>
-            <div class="col-6">
-              <h5 class="price-text sub-total-text text-end"> SAR {{ $cart['total'] }} </h5>
-            </div>
-          </div>
-        </div>
-        <div class="place-order">
-          <a href="" class="place-order-button">Process To Checkout</a>
-        </div>
-      </div>
-    </div>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"></div>
+    
     <!----------------------
               Mobile Menu 
       ----------------------->
@@ -382,10 +334,28 @@
   @endif
 
   <script>
-    // Logout
     let logoutForm = document.getElementById('logoutForm')
     function logout() {
       event.preventDefault()
       if (confirm('Are you sure to logout ?')) logoutForm.submit()
+    }
+
+    let cartWrapper = document.getElementById('offcanvasRight')
+    function getCart() {
+      fetch('/get-cart')
+        .then(response => response.text())
+        .then(data => cartWrapper.innerHTML = data)
+        .catch(error => console.log(error))
+    }
+    onload = () => getCart()
+    
+    function removeCart(key) {
+      fetch(`/remove-cart/${key}`)
+        .then(response => response.json())
+        .then(data => {
+          alert(data)
+          getCart()
+        })
+        .catch(error => console.log(error))
     }
   </script>

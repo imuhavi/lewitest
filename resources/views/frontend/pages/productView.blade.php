@@ -355,7 +355,8 @@
         },
         datType: 'json',
         success: function (data) {
-          console.log(data)
+          getCart()
+          alert(data)
           $('.cart-btn-hidden').hide()
           $('.cart-btn').show()
         }
