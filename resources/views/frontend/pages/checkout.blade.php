@@ -24,50 +24,60 @@
             <div class="heading-checkout">
               <h4>Billing Details</h4>
             </div>
+
             <div class="row mt-3 g-3">
-              <div class="col-lg-12">
-                <label for="fullName" class="form-label">Full Name</label>
-                <input type="text" class="form-control" id="fullName" placeholder="Your Full Name">
-              </div>
-              <div class="col-lg-6">
-                <label for="email" class="form-label">Email Address</label>
-                <input type="email" class="form-control" id="email" placeholder="Your Email Address">
-              </div>
-              <div class="col-5 col-md-6 col-lg-6">
-                <label for="phone" class="form-label">Phone Number</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="Your Phone Number">
-              </div>
+              <form method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="col-lg-12">
+                  <label for="fullName" class="form-label">Full Name</label>
+                  <input type="text" class="form-control" id="fullName" value="{{ Str::words(Auth::user()->name) }}" {{
+                    Auth::user()->name ? 'disabled' : ''}}>
+                </div>
 
-              <div class="col-lg-5 col-md-6">
-                <label for="state" class="form-label">State</label>
-                <select id="state" class="form-select state">
-                  <option selected>Choose State</option>
-                  <option>Eastern Provence</option>
-                </select>
-              </div>
+                <div class="col-lg-6">
+                  <label for="email" class="form-label">Email Address</label>
+                  <input type="email" class="form-control" id="email" value="{{ Str::words(Auth::user()->email) }}" {{
+                    Auth::user()->email ? 'disabled' : ''}}>
+                </div>
+                <div class="col-5 col-md-6 col-lg-6">
+                  <label for="phone" class="form-label">Phone Number</label>
+                  <input type="text" class="form-control" id="inputAddress" name="phone" placeholder="Your Phone Number"
+                    value="{{ old('phone') }}" {{ Auth::user()->phone_1 ? 'disabled' : ''}}>
+                </div>
 
-              <div class="col-lg-4 col-md-6">
-                <label for="city" class="form-label">City</label>
-                <select id="city" class="form-select city">
-                  <option selected>Choose City</option>
-                  <option>Dammam</option>
-                </select>
-              </div>
+                <div class="col-lg-5 col-md-6">
+                  <label for="state" class="form-label">State</label>
+                  <select id="state" name="state" class="form-select state">
+                    <option selected hidden disabled value="">Choose State</option>
+                    @foreach($states as $state)
+                    <option value="{{ $state->id }}">{{ $state->name }}</option>
+                    @endforeach
+                  </select>
+                </div>
 
-              <div class="col-lg-3 col-md-6">
-                <label for="inputZip" class="form-label">Postal Code</label>
-                <input type="text" class="form-control" id="inputZip">
-              </div>
+                <div class="col-lg-4 col-md-6">
+                  <label for="city" class="form-label">City</label>
+                  <select name="city" id="city" class="form-select city">
+                    <option selected hidden disabled value="">Choose City</option>
+                  </select>
+                </div>
 
-              <div class="col-12">
-                <label for="address" class="form-label">Address</label>
-                <input type="text" class="form-control" id="address" placeholder="Apartment, studio, or floor">
-              </div>
+                <div class="col-lg-3 col-md-6">
+                  <label for="inputZip" class="form-label">Postal Code</label>
+                  <input type="text" name="postal_code" class="form-control" id="inputZip"
+                    value="{{ old('postal_code') }}">
+                </div>
 
-              <div class="col-12">
-                <label for="orderNotes" class="form-label">Order Notes</label>
-                <textarea class="form-control" id="orderNotes" placeholder="Note About Your Order..."></textarea>
-              </div>
+                <div class="col-12">
+                  <label for="address" class="form-label">Address</label>
+                  <input type="text" class="form-control" id="address" placeholder="Apartment, studio, or floor">
+                </div>
+
+                <div class="col-12">
+                  <label for="orderNotes" class="form-label">Order Notes</label>
+                  <textarea class="form-control" id="orderNotes" placeholder="Note About Your Order..."></textarea>
+                </div>
+              </form>
             </div>
           </div>
 
@@ -76,14 +86,6 @@
               <h4>Select Payment Method</h4>
             </div>
             <ul class="payment-method-list">
-              <li>
-                <input id="bank" type="checkbox">
-                <label for="bank">Direct Bank Transfer</label>
-              </li>
-              <li>
-                <input id="paypal" type="checkbox">
-                <label for="paypal">Paypal</label>
-              </li>
               <li>
                 <input id="card" type="checkbox">
                 <label for="card">Credit Card</label>
@@ -96,64 +98,49 @@
           </div>
         </div>
 
+        @php
+        $cart = getCart()
+        @endphp
+
         <!-- Order Item % Calculation -->
         <div class="col-lg-5 p-0 right">
           <div class="order-summary">
             <div class="heading-checkout">
               <h4>Your Order Items</h4>
             </div>
+            @foreach($cart['cart'] as $key => $item)
             <div class="row order-item">
               <div class="col-3 text-start0">
                 <img class="rounded w-75" src="{{ asset('frontend/assets/') }}/images/product-img-2.png" alt="product">
               </div>
               <div class="col-6">
-                <p>Your Product Name Here</p>
+                <p>{{ $item['product_name'] }}</p>
                 <p>
                   <small>
-                    (Color: red, Size: SM)
+                    (Color: {{ ucfirst($item['color']) }}, Size: {{ ucfirst($item['size']) }})
                   </small>
                 </p>
+                <p>Quanity: {{ $item['quantity'] }}</p>
               </div>
               <div class="col-3 text-end">
-                <p>SAR 120</p>
+                <p>SAR {{ ($item['product_price'] * $item['quantity']) }}</p>
               </div>
             </div>
+            @endforeach
 
-            <div class="row order-item">
-              <div class="col-3">
-                <img class="rounded w-75" src="{{ asset('frontend/assets/') }}/images/product-img-2.png" alt="product">
-              </div>
-              <div class="col-6">
-                <p>Your Product Name Here</p>
-                <p>
-                  <small>
-                    (Color: red, Size: SM)
-                  </small>
-                </p>
-              </div>
-              <div class="col-3 text-end">
-                <p>SAR 120</p>
-              </div>
+          </div>
+
+          <div class="order-calculation">
+            <div class="heading-checkout">
+              <h4>Apply Coupon</h4>
             </div>
 
-            <div class="row order-item">
-              <div class="col-3">
-                <img class="rounded w-75" src="{{ asset('frontend/assets/') }}/images/product-img-2.png" alt="product">
-              </div>
-              <div class="col-6">
-                <p>Your Product Name Here</p>
-                <p>
-                  <small>
-                    (Color: red, Size: SM)
-                  </small>
-                </p>
-              </div>
-              <div class="col-3 text-end">
-                <p>SAR 120</p>
-              </div>
+            <div class="checkout_text">
+              <form class="apply-coupon">
+                <input type="text" placeholder="Enter Coupon Code">
+                <button type="submit">Apply</button>
+              </form>
             </div>
-
-
           </div>
 
           <div class="order-calculation">
@@ -165,35 +152,40 @@
                 <h6>Subtotal:</h6>
               </div>
               <div class="col-6">
-                <h6 class="price-text sub-total-text text-end"> SAR 41.40 </h6>
+                <h6 class="price-text sub-total-text text-end"> SAR {{ $cart['total'] }}</h6>
               </div>
 
               <div class="col-6">
                 <h6>Shipping Cost:</h6>
               </div>
+              <!-- Shipping cost backend theke asbe -->
               <div class="col-6">
-                <h6 class="price-text sub-total-text text-end"> SAR 41.40 </h6>
+                <h6 class="price-text sub-total-text text-end"> SAR 30</h6>
               </div>
 
+              @php
+              $tax = number_format($cart['total'] * 0.15, 2);
+              @endphp
               <div class="col-6">
-                <h6>Tax:</h6>
+                <h6>Tax: 15%</h6>
               </div>
               <div class="col-6">
-                <h6 class="price-text sub-total-text text-end"> SAR 41.40 </h6>
+                <h6 class="price-text sub-total-text text-end"> SAR {{ $tax }} </h6>
               </div>
 
               <div class="col-6">
                 <h6>Discount Amount:(If applicable)</h6>
               </div>
+
               <div class="col-6">
-                <h6 class="price-text sub-total-text text-end"> SAR 41.40 </h6>
+                <h6 class="price-text sub-total-text text-end"> SAR {{ $item['discount'] }} </h6>
               </div>
               <hr>
               <div class="col-6">
                 <h5>Total Amount</h5>
               </div>
               <div class="col-6">
-                <h5 class="price-text sub-total-text text-end"> SAR 441.40 </h5>
+                <h5 class="price-text sub-total-text text-end"> SAR {{ $cart['total'] + 30 + $tax }}</h5>
               </div>
             </div>
 
@@ -242,4 +234,30 @@
 @section('footer_js')
 <!-- Nice Number -->
 <script src="{{ asset('/frontend/assets/') }}/js/jquery.nice-number.min.js"></script>
+
+<script>
+  $('#state').change(function () {
+    var stateId = $(this).val();
+    if (stateId) {
+      $.ajax({
+        type: "GET",
+        url: "{{url('get-cities')}}/" + stateId,
+        success: function (res) {
+          if (res) {
+            $("#city").empty();
+            $("#city").append('<option>Choose City</option>');
+            $.each(res, function (key, value) {
+              $("#city").append('<option value="' + value.id + '">' + value.name + '</option>');
+            });
+
+          } else {
+            $("#city").empty();
+          }
+        }
+      });
+    } else {
+      $("#city").empty();
+    }
+  });
+</script>
 @endsection

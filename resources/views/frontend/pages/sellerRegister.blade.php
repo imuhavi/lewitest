@@ -88,7 +88,7 @@
                 <label for="state" class="form-label">State</label>
                 <select id="state" name="state" class="form-select state">
                   <option selected hidden disabled value="">Choose State</option>
-                  @foreach($sates as $state)
+                  @foreach($states as $state)
                   <option value="{{ $state->id }}">{{ $state->name }}</option>
                   @endforeach
                 </select>

@@ -232,11 +232,6 @@ class FrontendController extends Controller
     return view($this->VIEW_PATH . 'wishlist');
   }
 
-  function checkout()
-  {
-    return view($this->VIEW_PATH . 'checkout');
-  }
-
   function subscription()
   {
     $data = Subscription::with('subscriptionOptions')->get();
@@ -261,7 +256,7 @@ class FrontendController extends Controller
 
   function sellerRegister(Subscription $subscription)
   {
-    $sates = States::get();
-    return view($this->VIEW_PATH . 'sellerRegister', compact('subscription', 'sates'));
+    $states = States::get();
+    return view($this->VIEW_PATH . 'sellerRegister', compact('subscription', 'states'));
   }
 }

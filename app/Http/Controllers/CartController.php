@@ -29,16 +29,16 @@ class CartController extends Controller
     $session = session('cart') ?? [];
 
     foreach ($session as $item) {
-      if($item['product_id'] == $reqCart['product_id'] && $item['color'] == $reqCart['color'] && $item['size'] == $reqCart['size']){
+      if ($item['product_id'] == $reqCart['product_id'] && $item['color'] == $reqCart['color'] && $item['size'] == $reqCart['size']) {
         $item['quantity'] += intval($reqCart['quantity']);
         $alreadyAdded = true;
       }
       $newCart[] = $item;
     }
-    if($alreadyAdded == true){
+    if ($alreadyAdded == true) {
       session()->forget('cart');
       session()->put('cart', $newCart);
-    }elseif ($alreadyAdded == false) {
+    } elseif ($alreadyAdded == false) {
       session()->push('cart', $reqCart);
     }
     return response()->json('Product added successfully !');

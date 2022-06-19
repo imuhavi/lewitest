@@ -85,10 +85,7 @@
             </div>
           </div>
 
-          <div class="mt-3 cart-update">
-            <a href="" class="btn common-btn">Update Cart</a>
-            <a href="{{ route('shop') }}" class="btn btn-light">Continue Shopping</a>
-          </div>
+
         </div>
 
         <div class="col-lg-12 col-12 col-sm-12 col-md-12">
@@ -101,16 +98,12 @@
             <hr>
             <h6 class="total">Grand Total <span> SAR 630</span></h6>
             <p>Discount<span>SAR 230</span></p>
-            <form class="apply-coupon">
-              <p>Enter Your Coupon Code If You Have One.</p>
-              <input type="text" placeholder="Enter Coupon Code">
-              <button type="submit">Apply</button>
-            </form>
+
             <hr>
             <h6 class="total">Total Amount <span> SAR 350</span></h6>
 
             <div class="checkout-btn">
-              <a href="checkout.html" class="btn common-btn">Proceed to Checkout</a>
+              <a href="" class="btn common-btn">Proceed to Checkout</a>
             </div>
           </div>
         </div>

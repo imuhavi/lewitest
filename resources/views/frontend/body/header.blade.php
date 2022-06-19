@@ -94,7 +94,7 @@
             @endauth
           </li>
 
-          <li><a href="{{ route('wishlist') }}"><img src="{{ asset('frontend/assets') }}/images/heart.png"
+          <li><a href="{{ route('myCart') }}"><img src="{{ asset('frontend/assets') }}/images/heart.png"
                 alt="user-profile"></a></li>
 
           <li><a href="pages/cart.html" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
@@ -129,7 +129,7 @@
                   <div class="col-lg-2">
                     <ul class="mega_item">
                       <li><a
-                          href="{{ route('categoryShop', ['id'=> $subcategory->id, 'slug' => $subcategory->slug]) }}">{{
+                          href="{{ route('subCategoryShop', ['id'=> $subcategory->id, 'slug' => $subcategory->slug]) }}">{{
                           $subcategory->name }}</a></li>
                     </ul>
                   </div>
@@ -305,7 +305,7 @@
     ---------------------------->
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel"></div>
-    
+
     <!----------------------
               Mobile Menu 
       ----------------------->
@@ -348,7 +348,7 @@
         .catch(error => console.log(error))
     }
     onload = () => getCart()
-    
+
     function removeCart(key) {
       fetch(`/remove-cart/${key}`)
         .then(response => response.json())
