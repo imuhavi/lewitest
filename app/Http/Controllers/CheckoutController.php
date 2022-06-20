@@ -24,9 +24,8 @@ class CheckoutController extends Controller
 
   public function coupon(Request $request)
   {
-    Session::flash('test', 'asdasdas');
-    return redirect()->back();
     try {
+        $states = States::get();
         $cart = getCart();
         $coupon = Coupon::where('code', $request->coupon)->first();
         if (!empty($coupon)) {
@@ -46,16 +45,16 @@ class CheckoutController extends Controller
                 'discount' => $discount,
                 'code' => $coupon->code
               ]);
-              // Coupon applied successfully !
+              Session::flash('success', 'Coupon added successfully !');
               return redirect()->back();
             }
-            // Session::flash('invalid-coupon', 'Expired coupon !');
+            Session::flash('error', 'Minimum shopping amount not added for this coupon !');
             return redirect()->back();
           }
-          // Session::flash('invalid-coupon', 'Expired coupon !');
+          Session::flash('error', 'Expired coupon !');
           return redirect()->back();
         }
-        // Session::flash('invalid-coupon', 'Invalid coupon !');
+        Session::flash('error', 'Invalid coupon !');
         return redirect()->back();
     } catch (\Throwable $th) {
       return redirect()->back()->with('error', $th->getMessage());

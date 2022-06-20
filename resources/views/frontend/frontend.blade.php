@@ -1,6 +1,7 @@
 @extends('frontend.master')
 @section('content')
 <main>
+
   <!---------------------------
             Slider Start Here 
       ----------------------------->

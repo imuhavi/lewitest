@@ -15,6 +15,29 @@
 
 <script type="text/javascript" src="{{ asset('/frontend/assets/') }}/js/bootstrap.bundle.min.js"></script>
 
+<script src="{{ asset('backend/') }}/assets/plugins/toastr/toastr.min.js"></script>
+<script>
+    var successNotification = "{{ session('success') }}"
+    var infoNotification = "{{ session('info') }}"
+    var warningNotification = "{{ session('warning') }}"
+    var errorNotification = "{{ session('error') }}"
+
+    // CounterUp Plugin || Toastr
+    setTimeout(function () {
+        toastr.options = {
+        closeButton: true,
+        progressBar: true,
+        showMethod: 'fadeIn',
+        hideMethod: 'fadeOut',
+        timeOut: 5000
+        }
+        if (successNotification) toastr.success(successNotification, 'Success !')
+        if (infoNotification) toastr.info(infoNotification, 'Information !')
+        if (warningNotification) toastr.warning(warningNotification, 'Warning !')
+        if (errorNotification) toastr.error(errorNotification, 'Error !')
+    }, 1800)
+</script>
+
 <!-- Price Range -->
 @yield('footer_js')
 @include('sweetalert::alert')
@@ -34,13 +57,6 @@
 <script src="{{ asset('/frontend/assets/') }}/js/slick.min.js"></script>
 <!-- Custom Js Link -->
 <script src="{{ asset('/frontend/assets/') }}/js/custome.js"></script>
-    <script>
-        var successNotification = "{{ session('success') }}"
-        var infoNotification = "{{ session('info') }}"
-        var warningNotification = "{{ session('warning') }}"
-        var errorNotification = "{{ session('error') }}"
-    </script>
-    <script src="{{ asset('backend/') }}/assets/js/custom.js"></script>
 </body>
 
 </html>

@@ -14,6 +14,7 @@ use App\Models\States;
 use App\Models\Subcategory;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class FrontendController extends Controller
 {
@@ -24,21 +25,14 @@ class FrontendController extends Controller
   {
     $slider = Slider::where('status', 'Active')->get();
     $categories = Category::whereIn('slug', ['mens', 'womens', 'accessories'])->whereStatus('Active')->take(3)->get();
-
     $womensSub1 = Subcategory::where('category_id', 2)->get()->slice(0, 2);
     $womensSub2 = Subcategory::where('category_id', 2)->get()->slice(2, 4);
-
-    // $womenSubCategory = Subcategory::whereIn('slug')
-
     $mensSub = Subcategory::where('category_id', 3)->get()->slice(0, 4);
     $accesoriesSub = Subcategory::where('category_id', 4)->get()->slice(0, 4);
     $mensMain = Category::where('slug', 'mens')->where('status', 'Active')->first();
     $accesoriesMain = Category::where('slug', 'accessories')->where('status', 'Active')->first();
-
     $womensMain = $categories->where('slug', 'womens')->first();
     $accesoriesSub = Subcategory::where('category_id', 4)->get()->slice(0, 4);
-    // $categoryShop = Product::where('categoy_id', $categories->id)->get();
-
     $products = Product::orderBy('id', 'desc')->take(8)->get();
     $shops = Shop::where('status', 'Active')->get(['id', 'shop_logo']);
     return view($this->HOME_PATH, compact('slider', 'categories', 'accesoriesSub', 'womensSub1', 'womensSub2', 'mensSub', 'accesoriesMain', 'mensMain', 'womensMain', 'shops', 'products'));
@@ -176,7 +170,7 @@ class FrontendController extends Controller
 
   public function filterProducts(Request $r)
   {
-    $take = 3;
+    $take = 12;
     $sql = Product::where('category_id', $r->category);
 
     if(!$sql->first()){

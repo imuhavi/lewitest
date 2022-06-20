@@ -8,6 +8,7 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\SubscriptionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +40,6 @@ Route::get('/subscription', [FrontendController::class, 'subscription'])->name('
 
 Route::get('/terms-and-condition', [FrontendController::class, 'termsAndCondition'])->name('termsAndCondition');
 Route::get('/privacy-policy', [FrontendController::class, 'privacyPolicy'])->name('privacyPolicy');
-
 
 Route::get('/seller-register/{subscription}', [FrontendController::class, 'sellerRegister'])->name('sellerRegister');
 
@@ -74,6 +74,6 @@ require __DIR__ . '/admin.php';
 require __DIR__ . '/seller.php';
 require __DIR__ . '/customer.php';
 
-Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['auth']], function () {
   \UniSharp\LaravelFilemanager\Lfm::routes();
 });

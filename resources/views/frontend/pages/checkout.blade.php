@@ -1,22 +1,10 @@
 @extends('frontend.master')
-@section('header_css')
-<link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/jquery.nice-number.min.css">
-@endsection
-@section('content')
 
-<div class="order-calculation">
-            <div class="heading-checkout">
-              <h4>Apply Coupon</h4>
-            </div>
-            <div class="checkout_text">
-              <form class="apply-coupon" method="POST" action="{{ route('coupon') }}">
-                @csrf
-                <input type="text" name="coupon" value="{{ $coupon ?? old('coupon') }}">
-                <button type="submit" id="coupon_btn">Apply</button>
-              </form>
-            </div>
-          </div>
-@dd(session('test'))
+@section('header_css')
+  <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/jquery.nice-number.min.css">
+@endsection
+
+@section('content')
 
 <main>
   <section class="checkout-section">
@@ -150,14 +138,13 @@
               <h4>Apply Coupon</h4>
             </div>
             <div class="checkout_text">
-              <form class="apply-coupon" method="POST" action="{{ route('coupon') }}">
+              <form class="apply-coupon" action="{{ route('coupon') }}" method="POST">
                 @csrf
                 <input type="text" name="coupon" value="{{ $coupon ?? old('coupon') }}">
                 <button type="submit" id="coupon_btn">Apply</button>
               </form>
             </div>
           </div>
-@dd(session('test'))
           <div class="order-calculation">
             <div class="heading-checkout">
               <h4>Payment Calculation</h4>
@@ -278,6 +265,5 @@
       $("#city").empty();
     }
   });
-
 </script>
 @endsection
