@@ -141,10 +141,11 @@
               <h4>Apply Coupon</h4>
             </div>
             <div class="checkout_text">
-              <div class="apply-coupon">
-                <input type="text" name="coupon" id="coupon_code" value="{{ $coupon ?? old('coupon') }}">
-                <button type="submit" onclick="coupon()">Apply</button>
-              </div>
+              <form class="apply-coupon" method="POST" action="{{ route('coupon') }}">
+                @csrf
+                <input type="text" name="coupon" value="{{ $coupon ?? old('coupon') }}">
+                <button type="submit" id="coupon_btn">Apply</button>
+              </form>
             </div>
           </div>
 
@@ -268,12 +269,6 @@
       $("#city").empty();
     }
   });
-
-  const coupon = event => {
-    const couponcode = document.getElementById('coupon_code').value;
-    window.location.href = "{{ url('checkout') }}/" + couponcode;
-  }
-
 
 </script>
 @endsection
