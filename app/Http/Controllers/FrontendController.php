@@ -176,9 +176,12 @@ class FrontendController extends Controller
 
   public function filterProducts(Request $r)
   {
-
     $take = 3;
-    $sql = Product::where('category_id', $r->category)->orWhere('sub_category_id', $r->category);
+    $sql = Product::where('category_id', $r->category);
+
+    if(!$sql->first()){
+      $sql->orWhere('sub_category_id', $r->category);
+    }
 
 
     if ($r->min) {
