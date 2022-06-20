@@ -48,7 +48,7 @@
           <div class="checkout_text">
             <h6 class="total">Total Amount <span> SAR {{ $cart['total'] }}</span></h6>
             <div class="checkout-btn">
-              <a href="checkout.html" class="btn common-btn">Proceed to Checkout</a>
+              <a href="" class="btn common-btn">Proceed to Checkout</a>
             </div>
           </div>
         </div>

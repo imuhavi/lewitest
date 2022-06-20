@@ -21,11 +21,11 @@
           <div class="contact-info">
             <h3 class="footer-title">Qucik Link</h3>
             <ul>
-              <li><a href="#">Home</a></li>
+              <li><a href="{{ route('home') }}">Home</a></li>
               <li><a href="{{ route('subscription') }}">Become Seller</a></li>
               <li><a href="#">Contact Us</a></li>
               <li><a href="{{ route('subscription') }}">Join Us</a></li>
-              <li><a href="{{ route('subscription') }}">Login</a></li>
+              <li><a href="{{ route('login') }}">Login</a></li>
             </ul>
           </div>
         </div>
@@ -33,7 +33,7 @@
         <div class="col-md-4 col-7">
           <div class="contact-info">
             <h3 class="footer-title">Company</h3>
-            <h2 class="logo">Five Dots</h2>
+            <h2 class="logo"><a href="{{ route('home') }}">Five Dots</a></h2>
             <p class="py-3">Collecting the dots. Then connecting them. And then sharing the connections with those
               around you. This is how a creative human works. Collecting, connecting, sharing.</p>
 

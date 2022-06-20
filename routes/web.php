@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\UserProfileController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\SubscriptionController;
 use Illuminate\Http\Request;
@@ -21,7 +22,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontendController::class, 'frontend'])->name('home');
 Route::get('/shop', [FrontendController::class, 'shop'])->name('shop');
-Route::get('/shop/{slug}/{id}', [FrontendController::class, 'categoryShop'])->name('categoryShop');
+Route::get('/shop-subcategory/{slug}/{id}', [FrontendController::class, 'subCategoryShop'])->name('subCategoryShop');
+
+Route::get('/shop-category/{slug}/{id}', [FrontendController::class, 'categoryShop'])->name('categoryShop');
+
 Route::get('/product/{slug}', [FrontendController::class, 'productView'])->name('productView');
 
 # Filter products
@@ -40,13 +44,11 @@ Route::get('/privacy-policy', [FrontendController::class, 'privacyPolicy'])->nam
 Route::get('/seller-register/{subscription}', [FrontendController::class, 'sellerRegister'])->name('sellerRegister');
 
 
-
-
 Route::group(['middleware' => ['auth', 'verified']], function () {
   Route::get('/profile', [UserProfileController::class, 'userProfile'])->name('userProfile');
   Route::post('/update-profile', [UserProfileController::class, 'updateProfile'])->name('updateProfile');
   Route::post('/update-password', [UserProfileController::class, 'updatePassword'])->name('updatePassword');
-  Route::get('/checkout', [FrontendController::class, 'checkout'])->name('checkout');
+  Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
 });
 
 # Subscribe & register for seller

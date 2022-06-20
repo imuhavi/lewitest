@@ -13,7 +13,14 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
           <li class="breadcrumb-item"><a href="#">Category</a></li>
-          <li class="breadcrumb-item active" aria-current="page">{{ $subcategory->name ?? '' }}</li>
+          <li class="breadcrumb-item active" aria-current="page">
+
+            @if($page == 'subCategoryShop')
+            {{ $subcategory->name }}
+            @elseif($page == 'categoryShop')
+            {{ $category->name }}
+            @endif
+          </li>
         </ol>
       </nav>
 
@@ -103,7 +110,6 @@
 
                       </ul>
 
-                      <button class="btn fivedots-filter-btn">Filter</button>
                     </div>
                   </div>
                 </div>
@@ -134,7 +140,6 @@
                         @endforeach
 
                       </ul>
-                      <button class="btn fivedots-filter-btn">Filter</button>
                     </div>
                   </div>
                 </div>
@@ -164,7 +169,6 @@
                         </li>
                         @endforeach
                       </ul>
-                      <button class="btn fivedots-filter-btn">Filter</button>
                     </div>
                   </div>
                 </div>
@@ -199,7 +203,6 @@
                 <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
                   aria-labelledby="panelsStayOpen-headingOne">
                   <div class="accordion-body">
-
                     <div class="price-range-wraper">
                       <div class="price-input">
                         <div class="field">
@@ -224,12 +227,7 @@
                       </div>
                       <small class="price-range-error text-danger mt-1"></small>
                     </div>
-
-
                   </div>
-
-
-
                 </div>
               </div>
             </div>
@@ -259,8 +257,6 @@
                     </li>
                     @endforeach
                   </ul>
-
-                  <button class="btn fivedots-filter-btn">Filter</button>
                 </div>
               </div>
             </div>
@@ -290,7 +286,6 @@
                     </li>
                     @endforeach
                   </ul>
-                  <button class="btn fivedots-filter-btn">Filter</button>
                 </div>
               </div>
             </div>
@@ -321,8 +316,6 @@
                     </li>
                     @endforeach
                   </ul>
-
-                  <button class="btn fivedots-filter-btn">Filter</button>
                 </div>
               </div>
             </div>
@@ -334,26 +327,30 @@
       <!---------------------------------
                     Products
         -------------------------------->
+
       <div class="col-md-12 col-lg-9">
         <div class="row mb-5">
           <div class="col-12 d-flex justify-content-between">
-            <h2>{{ $subcategory->name ?? ''}}</h2>
+            <h2>{{ $page == 'subCategoryShop' ? $subcategory->name : $category->name}}</h2>
             <div class="filter">
               <select id="select_js" onchange="filter()">
                 <option value="">Filter By</option>
                 <option value="desc" selected>New to Old</option>
                 <option value="asc">Old to New</option>
               </select>
-              <a href="" class="btn btn-sm btn-info">Clear filter</a>
+              <a href="" class="btn btn-md btn-dark ms-3">Clear filter</a>
             </div>
           </div>
         </div>
 
         <div class="row gy-5" id="content"></div>
 
-        <button type="button" onclick="loadMore()" style="display: none;" id="loadMoreBtn" class="btn btn-sm btn-info mt-2">Load more..</button>
-        <button type="button" id="noDataBtn" style="display: none;" class="btn btn-sm btn-info mt-2">Loading..</button>
-
+        <div class="d-flex justify-content-center">
+          <button type="button" onclick="loadMore()" style="display: none;" id="loadMoreBtn"
+            class="btn btn-md btn-dark mt-2">Load more...</button>
+          <button type="button" id="noDataBtn" style="display: none;"
+            class="btn btn-md btn-dark mt-2">Loading...</button>
+        </div>
       </div>
 
     </div>
@@ -363,20 +360,20 @@
 
 <script>
   let min = getElement('input-min-lg'),
-      max = getElement('input-max-lg'),
-      filterBy = getElement('select_js'),
-      color = getElement('selectedColor'),
-      size = getElement('selectedSize'),
-      brand = getElement('selectedBrand'),
-      skip = 0,
-      category = location.pathname.split('/')[3],
-      content = getElement('content'),
-      mode = 'filter',
-      loadMoreBtn = getElement('loadMoreBtn'),
-      noDataBtn = getElement('noDataBtn')
-  
+    max = getElement('input-max-lg'),
+    filterBy = getElement('select_js'),
+    color = getElement('selectedColor'),
+    size = getElement('selectedSize'),
+    brand = getElement('selectedBrand'),
+    skip = 0,
+    category = location.pathname.split('/')[3],
+    content = getElement('content'),
+    mode = 'filter',
+    loadMoreBtn = getElement('loadMoreBtn'),
+    noDataBtn = getElement('noDataBtn')
+
   function loadMore() {
-    skip += 1
+    skip += 3
     mode = 'loadmore'
     fetchProduct()
   }
@@ -391,15 +388,15 @@
     fetch(`/filter/products?min=${min.value}&max=${max.value}&filterBy=${filterBy.value}&color=${color.value}&size=${size.value}&brand=${brand.value}&skip=${skip}&category=${category}`)
       .then(response => response.text())
       .then(data => {
-        if(data.length != 0){
-          if(mode == 'filter'){
+        if (data.length != 0) {
+          if (mode == 'filter') {
             content.innerHTML = data
-          }else if(mode == 'loadmore'){
+          } else if (mode == 'loadmore') {
             content.innerHTML += data
           }
           loadMoreBtn.style.display = 'block'
           noDataBtn.style.display = 'none'
-        }else{
+        } else {
           noDataBtn.textContent = 'No more product..'
         }
       })

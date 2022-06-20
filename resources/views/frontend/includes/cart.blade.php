@@ -1,12 +1,12 @@
 <div class="offcanvas-header">
-    <h5 id="offcanvasRightLabel">Shopping Cart</h5>
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  <h5 id="offcanvasRightLabel">Shopping Cart</h5>
+  <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+</div>
+<div class="offcanvas-body">
+  <div class="order-summary">
+    <div class="heading-checkout">
+      <h5>Your Order Items</h5>
     </div>
-    <div class="offcanvas-body">
-    <div class="order-summary">
-        <div class="heading-checkout">
-        <h5>Your Order Items</h5>
-        </div>
 
         @php
             $cart = getCart()
@@ -49,4 +49,8 @@
         <a href="{{ url('/checkout') }}" class="place-order-button">Process To Checkout</a>
         <a href="{{ url('/cart') }}" class="place-order-button mt-1">View your cart</a>
     </div>
+  </div>
+  <div class="place-order">
+    <a href="{{ route('checkout') }}" class="place-order-button">Process To Checkout</a>
+  </div>
 </div>

@@ -54,10 +54,11 @@
         <div class="col-md-3 child-category">
           @foreach($womensSub1 as $item)
           <div class="child-cat-item ">
-            <a href="{{ route('categoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}"><img class="w-100"
+            <a href="{{ route('subCategoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}"><img class="w-100"
                 src="{{ asset('/backend/uploads/'. $item->icon) }}" alt="womens-{{ $item->icon }}"></a>
             <h3>{{ $item->name }}</h3>
-            <a class="explore-btn" href="{{ route('categoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}">Explore
+            <a class="explore-btn"
+              href="{{ route('subCategoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}">Explore
               <img class="icon" src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
           </div>
           @endforeach
@@ -71,8 +72,9 @@
               <h4>{{ $womensMain->name }}</h4>
               <h2>New Fashion Collection</h2>
               <p>From only $180.00</p>
-              <a class="fivedots-btn mt-4" href="#">Shop Now <img class="icon"
-                  src="{{ asset('frontend/assets') }}/images/btn-arrow-light.png" alt=""></a>
+              <a class="fivedots-btn mt-4"
+                href="{{ route('categoryShop', ['id'=> $womensMain->id, 'slug' => $womensMain->slug]) }}">Shop Now <img
+                  class="icon" src="{{ asset('frontend/assets') }}/images/btn-arrow-light.png" alt=""></a>
             </div>
           </div>
         </div>
@@ -80,10 +82,11 @@
         <div class="col-md-3 child-category">
           @foreach($womensSub2 as $item)
           <div class="child-cat-item">
-            <a href="{{ route('categoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}"><img class="w-100"
+            <a href="{{ route('subCategoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}"><img class="w-100"
                 src="{{ asset('/backend/uploads/'. $item->icon) }}" alt="womans-{{ $item->icon }}"></a>
             <h3>{{ $item->name }}</h3>
-            <a class="explore-btn" href="{{ route('categoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}">Explore
+            <a class="explore-btn"
+              href="{{ route('subCategoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}">Explore
               <img class="icon" src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
           </div>
           @endforeach
@@ -121,12 +124,12 @@
           @foreach($mensSub as $item)
           <div class="col-md-6">
             <div class="child-cat-item">
-              <a href="{{ route('categoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}"><img class="img-fluid"
+              <a href="{{ route('subCategoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}"><img class="img-fluid"
                   src="{{ asset('/backend/uploads/'. $item->icon) }}" alt="women's-1"></a>
               <h3>{{ $item->name }}</h3>
               <a class="explore-btn"
-                href="{{ route('categoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}">Explore <img class="icon"
-                  src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
+                href="{{ route('subCategoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}">Explore <img
+                  class="icon" src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
             </div>
           </div>
           @endforeach
@@ -136,14 +139,15 @@
       <div class="col-md-6 category-main">
         <div class="parent-cat-item">
           <div class="overflow"></div>
-          <img class="img-fluid parent-cat-banner" src="{{ asset('frontend/assets') }}/images/mens-main-1.png"
+          <img class="img-fluid parent-cat-banner" src="{{ asset('/backend/uploads/'. $mensMain->banner) }}"
             alt="women's Main">
           <div class="parent-cat-content">
             <h4>Weekend Sale</h4>
             <h2>New Fashion Collection</h2>
             <p>From only $180.00</p>
-            <a class="fivedots-btn mt-4" href="#">Shop Now <img class="icon"
-                src="{{ asset('frontend/assets') }}/images/btn-arrow-light.png" alt=""></a>
+            <a class="fivedots-btn mt-4"
+              href="{{ route('categoryShop', ['id'=> $mensMain->id, 'slug' => $mensMain->slug]) }}">Shop Now <img
+                class="icon" src="{{ asset('frontend/assets') }}/images/btn-arrow-light.png" alt=""></a>
           </div>
         </div>
       </div>
@@ -186,8 +190,10 @@
               <h4>{{ $accesoriesMain->name }}</h4>
               <h2>Accories Collection</h2>
               <p>From only $180.00</p>
-              <a class="fivedots-btn mt-4" href="#">Shop Now <img class="icon"
-                  src="{{ asset('frontend/assets') }}/images/btn-arrow-light.png" alt=""></a>
+              <a class="fivedots-btn mt-4"
+                href="{{ route('categoryShop', ['id'=> $accesoriesMain->id, 'slug' => $accesoriesMain->slug]) }}">Shop
+                Now <img class="icon" src="{{ asset('frontend/assets') }}/images/btn-arrow-light.png"
+                  alt="{{ $accesoriesMain->name }}"></a>
             </div>
           </div>
         </div>
@@ -197,18 +203,17 @@
             @foreach($accesoriesSub as $item)
             <div class="col-md-6">
               <div class="child-cat-item">
-                <a href="{{ route('categoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}"><img class="img-fluid"
-                    src="{{ asset('/backend/uploads/'. $item->icon) }}" alt="womens-1"></a>
+                <a href="{{ route('subCategoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}"><img
+                    class="img-fluid" src="{{ asset('/backend/uploads/'. $item->icon) }}" alt="womens-1"></a>
                 <h3>{{ $item->name }}</h3>
                 <a class="explore-btn"
-                  href="{{ route('categoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}">Explore <img
+                  href="{{ route('subCategoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}">Explore <img
                     class="icon" src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
               </div>
             </div>
             @endforeach
           </div>
         </div>
-
 
       </div>
     </div>

@@ -7,14 +7,6 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-  private $VIEW_PATH = 'frontend.pages.';
-
-  public function myCart()
-  {
-    $data = '';
-    return view($this->VIEW_PATH . 'cart', compact('data'));
-  }
-
   public function addToCart(Request $request)
   {
     $alreadyAdded = false;
@@ -28,16 +20,16 @@ class CartController extends Controller
     $session = session('cart') ?? [];
 
     foreach ($session as $item) {
-      if($item['product_id'] == $reqCart['product_id'] && $item['color'] == $reqCart['color'] && $item['size'] == $reqCart['size']){
+      if ($item['product_id'] == $reqCart['product_id'] && $item['color'] == $reqCart['color'] && $item['size'] == $reqCart['size']) {
         $item['quantity'] += intval($reqCart['quantity']);
         $alreadyAdded = true;
       }
       $newCart[] = $item;
     }
-    if($alreadyAdded == true){
+    if ($alreadyAdded == true) {
       session()->forget('cart');
       session()->put('cart', $newCart);
-    }elseif ($alreadyAdded == false) {
+    } elseif ($alreadyAdded == false) {
       session()->push('cart', $reqCart);
     }
     return response()->json('Product added successfully !');
