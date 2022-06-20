@@ -130,10 +130,10 @@
 
           </div>
 
-          @if(session('message'))
-          <div class="alert alert-danger">
-            {{ session('message') }}
-          </div>
+          @if(session()->has('message'))
+            <div class="alert alert-danger">
+              {{ session('message') }}
+            </div>
           @endif
 
           <div class="order-calculation">
@@ -169,13 +169,13 @@
               </div>
 
               @php
-              $tax = number_format($cart['total'] * 0.15, 2);
+                $tax = $cart['total'] * 0.15;
               @endphp
               <div class="col-6">
                 <h6>Tax: 15%</h6>
               </div>
               <div class="col-6">
-                <h6 class="price-text sub-total-text text-end"> SAR {{ $tax }} </h6>
+                <h6 class="price-text sub-total-text text-end"> SAR {{ number_format($tax, 2) }} </h6>
               </div>
 
               @php
@@ -269,7 +269,7 @@
     }
   });
 
-  const coupon = event => {
+  const coupon = () => {
     const couponcode = document.getElementById('coupon_code').value;
     window.location.href = "{{ url('checkout') }}/" + couponcode;
   }

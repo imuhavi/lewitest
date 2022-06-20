@@ -22,7 +22,6 @@ class CheckoutController extends Controller
       $isCouponHave = Coupon::where('code', $slug)->exists();
       if ($isCouponHave) {
         return "coupon achy ";
-
         // if (session('cart')) {
         //   $states = States::get();
         //   $coupon = $slug;
@@ -30,7 +29,8 @@ class CheckoutController extends Controller
         // }
         // return redirect('/');
       } else {
-        return back()->with('message', 'Invalid Coupon!');
+        session()->flash('message', 'Invalid Coupon !');
+        return redirect()->back();
       }
     }
   }
