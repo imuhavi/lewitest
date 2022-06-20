@@ -183,8 +183,10 @@ class FrontendController extends Controller
       $sql->orWhere('sub_category_id', $r->category);
     }
 
+
     if ($r->min) {
       $sql->where('price', '>=', $r->min);
+      // return $sql->get();
     }
     if ($r->max) {
       $sql->where('price', '<=', $r->max);
