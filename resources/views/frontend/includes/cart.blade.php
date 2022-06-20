@@ -15,7 +15,7 @@
         @foreach($cart['cart'] as $key => $item)
         <div class="row order-item">
         <div class="col-3">
-            <img class="rounded w-75" src="{{ asset('frontend/assets') }}/images/product-img-2.png" alt="product">
+            <img class="rounded w-75" src="{{ asset('backend/uploads/' . $item['product_url']) }}" alt="Product image">
         </div>
         <div class="col-6">
             <p>{{ $item['product_name'] }}</p>
@@ -34,7 +34,6 @@
         </div>
         </div>
         @endforeach
-
     </div>
     <div class="order-calculation">
         <div class="row">
@@ -47,6 +46,7 @@
         </div>
     </div>
     <div class="place-order">
-        <a href="" class="place-order-button">Process To Checkout</a>
+        <a href="{{ url('/checkout') }}" class="place-order-button">Process To Checkout</a>
+        <a href="{{ url('/cart') }}" class="place-order-button mt-1">View your cart</a>
     </div>
 </div>

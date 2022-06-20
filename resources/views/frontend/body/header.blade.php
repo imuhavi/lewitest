@@ -55,6 +55,7 @@
 
   @if(request()->path() !== 'subscription' && explode('/', request()->path())[0] !== 'seller-register')
   <header>
+
     <!---------------------------
           Navbar Top Start 
   ---------------------------->

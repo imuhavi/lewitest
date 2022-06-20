@@ -14,101 +14,39 @@
     </nav>
   </div>
 
+@php
+  $cart = getCart()
+@endphp
+
   <section id="cart_view">
     <div class="container">
       <div class="row">
         <div class="col-lg-12 col-12 col-sm-12 col-md-12">
           <div class="cart_item_heading">
-            <h5>My Cart (4 Items) </h5>
-            <h4>Total: SAR 906</h4>
+            <h5>My Cart ({{ count($cart['cart']) }} Items) </h5>
           </div>
-
-          <div class="select_all">
-            <input type="checkbox">
-            <p>select all (5 items)</p>
-            <a href="#"><i class="far fa-trash-alt"></i>delete</a>
-          </div>
-
           <div class="cart_list">
-            <div class="cart_item_details">
-              <div class="check_box">
-                <input type="checkbox">
+            @foreach($cart['cart'] as $key => $item)
+              <div class="cart_item_details">
+                <div class="cart_pro_img">
+                  <img src="{{ asset('backend/uploads/' . $item['product_url']) }}" alt="Product image">
+                </div>
+                <div class="cart_pro_text">
+                  <p class="item_name">{{ $item['product_name'] }}</p>
+                  <a href="{{ url('remove-cart-item/' . $key) }}"><i class="far fa-trash-alt"></i></a>
+                </div>
+                <div class="cart_text_tk">
+                  <input type="number" placeholder="1" value="{{ $item['quantity'] }}" min="0">
+                  <h6>SAR {{ ($item['product_price'] * $item['quantity']) - $item['discount'] }}</h6>
+                </div>
               </div>
-              <div class="cart_pro_img">
-                <img src="{{ asset('frontend/assets/') }}/images/product-img-2.png" alt="product">
-              </div>
-              <div class="cart_pro_text">
-                <p class="item_name">your product name here</p>
-                <a href="#"><i class="far fa-trash-alt"></i></a>
-                <a href="#"><i class="fa fa-heart-o"></i></a>
-              </div>
-              <div class="cart_text_tk">
-                <input type="number" placeholder="1" value="1" min="0">
-                <h6>SAR 906</h6>
-              </div>
-            </div>
-            <div class="cart_item_details">
-              <div class="check_box">
-                <input type="checkbox">
-              </div>
-              <div class="cart_pro_img">
-                <img src="{{ asset('frontend/assets/') }}/images/product-img-2.png" alt="product">
-              </div>
-              <div class="cart_pro_text">
-                <p class="item_name">your product name here</p>
-                <a href="#"><i class="far fa-trash-alt"></i></a>
-                <a href="#"><i class="fa fa-heart-o"></i></a>
-              </div>
-              <div class="cart_text_tk">
-                <input type="number" placeholder="1" value="1" min="0">
-                <h6>SAR 906</h6>
-              </div>
-              <div class="cart_text"></div>
-            </div>
-            <div class="cart_item_details">
-              <div class="check_box">
-                <input type="checkbox">
-              </div>
-              <div class="cart_pro_img">
-                <img src="{{ asset('frontend/assets/') }}/images/product-img-3.png" alt="product">
-              </div>
-              <div class="cart_pro_text">
-                <p class="item_name">your product name here</p>
-                <a href="#"><i class="far fa-trash-alt"></i></a>
-                <a href="#"><i class="fa fa-heart-o"></i></a>
-              </div>
-              <div class="cart_text_tk">
-                <input type="number" placeholder="1" value="1" min="0">
-                <h6>SAR 906</h6>
-              </div>
-              <div class="cart_text"></div>
-            </div>
-          </div>
-
-          <div class="mt-3 cart-update">
-            <a href="" class="btn common-btn">Update Cart</a>
-            <a href="{{ route('shop') }}" class="btn btn-light">Continue Shopping</a>
+            @endforeach
           </div>
         </div>
 
         <div class="col-lg-12 col-12 col-sm-12 col-md-12">
           <div class="checkout_text">
-
-            <h4 class="order">Order summary</h4>
-            <p>Subtotal (5 items) <span>SAR 500</span></p>
-            <p>Shipping Cost <span>+ SAR 30</span></p>
-            <p>Tax <span>+ SAR 100</span></p>
-            <hr>
-            <h6 class="total">Grand Total <span> SAR 630</span></h6>
-            <p>Discount<span>SAR 230</span></p>
-            <form class="apply-coupon">
-              <p>Enter Your Coupon Code If You Have One.</p>
-              <input type="text" placeholder="Enter Coupon Code">
-              <button type="submit">Apply</button>
-            </form>
-            <hr>
-            <h6 class="total">Total Amount <span> SAR 350</span></h6>
-
+            <h6 class="total">Total Amount <span> SAR {{ $cart['total'] }}</span></h6>
             <div class="checkout-btn">
               <a href="checkout.html" class="btn common-btn">Proceed to Checkout</a>
             </div>

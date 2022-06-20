@@ -46,7 +46,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
   Route::get('/profile', [UserProfileController::class, 'userProfile'])->name('userProfile');
   Route::post('/update-profile', [UserProfileController::class, 'updateProfile'])->name('updateProfile');
   Route::post('/update-password', [UserProfileController::class, 'updatePassword'])->name('updatePassword');
-
   Route::get('/checkout', [FrontendController::class, 'checkout'])->name('checkout');
 });
 
