@@ -11,7 +11,10 @@ class CheckoutController extends Controller
 
   public function checkout()
   {
-    $states = States::get();
-    return view($this->VIEW_PATH . 'checkout', compact('states'));
+    if(session('cart')){
+      $states = States::get();
+      return view($this->VIEW_PATH . 'checkout', compact('states'));
+    }
+    return redirect('/');
   }
 }

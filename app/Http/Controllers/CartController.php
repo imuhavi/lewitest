@@ -4,18 +4,9 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
-  private $VIEW_PATH = 'frontend.pages.';
-
-  public function myCart()
-  {
-    $data = '';
-    return view($this->VIEW_PATH . 'cart', compact('data'));
-  }
-
   public function addToCart(Request $request)
   {
     $alreadyAdded = false;

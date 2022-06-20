@@ -80,7 +80,7 @@ if (!function_exists('getCart')) {
     ];
     $session = session('cart');
     if (!empty($session)) {
-      foreach ($session as $item) {
+      foreach ($session as $key => $item) {
         $product = Product::find($item['product_id']);
 
         $discount = 0;
@@ -92,14 +92,15 @@ if (!function_exists('getCart')) {
           }
         }
 
-        array_push($data['cart'], [
+        $data['cart'][$key] = [
           'product_name' => $product->name,
           'product_price' => $product->price,
+          'product_url' => $product->thumbnail,
           'discount' => $item['quantity'] * $discount,
           'quantity' => $item['quantity'],
           'color' => $item['color'],
           'size' => $item['size']
-        ]);
+        ];
         $data['total'] += (($product->price * $item['quantity']) - ($item['quantity'] * $discount));
       }
     }
