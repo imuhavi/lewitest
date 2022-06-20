@@ -196,10 +196,10 @@ class FrontendController extends Controller
       $sql->orderBy('updated_at', $r->filterBy);
     }
     if ($r->color) {
-      return $r->color;
+      $sql->where('attributes', 'like', '%' . $r->color . '%');
     }
     if ($r->size) {
-      return $r->size;
+      $sql->where('attributes', 'like', '%' . $r->size . '%');
     }
     $data = $sql->skip($r->skip)->take($take)->get();
     return view('frontend.includes.product', compact('data'));
