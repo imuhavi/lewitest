@@ -183,10 +183,8 @@ class FrontendController extends Controller
       $sql->orWhere('sub_category_id', $r->category);
     }
 
-
     if ($r->min) {
       $sql->where('price', '>=', $r->min);
-      // return $sql->get();
     }
     if ($r->max) {
       $sql->where('price', '<=', $r->max);
@@ -198,10 +196,10 @@ class FrontendController extends Controller
       $sql->orderBy('updated_at', $r->filterBy);
     }
     if ($r->color) {
-      return $r->color; // We have to work on this later / after cart & order
+      return $r->color;
     }
     if ($r->size) {
-      return $r->size; // We have to work on this later / after cart & order
+      return $r->size;
     }
     $data = $sql->skip($r->skip)->take($take)->get();
     return view('frontend.includes.product', compact('data'));
