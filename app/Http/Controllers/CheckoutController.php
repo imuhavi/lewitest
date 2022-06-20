@@ -6,6 +6,8 @@ use App\Models\Coupon;
 use App\Models\States;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CheckoutController extends Controller
 {
@@ -22,33 +24,39 @@ class CheckoutController extends Controller
 
   public function coupon(Request $request)
   {
+    Session::flash('test', 'asdasdas');
+    return redirect()->back();
     try {
-
-      $coupon_code = $request->coupon;
-
-      if ($coupon_code !== null) {
         $cart = getCart();
-        // return $cart['total'];
-        $coupon = Coupon::where('code', $coupon_code)->first();
-        $isCouponHave = Coupon::where('code', $coupon->code)->exists();
-        if ($isCouponHave) {
+        $coupon = Coupon::where('code', $request->coupon)->first();
+        if (!empty($coupon)) {
           if (Carbon::now()->format('Y-m-d') <= $coupon->end) {
-            if ($coupon->discount_type == 'Percent' && $cart['total'] <= $coupon->max_discount_amount  && $cart['total'] >= $coupon->min_shopping_amount) {
-              return 'valid';
-            } else {
-              return 'Invalid';
+            if($cart['total'] >= $coupon->min_shopping_amount){
+              if($coupon->type == 'Cart'){
+                $discount = $coupon->discount;
+              }elseif ($coupon->type == 'Product') {
+                // $discount = $coupon->discount;
+              }elseif ($coupon->type == 'Category') {
+                // $discount = $coupon->discount;
+              }
+              if($coupon->discount_type == 'Percent'){
+                $discount = $cart['total'] * ($discount / 100);
+              }
+              session('coupon', [
+                'discount' => $discount,
+                'code' => $coupon->code
+              ]);
+              // Coupon applied successfully !
+              return redirect()->back();
             }
-            // 
-          } else {
-            return back()->with('message', 'Expired Coupon');
+            // Session::flash('invalid-coupon', 'Expired coupon !');
+            return redirect()->back();
           }
-        } else {
-
-          return back()->with('message', 'Invalid Coupon');
+          // Session::flash('invalid-coupon', 'Expired coupon !');
+          return redirect()->back();
         }
-      }
-
-      return redirect()->back();
+        // Session::flash('invalid-coupon', 'Invalid coupon !');
+        return redirect()->back();
     } catch (\Throwable $th) {
       return redirect()->back()->with('error', $th->getMessage());
     }

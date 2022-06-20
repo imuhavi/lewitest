@@ -44,6 +44,7 @@
   <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/custom.css">
   <!-- Responsive Css Link -->
   <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/responsive.css">
+  <link href="{{ asset('backend/') }}/assets/plugins/toastr/toastr.min.css" rel="stylesheet" type="text/css" />
 </head>
 
 

@@ -3,6 +3,21 @@
 <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/jquery.nice-number.min.css">
 @endsection
 @section('content')
+
+<div class="order-calculation">
+            <div class="heading-checkout">
+              <h4>Apply Coupon</h4>
+            </div>
+            <div class="checkout_text">
+              <form class="apply-coupon" method="POST" action="{{ route('coupon') }}">
+                @csrf
+                <input type="text" name="coupon" value="{{ $coupon ?? old('coupon') }}">
+                <button type="submit" id="coupon_btn">Apply</button>
+              </form>
+            </div>
+          </div>
+@dd(session('test'))
+
 <main>
   <section class="checkout-section">
     <div class="container">
@@ -130,12 +145,6 @@
 
           </div>
 
-          @if(session()->has('message'))
-            <div class="alert alert-danger">
-              {{ session('message') }}
-            </div>
-          @endif
-
           <div class="order-calculation">
             <div class="heading-checkout">
               <h4>Apply Coupon</h4>
@@ -148,7 +157,7 @@
               </form>
             </div>
           </div>
-
+@dd(session('test'))
           <div class="order-calculation">
             <div class="heading-checkout">
               <h4>Payment Calculation</h4>
@@ -183,11 +192,11 @@
               $coupon = session('coupon');
               @endphp
               <div class="col-6">
-                <h6>Coupon Discount:({{ $coupon ? $coupon->code : 'No coupon' }})</h6>
+                <h6>Coupon Discount:({{ $coupon ? $coupon['code'] : 'No coupon' }})</h6>
               </div>
 
               <div class="col-6">
-                <h6 class="price-text sub-total-text text-end"> SAR {{ $coupon ? $coupon->discount : 0 }} </h6>
+                <h6 class="price-text sub-total-text text-end"> SAR {{ $coupon ? $coupon['discount'] : 0 }} </h6>
               </div>
               <hr>
               <div class="col-6">
@@ -195,7 +204,7 @@
               </div>
               <div class="col-6">
                 <h5 class="price-text sub-total-text text-end"> SAR {{ ($cart['total'] + 30 + $tax) - ($coupon ?
-                  $coupon->discount : 0) }}</h5>
+                  $coupon['discount'] : 0) }}</h5>
               </div>
             </div>
 
@@ -270,14 +279,5 @@
     }
   });
 
-<<<<<<< HEAD
-=======
-  const coupon = () => {
-    const couponcode = document.getElementById('coupon_code').value;
-    window.location.href = "{{ url('checkout') }}/" + couponcode;
-  }
-
-
->>>>>>> 52359fd0bbe024f52684796f576d6af3ff740d58
 </script>
 @endsection

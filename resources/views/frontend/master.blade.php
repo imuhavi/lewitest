@@ -34,6 +34,13 @@
 <script src="{{ asset('/frontend/assets/') }}/js/slick.min.js"></script>
 <!-- Custom Js Link -->
 <script src="{{ asset('/frontend/assets/') }}/js/custome.js"></script>
+    <script>
+        var successNotification = "{{ session('success') }}"
+        var infoNotification = "{{ session('info') }}"
+        var warningNotification = "{{ session('warning') }}"
+        var errorNotification = "{{ session('error') }}"
+    </script>
+    <script src="{{ asset('backend/') }}/assets/js/custom.js"></script>
 </body>
 
 </html>
