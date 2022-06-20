@@ -1,7 +1,7 @@
 @extends('frontend.master')
 
 @section('header_css')
-  <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/jquery.nice-number.min.css">
+<link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/jquery.nice-number.min.css">
 @endsection
 
 @section('content')
@@ -166,7 +166,7 @@
               </div>
 
               @php
-                $tax = $cart['total'] * 0.15;
+              $tax = $cart['total'] * 0.15;
               @endphp
               <div class="col-6">
                 <h6>Tax: 15%</h6>
