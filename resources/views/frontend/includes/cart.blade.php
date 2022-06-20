@@ -45,10 +45,6 @@
         </div>
         </div>
     </div>
-    <div class="place-order">
-        <a href="{{ url('/checkout') }}" class="place-order-button">Process To Checkout</a>
-        <a href="{{ url('/cart') }}" class="place-order-button mt-1">View your cart</a>
-    </div>
   </div>
   <div class="place-order">
     <a href="{{ route('checkout') }}" class="place-order-button">Process To Checkout</a>

@@ -111,7 +111,7 @@
             @foreach($cart['cart'] as $key => $item)
             <div class="row order-item">
               <div class="col-3 text-start0">
-                <img class="rounded w-75" src="{{ asset('frontend/assets/') }}/images/product-img-2.png" alt="product">
+                <img class="rounded w-75" src="{{ asset('backend/uploads/' . $item['product_url']) }}" alt="product">
               </div>
               <div class="col-6">
                 <p>{{ $item['product_name'] }}</p>
@@ -123,7 +123,7 @@
                 <p>Quanity: {{ $item['quantity'] }}</p>
               </div>
               <div class="col-3 text-end">
-                <p>SAR {{ ($item['product_price'] * $item['quantity']) }}</p>
+                <p>SAR {{ ($item['product_price'] * $item['quantity']) - $item['discount'] }}</p>
               </div>
             </div>
             @endforeach
@@ -173,19 +173,22 @@
                 <h6 class="price-text sub-total-text text-end"> SAR {{ $tax }} </h6>
               </div>
 
+              @php
+                $coupon = session('coupon');
+              @endphp
               <div class="col-6">
-                <h6>Discount Amount:(If applicable)</h6>
+                <h6>Coupon Discount:({{ $coupon ? $coupon->code : 'No coupon' }})</h6>
               </div>
 
               <div class="col-6">
-                <h6 class="price-text sub-total-text text-end"> SAR {{ $item['discount'] }} </h6>
+                <h6 class="price-text sub-total-text text-end"> SAR {{ $coupon ? $coupon->discount : 0 }} </h6>
               </div>
               <hr>
               <div class="col-6">
                 <h5>Total Amount</h5>
               </div>
               <div class="col-6">
-                <h5 class="price-text sub-total-text text-end"> SAR {{ $cart['total'] + 30 + $tax }}</h5>
+                <h5 class="price-text sub-total-text text-end"> SAR {{ ($cart['total'] + 30 + $tax) - ($coupon ? $coupon->discount : 0) }}</h5>
               </div>
             </div>
 
