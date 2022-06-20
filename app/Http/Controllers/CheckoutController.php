@@ -13,7 +13,6 @@ class CheckoutController extends Controller
 
   public function checkout()
   {
-<<<<<<< HEAD
     if (session('cart')) {
       $states = States::get();
       return view($this->VIEW_PATH . 'checkout', compact('states'));
@@ -47,27 +46,6 @@ class CheckoutController extends Controller
 
           return back()->with('message', 'Invalid Coupon');
         }
-=======
-    if ($slug == '') {
-      if (session('cart')) {
-        $states = States::get();
-        return view($this->VIEW_PATH . 'checkout', compact('states'));
-      }
-      return redirect('/');
-    } else {
-      $isCouponHave = Coupon::where('code', $slug)->exists();
-      if ($isCouponHave) {
-        return "coupon achy ";
-        // if (session('cart')) {
-        //   $states = States::get();
-        //   $coupon = $slug;
-        //   return view($this->VIEW_PATH . 'checkout', compact('states', 'coupon'));
-        // }
-        // return redirect('/');
-      } else {
-        session()->flash('message', 'Invalid Coupon !');
-        return redirect()->back();
->>>>>>> 52359fd0bbe024f52684796f576d6af3ff740d58
       }
 
       return redirect()->back();
