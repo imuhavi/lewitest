@@ -130,16 +130,21 @@
 
           </div>
 
+          @if(session('message'))
+          <div class="alert alert-danger">
+            {{ session('message') }}
+          </div>
+          @endif
+
           <div class="order-calculation">
             <div class="heading-checkout">
               <h4>Apply Coupon</h4>
             </div>
-
             <div class="checkout_text">
-              <form class="apply-coupon">
-                <input type="text" placeholder="Enter Coupon Code">
-                <button type="submit">Apply</button>
-              </form>
+              <div class="apply-coupon">
+                <input type="text" name="coupon" id="coupon_code" value="{{ $coupon ?? old('coupon') }}">
+                <button type="submit" onclick="coupon()">Apply</button>
+              </div>
             </div>
           </div>
 
@@ -174,7 +179,7 @@
               </div>
 
               @php
-                $coupon = session('coupon');
+              $coupon = session('coupon');
               @endphp
               <div class="col-6">
                 <h6>Coupon Discount:({{ $coupon ? $coupon->code : 'No coupon' }})</h6>
@@ -188,7 +193,8 @@
                 <h5>Total Amount</h5>
               </div>
               <div class="col-6">
-                <h5 class="price-text sub-total-text text-end"> SAR {{ ($cart['total'] + 30 + $tax) - ($coupon ? $coupon->discount : 0) }}</h5>
+                <h5 class="price-text sub-total-text text-end"> SAR {{ ($cart['total'] + 30 + $tax) - ($coupon ?
+                  $coupon->discount : 0) }}</h5>
               </div>
             </div>
 
@@ -262,5 +268,12 @@
       $("#city").empty();
     }
   });
+
+  const coupon = event => {
+    const couponcode = document.getElementById('coupon_code').value;
+    window.location.href = "{{ url('checkout') }}/" + couponcode;
+  }
+
+
 </script>
 @endsection
