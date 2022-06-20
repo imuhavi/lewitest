@@ -180,8 +180,10 @@ class FrontendController extends Controller
     $take = 3;
     $sql = Product::where('category_id', $r->category)->orWhere('sub_category_id', $r->category);
 
+
     if ($r->min) {
       $sql->where('price', '>=', $r->min);
+      // return $sql->get();
     }
     if ($r->max) {
       $sql->where('price', '<=', $r->max);
