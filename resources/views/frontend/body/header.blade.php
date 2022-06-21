@@ -98,7 +98,7 @@
 
           <li><a href="#"><img src="{{ asset('frontend/assets') }}/images/heart.png" alt="user-profile"></a></li>
 
-          <li><a href="pages/cart.html" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+          <li><a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
               aria-controls="offcanvasRight"><img src="{{ asset('frontend/assets') }}/images/shopping-cart.png"
                 alt="user-profile"></a></li>
         </ul>
@@ -110,7 +110,6 @@
     ---------------------------->
     <nav class="navbar navbar-expand-lg bg-light menu">
       <div class="container">
-
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">

@@ -9,12 +9,13 @@ class CreateUserDetailsTable extends Migration
   /**
    * Run the migrations.
    *
-   * @return void
+   * @return void 
    */
   public function up()
   {
     Schema::create('user_details', function (Blueprint $table) {
       $table->id();
+      $table->string('phone');
       $table->unsignedBigInteger('state_id');
       $table->unsignedBigInteger('city_id');
       $table->string('postal_code')->nullable();

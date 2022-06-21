@@ -272,7 +272,7 @@
                 <span class="wishlist"><i class="far fa-heart"></i></span>
               </div>
               @endif
-              @if($product->discount != null && $product->discount_type !== 'Percent' && $product->discount_type !==
+              @if($product->discount !== null && $product->discount_type !== 'Percent' && $product->discount_type !==
               'Flat')
               <h3 class="new-price my-3">SAR <span>{{ $product->price- $product->discount }}</span></h3>
               <div class="d-flex justify-content-between">

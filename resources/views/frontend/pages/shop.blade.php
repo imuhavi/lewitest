@@ -1,11 +1,9 @@
 @extends('frontend.master')
-@section('content')
 @section('header_css')
 <link rel="stylesheet" href="{{ asset('/frontend/assets/') }}/css/price-range.css">
-
 @endsection
+@section('content')
 <main>
-
   <section class="container" id="category-shop">
     <!-- Bradcum Here -->
     <div class="d-flex justify-content-between my-3">

@@ -173,7 +173,7 @@ class FrontendController extends Controller
     $take = 12;
     $sql = Product::where('category_id', $r->category);
 
-    if(!$sql->first()){
+    if (!$sql->first()) {
       $sql->orWhere('sub_category_id', $r->category);
     }
 
