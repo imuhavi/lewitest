@@ -7,7 +7,6 @@ use App\Models\States;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class CheckoutController extends Controller
 {

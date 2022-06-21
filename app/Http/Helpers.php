@@ -84,10 +84,10 @@ if (!function_exists('getCart')) {
         $product = Product::find($item['product_id']);
 
         $discount = 0;
-        if(!empty($product->discount_type)){
-          if($product->discount_type == 'Percent'){
+        if (!empty($product->discount_type)) {
+          if ($product->discount_type == 'Percent') {
             $discount = $product->price * ($product->discount / 100);
-          }elseif ($product->discount_type == 'Flat') {
+          } elseif ($product->discount_type == 'Flat') {
             $discount = $product->discount;
           }
         }

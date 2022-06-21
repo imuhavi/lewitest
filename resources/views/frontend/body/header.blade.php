@@ -96,8 +96,7 @@
             @endauth
           </li>
 
-          <li><a href="{{ route('myCart') }}"><img src="{{ asset('frontend/assets') }}/images/heart.png"
-                alt="user-profile"></a></li>
+          <li><a href="#"><img src="{{ asset('frontend/assets') }}/images/heart.png" alt="user-profile"></a></li>
 
           <li><a href="pages/cart.html" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
               aria-controls="offcanvasRight"><img src="{{ asset('frontend/assets') }}/images/shopping-cart.png"
