@@ -137,11 +137,18 @@
             <div class="heading-checkout">
               <h4>Apply Coupon</h4>
             </div>
+            @php
+              $coupon = Session::get('coupon');
+            @endphp
             <div class="checkout_text">
               <form class="apply-coupon" action="{{ route('coupon') }}" method="POST">
                 @csrf
-                <input type="text" name="coupon" value="{{ $coupon ?? old('coupon') }}">
-                <button type="submit" id="coupon_btn">Apply</button>
+                <input type="text" @if($coupon) disabled @endif name="coupon" value="{{ $coupon ? $coupon['code'] : old('coupon') }}">
+                @if($coupon)
+                  <a href="{{ url('/remove-coupon') }}" id="coupon_btn">Remove</a>
+                @else
+                  <button type="submit" id="coupon_btn">Apply</button>
+                @endif
               </form>
             </div>
           </div>
@@ -175,9 +182,6 @@
                 <h6 class="price-text sub-total-text text-end"> SAR {{ number_format($tax, 2) }} </h6>
               </div>
 
-              @php
-              $coupon = session('coupon');
-              @endphp
               <div class="col-6">
                 <h6>Coupon Discount:({{ $coupon ? $coupon['code'] : 'No coupon' }})</h6>
               </div>

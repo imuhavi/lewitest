@@ -50,6 +50,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
   Route::post('/update-password', [UserProfileController::class, 'updatePassword'])->name('updatePassword');
   Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
   Route::post('/checkout', [CheckoutController::class, 'coupon'])->name('coupon');
+  Route::get('/remove-coupon', [CheckoutController::class, 'removeCoupon']);
 });
 
 # Subscribe & register for seller

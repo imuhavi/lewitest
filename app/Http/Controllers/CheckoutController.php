@@ -25,7 +25,6 @@ class CheckoutController extends Controller
   public function coupon(Request $request)
   {
     try {
-        $states = States::get();
         $cart = getCart();
         $coupon = Coupon::where('code', $request->coupon)->first();
         if (!empty($coupon)) {
@@ -41,23 +40,28 @@ class CheckoutController extends Controller
               if($coupon->discount_type == 'Percent'){
                 $discount = $cart['total'] * ($discount / 100);
               }
-              session('coupon', [
+              if($discount > $coupon->max_discount_amount){
+                $discount = $coupon->max_discount_amount;
+              }
+              Session::put('coupon', [
                 'discount' => $discount,
                 'code' => $coupon->code
               ]);
-              Session::flash('success', 'Coupon added successfully !');
-              return redirect()->back();
+              return redirect()->back()->with('success', 'Coupon added successfully !');
             }
-            Session::flash('error', 'Minimum shopping amount not added for this coupon !');
-            return redirect()->back();
+            return redirect()->back()->with('error', 'Minimum shopping amount not added for this coupon !');
           }
-          Session::flash('error', 'Expired coupon !');
-          return redirect()->back();
+          return redirect()->back()->with('error', 'Expired coupon !');
         }
-        Session::flash('error', 'Invalid coupon !');
-        return redirect()->back();
+        return redirect()->back()->with('error', 'Invalid coupon !');
     } catch (\Throwable $th) {
       return redirect()->back()->with('error', $th->getMessage());
     }
+  }
+
+  public function removeCoupon()
+  {
+    Session::forget('coupon');
+    return redirect()->back()->with('info', 'Coupon removed successfully !');
   }
 }

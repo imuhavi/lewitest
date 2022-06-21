@@ -162,6 +162,12 @@
                     id="conformation_password" placeholder="Confirm Password">
                 </div>
               </div>
+
+              <div class="row" style="margin-top: 20px">
+                <div class="col-sm-12 text-right ">
+                  <button class="btn btn-info" type="submit">Update</button>
+                </div>
+              </div>
           </div>
         </div>
       </div>
