@@ -13,10 +13,10 @@
           <li class="breadcrumb-item"><a href="#">Category</a></li>
           <li class="breadcrumb-item active" aria-current="page">
 
-            @if($page == 'subCategoryShop')
-            {{ $subcategory->name }}
-            @elseif($page == 'categoryShop')
-            {{ $category->name }}
+            @if(isset($page) && $page == 'subCategoryShop')
+              {{ $subcategory->name }}
+            @elseif(isset($page) && $page == 'categoryShop')
+              {{ $category->name }}
             @endif
           </li>
         </ol>
@@ -329,7 +329,9 @@
       <div class="col-md-12 col-lg-9">
         <div class="row mb-5">
           <div class="col-12 d-flex justify-content-between">
-            <h2>{{ $page == 'subCategoryShop' ? $subcategory->name : $category->name}}</h2>
+            @if(isset($page))
+              <h2>{{ $page == 'subCategoryShop' ? $subcategory->name : $category->name}}</h2>
+            @endif
             <div class="filter">
               <select id="select_js" onchange="filter()">
                 <option value="">Filter By</option>
@@ -365,13 +367,14 @@
     brand = getElement('selectedBrand'),
     skip = 0,
     category = location.pathname.split('/')[3],
+    catOrSub = "{{ isset($page) ? $page : '' }}",
     content = getElement('content'),
     mode = 'filter',
     loadMoreBtn = getElement('loadMoreBtn'),
     noDataBtn = getElement('noDataBtn')
 
   function loadMore() {
-    skip += 3
+    skip += 12
     mode = 'loadmore'
     fetchProduct()
   }
@@ -383,7 +386,7 @@
   function fetchProduct() {
     loadMoreBtn.style.display = 'none'
     noDataBtn.style.display = 'block'
-    fetch(`/filter/products?min=${min.value}&max=${max.value}&filterBy=${filterBy.value}&color=${color.value}&size=${size.value}&brand=${brand.value}&skip=${skip}&category=${category}`)
+    fetch(`/filter/products?min=${min.value}&max=${max.value}&filterBy=${filterBy.value}&color=${color.value}&size=${size.value}&brand=${brand.value}&skip=${skip}&category=${category}&cat_or_sub=${catOrSub}`)
       .then(response => response.text())
       .then(data => {
         if (data.length != 0) {
@@ -400,7 +403,10 @@
       })
       .catch(error => console.log(error))
   }
-  onload = () => filter()
+  onload = () => {
+    filter()
+    getCart()
+  }
   function setCurrentValue(field, value) {
     switch (field) {
       case 'color':

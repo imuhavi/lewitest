@@ -81,7 +81,6 @@ class FrontendController extends Controller
     $page = 'subCategoryShop';
     $subcategory = Subcategory::with('products')->find($id);
     $productSQL = $subcategory->products;
-    $products = $productSQL->skip(0)->take(12);
     $brandIds = array_unique($productSQL->pluck('brand_id')->toArray());
     $brands = Brand::find($brandIds);
 
@@ -112,7 +111,6 @@ class FrontendController extends Controller
 
     return view($this->VIEW_PATH . 'shop', compact(
       'page',
-      'products',
       'subcategory',
       'brands',
       'min',
@@ -127,7 +125,6 @@ class FrontendController extends Controller
     $page = 'categoryShop';
     $category = Category::with('products')->find($id);
     $productSQL = $category->products;
-    $products = $productSQL->skip(0)->take(12);
     $brandIds = array_unique($productSQL->pluck('brand_id')->toArray());
     $brands = Brand::find($brandIds);
 
@@ -158,7 +155,6 @@ class FrontendController extends Controller
 
     return view($this->VIEW_PATH . 'shop', compact(
       'page',
-      'products',
       'category',
       'brands',
       'min',
@@ -171,10 +167,13 @@ class FrontendController extends Controller
   public function filterProducts(Request $r)
   {
     $take = 12;
-    $sql = Product::where('category_id', $r->category);
 
-    if (!$sql->first()) {
-      $sql->orWhere('sub_category_id', $r->category);
+    if($r->cat_or_sub == 'categoryShop'){
+      $sql = Product::where('category_id', $r->category);
+    }elseif($r->cat_or_sub == 'subCategoryShop'){
+      $sql = Product::where('sub_category_id', $r->category);
+    }elseif ($r->cat_or_sub == '') {
+      $sql = Product::whereStatus('Active');
     }
 
     if ($r->min) {
@@ -195,7 +194,7 @@ class FrontendController extends Controller
     if ($r->size) {
       $sql->where('attributes', 'like', '%' . $r->size . '%');
     }
-    $data = $sql->skip($r->skip)->take($take)->get();
+    $data = $sql->whereStatus('Active')->skip($r->skip)->take($take)->get();
     return view('frontend.includes.product', compact('data'));
   }
 

@@ -3,55 +3,30 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>5dots Multi-vendor E-commerces</title>
-  <!-- Font Awesome Icon -->
   {{-- Ajax Request Meta --}}
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <script src="https://kit.fontawesome.com/b868f71921.js" crossorigin="anonymous"></script>
-  <!-- Bootstrap Css link -->
   <link rel="stylesheet" type="text/css" href="{{ asset('/frontend/assets/') }}/css/bootstrap.min.css">
-
   @yield('header_css')
-
-  <!-- Select 2 -->
   <link rel="stylesheet" href="{{ asset('/frontend/assets/') }}/css/select2.css">
-
-
-  <!-- Nice Select -->
   <link rel="stylesheet" href="{{ asset('/frontend/assets/') }}/css/nice-select.css">
-
-  <!-- Nice Number Style -->
   <link rel="stylesheet" href="{{ asset('/frontend/assets/') }}/css/jquery.nice-number.min.css">
-
-
-
-  <!-- Owl carousel -->
   <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/owl.carousel.min.css">
   <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/owl.theme.default.min.css">
-  <!-- Slick Slider Css Link -->
   <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/slick.css">
-
-  <!-- hs Menu CSS-->
   <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/hs-menu.min.css" />
-
   <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/animate.css">
-
-  <!--Material Design Iconic Font-->
   <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/material-design/css/material-design-iconic-font.css" />
-
   <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/carousel.css">
-
-  <!-- Custom Css Link -->
   <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/custom.css">
-  <!-- Responsive Css Link -->
   <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/responsive.css">
   <link href="{{ asset('backend/') }}/assets/plugins/toastr/toastr.min.css" rel="stylesheet" type="text/css" />
 </head>
 
-
 <body>
 
   @php
-  $categories = getCategories()
+    $categories = getCategories()
   @endphp
 
   @if(request()->path() !== 'subscription' && explode('/', request()->path())[0] !== 'seller-register')
@@ -329,33 +304,32 @@
         @endforeach
       </ul>
     </nav>
-
   </header>
   @endif
 
-  <script>
-    let logoutForm = document.getElementById('logoutForm')
-    function logout() {
-      event.preventDefault()
-      if (confirm('Are you sure to logout ?')) logoutForm.submit()
-    }
+<script>
+  let logoutForm = document.getElementById('logoutForm')
+  function logout() {
+    event.preventDefault()
+    if (confirm('Are you sure to logout ?')) logoutForm.submit()
+  }
 
-    let cartWrapper = document.getElementById('offcanvasRight')
-    function getCart() {
-      fetch('/get-cart')
-        .then(response => response.text())
-        .then(data => cartWrapper.innerHTML = data)
-        .catch(error => console.log(error))
-    }
-    onload = () => getCart()
+  let cartWrapper = document.getElementById('offcanvasRight')
+  function getCart() {
+    fetch('/get-cart')
+      .then(response => response.text())
+      .then(data => cartWrapper.innerHTML = data)
+      .catch(error => console.log(error))
+  }
+  onload = () => getCart()
 
-    function removeCart(key) {
-      fetch(`/remove-cart/${key}`)
-        .then(response => response.json())
-        .then(data => {
-          alert(data)
-          getCart()
-        })
-        .catch(error => console.log(error))
-    }
-  </script>
+  function removeCart(key) {
+    fetch(`/remove-cart/${key}`)
+      .then(response => response.json())
+      .then(data => {
+        alert(data)
+        getCart()
+      })
+      .catch(error => console.log(error))
+  }
+</script>

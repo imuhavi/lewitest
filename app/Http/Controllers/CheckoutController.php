@@ -30,6 +30,7 @@ class CheckoutController extends Controller
 
   public function coupon(Request $request)
   {
+    return $request;
     try {
       $cart = getCart();
       $coupon = Coupon::where('code', $request->coupon)->first();
@@ -73,7 +74,7 @@ class CheckoutController extends Controller
 
   public function orderPlace(Request $request)
   {
-    // return $request->all();
+    return $request;
     // Validation Here
     $request->validate([
       'phone' => 'required',
@@ -90,7 +91,6 @@ class CheckoutController extends Controller
     try {
       $cart = getCart();
       $coupon = Session::get('coupon');
-      // Code.
       if ($request->payment_method == 'COD') {
         $userDetails = new UserDetail;
         $userDetails->phone = $request->phone;
@@ -125,8 +125,6 @@ class CheckoutController extends Controller
         $transaction->amount = $order->amount;
         $transaction->save();
       }
-
-
       DB::commit();
     } catch (\Exception $e) {
       DB::rollback();

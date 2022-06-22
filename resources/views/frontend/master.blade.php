@@ -58,5 +58,4 @@
 <!-- Custom Js Link -->
 <script src="{{ asset('/frontend/assets/') }}/js/custome.js"></script>
 </body>
-
 </html>
