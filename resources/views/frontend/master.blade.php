@@ -17,25 +17,25 @@
 
 <script src="{{ asset('backend/') }}/assets/plugins/toastr/toastr.min.js"></script>
 <script>
-    var successNotification = "{{ session('success') }}"
-    var infoNotification = "{{ session('info') }}"
-    var warningNotification = "{{ session('warning') }}"
-    var errorNotification = "{{ session('error') }}"
+  var successNotification = "{{ session('success') }}"
+  var infoNotification = "{{ session('info') }}"
+  var warningNotification = "{{ session('warning') }}"
+  var errorNotification = "{{ session('error') }}"
 
-    // CounterUp Plugin || Toastr
-    setTimeout(function () {
-        toastr.options = {
-        closeButton: true,
-        progressBar: true,
-        showMethod: 'fadeIn',
-        hideMethod: 'fadeOut',
-        timeOut: 5000
-        }
-        if (successNotification) toastr.success(successNotification, 'Success !')
-        if (infoNotification) toastr.info(infoNotification, 'Information !')
-        if (warningNotification) toastr.warning(warningNotification, 'Warning !')
-        if (errorNotification) toastr.error(errorNotification, 'Error !')
-    }, 1800)
+  // CounterUp Plugin || Toastr
+  setTimeout(function () {
+    toastr.options = {
+      closeButton: true,
+      progressBar: true,
+      showMethod: 'fadeIn',
+      hideMethod: 'fadeOut',
+      timeOut: 5000
+    }
+    if (successNotification) toastr.success(successNotification, 'Success !')
+    if (infoNotification) toastr.info(infoNotification, 'Information !')
+    if (warningNotification) toastr.warning(warningNotification, 'Warning !')
+    if (errorNotification) toastr.error(errorNotification, 'Error !')
+  }, 1800)
 </script>
 
 <!-- Price Range -->
