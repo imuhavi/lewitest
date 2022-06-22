@@ -74,7 +74,6 @@ class CheckoutController extends Controller
   public function orderPlace(Request $request)
   {
     return $request->all();
-    // Validation Here
     $request->validate([
       'phone' => 'required',
       'state' => 'required',
@@ -82,9 +81,6 @@ class CheckoutController extends Controller
       'postal_code' => 'required',
       'address' => 'required'
     ]);
-
-    $name = Auth()->name;
-    return $name;
 
     DB::beginTransaction();
     try {
@@ -100,8 +96,8 @@ class CheckoutController extends Controller
         $userDetails->save();
 
         $order = new Order;
-        $order->user_id = Auth()->id;
-        $order->coupon_id = $coupon['code'];
+        $order->user_id = auth()->id();
+        $order->coupon_id = Coupon::where('code', $coupon['code'])->first()->id;
         $order->shipping_cost = 30;
         $order->amount = $cart['total'];
         $order->payment_method = 'COD';
@@ -118,15 +114,17 @@ class CheckoutController extends Controller
           $orderDetails->size = $item->ucfirst($item['size']);
           $orderDetails->save();
         }
-        $transaction = new Transaction;
-        $transaction->user_id = Auth()->id;
-        $transaction->order_id = $order->id;
-        $transaction->amount = $order->amount;
-        $transaction->save();
+        Transaction::create([
+          'user_id' => auth()->id(),
+          'order_id' => $order->id,
+          'amount' => $order->amount,
+        ]);
+        return redirect('/order-placed/' . $order->id)->with('success', 'Place message !');
       }
       DB::commit();
     } catch (\Exception $e) {
       DB::rollback();
+      return redirect()->back()->with('error', $e->getMessage());
     }
   }
 }

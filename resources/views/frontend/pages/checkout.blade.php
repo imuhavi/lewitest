@@ -27,29 +27,27 @@
 
         <div class="col-lg-7 p-0 left">
           <form action="{{ route('orderPlace') }}" method="post" id="orderPlace">
+            @csrf
             <div class="shipping-form">
               <div class="heading-checkout">
                 <h4>Billing Details</h4>
               </div>
-
               <div class="row mt-3 g-3">
                 <div class="col-lg-12">
                   <label for="fullName" class="form-label">Full Name</label>
-                  <input type="text" name="fullName" class="form-control" id="fullName"
-                    value="{{ Str::words(Auth::user()->name) }}" {{ Auth::user()->name ? 'disabled' : ''}}>
+                  <input type="text" name="full_name" class="form-control" id="fullName"
+                    value="{{ Auth::user()->name }}">
                 </div>
-
                 <div class="col-lg-6">
                   <label for="email" class="form-label">Email Address</label>
                   <input type="email" name="email" class="form-control" id="email"
-                    value="{{ Str::words(Auth::user()->email) }}" {{ Auth::user()->email ? 'disabled' : ''}}>
+                    value="{{ Auth::user()->email }}">
                 </div>
                 <div class="col-5 col-md-6 col-lg-6">
                   <label for="phone" class="form-label">Phone Number</label>
                   <input type="text" class="form-control" id="inputAddress" name="phone" placeholder="Your Phone Number"
-                    value="{{ old('phone') }}" {{ Auth::user()->phone_1 ? 'disabled' : ''}}>
+                    value="{{ old('phone') }}">
                 </div>
-
                 <div class="col-lg-5 col-md-6">
                   <label for="state" class="form-label">State</label>
                   <select id="state" name="state" class="form-select state">
@@ -59,7 +57,6 @@
                     @endforeach
                   </select>
                 </div>
-
                 <div class="col-lg-4 col-md-6">
                   <label for="city" class="form-label">City</label>
                   <select name="city" id="city" class="form-select city">
@@ -83,12 +80,9 @@
                   <label for="orderNotes" name="note" class="form-label">Order Notes</label>
                   <textarea class="form-control" id="orderNotes" placeholder="Note About Your Order..."></textarea>
                 </div>
-
               </div>
-
             </div>
-          </form>
-
+            
           <div class="payment-method">
             <div class="heading-checkout">
               <h4>Select Payment Method</h4>
@@ -105,6 +99,7 @@
               </li>
             </ul>
           </div>
+          </form>
         </div>
 
         <div class="col-lg-5 p-0 right">
@@ -284,7 +279,7 @@
   const form = document.getElementById('orderPlace');
 
   const handleSubmit = () => {
-    form.submit();
+    form.submit()
   }
 </script>
 @endsection
