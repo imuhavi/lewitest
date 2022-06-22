@@ -40,8 +40,7 @@
                 </div>
                 <div class="col-lg-6">
                   <label for="email" class="form-label">Email Address</label>
-                  <input type="email" name="email" class="form-control" id="email"
-                    value="{{ Auth::user()->email }}">
+                  <input type="email" name="email" class="form-control" id="email" value="{{ Auth::user()->email }}">
                 </div>
                 <div class="col-5 col-md-6 col-lg-6">
                   <label for="phone" class="form-label">Phone Number</label>
@@ -82,23 +81,23 @@
                 </div>
               </div>
             </div>
-            
-          <div class="payment-method">
-            <div class="heading-checkout">
-              <h4>Select Payment Method</h4>
-            </div>
 
-            <ul class="payment-method-list">
-              <li>
-                <input name="payment_method" id="card" type="checkbox" value="Card">
-                <label for="card">Credit Card</label>
-              </li>
-              <li>
-                <input name="payment_method" id="delivery" type="checkbox" value="COD" checked>
-                <label for="delivery">Cash on Delivery</label>
-              </li>
-            </ul>
-          </div>
+            <div class="payment-method">
+              <div class="heading-checkout">
+                <h4>Select Payment Method</h4>
+              </div>
+
+              <ul class="payment-method-list">
+                <li>
+                  <input name="payment_method" id="card" type="checkbox" value="Card">
+                  <label for="card">Credit Card</label>
+                </li>
+                <li>
+                  <input name="payment_method" id="delivery" type="checkbox" value="COD" checked>
+                  <label for="delivery">Cash on Delivery</label>
+                </li>
+              </ul>
+            </div>
           </form>
         </div>
 

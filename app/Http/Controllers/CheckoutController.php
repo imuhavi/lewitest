@@ -36,18 +36,18 @@ class CheckoutController extends Controller
       $category_ids = [];
 
       foreach ($cart['cart'] as $item) {
-        if(!in_array($item['product_id'], $product_ids)){
+        if (!in_array($item['product_id'], $product_ids)) {
           array_push($product_ids, $item['product_id']);
         }
 
         $product = Product::find($item['product_id']);
-        if(!empty($product)){
+        if (!empty($product)) {
           if (!in_array($product->category_id, $category_ids)) {
             array_push($category_ids, $product->category_id);
           }
         }
       }
-      
+
       $coupon = Coupon::where('code', $request->coupon)->first();
       if (!empty($coupon)) {
         if (Carbon::now()->format('Y-m-d') <= $coupon->end) {
@@ -58,13 +58,13 @@ class CheckoutController extends Controller
               $arr = json_decode($coupon->product_ids);
               $product_arr = [];
               foreach ($arr as $item) {
-                if(!in_array($item, $product_arr)){
+                if (!in_array($item, $product_arr)) {
                   array_push($product_arr, $item);
                 }
               }
-              if(count(array_values(array_intersect($product_ids, $product_arr))) > 0){
+              if (count(array_values(array_intersect($product_ids, $product_arr))) > 0) {
                 $discount = $coupon->discount;
-              }else{
+              } else {
                 return redirect()->back()->with('error', 'This coupon is not for those products !');
               }
             } elseif ($coupon->type == 'Category') {
@@ -72,13 +72,13 @@ class CheckoutController extends Controller
               $cat_arr = [];
               foreach ($arr as $item) {
                 $cat_id = explode('-', $item)[1];
-                if(!in_array($cat_id, $cat_arr)){
+                if (!in_array($cat_id, $cat_arr)) {
                   array_push($cat_arr, $cat_id);
                 }
               }
-              if(count(array_values(array_intersect($category_ids, $cat_arr))) > 0){
+              if (count(array_values(array_intersect($category_ids, $cat_arr))) > 0) {
                 $discount = $coupon->discount;
-              }else{
+              } else {
                 return redirect()->back()->with('error', 'This coupon is not for those categories !');
               }
             }
@@ -112,7 +112,6 @@ class CheckoutController extends Controller
 
   public function orderPlace(Request $request)
   {
-    return $request->all();
     $request->validate([
       'phone' => 'required',
       'state' => 'required',
@@ -122,14 +121,16 @@ class CheckoutController extends Controller
     ]);
 
     DB::beginTransaction();
+
     try {
       $cart = getCart();
       $coupon = Session::get('coupon');
       if ($request->payment_method == 'COD') {
         $userDetails = new UserDetail;
+        $userDetails->user_id = auth()->id();
         $userDetails->phone = $request->phone;
-        $userDetails->state = $request->state;
-        $userDetails->city = $request->city;
+        $userDetails->state_id = $request->state;
+        $userDetails->city_id = $request->city;
         $userDetails->postal_code = $request->postal_code;
         $userDetails->address = $request->address;
         $userDetails->save();
@@ -158,8 +159,9 @@ class CheckoutController extends Controller
           'order_id' => $order->id,
           'amount' => $order->amount,
         ]);
-        return redirect('/order-placed/' . $order->id)->with('success', 'Place message !');
+        return redirect('/order-placed/' . $order->id)->with('success', 'Order placed successfully !');
       }
+
       DB::commit();
     } catch (\Exception $e) {
       DB::rollback();

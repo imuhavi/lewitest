@@ -168,11 +168,11 @@ class FrontendController extends Controller
   {
     $take = 12;
 
-    if($r->cat_or_sub == 'categoryShop'){
+    if ($r->cat_or_sub == 'categoryShop') {
       $sql = Product::where('category_id', $r->category);
-    }elseif($r->cat_or_sub == 'subCategoryShop'){
+    } elseif ($r->cat_or_sub == 'subCategoryShop') {
       $sql = Product::where('sub_category_id', $r->category);
-    }elseif ($r->cat_or_sub == '') {
+    } elseif ($r->cat_or_sub == '') {
       $sql = Product::whereStatus('Active');
     }
 
@@ -207,6 +207,7 @@ class FrontendController extends Controller
     $sizes = [];
 
     // return $reletedProduct;
+
     foreach (json_decode($product->attributes) as $attribute) {
       $itemArr = json_decode($attribute);
       $item = Attribute::find($itemArr[0]);
