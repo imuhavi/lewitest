@@ -93,6 +93,7 @@ if (!function_exists('getCart')) {
         }
 
         $data['cart'][$key] = [
+          'product_id' => $product->id,
           'product_name' => $product->name,
           'product_price' => $product->price,
           'product_url' => $product->thumbnail,

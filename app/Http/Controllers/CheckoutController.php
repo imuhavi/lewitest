@@ -32,6 +32,22 @@ class CheckoutController extends Controller
   {
     try {
       $cart = getCart();
+      $product_ids = [];
+      $category_ids = [];
+
+      foreach ($cart['cart'] as $item) {
+        if(!in_array($item['product_id'], $product_ids)){
+          array_push($product_ids, $item['product_id']);
+        }
+
+        $product = Product::find($item['product_id']);
+        if(!empty($product)){
+          if (!in_array($product->category_id, $category_ids)) {
+            array_push($category_ids, $product->category_id);
+          }
+        }
+      }
+      
       $coupon = Coupon::where('code', $request->coupon)->first();
       if (!empty($coupon)) {
         if (Carbon::now()->format('Y-m-d') <= $coupon->end) {
@@ -39,9 +55,32 @@ class CheckoutController extends Controller
             if ($coupon->type == 'Cart') {
               $discount = $coupon->discount;
             } elseif ($coupon->type == 'Product') {
-              // $discount = $coupon->discount;
+              $arr = json_decode($coupon->product_ids);
+              $product_arr = [];
+              foreach ($arr as $item) {
+                if(!in_array($item, $product_arr)){
+                  array_push($product_arr, $item);
+                }
+              }
+              if(count(array_values(array_intersect($product_ids, $product_arr))) > 0){
+                $discount = $coupon->discount;
+              }else{
+                return redirect()->back()->with('error', 'This coupon is not for those products !');
+              }
             } elseif ($coupon->type == 'Category') {
-              // $discount = $coupon->discount;
+              $arr = json_decode($coupon->category_ids);
+              $cat_arr = [];
+              foreach ($arr as $item) {
+                $cat_id = explode('-', $item)[1];
+                if(!in_array($cat_id, $cat_arr)){
+                  array_push($cat_arr, $cat_id);
+                }
+              }
+              if(count(array_values(array_intersect($category_ids, $cat_arr))) > 0){
+                $discount = $coupon->discount;
+              }else{
+                return redirect()->back()->with('error', 'This coupon is not for those categories !');
+              }
             }
             if ($coupon->discount_type == 'Percent') {
               $discount = $cart['total'] * ($discount / 100);
