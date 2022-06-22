@@ -30,7 +30,6 @@ class CheckoutController extends Controller
 
   public function coupon(Request $request)
   {
-    return $request;
     try {
       $cart = getCart();
       $coupon = Coupon::where('code', $request->coupon)->first();
@@ -74,7 +73,7 @@ class CheckoutController extends Controller
 
   public function orderPlace(Request $request)
   {
-    return $request;
+    return $request->all();
     // Validation Here
     $request->validate([
       'phone' => 'required',

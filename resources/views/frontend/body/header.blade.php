@@ -26,7 +26,7 @@
 <body>
 
   @php
-    $categories = getCategories()
+  $categories = getCategories()
   @endphp
 
   @if(request()->path() !== 'subscription' && explode('/', request()->path())[0] !== 'seller-register')
@@ -130,8 +130,8 @@
     </nav>
 
     <!---------------------------
-        SIGN IN START Modal
-    ---------------------------->
+            SIGN IN START Modal
+        ---------------------------->
     <section id="account">
       <div class="container">
         <!-- Modal For Login-->
@@ -146,6 +146,7 @@
 
                 <p>Login with your email & password.</p>
               </div>
+
               <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="modal-body">
@@ -199,6 +200,7 @@
                 <p>Don't have any account? <a href="#" class="fs-6 fw-bold" data-bs-toggle="modal"
                     data-bs-target="#signUp">Register</a></p>
               </div>
+
             </div>
           </div>
 
@@ -233,6 +235,7 @@
                   </div>
                 </div>
               </div>
+            </form>
           </div>
         </div>
       </div>
@@ -307,29 +310,29 @@
   </header>
   @endif
 
-<script>
-  let logoutForm = document.getElementById('logoutForm')
-  function logout() {
-    event.preventDefault()
-    if (confirm('Are you sure to logout ?')) logoutForm.submit()
-  }
+  <script>
+    let logoutForm = document.getElementById('logoutForm')
+    function logout() {
+      event.preventDefault()
+      if (confirm('Are you sure to logout ?')) logoutForm.submit()
+    }
 
-  let cartWrapper = document.getElementById('offcanvasRight')
-  function getCart() {
-    fetch('/get-cart')
-      .then(response => response.text())
-      .then(data => cartWrapper.innerHTML = data)
-      .catch(error => console.log(error))
-  }
-  onload = () => getCart()
+    let cartWrapper = document.getElementById('offcanvasRight')
+    function getCart() {
+      fetch('/get-cart')
+        .then(response => response.text())
+        .then(data => cartWrapper.innerHTML = data)
+        .catch(error => console.log(error))
+    }
+    onload = () => getCart()
 
-  function removeCart(key) {
-    fetch(`/remove-cart/${key}`)
-      .then(response => response.json())
-      .then(data => {
-        alert(data)
-        getCart()
-      })
-      .catch(error => console.log(error))
-  }
-</script>
+    function removeCart(key) {
+      fetch(`/remove-cart/${key}`)
+        .then(response => response.json())
+        .then(data => {
+          alert(data)
+          getCart()
+        })
+        .catch(error => console.log(error))
+    }
+  </script>
