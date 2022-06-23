@@ -206,20 +206,19 @@ class FrontendController extends Controller
     $colors = [];
     $sizes = [];
 
-    // return $reletedProduct;
-
-    foreach (json_decode($product->attributes) as $attribute) {
-      $itemArr = json_decode($attribute);
-      $item = Attribute::find($itemArr[0]);
-      if ($item->name == 'Color') {
-        array_push($colors, $itemArr[1]);
-      } elseif ($item->name == 'Size') {
-        array_push($sizes, $itemArr[1]);
+    if($product->attributes){
+      foreach (json_decode($product->attributes) as $attribute) {
+        $itemArr = json_decode($attribute);
+        $item = Attribute::find($itemArr[0]);
+        if ($item->name == 'Color') {
+          array_push($colors, $itemArr[1]);
+        } elseif ($item->name == 'Size') {
+          array_push($sizes, $itemArr[1]);
+        }
       }
+      $colors = array_unique($colors);
+      $sizes = array_unique($sizes);
     }
-
-    $colors = array_unique($colors);
-    $sizes = array_unique($sizes);
 
     return view($this->VIEW_PATH . 'productView', compact('product', 'reletedProduct', 'colors', 'sizes'));
   }
