@@ -56,7 +56,7 @@ class User extends Authenticatable implements MustVerifyEmail
   
   public function shop()
   {
-    return $this->hasOne(Shop::class);
+    return $this->hasOne(Shop::class)->orderBy('updated_at', 'desc');
   }
 
   public function userDetail()

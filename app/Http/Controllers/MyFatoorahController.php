@@ -85,5 +85,6 @@ class MyFatoorahController extends Controller
         ]);
 
         // Create a transaction table including user_id, payment method, payment invoice, amount, status
+        dd('All passed !');
     }
 }

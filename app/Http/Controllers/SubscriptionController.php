@@ -14,9 +14,9 @@ class SubscriptionController extends Controller
   {
     $r->validate([
       'full_name' => 'required',
-      'shop_name' => 'required|unique:shops',
+      'shop_name' => 'required',
       'shop_logo' => 'required',
-      'email' => 'required|email|unique:users',
+      'email' => 'required|email',
       'phone' => 'required',
       'state' => 'required',
       'city' => 'required',
@@ -26,19 +26,23 @@ class SubscriptionController extends Controller
     if (auth()->guest()) {
       $r->validate([
         'password' => 'required|min:6|max:32',
-        'confirm_password' => 'required|min:6|max:32|same:password'
+        'confirm_password' => 'required|min:6|max:32|same:password',
+        'email' => 'required|email|unique:users'
       ]);
       $user = User::create([
         'name' => $r->full_name,
         'email' => $r->email,
         'password' => bcrypt($r->password),
         'role' => 'Seller',
-        'phone_1' => $r->phone,
+        'phone_1' => '05' . $r->phone,
         'address' => $r->address
       ]);
       Auth::login($user);
     } else {
       $user = auth()->user();
+      $user->update([
+        'phone_1' => '05' . $r->phone
+      ]);
     }
 
     if (auth()->user()->shop && auth()->user()->shop->status == 'Active') {
@@ -65,7 +69,7 @@ class SubscriptionController extends Controller
           'payable_amount' => $r->payable_amount
         ]));
       } elseif ($r->payment_method == 'CASH_ON_DELIVERY') {
-        return redirect('/');
+        return redirect('/seller/dashboard')->with('success', 'Subscribe successfully !');
       }
     }
   }
