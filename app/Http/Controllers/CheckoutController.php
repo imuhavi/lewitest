@@ -153,7 +153,7 @@ class CheckoutController extends Controller
 
         foreach ($cart['cart'] as $item) {
           $product = Product::findOrFail($item['product_id']);
-          if(!empty($order) && !empty($product)){
+          if (!empty($order) && !empty($product)) {
             OrderDetails::create([
               'product_id' => $product->id,
               'order_id' => $order->id,
@@ -172,7 +172,6 @@ class CheckoutController extends Controller
         DB::commit();
         return redirect('/order-placed/' . $order->id)->with('success', 'Order placed successfully !');
       }
-
     } catch (\Exception $e) {
       DB::rollback();
       return redirect()->back()->with('error', $e->getMessage());
@@ -181,6 +180,8 @@ class CheckoutController extends Controller
 
   public function orderPlaced(Order $order)
   {
-    return $order; // Make a design like invoice.......
+
+    $order = $order; // Make a design like invoice.......
+    return view($this->VIEW_PATH . 'invoice', compact('order'));
   }
 }

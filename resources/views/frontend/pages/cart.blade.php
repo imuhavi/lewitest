@@ -14,9 +14,9 @@
     </nav>
   </div>
 
-@php
+  @php
   $cart = getCart()
-@endphp
+  @endphp
 
   <section id="cart_view">
     <div class="container">
@@ -27,19 +27,19 @@
           </div>
           <div class="cart_list">
             @foreach($cart['cart'] as $key => $item)
-              <div class="cart_item_details">
-                <div class="cart_pro_img">
-                  <img src="{{ asset('backend/uploads/' . $item['product_url']) }}" alt="Product image">
-                </div>
-                <div class="cart_pro_text">
-                  <p class="item_name">{{ $item['product_name'] }}</p>
-                  <a href="{{ url('remove-cart-item/' . $key) }}"><i class="far fa-trash-alt"></i></a>
-                </div>
-                <div class="cart_text_tk">
-                  <input type="number" placeholder="1" value="{{ $item['quantity'] }}" min="0">
-                  <h6>SAR {{ ($item['product_price'] * $item['quantity']) - $item['discount'] }}</h6>
-                </div>
+            <div class="cart_item_details">
+              <div class="cart_pro_img">
+                <img src="{{ asset('backend/uploads/' . $item['product_url']) }}" alt="Product image">
               </div>
+              <div class="cart_pro_text">
+                <p class="item_name">{{ $item['product_name'] }}</p>
+                <a href="{{ url('remove-cart-item/' . $key) }}"><i class="far fa-trash-alt"></i></a>
+              </div>
+              <div class="cart_text_tk">
+                <input type="number" placeholder="1" value="{{ $item['quantity'] }}" min="0">
+                <h6>SAR {{ ($item['product_price'] * $item['quantity']) - $item['discount'] }}</h6>
+              </div>
+            </div>
             @endforeach
           </div>
         </div>

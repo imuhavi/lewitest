@@ -47,6 +47,10 @@
   </div>
 </div>
 <div class="place-order">
+  @if(Auth::check())
+  <a href="{{ route('checkout') }}" class="place-order-button">Process To Checkout</a>
+  @else
   <a href="#" class="place-order-button" data-bs-toggle="modal" data-bs-target="#signIn">Process To Checkout</a>
+  @endif
 </div>
 </div>

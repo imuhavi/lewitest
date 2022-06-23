@@ -35,6 +35,14 @@ class AuthenticatedSessionController extends Controller
     if (session('cart')) {
       return redirect('/checkout');
     }
+
+    if (auth()->user()->role == 'Admin') {
+      return redirect()->intended(RouteServiceProvider::ADMINHOME);
+    } elseif (auth()->user()->role == 'Seller') {
+      return redirect()->intended(RouteServiceProvider::SELLERHOME);
+    }
+
+
     return redirect()->intended(RouteServiceProvider::HOME);
   }
 
