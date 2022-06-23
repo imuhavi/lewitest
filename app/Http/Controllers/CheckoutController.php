@@ -8,6 +8,7 @@ use App\Models\OrderDetails;
 use App\Models\Product;
 use App\Models\States;
 use App\Models\Transaction;
+use App\Models\User;
 use App\Models\UserDetail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -89,6 +90,7 @@ class CheckoutController extends Controller
               $discount = $coupon->max_discount_amount;
             }
             Session::put('coupon', [
+              'coupon_id' => $coupon->id,
               'discount' => $discount,
               'code' => $coupon->code
             ]);
@@ -121,51 +123,64 @@ class CheckoutController extends Controller
     ]);
 
     DB::beginTransaction();
-
     try {
       $cart = getCart();
       $coupon = Session::get('coupon');
-      if ($request->payment_method == 'COD') {
-        $userDetails = new UserDetail;
-        $userDetails->user_id = auth()->id();
-        $userDetails->phone = $request->phone;
-        $userDetails->state_id = $request->state;
-        $userDetails->city_id = $request->city;
-        $userDetails->postal_code = $request->postal_code;
-        $userDetails->address = $request->address;
-        $userDetails->save();
 
-        $order = new Order;
-        $order->user_id = auth()->id();
-        $order->coupon_id = Coupon::where('code', $coupon['code'])->first()->id;
-        $order->shipping_cost = 30;
-        $order->amount = $cart['total'];
-        $order->payment_method = 'COD';
-        $order->save();
+      if ($request->payment_method == 'COD') {
+        UserDetail::updateOrCreate(
+          ['user_id' => auth()->id()],
+          [
+            'user_id' => auth()->id(),
+            'phone' => $request->phone,
+            'state_id' => $request->state,
+            'city_id' => $request->city,
+            'postal_code' => $request->postal_code,
+            'address' => $request->address,
+          ]
+        );
+
+        $order = Order::create([
+          'user_id' => auth()->id(),
+          'coupon_id' => $coupon ? $coupon['coupon_id'] : null,
+          'coupon_discount_amount' => $coupon ? $coupon['discount'] : 0,
+          'shipping_cost' => 30,
+          'tax' => $cart['total'] * 0.15,
+          'amount' => $cart['total'],
+          'payment_method' => 'COD',
+          'note' => $request->note
+        ]);
 
         foreach ($cart['cart'] as $item) {
-          $product = Product::findOrFail($item->product_id);
-          $orderDetails = new OrderDetails;
-          $orderDetails->order_id = $order->id;
-          $orderDetails->seller_id = $product->seller_id;
-          $orderDetails->product_id = $product->id;
-          $orderDetails->price = $order->amount;
-          $orderDetails->color = $item->ucfirst($item['color']);
-          $orderDetails->size = $item->ucfirst($item['size']);
-          $orderDetails->save();
+          $product = Product::findOrFail($item['product_id']);
+          if(!empty($order) && !empty($product)){
+            OrderDetails::create([
+              'product_id' => $product->id,
+              'order_id' => $order->id,
+              'seller_id' => $product->seller_id,
+              'price' => $order->amount,
+              'color' => ucfirst($item['color']),
+              'size' => ucfirst($item['size'])
+            ]);
+          }
         }
         Transaction::create([
           'user_id' => auth()->id(),
           'order_id' => $order->id,
           'amount' => $order->amount,
         ]);
+        DB::commit();
         return redirect('/order-placed/' . $order->id)->with('success', 'Order placed successfully !');
       }
 
-      DB::commit();
     } catch (\Exception $e) {
       DB::rollback();
       return redirect()->back()->with('error', $e->getMessage());
     }
+  }
+
+  public function orderPlaced(Order $order)
+  {
+    return $order; // Make a design like invoice.......
   }
 }

@@ -36,23 +36,23 @@
                 <div class="col-lg-12">
                   <label for="fullName" class="form-label">Full Name</label>
                   <input type="text" name="full_name" class="form-control" id="fullName"
-                    value="{{ Auth::user()->name }}">
+                    value="{{ Auth::user()->name }}" disabled>
                 </div>
                 <div class="col-lg-6">
                   <label for="email" class="form-label">Email Address</label>
-                  <input type="email" name="email" class="form-control" id="email" value="{{ Auth::user()->email }}">
+                  <input type="email" name="email" class="form-control" id="email" value="{{ Auth::user()->email }}" disabled>
                 </div>
                 <div class="col-5 col-md-6 col-lg-6">
                   <label for="phone" class="form-label">Phone Number</label>
                   <input type="text" class="form-control" id="inputAddress" name="phone" placeholder="Your Phone Number"
-                    value="{{ old('phone') }}">
+                    value="{{ old('phone') ?? (Auth::user()->userDetail ? Auth::user()->userDetail->phone : Auth::user()->phone) }}">
                 </div>
                 <div class="col-lg-5 col-md-6">
                   <label for="state" class="form-label">State</label>
                   <select id="state" name="state" class="form-select state">
                     <option selected hidden disabled value="">Choose State</option>
                     @foreach($states as $state)
-                    <option value="{{ $state->id }}">{{ $state->name }}</option>
+                    <option  value="{{ $state->id }}">{{ $state->name }}</option>
                     @endforeach
                   </select>
                 </div>
@@ -66,18 +66,19 @@
                 <div class="col-lg-3 col-md-6">
                   <label for="inputZip" class="form-label">Postal Code</label>
                   <input type="text" name="postal_code" class="form-control" id="inputZip"
-                    value="{{ old('postal_code') }}">
+                    value="{{ old('postal_code') ?? (Auth::user()->userDetail ? Auth::user()->userDetail->postal_code : '') }}">
                 </div>
 
                 <div class="col-12">
                   <label for="address" class="form-label">Address</label>
                   <input type="text" name="address" class="form-control" id="address"
-                    placeholder="Apartment, studio, or floor">
+                    placeholder="Apartment, studio, or floor"
+                    value="{{ old('address') ?? (Auth::user()->userDetail ? Auth::user()->userDetail->address : '') }}">
                 </div>
 
                 <div class="col-12">
                   <label for="orderNotes" name="note" class="form-label">Order Notes</label>
-                  <textarea class="form-control" id="orderNotes" placeholder="Note About Your Order..."></textarea>
+                  <textarea class="form-control" name="note" id="orderNotes" placeholder="Note About Your Order..."></textarea>
                 </div>
               </div>
             </div>

@@ -15,10 +15,10 @@ class CreateUserDetailsTable extends Migration
   {
     Schema::create('user_details', function (Blueprint $table) {
       $table->id();
-      $table->string('phone');
       $table->unsignedBigInteger('user_id');
       $table->unsignedBigInteger('state_id');
       $table->unsignedBigInteger('city_id');
+      $table->string('phone');
       $table->string('postal_code')->nullable();
       $table->string('address')->nullable();
       $table->timestamps();

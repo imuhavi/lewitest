@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
   Route::post('/checkout', [CheckoutController::class, 'coupon'])->name('coupon');
   Route::get('/remove-coupon', [CheckoutController::class, 'removeCoupon']);
   Route::post('/place-order', [CheckoutController::class, 'orderPlace'])->name('orderPlace');
+  Route::get('/order-placed/{order}', [CheckoutController::class, 'orderPlaced']);
 });
 
 # Subscribe & register for seller

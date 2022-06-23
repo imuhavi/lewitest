@@ -17,10 +17,13 @@ class CreateOrdersTable extends Migration
       $table->id();
       $table->unsignedBigInteger('user_id');
       $table->unsignedBigInteger('coupon_id')->nullable();
-      $table->double('shipping_cost', 3, 2)->default(0.00);
-      $table->double('amount', 10, 0)->default(0.00);
+      $table->double('coupon_discount_amount', 10, 2)->default(0.00);
+      $table->double('shipping_cost')->default(0.00);
+      $table->double('tax', 10, 2)->default(0.00);
+      $table->double('amount', 10, 2)->default(0.00);
       $table->enum('payment_method', ['Card', 'COD'])->default('COD');
-      $table->enum('status', ['Pending', 'Accept', 'Complete'])->default('Pending');
+      $table->string('note')->nullable();
+      $table->enum('status', ['Pending', 'Accept', 'Complete', 'Cancel'])->default('Pending');
       $table->timestamps();
     });
   }
