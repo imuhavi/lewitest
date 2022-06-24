@@ -158,7 +158,8 @@ class CheckoutController extends Controller
               'product_id' => $product->id,
               'order_id' => $order->id,
               'seller_id' => $product->seller_id,
-              'price' => $order->amount,
+              'unit_price' => $product['price'],
+              'quantity' => $item['quantity'],
               'color' => ucfirst($item['color']),
               'size' => ucfirst($item['size'])
             ]);
@@ -169,6 +170,8 @@ class CheckoutController extends Controller
           'order_id' => $order->id,
           'amount' => $order->amount,
         ]);
+        Session::forget('cart');
+        Session::forget('coupon');
         DB::commit();
         return redirect('/order-placed/' . $order->id)->with('success', 'Order placed successfully !');
       }

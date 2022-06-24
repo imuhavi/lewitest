@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Invoice</title>
-
   <style>
     h1,
     h2,
@@ -97,9 +95,7 @@
       text-align: right;
     }
   </style>
-
 </head>
-
 <body>
   <header>
     <div class="container">
@@ -110,47 +106,55 @@
   </header>
   <main>
     <section class="container">
-      {{ $order }}
       <div class="row">
         <div class="invoice-to">
           <ul>
             <li>
-              <h3>Invoce To:</h3>
+              <h3>Invoice To: </h3>
             </li>
             <li>
-              <p>Alex Roy</p>
+              <p>{{ $order->user ? $order->user->name : 'N/A' }}</p>
             </li>
             <li>
-              <p>93483759543</p>
-            </li>
-
-            <li>
-              <p>Dammam, Khubar</p>
+              <p>{{ ($order->user && $order->user->userDetail) ? $order->user->userDetail->phone : 'N/A' }}</p>
             </li>
 
             <li>
-              <p>123, King Abdulaziz Road.</p>
+              @if($order->user && $order->user->userDetail)
+                <p>{{ $order->city($order->user->userDetail->city_id) }}, {{ $order->state($order->user->userDetail->state_id) }}</p>
+              @else
+                N/A
+              @endif
+            </li>
+
+            <li>
+              @if($order->user && $order->user->userDetail)
+                <p>{{ $order->user->userDetail->address }}, {{ $order->user->userDetail->postal_code }}</p>
+              @else
+                N/A
+              @endif
             </li>
           </ul>
         </div>
         <div class="invoce-no">
           <ul>
             <li>
-              <h3>Invoce No:</h3>
+              <h3>Invoice No: #{{ $order->id }}</h3>
             </li>
             <li>
-              <p>23411</p>
+              <p>Date: {{ date('d F, Y', strtotime($order->created_at))}}</p>
             </li>
             <li>
-              <p>93483759543</p>
+              @php
+                $payment_method = $order->payment_method == 'COD' ? 'Cash on delivery' : 'Online'
+              @endphp
+              <p>Payment Method: {{ $payment_method }}</p>
             </li>
-
             <li>
-              <p>12th December, 2022</p>
-            </li>
-
-            <li>
-              <p>Payment Status: Paid</p>
+              @php
+                $payment_status = $order->status == 'Complete' ? 'Paid' : 'Unpaid'
+              @endphp
+              <p>Payment Status: {{ $payment_status }}</p>
             </li>
           </ul>
         </div>
@@ -172,51 +176,23 @@
                 <th style="text-align: center;">Total</th>
               </thead>
               <tbody class="table-light">
-                <tr>
-                  <td>1</td>
-                  <td style="text-align: left;">Mens Black T-shirt Casual</td>
-                  <td>sm</td>
-                  <td>Red</td>
-                  <td>50</td>
-                  <td>2</td>
-                  <td>100</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td style="text-align: left;">women's T-shirt Casual</td>
-                  <td>md</td>
-                  <td>Green</td>
-                  <td>120</td>
-                  <td>1</td>
-                  <td>120</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td style="text-align: left;">women's Toper Coat Casual</td>
-                  <td>md</td>
-                  <td>Black</td>
-                  <td>250</td>
-                  <td>1</td>
-                  <td>250</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td style="text-align: left;">Mens Casual Print Shart</td>
-                  <td>lg</td>
-                  <td>Navi-blue</td>
-                  <td>150</td>
-                  <td>2</td>
-                  <td>300</td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td style="text-align: left;">Kids Toys Car</td>
-                  <td>null</td>
-                  <td>null</td>
-                  <td>50</td>
-                  <td>1</td>
-                  <td>50</td>
-                </tr>
+              @php
+                $subtotal = 0
+              @endphp
+                @foreach($order->order_details as $item)
+                  <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td style="text-align: left;">{{ $item->product->name }}</td>
+                    <td>{{ $item->size }}</td>
+                    <td>{{ $item->color }}</td>
+                    <td>{{ number_format($item->unit_price, 2) }}</td>
+                    <td>{{ $item->quantity }}</td>
+                    <td>{{ number_format($item->unit_price * $item->quantity, 2) }}</td>
+                  </tr>
+                  @php
+                    $subtotal += ($item->unit_price * $item->quantity)
+                  @endphp
+                @endforeach
               </tbody>
             </table>
           </div>
@@ -228,28 +204,33 @@
                 <h4>Subtotal</h4>
               </td>
               <td>
-                <h4>SAR 2,250</h4>
+                <h4>SAR {{ number_format($subtotal, 2) }}</h4>
               </td>
             </tr>
             <tr>
-              <td style="width:180px; text-align: left;">Shippign Cost</td>
-              <td><span>SAR 30</span></td>
+              <td style="width:180px; text-align: left;">Shipping Cost</td>
+              <td><span>SAR {{ number_format($order->shipping_cost, 2) }}</span></td>
             </tr>
-            <tr>
-              <td style="width:180px; text-align: left;">Discount Amount</td>
-              <td><span>SAR 250</span></td>
-            </tr>
+            @php
+              $discount = $order->coupon_discount_amount ?? 0
+            @endphp
+            @if($discount != 0)
+              <tr>
+                <td style="width:180px; text-align: left;">Discount Amount</td>
+                <td><span>SAR {{ number_format($discount, 2) }}</span></td>
+              </tr>
+            @endif
 
             <tr>
-              <td style="width:180px; text-align: left;">Tex</td>
-              <td><span>15%</span></td>
+              <td style="width:180px; text-align: left;">Tax (15%)</td>
+              <td><span>{{ number_format($order->tax, 2) }}</span></td>
             </tr>
             <tr>
               <td style="width:180px; text-align: left;">
                 <h3>Total</h3>
               </td>
               <td>
-                <h3>SAR 2,250</h3>
+                <h3>SAR {{ number_format(($order->amount + $order->shipping_cost + $order->tax) - $discount, 2) }}</h3>
               </td>
             </tr>
           </table>
