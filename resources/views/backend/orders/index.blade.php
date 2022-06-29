@@ -14,36 +14,65 @@
   <div id="main-wrapper">
     <div class="row">
       <div class="col-md-12">
-        <div class="panel panel-white">
-          <div class="panel-heading clearfix">
+
+        <div class="row mailbox-header">
+          <div class="col-md-9">
             <h4 class="panel-title">Order List</h4>
           </div>
 
+          <div class="col-md-3">
+            <form action="{{ url(routePrefix() . '/product') }}" method="get">
+              @csrf
+              <div class="input-group">
+                <input class="form-control input-search" type="search" name="keyword"
+                  value="{{ isset($keyword) ? $keyword : ''  }}" placeholder="Search from here...">
+                <span class="input-group-btn">
+                  <button class="btn btn-info" type="submit"><i class="fa fa-search"></i></button>
+                </span>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="panel panel-white">
+
           <div class="panel-body">
             <div class="table-responsive">
-              <table id="example" class="display table" style="width: 100%; cellspacing: 0;">
+              <table class="display table" style="width: 100%; cellspacing: 0;">
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
+                    <th>Order</th>
+                    <th>Total Amount</th>
+                    <th>Status</th>
+                    <th>Customer</th>
+                    <th>Date</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
+
+                  @foreach($orders as $item)
                   <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011/04/25</td>
+                    <td>Order Id #{{ $item->id }}</td>
                     <td>
-                      <a class="btn btn-info" href="#">Edit</a>
-                      <button class="btn btn-danger">Delete</button>
+                      SAR {{ $item->amount + $item->shipping_cost + $item->tax - $item->coupon_discount_amount }}
+                    <td>
+                      {{ $item->status }}
+                    </td>
+                    <td>
+                      {{ $item->user->name }}
+                    </td>
+                    <td>{{ $item->created_at->format('d-M-Y') }}</td>
+                    <td>
+                      <a class="btn btn-info" href="{{ url(routePrefix(). '/product/' . $item->id) }}"><i
+                          class="fa fa-eye"></i></a>
+                      <a class="btn btn-warning" href="{{ url(routePrefix(). '/product/' . $item->id . '/edit') }}"><i
+                          class="fa fa-edit"></i></a>
+                      <a class="btn btn-danger" href="{{ url(routePrefix(). '/product/delete/' . $item->id) }}"><i
+                          class="fa fa-trash"></i></a>
                     </td>
                   </tr>
+                  @endforeach
                 </tbody>
               </table>
             </div>

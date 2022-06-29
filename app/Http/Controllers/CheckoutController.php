@@ -153,7 +153,7 @@ class CheckoutController extends Controller
 
         foreach ($cart['cart'] as $item) {
           $product = Product::findOrFail($item['product_id']);
-          if (!empty($order) && !empty($product)) {
+          if (!empty($order) && !empty($product) && $product->discount === null) {
             OrderDetails::create([
               'product_id' => $product->id,
               'order_id' => $order->id,

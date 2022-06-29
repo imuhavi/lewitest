@@ -21,7 +21,7 @@ class Order extends Model
     $data = Cities::find($id);
     return $data ? $data->name : 'N/A';
   }
-  
+
   public function state($id)
   {
     $data = States::find($id);

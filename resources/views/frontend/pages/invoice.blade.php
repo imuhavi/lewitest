@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -96,6 +97,7 @@
     }
   </style>
 </head>
+
 <body>
   <header>
     <div class="container">
@@ -121,17 +123,18 @@
 
             <li>
               @if($order->user && $order->user->userDetail)
-                <p>{{ $order->city($order->user->userDetail->city_id) }}, {{ $order->state($order->user->userDetail->state_id) }}</p>
+              <p>{{ $order->city($order->user->userDetail->city_id) }}, {{
+                $order->state($order->user->userDetail->state_id) }}</p>
               @else
-                N/A
+              N/A
               @endif
             </li>
 
             <li>
               @if($order->user && $order->user->userDetail)
-                <p>{{ $order->user->userDetail->address }}, {{ $order->user->userDetail->postal_code }}</p>
+              <p>{{ $order->user->userDetail->address }}, {{ $order->user->userDetail->postal_code }}</p>
               @else
-                N/A
+              N/A
               @endif
             </li>
           </ul>
@@ -146,13 +149,13 @@
             </li>
             <li>
               @php
-                $payment_method = $order->payment_method == 'COD' ? 'Cash on delivery' : 'Online'
+              $payment_method = $order->payment_method == 'COD' ? 'Cash on delivery' : 'Online'
               @endphp
               <p>Payment Method: {{ $payment_method }}</p>
             </li>
             <li>
               @php
-                $payment_status = $order->status == 'Complete' ? 'Paid' : 'Unpaid'
+              $payment_status = $order->status == 'Complete' ? 'Paid' : 'Unpaid'
               @endphp
               <p>Payment Status: {{ $payment_status }}</p>
             </li>
@@ -176,22 +179,22 @@
                 <th style="text-align: center;">Total</th>
               </thead>
               <tbody class="table-light">
-              @php
+                @php
                 $subtotal = 0
-              @endphp
+                @endphp
                 @foreach($order->order_details as $item)
-                  <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td style="text-align: left;">{{ $item->product->name }}</td>
-                    <td>{{ $item->size }}</td>
-                    <td>{{ $item->color }}</td>
-                    <td>{{ number_format($item->unit_price, 2) }}</td>
-                    <td>{{ $item->quantity }}</td>
-                    <td>{{ number_format($item->unit_price * $item->quantity, 2) }}</td>
-                  </tr>
-                  @php
-                    $subtotal += ($item->unit_price * $item->quantity)
-                  @endphp
+                <tr>
+                  <td>{{ $loop->iteration }}</td>
+                  <td style="text-align: left;">{{ $item->product->name }}</td>
+                  <td>{{ $item->size }}</td>
+                  <td>{{ $item->color }}</td>
+                  <td>{{ number_format($item->unit_price, 2) }}</td>
+                  <td>{{ $item->quantity }}</td>
+                  <td>{{ number_format($item->unit_price * $item->quantity, 2) }}</td>
+                </tr>
+                @php
+                $subtotal += ($item->unit_price * $item->quantity)
+                @endphp
                 @endforeach
               </tbody>
             </table>
@@ -212,13 +215,13 @@
               <td><span>SAR {{ number_format($order->shipping_cost, 2) }}</span></td>
             </tr>
             @php
-              $discount = $order->coupon_discount_amount ?? 0
+            $discount = $order->coupon_discount_amount ?? 0
             @endphp
             @if($discount != 0)
-              <tr>
-                <td style="width:180px; text-align: left;">Discount Amount</td>
-                <td><span>SAR {{ number_format($discount, 2) }}</span></td>
-              </tr>
+            <tr>
+              <td style="width:180px; text-align: left;">Discount Amount</td>
+              <td><span>SAR {{ number_format($discount, 2) }}</span></td>
+            </tr>
             @endif
 
             <tr>
