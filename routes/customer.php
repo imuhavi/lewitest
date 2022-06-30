@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'customer', 'middleware' => ['auth', 'verified', 'customer']], function () {
 
   Route::get('/dashboard', [DashboardController::class, 'dashboard']); // Not Done
-  Route::get('orders', [DashboardController::class, 'orderList'])->name('orderList'); // Not Done
-
+  Route::get('orders', [DashboardController::class, 'orderList'])->name('orderList');
   Route::get('/cart', [CartController::class, 'myCart'])->name('myCart');
 });

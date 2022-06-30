@@ -14,5 +14,5 @@ Route::group(['prefix' => 'seller', 'middleware' => ['auth', 'verified', 'seller
 
 
   Route::get('product-draft', [ProductController::class, 'productDraft'])->name('productDraft');
-  Route::get('orders', [DashboardController::class, 'orderList'])->name('orderList'); // Not Done
+  Route::get('orders', [DashboardController::class, 'orderList'])->name('orderList');
 });

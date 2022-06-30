@@ -24,7 +24,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']
     'category' => CategoryController::class,
     'subcategory' => SubcategoryController::class,
     'product' => ProductController::class,
-    'coupon' => CouponController::class, // Not Done
+    'coupon' => CouponController::class,
     'brand' => BrandController::class,
     'attributes' => AttributesController::class
   ]);
@@ -32,7 +32,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']
   Route::get('product/delete/{product}', [ProductController::class, 'destroy']);
   Route::get('product/image/delete/{image}', [ProductController::class, 'destroyImage']);
   Route::get('product-draft', [ProductController::class, 'productDraft'])->name('productDraft');
-  Route::get('orders', [DashboardController::class, 'orderList'])->name('orderList'); // Not Done
+  Route::get('orders', [DashboardController::class, 'orderList'])->name('orderList');
+
+  # Update status
+  Route::get('order/{order}/update/{status}', [DashboardController::class, 'updateStatus']);
 
   // Seller
   Route::get('seller-list', [SellerController::class, 'sellerList'])->name('sellerList');

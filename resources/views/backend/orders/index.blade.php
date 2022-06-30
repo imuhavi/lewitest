@@ -42,8 +42,9 @@
               <table class="display table" style="width: 100%; cellspacing: 0;">
                 <thead>
                   <tr>
-                    <th>Order</th>
+                    <th>Order ID</th>
                     <th>Total Amount</th>
+                    <th>Payment Method</th>
                     <th>Status</th>
                     <th>Customer</th>
                     <th>Date</th>
@@ -54,11 +55,33 @@
 
                   @foreach($orders as $item)
                   <tr>
-                    <td>Order Id #{{ $item->id }}</td>
+                    <td>#{{ $item->id }}</td>
                     <td>
                       SAR {{ $item->amount + $item->shipping_cost + $item->tax - $item->coupon_discount_amount }}
                     <td>
-                      {{ $item->status }}
+                      {{ $item->payment_method }}
+                    </td>
+                    <td>
+                      @if($item->status == 'Complete')
+                          @php
+                            $status = 'success';
+                          @endphp
+                      @elseif($item->status == 'Cancel')
+                          @php
+                            $status = 'danger';
+                          @endphp
+                      @elseif($item->status == 'Accept')
+                          @php
+                            $status = 'info';
+                          @endphp
+                      @elseif($item->status == 'Pending')
+                          @php
+                            $status = 'warning';
+                          @endphp
+                      @endif
+                      <span class="badge badge-pill badge-{{$status}}">
+                        {{ $item->status }}
+                      </span>
                     </td>
                     <td>
                       {{ $item->user->name }}
@@ -67,10 +90,19 @@
                     <td>
                       <a class="btn btn-info" href="{{ url(routePrefix(). '/product/' . $item->id) }}"><i
                           class="fa fa-eye"></i></a>
-                      <a class="btn btn-warning" href="{{ url(routePrefix(). '/product/' . $item->id . '/edit') }}"><i
-                          class="fa fa-edit"></i></a>
-                      <a class="btn btn-danger" href="{{ url(routePrefix(). '/product/delete/' . $item->id) }}"><i
-                          class="fa fa-trash"></i></a>
+                      
+                      @if($item->status == 'Pending')
+                        <a class="btn btn-success" href="{{ url(routePrefix(). '/order/' . $item->id . '/update/accept') }}">
+                          <i class="fa fa-check"></i>
+                        </a>
+                        <a class="btn btn-warning" href="{{ url(routePrefix(). '/order/' . $item->id . '/update/cancel') }}">
+                          <i class="fa fa-times"></i>
+                        </a>
+                      @elseif($item->status == 'Accept')
+                        <a class="btn btn-success" href="{{ url(routePrefix(). '/order/' . $item->id . '/update/complete') }}">
+                          <i class="fa fa-check"></i>
+                        </a>
+                      @endif
                     </td>
                   </tr>
                   @endforeach

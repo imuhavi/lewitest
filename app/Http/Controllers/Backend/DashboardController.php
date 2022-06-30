@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DashboardController extends Controller
 {
@@ -23,18 +24,25 @@ class DashboardController extends Controller
 
     $keyword = '';
     if ($request->keyword) {
-
       $keyword = $request->keyword;
-      $sql->where('id', 'like', '%' . $keyword . '%')
-        ->whereHas('user', function ($query) use ($keyword) {
-          $query->where('name', 'like', '%' . $keyword . '%');
-        })
-        ->orWhere('payment_method', 'like', '%' . $keyword . '%')
-        ->orWhere('status', 'like', '%' . $keyword . '%');
+      $sql->whereHas('user', function ($q) use ($keyword) {
+            $q->where('name', 'like', '%' . $keyword . '%');
+          })
+          ->orWhere('id', $keyword)
+          ->orWhere('payment_method', 'like', '%' . $keyword . '%')
+          ->orWhere('status', 'like', '%' . $keyword . '%');
     }
-
     $orders = $sql->paginate(2);
-
     return view($this->VIEW_PATH . 'orders.index', compact('orders', 'keyword'));
+  }
+
+  public function updateStatus(Order $order, $status)
+  {
+    $order->update([
+      'status' => ucfirst($status)
+    ]);
+
+    Alert::success('Status !', 'Status updated successfully !');
+    return redirect()->back();
   }
 }
