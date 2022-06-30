@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jun 12, 2022 at 10:37 PM
+-- Generation Time: Jun 30, 2022 at 06:46 AM
 -- Server version: 5.7.34
 -- PHP Version: 8.0.8
 
@@ -40,8 +40,8 @@ CREATE TABLE `attributes` (
 --
 
 INSERT INTO `attributes` (`id`, `name`, `value`, `created_at`, `updated_at`) VALUES
-(1, 'Size', '[\"sm\",\"md\",\"lg\",\"xl\",\"2xl\"]', '2022-06-12 07:46:59', '2022-06-12 07:46:59'),
-(2, 'Color', '[\"Red\",\"Green\",\"White\",\"Black\",\"Blue\"]', '2022-06-12 07:47:33', '2022-06-12 07:47:33');
+(1, 'Size', '[\"Sm\",\"Md\",\"Lg\",\"Xl\",\"2xl\"]', '2022-06-12 07:46:59', '2022-06-20 19:23:30'),
+(2, 'Color', '[\"Red\",\"Green\",\"White\",\"Black\",\"Blue\",\"Yellow\"]', '2022-06-12 07:47:33', '2022-06-20 19:23:05');
 
 -- --------------------------------------------------------
 
@@ -69,7 +69,13 @@ CREATE TABLE `brands` (
 INSERT INTO `brands` (`id`, `name`, `logo`, `banner`, `status`, `slug`, `meta_title`, `meta_description`, `created_at`, `updated_at`) VALUES
 (2, 'BabyPlus', '1655069130_0l7XOQF6USGB2dPH.png', NULL, 'Active', 'babyplus', 'BabyPlus', 'BabyPlus Brand', '2022-06-12 18:25:30', '2022-06-12 18:25:30'),
 (3, 'Black Decker', '1655069182_I8v1YX1tAgtTWVGU.png', NULL, 'Active', 'black-decker', 'Black Decker', 'Black Decker Brand', '2022-06-12 18:26:22', '2022-06-12 18:26:22'),
-(4, 'Nike', '1655070021_RO141AQGvym0D1tM.png', NULL, 'Active', 'nike', 'nike', 'Nike Brand', '2022-06-12 18:40:21', '2022-06-12 18:40:21');
+(4, 'Nike', '1655070021_RO141AQGvym0D1tM.png', NULL, 'Active', 'nike', 'nike', 'Nike Brand', '2022-06-12 18:40:21', '2022-06-12 18:40:21'),
+(5, 'Ajmal', '1655761730_JiTG17eB67E9mqIB.png', NULL, 'Active', 'ajmal', 'ajmal', 'ajmal', '2022-06-20 18:48:50', '2022-06-20 18:48:50'),
+(6, 'Calvin Klein', '1655762317_R2JnJmLmRrJrfeHT.png', NULL, 'Active', 'calvin-klein', 'Calvin Klein CK One for Unisex, Eau de Toilette, 200 ml', 'Calvin Klein CK One for Unisex, Eau de Toilette, 200 ml', '2022-06-20 18:58:37', '2022-06-20 18:58:37'),
+(7, 'Boss', '1655762353_ocOEIuPzQW49pV8Y.png', NULL, 'Active', 'boss', 'booss', 'booss', '2022-06-20 18:59:13', '2022-06-20 18:59:13'),
+(8, 'Johnson\'s', '1655765474_PE5HhnWTIc0niC2t.png', NULL, 'Active', 'johnson\'s', 'Johnson\'s', 'Johnson\'s', '2022-06-20 19:51:14', '2022-06-20 19:51:14'),
+(9, 'ROCF ROSSINI', '1655766576_bQkfKSkjsctIiifu.png', NULL, 'Active', 'rocf-rossini', 'ROCF ROSSINI', 'ROCF ROSSINI', '2022-06-20 20:09:36', '2022-06-20 20:09:36'),
+(10, 'Reyban', '1655766598_5bg91PyGsv9g090E.png', NULL, 'Active', 'reyban', 'Reyban', 'Reyban', '2022-06-20 20:09:58', '2022-06-20 20:09:58');
 
 -- --------------------------------------------------------
 
@@ -290,7 +296,9 @@ CREATE TABLE `coupons` (
 
 INSERT INTO `coupons` (`id`, `name`, `code`, `discount`, `discount_type`, `max_discount_amount`, `min_shopping_amount`, `type`, `start`, `end`, `category_ids`, `product_ids`, `created_at`, `updated_at`) VALUES
 (1, 'New Year Celebration', 'newyear-2022', '22.00', 'Percent', '1000.00', '100.00', 'Category', '2022-05-14', '2022-05-31', '[\"category-3\"]', NULL, '2022-05-13 11:46:14', '2022-05-13 11:46:14'),
-(2, 'Cyber Monday 2022', 'cyber22', '12.00', 'Percent', '2000.00', '100.00', 'Cart', '2022-07-01', '2022-07-31', NULL, NULL, '2022-05-13 11:47:58', '2022-05-13 11:47:58');
+(2, 'Cyber Monday 2022', 'cyber22', '12.00', 'Percent', '2000.00', '100.00', 'Cart', '2022-07-01', '2022-07-31', NULL, NULL, '2022-05-13 11:47:58', '2022-05-13 11:47:58'),
+(3, 'Text Coupon 1', 'text_coupon', '10.00', 'Percent', '1000.00', '100.00', 'Product', '2022-06-20', '2022-08-20', NULL, '[\"6\",\"7\",\"8\",\"9\",\"10\"]', '2022-06-20 11:05:50', '2022-06-20 11:05:50'),
+(4, 'Text Coupon 2', 'text_coupon2', '12.00', 'Percent', '5000.00', '100.00', 'Category', '2022-06-20', '2022-07-20', '[\"sub_category-1\"]', NULL, '2022-06-20 11:07:37', '2022-06-20 11:07:37');
 
 -- --------------------------------------------------------
 
@@ -386,7 +394,69 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (19, '2022_05_11_105008_create_shops_table', 3),
 (23, '2022_05_17_100953_create_states_table', 4),
 (24, '2022_05_17_101032_create_cities_table', 4),
-(25, '2022_05_17_111404_create_countries_table', 4);
+(25, '2022_05_17_111404_create_countries_table', 4),
+(57, '2022_06_21_065945_create_user_details_table', 5),
+(58, '2022_06_21_070032_create_orders_table', 5),
+(59, '2022_06_21_071020_create_transactions_table', 5),
+(60, '2022_06_21_072329_create_order_details_table', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `coupon_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `coupon_discount_amount` double(10,2) NOT NULL DEFAULT '0.00',
+  `shipping_cost` double NOT NULL DEFAULT '0',
+  `tax` double(10,2) NOT NULL DEFAULT '0.00',
+  `amount` double(10,2) NOT NULL DEFAULT '0.00',
+  `payment_method` enum('Card','COD') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'COD',
+  `note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` enum('Pending','Accept','Complete','Cancel') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Pending',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `coupon_id`, `coupon_discount_amount`, `shipping_cost`, `tax`, `amount`, `payment_method`, `note`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, NULL, 0.00, 30, 171.00, 1140.00, 'COD', 'l dsfjl saf lks sjfl lsldf lsf s', 'Pending', '2022-06-29 10:50:13', '2022-06-29 10:50:13'),
+(2, 1, NULL, 0.00, 30, 171.00, 1140.00, 'COD', 'Quia fugit iusto la', 'Pending', '2022-06-30 00:25:25', '2022-06-30 00:25:25'),
+(3, 1, NULL, 0.00, 30, 171.00, 1140.00, 'COD', 'Autem aut illo et ea', 'Pending', '2022-06-30 00:26:59', '2022-06-30 00:26:59');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_details`
+--
+
+CREATE TABLE `order_details` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `order_id` bigint(20) UNSIGNED NOT NULL,
+  `seller_id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
+  `unit_price` double(10,2) NOT NULL DEFAULT '0.00',
+  `color` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `size` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `quantity` bigint(20) NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `order_details`
+--
+
+INSERT INTO `order_details` (`id`, `order_id`, `seller_id`, `product_id`, `unit_price`, `color`, `size`, `quantity`, `created_at`, `updated_at`) VALUES
+(1, 1, 3, 6, 600.00, 'Black', '', 2, '2022-06-29 10:50:13', '2022-06-29 10:50:13'),
+(2, 2, 3, 6, 599.97, 'Black', '', 2, '2022-06-30 00:25:25', '2022-06-30 00:25:25'),
+(3, 3, 3, 6, 570.00, 'Black', '', 2, '2022-06-30 00:26:59', '2022-06-30 00:26:59');
 
 -- --------------------------------------------------------
 
@@ -484,18 +554,25 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `seller_id`, `category_id`, `sub_category_id`, `brand_id`, `name`, `slug`, `description`, `thumbnail`, `pdf`, `status`, `purchase_price`, `price`, `discount_type`, `discount`, `unit`, `min`, `max`, `quantity`, `tags`, `isCashAvailable`, `attributes`, `meta_title`, `meta_description`, `meta_image`, `is_draft`, `created_at`, `updated_at`) VALUES
-(1, 2, 2, 1, NULL, 'White Oxford Shirt', 'white-oxford-shirt', '<p>Casual wear (casual attire or clothing) may be a Western code that&rsquo;s relaxed, occasional, spontaneous and fitted to everyday use</p>', '1655031663_rQTIWqc00s0mVOJg.png', NULL, 'Active', '400.00', '5000.00', 'Percent', 5, 'Pieces', 2, 5, 23, 'womens,cloths', 1, '[\"[\\\"2\\\",\\\"Red\\\"]\",\"[\\\"2\\\",\\\"White\\\"]\",\"[\\\"2\\\",\\\"Black\\\"]\",\"[\\\"1\\\",\\\"sm\\\"]\",\"[\\\"1\\\",\\\"md\\\"]\",\"[\\\"1\\\",\\\"lg\\\"]\"]', 'White Oxford Shirt', 'Casual wear (casual attire or clothing) may be a Western code that’s relaxed, occasional, spontaneous and fitted to everyday use', NULL, 0, '2022-06-12 08:01:03', '2022-06-12 08:01:03'),
-(3, 2, 2, 1, NULL, 'Darmani Woolen Comfort', 'darmani-woolen-comfort', '<p>Fendi began life in 1925 as a fur and leather speciality store in Rome. Despite growing into one of the world&rsquo;s most renowned luxury labels, the business has retained its family feel, with a focus on fine detail, Italian craftsmanship and the support of local artisans.</p>', '1655034221_3lAK4AWB8HUAOn0T.png', NULL, 'Active', '234.00', '300.00', NULL, NULL, 'Pieces', 1, 3, 20, 'womens', 0, '[\"[\\\"2\\\",\\\"Red\\\"]\",\"[\\\"2\\\",\\\"Green\\\"]\",\"[\\\"2\\\",\\\"White\\\"]\"]', 'Darmani Woolen Comfort', 'Fendi began life in 1925 as a fur and leather speciality store in Rome. Despite growing into one of the world’s most renowned luxury labels,', NULL, 0, '2022-06-12 08:43:41', '2022-06-12 08:43:41'),
-(4, 2, 2, 1, NULL, 'Hoppister Tops', 'hoppister-tops', '<p>Fendi began life in 1925 as a fur and leather speciality store in Rome. Despite growing into one of the world&rsquo;s most renowned luxury labels, the business has retained its family feel, with a focus on fine detail, Italian craftsmanship and the support of local artisans.</p>', '1655034656_lZAjt1i8UG8y62UB.png', NULL, 'Active', '399.00', '500.00', 'Percent', 5, 'Pieces', 2, 5, 20, 'womens', 1, '[\"[\\\"2\\\",\\\"White\\\"]\",\"[\\\"2\\\",\\\"Black\\\"]\",\"[\\\"1\\\",\\\"md\\\"]\",\"[\\\"1\\\",\\\"lg\\\"]\"]', 'Hoppister Tops', 'Fendi began life in 1925 as a fur and leather speciality store in Rome. Despite growing into one of the world’s most renowned luxury labels,', NULL, 0, '2022-06-12 08:50:57', '2022-06-12 08:50:57'),
-(5, NULL, 2, 4, NULL, 'Pior Womes Bangles', 'pior-womes-bangles', '<p>Structured buffed nappa leather top handle bag in &lsquo;scarlet&rsquo; red. Carry handle at top. Detachable and adjustable shoulder strap with lanyard clasp fastening.</p>', '1655035135_WNBSca7ryyNH1xHs.png', NULL, 'Active', '100.00', '220.00', 'Percent', 10, 'Pieces', 2, 10, 50, 'accessories,bangles', 0, '[\"[\\\"1\\\",\\\"sm\\\"]\",\"[\\\"1\\\",\\\"md\\\"]\",\"[\\\"1\\\",\\\"lg\\\"]\"]', 'Pior Womes Bangles', 'Structured buffed nappa leather top handle bag in ‘scarlet’ red. Carry handle at top. Detachable and adjustable shoulder strap with lanyard clasp fastening.', NULL, 0, '2022-06-12 08:58:55', '2022-06-12 08:58:55'),
-(6, 3, 2, 2, NULL, 'Tippot Classic', 'tippot-classic', '<p>The new-model Submariner now features Rolex&rsquo;s powerhouse calibre 3235 Perpetual movement. An upgrade from the calibre 3135 movement,</p>', '1655037196_TjfgnVINstPJ3q9R.png', NULL, 'Active', '500.00', '600.00', NULL, 5, 'Pieces', 1, 23, 50, 'watches,women', 0, '[\"[\\\"2\\\",\\\"Green\\\"]\",\"[\\\"2\\\",\\\"White\\\"]\",\"[\\\"2\\\",\\\"Black\\\"]\",\"[\\\"1\\\",\\\"sm\\\"]\",\"[\\\"1\\\",\\\"md\\\"]\",\"[\\\"1\\\",\\\"lg\\\"]\"]', 'Tippot Classic', 'The new-model Submariner now features Rolex’s powerhouse calibre 3235 Perpetual movement. An upgrade from the calibre 3135 movement,', NULL, 0, '2022-06-12 09:33:16', '2022-06-12 09:33:16'),
-(7, 2, 2, 3, NULL, 'Black Desert Boots', 'black-desert-boots', '<p>Thundercats are on the move, Thundercats are loose. Feel the magic, hear the roar, Thundercats are loose. Thunder, thunder, thunder, Thundercats! Thunder, thunder, thunder, Thundercats! Thunder, thunder, thunder, Thundercats! Thunder, thunder, thunder, Thundercats! Thundercats! Thundercats are on the move, Thundercats are loose. Feel the magic, hear the roar, Thundercats are loose. Thunder, thunder, thunder, Thundercats! Thunder, thunder, thunder, Thundercats! Thunder, thunder, thunder, Thundercats! Thunder, thunder, thunder, Thundercats! Thundercats</p>\r\n\r\n<div id=\"gtx-trans\" style=\"left:420px; position:absolute; top:58.7969px\">\r\n<div class=\"gtx-trans-icon\">&nbsp;</div>\r\n</div>', '1655038254_C2CSqZ5pS9qrWHBb.png', NULL, 'Active', '200.00', '250.00', 'Percent', 5, 'Pieces', 1, 5, 23, 'women,shoes', 0, '[\"[\\\"2\\\",\\\"Red\\\"]\",\"[\\\"2\\\",\\\"Black\\\"]\",\"[\\\"1\\\",\\\"sm\\\"]\",\"[\\\"1\\\",\\\"lg\\\"]\",\"[\\\"1\\\",\\\"xl\\\"]\"]', 'Thundercats are loose. Thunder, thunder, thunder, Thundercats! Thunder, thunder, thunder, Thundercats!', 'Thundercats are loose. Thunder, thunder, thunder, Thundercats! Thunder, thunder, thunder, Thundercats!', NULL, 0, '2022-06-12 09:50:54', '2022-06-12 09:50:54'),
+(1, 2, 2, 1, 2, 'White Oxford Shirt', 'white-oxford-shirt', '<p>Casual wear (casual attire or clothing) may be a Western code that&rsquo;s relaxed, occasional, spontaneous and fitted to everyday use</p>', '1655031663_rQTIWqc00s0mVOJg.png', NULL, 'Active', '400.00', '500.00', NULL, NULL, 'Pieces', 2, 5, 23, 'womens,cloths', 1, '[\"[\\\"2\\\",\\\"Red\\\"]\",\"[\\\"2\\\",\\\"White\\\"]\",\"[\\\"2\\\",\\\"Black\\\"]\",\"[\\\"1\\\",\\\"sm\\\"]\",\"[\\\"1\\\",\\\"md\\\"]\",\"[\\\"1\\\",\\\"lg\\\"]\"]', 'White Oxford Shirt', 'Casual wear (casual attire or clothing) may be a Western code that’s relaxed, occasional, spontaneous and fitted to everyday use', NULL, 0, '2022-06-12 08:01:03', '2022-06-20 19:02:16'),
+(3, 2, 2, 1, 3, 'Darmani Woolen Comfort', 'darmani-woolen-comfort', '<p>Fendi began life in 1925 as a fur and leather speciality store in Rome. Despite growing into one of the world&rsquo;s most renowned luxury labels, the business has retained its family feel, with a focus on fine detail, Italian craftsmanship and the support of local artisans.</p>', '1655034221_3lAK4AWB8HUAOn0T.png', NULL, 'Active', '234.00', '300.00', NULL, NULL, 'Pieces', 1, 3, 20, 'womens', 0, '[\"[\\\"2\\\",\\\"Red\\\"]\",\"[\\\"2\\\",\\\"Green\\\"]\",\"[\\\"2\\\",\\\"White\\\"]\"]', 'Darmani Woolen Comfort', 'Fendi began life in 1925 as a fur and leather speciality store in Rome. Despite growing into one of the world’s most renowned luxury labels,', NULL, 0, '2022-06-12 08:43:41', '2022-06-18 23:08:43'),
+(4, 2, 2, 1, 2, 'Hoppister Tops', 'hoppister-tops', '<p>Fendi began life in 1925 as a fur and leather speciality store in Rome. Despite growing into one of the world&rsquo;s most renowned luxury labels, the business has retained its family feel, with a focus on fine detail, Italian craftsmanship and the support of local artisans.</p>', '1655034656_lZAjt1i8UG8y62UB.png', NULL, 'Active', '399.00', '500.00', NULL, NULL, 'Pieces', 2, 5, 20, 'womens', 1, '[\"[\\\"2\\\",\\\"White\\\"]\",\"[\\\"2\\\",\\\"Black\\\"]\",\"[\\\"1\\\",\\\"md\\\"]\",\"[\\\"1\\\",\\\"lg\\\"]\"]', 'Hoppister Tops', 'Fendi began life in 1925 as a fur and leather speciality store in Rome. Despite growing into one of the world’s most renowned luxury labels,', NULL, 0, '2022-06-12 08:50:57', '2022-06-18 23:08:04'),
+(5, 1, 2, 4, NULL, 'Pior Womes Bangles', 'pior-womes-bangles', '<p>Structured buffed nappa leather top handle bag in &lsquo;scarlet&rsquo; red. Carry handle at top. Detachable and adjustable shoulder strap with lanyard clasp fastening.</p>', '1655035135_WNBSca7ryyNH1xHs.png', NULL, 'Active', '100.00', '220.00', 'Percent', 10, 'Pieces', 2, 10, 50, 'accessories,bangles', 0, '[\"[\\\"1\\\",\\\"sm\\\"]\",\"[\\\"1\\\",\\\"md\\\"]\",\"[\\\"1\\\",\\\"lg\\\"]\"]', 'Pior Womes Bangles', 'Structured buffed nappa leather top handle bag in ‘scarlet’ red. Carry handle at top. Detachable and adjustable shoulder strap with lanyard clasp fastening.', NULL, 0, '2022-06-12 08:58:55', '2022-06-12 08:58:55'),
+(6, 3, 2, 2, NULL, 'Tippot Classic', 'tippot-classic', '<p>The new-model Submariner now features Rolex&rsquo;s powerhouse calibre 3235 Perpetual movement. An upgrade from the calibre 3135 movement,</p>', '1655037196_TjfgnVINstPJ3q9R.png', NULL, 'Active', '500.00', '600.00', 'Percent', 5, 'Pieces', 1, 23, 50, 'watches,women', 0, '[\"[\\\"2\\\",\\\"Green\\\"]\",\"[\\\"2\\\",\\\"White\\\"]\",\"[\\\"2\\\",\\\"Black\\\"]\"]', 'Tippot Classic', 'The new-model Submariner now features Rolex’s powerhouse calibre 3235 Perpetual movement. An upgrade from the calibre 3135 movement,', NULL, 0, '2022-06-12 09:33:16', '2022-06-21 16:37:36'),
+(7, 2, 2, 3, NULL, 'Black Desert Boots', 'black-desert-boots', '<p>Thundercats are on the move, Thundercats are loose. Feel the magic, hear the roar, Thundercats are loose. Thunder, thunder, thunder, Thundercats! Thunder, thunder, thunder, Thundercats! Thunder, thunder, thunder, Thundercats! Thunder, thunder, thunder, Thundercats! Thundercats! Thundercats are on the move, Thundercats are loose. Feel the magic, hear the roar, Thundercats are loose. Thunder, thunder, thunder, Thundercats! Thunder, thunder, thunder, Thundercats! Thunder, thunder, thunder, Thundercats! Thunder, thunder, thunder, Thundercats! Thundercats</p>\r\n\r\n<div id=\"gtx-trans\" style=\"left:420px; position:absolute; top:58.7969px\">\r\n<div class=\"gtx-trans-icon\">&nbsp;</div>\r\n</div>', '1655038254_C2CSqZ5pS9qrWHBb.png', NULL, 'Active', '200.00', '250.00', 'Flat', 50, 'Pieces', 1, 5, 23, 'women,shoes', 0, '[\"[\\\"2\\\",\\\"Red\\\"]\",\"[\\\"2\\\",\\\"Black\\\"]\",\"[\\\"1\\\",\\\"sm\\\"]\",\"[\\\"1\\\",\\\"lg\\\"]\",\"[\\\"1\\\",\\\"xl\\\"]\"]', 'Thundercats are loose. Thunder, thunder, thunder, Thundercats! Thunder, thunder, thunder, Thundercats!', 'Thundercats are loose. Thunder, thunder, thunder, Thundercats! Thunder, thunder, thunder, Thundercats!', NULL, 0, '2022-06-12 09:50:54', '2022-06-12 09:50:54'),
 (8, 2, 2, 4, NULL, 'Woman Hand Tote Bag', 'woman-hand-tote-bag', '<h4>Product Details:</h4>\r\n\r\n<ul>\r\n	<li>Brand Name:&nbsp;JIN QIAO ER</li>\r\n	<li>Handbags Type:&nbsp;Shoulder Bags</li>\r\n	<li>Types of bags:&nbsp;Shoulder &amp; Handbags</li>\r\n	<li>Main Material:&nbsp;PU</li>\r\n	<li>Shape:&nbsp;Composite Bag</li>\r\n	<li>Exterior:&nbsp;Silt Pocket</li>\r\n	<li>Model Number:&nbsp;B274</li>\r\n	<li>Gender:&nbsp;WOMEN</li>\r\n	<li>Lining Material:&nbsp;Polyester</li>\r\n	<li>Number of Handles/Straps:&nbsp;Single</li>\r\n	<li>Decoration:&nbsp;Rivet</li>\r\n	<li>Decoration:&nbsp;Letter</li>\r\n</ul>', '1655038835_38iAXJqWcgzg3BEm.jpg', NULL, 'Active', '500.00', '580.00', 'Percent', 5, 'Pieces', 1, 5, 20, 'handbag,womens', 0, '[\"[\\\"2\\\",\\\"Green\\\"]\",\"[\\\"2\\\",\\\"White\\\"]\",\"[\\\"2\\\",\\\"Black\\\"]\",\"[\\\"2\\\",\\\"Blue\\\"]\",\"[\\\"1\\\",\\\"md\\\"]\",\"[\\\"1\\\",\\\"lg\\\"]\"]', 'Woman Hand Tote Bag', 'Product Details:\r\nBrand Name: JIN QIAO ER\r\nHandbags Type: Shoulder Bags\r\nTypes of bags: Shoulder & Handbags\r\nMain Material: PU', NULL, 0, '2022-06-12 10:00:35', '2022-06-12 10:00:35'),
-(9, NULL, 3, 5, NULL, 'Men Shirt Custom Shirts', 'men-shirt-custom-shirts', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate quae illo soluta sapiente minus voluptatibus molestias voluptates maiores repudiandae, velit quaerat error! Dolor alias voluptates rerum vitae illum officiis laboriosam, eos fugiat necessitatibus iste quasi vero porro at asperiores atque numquam adipisci esse perferendis hic dolore dolores facere quidem? Voluptatum, nemo voluptates.</p>\r\n\r\n<p>Qui, animi odit voluptatem velit nostrum rem maiores. Qui esse magnam enim natus numquam ab adipisci nihil mollitia odio ducimus architecto unde harum saepe illum, ipsa hic dicta alias cumque et minus veritatis assumenda a quo. Possimus, vitae est! Fuga quidem minima sunt modi. Officia natus quaerat nobis ut ab nulla. Tempora, corrupti? Animi excepturi voluptatem quod consectetur culpa autem aliquid? Inventore adipisci officia error dolore provident omnis sint perferendis, consequuntur, sapiente magni sequi quo quis nesciunt molestiae vero iure cum laboriosam fugit. Numquam sed expedita alias non? Sequi, harum cupiditate!</p>\r\n\r\n<p>Quasi non laboriosam optio ex fugit delectus minus incidunt excepturi! Nisi iure ex, nulla perspiciatis similique est, libero sapiente hic error amet, quisquam vel obcaecati fugit. Maxime cupiditate voluptatibus, nisi ullam error voluptas culpa at animi sequi eius suscipit ad ipsum qui illum provident dolores facere necessitatibus commodi vel in,&nbsp;</p>', '1655049987_xQ2MgEib5hfa70ke.png', NULL, 'Active', '200.00', '250.00', 'Percent', 7, 'Pieces', 1, 5, 20, 'mens,shirt', 0, '[\"[\\\"2\\\",\\\"Red\\\"]\",\"[\\\"2\\\",\\\"Green\\\"]\",\"[\\\"2\\\",\\\"White\\\"]\",\"[\\\"2\\\",\\\"Black\\\"]\",\"[\\\"1\\\",\\\"sm\\\"]\",\"[\\\"1\\\",\\\"md\\\"]\",\"[\\\"1\\\",\\\"lg\\\"]\",\"[\\\"1\\\",\\\"xl\\\"]\"]', 'Men Shirt Custom Shirts', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate quae illo soluta sapiente minus voluptatibus molestias voluptates maiores repudiandae,', NULL, 0, '2022-06-12 13:06:27', '2022-06-12 13:06:27'),
-(10, 2, 3, 5, NULL, 'Mens Cotton Shirts', 'mens-cotton-shirts', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate quae illo soluta sapiente minus voluptatibus molestias voluptates maiores repudiandae, velit quaerat error! Dolor alias voluptates rerum vitae illum officiis laboriosam, eos fugiat necessitatibus iste quasi vero porro at asperiores atque numquam adipisci esse perferendis hic dolore dolores facere quidem? Voluptatum, nemo voluptates.</p>\r\n\r\n<p>Qui, animi odit voluptatem velit nostrum rem maiores. Qui esse magnam enim natus numquam ab adipisci nihil mollitia odio ducimus architecto unde harum saepe illum, ipsa hic dicta alias cumque et minus veritatis assumenda a quo. Possimus, vitae est! Fuga quidem minima sunt modi. Officia natus quaerat nobis ut ab nulla. Tempora, corrupti? Animi excepturi voluptatem quod consectetur culpa autem aliquid?</p>\r\n\r\n<p>Inventore adipisci officia error dolore provident omnis sint perferendis, consequuntur, sapiente magni sequi quo quis nesciunt molestiae vero iure cum laboriosam fugit. Numquam sed expedita alias non? Sequi, harum cupiditate! Quasi non laboriosam optio ex fugit delectus minus incidunt excepturi! Nisi iure ex, nulla perspiciatis similique est, libero sapiente hic error amet, quisquam vel obcaecati fugit. Maxime cupiditate voluptatibus, nisi ullam error voluptas culpa at animi sequi eius suscipit ad ipsum qui illum provident dolores facere necessitatibus commodi vel in,&nbsp;</p>', '1655050206_Y9Q63UHztgyCtmGE.jpeg', NULL, 'Active', '150.00', '230.00', 'Percent', 12, 'Pieces', 1, 5, 30, 'mens,shier', 0, '[\"[\\\"2\\\",\\\"White\\\"]\",\"[\\\"2\\\",\\\"Black\\\"]\",\"[\\\"2\\\",\\\"Blue\\\"]\",\"[\\\"1\\\",\\\"md\\\"]\",\"[\\\"1\\\",\\\"lg\\\"]\",\"[\\\"1\\\",\\\"xl\\\"]\"]', 'Mens Cotton Shirts', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate quae illo soluta sapiente minus voluptatibus molestias voluptates maiores repudiandae,', NULL, 0, '2022-06-12 13:10:06', '2022-06-12 13:10:06'),
+(9, 2, 3, 5, 2, 'Men Shirt Custom Shirts', 'men-shirt-custom-shirts', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate quae illo soluta sapiente minus voluptatibus molestias voluptates maiores repudiandae, velit quaerat error! Dolor alias voluptates rerum vitae illum officiis laboriosam, eos fugiat necessitatibus iste quasi vero porro at asperiores atque numquam adipisci esse perferendis hic dolore dolores facere quidem? Voluptatum, nemo voluptates.</p>\r\n\r\n<p>Qui, animi odit voluptatem velit nostrum rem maiores. Qui esse magnam enim natus numquam ab adipisci nihil mollitia odio ducimus architecto unde harum saepe illum, ipsa hic dicta alias cumque et minus veritatis assumenda a quo. Possimus, vitae est! Fuga quidem minima sunt modi. Officia natus quaerat nobis ut ab nulla. Tempora, corrupti? Animi excepturi voluptatem quod consectetur culpa autem aliquid? Inventore adipisci officia error dolore provident omnis sint perferendis, consequuntur, sapiente magni sequi quo quis nesciunt molestiae vero iure cum laboriosam fugit. Numquam sed expedita alias non? Sequi, harum cupiditate!</p>\r\n\r\n<p>Quasi non laboriosam optio ex fugit delectus minus incidunt excepturi! Nisi iure ex, nulla perspiciatis similique est, libero sapiente hic error amet, quisquam vel obcaecati fugit. Maxime cupiditate voluptatibus, nisi ullam error voluptas culpa at animi sequi eius suscipit ad ipsum qui illum provident dolores facere necessitatibus commodi vel in,&nbsp;</p>', '1655049987_xQ2MgEib5hfa70ke.png', NULL, 'Active', '200.00', '250.00', NULL, NULL, 'Pieces', 1, 5, 20, 'mens,shirt', 0, '[\"[\\\"2\\\",\\\"Red\\\"]\",\"[\\\"2\\\",\\\"Green\\\"]\",\"[\\\"2\\\",\\\"White\\\"]\",\"[\\\"2\\\",\\\"Black\\\"]\",\"[\\\"1\\\",\\\"sm\\\"]\",\"[\\\"1\\\",\\\"md\\\"]\",\"[\\\"1\\\",\\\"lg\\\"]\",\"[\\\"1\\\",\\\"xl\\\"]\"]', 'Men Shirt Custom Shirts', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate quae illo soluta sapiente minus voluptatibus molestias voluptates maiores repudiandae,', NULL, 0, '2022-06-12 13:06:27', '2022-06-20 19:05:26'),
+(10, 2, 3, 5, 3, 'Mens Cotton Shirts', 'mens-cotton-shirts', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate quae illo soluta sapiente minus voluptatibus molestias voluptates maiores repudiandae, velit quaerat error! Dolor alias voluptates rerum vitae illum officiis laboriosam, eos fugiat necessitatibus iste quasi vero porro at asperiores atque numquam adipisci esse perferendis hic dolore dolores facere quidem? Voluptatum, nemo voluptates.</p>\r\n\r\n<p>Qui, animi odit voluptatem velit nostrum rem maiores. Qui esse magnam enim natus numquam ab adipisci nihil mollitia odio ducimus architecto unde harum saepe illum, ipsa hic dicta alias cumque et minus veritatis assumenda a quo. Possimus, vitae est! Fuga quidem minima sunt modi. Officia natus quaerat nobis ut ab nulla. Tempora, corrupti? Animi excepturi voluptatem quod consectetur culpa autem aliquid?</p>\r\n\r\n<p>Inventore adipisci officia error dolore provident omnis sint perferendis, consequuntur, sapiente magni sequi quo quis nesciunt molestiae vero iure cum laboriosam fugit. Numquam sed expedita alias non? Sequi, harum cupiditate! Quasi non laboriosam optio ex fugit delectus minus incidunt excepturi! Nisi iure ex, nulla perspiciatis similique est, libero sapiente hic error amet, quisquam vel obcaecati fugit. Maxime cupiditate voluptatibus, nisi ullam error voluptas culpa at animi sequi eius suscipit ad ipsum qui illum provident dolores facere necessitatibus commodi vel in,&nbsp;</p>', '1655050206_Y9Q63UHztgyCtmGE.jpeg', NULL, 'Active', '150.00', '230.00', NULL, NULL, 'Pieces', 1, 5, 30, 'mens,shier', 0, '[\"[\\\"2\\\",\\\"White\\\"]\",\"[\\\"2\\\",\\\"Black\\\"]\",\"[\\\"2\\\",\\\"Blue\\\"]\",\"[\\\"1\\\",\\\"md\\\"]\",\"[\\\"1\\\",\\\"lg\\\"]\",\"[\\\"1\\\",\\\"xl\\\"]\"]', 'Mens Cotton Shirts', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate quae illo soluta sapiente minus voluptatibus molestias voluptates maiores repudiandae,', NULL, 0, '2022-06-12 13:10:06', '2022-06-20 19:05:44'),
 (11, 2, 3, 6, NULL, 'Men Smart Watch', 'men-smart-watch', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate quae illo soluta sapiente minus voluptatibus molestias voluptates maiores repudiandae, velit quaerat error! Dolor alias voluptates rerum vitae illum officiis laboriosam, eos fugiat necessitatibus iste quasi vero porro at asperiores atque numquam adipisci esse perferendis hic dolore dolores facere quidem? Voluptatum, nemo voluptates.</p>\r\n\r\n<p>Qui, animi odit voluptatem velit nostrum rem maiores. Qui esse magnam enim natus numquam ab adipisci nihil mollitia odio ducimus architecto unde harum saepe illum, ipsa hic dicta alias cumque et minus veritatis assumenda a quo. Possimus, vitae est! Fuga quidem minima sunt modi. Officia natus quaerat nobis ut ab nulla.</p>\r\n\r\n<p>Tempora, corrupti? Animi excepturi voluptatem quod consectetur culpa autem aliquid? Inventore adipisci officia error dolore provident omnis sint perferendis, consequuntur, sapiente magni sequi quo quis nesciunt molestiae vero iure cum laboriosam fugit. Numquam sed expedita alias non? Sequi, harum cupiditate!</p>\r\n\r\n<p>Quasi non laboriosam optio ex fugit delectus minus incidunt excepturi! Nisi iure ex, nulla perspiciatis similique est, libero sapiente hic error amet, quisquam vel obcaecati fugit. Maxime cupiditate voluptatibus, nisi ullam error voluptas culpa at animi sequi eius suscipit ad ipsum qui illum provident dolores facere necessitatibus commodi vel in,&nbsp;</p>', '1655051074_Sb5fGt48IzHiz6zy.png', NULL, 'Active', '200.00', '349.00', 'Percent', 7, 'Piece', 1, 5, 20, 'watch,mens', 0, '[\"[\\\"2\\\",\\\"Red\\\"]\",\"[\\\"2\\\",\\\"Green\\\"]\",\"[\\\"2\\\",\\\"White\\\"]\",\"[\\\"1\\\",\\\"sm\\\"]\",\"[\\\"1\\\",\\\"md\\\"]\",\"[\\\"1\\\",\\\"lg\\\"]\"]', 'Men Smart Watch', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate quae illo soluta sapiente minus voluptatibus molestias voluptates maiores repudiandae, velit quaerat error!', NULL, 0, '2022-06-12 13:24:34', '2022-06-12 13:24:34'),
 (12, 2, 3, 7, 4, 'Men\'s White Sneakers', 'men\'s-white-sneakers', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate quae illo soluta sapiente minus voluptatibus molestias voluptates maiores repudiandae, velit quaerat error! Dolor alias voluptates rerum vitae illum officiis laboriosam, eos fugiat necessitatibus iste quasi vero porro at asperiores atque numquam adipisci esse perferendis hic dolore dolores facere quidem? Voluptatum, nemo voluptates.</p>\r\n\r\n<p>Qui, animi odit voluptatem velit nostrum rem maiores. Qui esse magnam enim natus numquam ab adipisci nihil mollitia odio ducimus architecto unde harum saepe illum, ipsa hic dicta alias cumque et minus veritatis assumenda a quo. Possimus, vitae est! Fuga quidem minima sunt modi.</p>\r\n\r\n<p>Officia natus quaerat nobis ut ab nulla. Tempora, corrupti? Animi excepturi voluptatem quod consectetur culpa autem aliquid? Inventore adipisci officia error dolore provident omnis sint perferendis, consequuntur, sapiente magni sequi quo quis nesciunt molestiae vero iure cum laboriosam fugit.</p>\r\n\r\n<p>Numquam sed expedita alias non? Sequi, harum cupiditate! Quasi non laboriosam optio ex fugit delectus minus incidunt excepturi! Nisi iure ex, nulla perspiciatis similique est, libero sapiente hic error amet, quisquam vel obcaecati fugit. Maxime cupiditate voluptatibus, nisi ullam error voluptas culpa at animi sequi eius suscipit ad ipsum qui illum provident dolores facere necessitatibus commodi vel in,&nbsp;</p>', '1655060501_fjdHhTXoVZuu6PUK.jpg', NULL, 'Active', '300.00', '400.00', NULL, NULL, 'Pieces', 1, 5, 30, 'sneakers,mens,shoes', 0, '[\"[\\\"2\\\",\\\"Green\\\"]\",\"[\\\"2\\\",\\\"White\\\"]\",\"[\\\"2\\\",\\\"Black\\\"]\"]', 'Men\'s White Sneakers', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate quae illo soluta sapiente minus voluptatibus molestias voluptates maiores repudiandae, velit quaerat error!', NULL, 0, '2022-06-12 16:01:42', '2022-06-12 18:40:48'),
-(13, 3, 4, 12, 3, 'Women Modern Solder Bag', 'women-modern-solder-bag', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate quae illo soluta sapiente minus voluptatibus molestias voluptates maiores repudiandae, velit quaerat error!</p>\r\n\r\n<p>Dolor alias voluptates rerum vitae illum officiis laboriosam, eos fugiat necessitatibus iste quasi vero porro at asperiores atque numquam adipisci esse perferendis hic dolore dolores facere quidem? Voluptatum, nemo voluptates. Qui, animi odit voluptatem velit nostrum rem maiores.</p>\r\n\r\n<p>Qui esse magnam enim natus numquam ab adipisci nihil mollitia odio ducimus architecto unde harum saepe illum, ipsa hic dicta alias cumque et minus veritatis assumenda a quo. Possimus, vitae est! Fuga quidem minima sunt modi. Officia natus quaerat nobis ut ab nulla. Tempora, corrupti? Animi excepturi voluptatem quod consectetur culpa autem aliquid?&nbsp;</p>\r\n\r\n<div id=\"gtx-trans\" style=\"left:-17px; position:absolute; top:-6px\">\r\n<div class=\"gtx-trans-icon\">&nbsp;</div>\r\n</div>', '1655070739_i2Efm744PJKCvFjp.jpeg', NULL, 'Active', '200.00', '300.00', 'Flat', 50, 'Pieces', 1, 5, 30, 'bags', 0, '[\"[\\\"2\\\",\\\"Red\\\"]\",\"[\\\"2\\\",\\\"Green\\\"]\",\"[\\\"2\\\",\\\"White\\\"]\"]', 'Women Modern Solder Bag', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate quae illo soluta sapiente minus voluptatibus molestias voluptates maiores repudiandae, velit quaerat error!', NULL, 0, '2022-06-12 18:52:19', '2022-06-12 18:52:19');
+(13, 3, 4, 12, 3, 'Women Modern Solder Bag', 'women-modern-solder-bag', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate quae illo soluta sapiente minus voluptatibus molestias voluptates maiores repudiandae, velit quaerat error!</p>\r\n\r\n<p>Dolor alias voluptates rerum vitae illum officiis laboriosam, eos fugiat necessitatibus iste quasi vero porro at asperiores atque numquam adipisci esse perferendis hic dolore dolores facere quidem? Voluptatum, nemo voluptates. Qui, animi odit voluptatem velit nostrum rem maiores.</p>\r\n\r\n<p>Qui esse magnam enim natus numquam ab adipisci nihil mollitia odio ducimus architecto unde harum saepe illum, ipsa hic dicta alias cumque et minus veritatis assumenda a quo. Possimus, vitae est! Fuga quidem minima sunt modi. Officia natus quaerat nobis ut ab nulla. Tempora, corrupti? Animi excepturi voluptatem quod consectetur culpa autem aliquid?&nbsp;</p>\r\n\r\n<div id=\"gtx-trans\" style=\"left:-17px; position:absolute; top:-6px\">\r\n<div class=\"gtx-trans-icon\">&nbsp;</div>\r\n</div>', '1655070739_i2Efm744PJKCvFjp.jpeg', NULL, 'Active', '200.00', '300.00', 'Flat', 50, 'Pieces', 1, 5, 30, 'bags', 0, '[\"[\\\"2\\\",\\\"Red\\\"]\",\"[\\\"2\\\",\\\"Green\\\"]\",\"[\\\"2\\\",\\\"White\\\"]\"]', 'Women Modern Solder Bag', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate quae illo soluta sapiente minus voluptatibus molestias voluptates maiores repudiandae, velit quaerat error!', NULL, 0, '2022-06-12 18:52:19', '2022-06-12 18:52:19'),
+(14, 2, 4, 13, 5, 'Lattafa Oud For Glory Badee Al Oud Eau de Parfum 100ml', 'lattafa-oud-for-glory-badee-al-oud-eau-de-parfum-100ml', '<p>Lattafa Oud For Glory Badee Al Oud Eau de Parfum 100ml.&nbsp;Lattafa Oud For Glory Badee Al Oud Eau de Parfum 100ml.&nbsp;Lattafa Oud For Glory Badee Al Oud Eau de Parfum 100ml</p>', '1655763246_apQ1CXmabf77YSyS.png', NULL, 'Active', '100.00', '130.00', 'Percent', 7, 'Peaces', 1, 10, 20, 'parfume', 0, NULL, 'Lattafa Oud For Glory Badee Al Oud Eau de Parfum 100ml', 'Lattafa Oud For Glory Badee Al Oud Eau de Parfum 100ml', NULL, 0, '2022-06-20 19:14:06', '2022-06-20 19:14:06'),
+(15, 3, 4, 13, 7, 'Versace Pour Homme Dylan Blue EDT, 6.7', 'versace-pour-homme-dylan-blue-edt,-6.7', '<h1>About this item</h1>\r\n\r\n<ul>\r\n	<li>The bottle with clean lines comes in dark, Mediterranean blue with a golden cap and a golden Medusa seal</li>\r\n	<li>Country of origin is United States</li>\r\n	<li>The package dimension of the product is 4cmL x 5cmW x 4cmH</li>\r\n	<li>The package weight of the product is 6.7 ounces</li>\r\n</ul>', '1655764164_shWOQchlFr9Qmehl.png', NULL, 'Active', '120.00', '150.00', 'Percent', 7, 'Pieces', 1, 10, 50, 'parfume', 0, NULL, 'Versace Pour Homme Dylan Blue EDT, 6.7', 'Versace Pour Homme Dylan Blue EDT, 6.7', NULL, 0, '2022-06-20 19:29:24', '2022-06-20 19:29:24'),
+(16, NULL, 4, 13, 6, 'Calvin Klein CK One for Unisex, Eau de Toilette, 200 ml', 'calvin-klein-ck-one-for-unisex,-eau-de-toilette,-200-ml', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s,</p>\r\n\r\n<p>when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>', '1655764351_wIcTPyC6e0foAucO.png', NULL, 'Active', '120.00', '160.00', 'Percent', 5, 'Pieces', 1, 10, 50, 'parfume', 0, NULL, 'Calvin Klein CK One for Unisex, Eau de Toilette, 200 ml', 'Calvin Klein CK One for Unisex, Eau de Toilette, 200 ml', NULL, 0, '2022-06-20 19:32:31', '2022-06-20 19:32:31'),
+(17, 2, 4, 10, 8, 'Johnson Soft Cream 24H Moisture 300Ml', 'johnson-soft-cream-24h-moisture-300ml', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s,</p>\r\n\r\n<p>when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>', '1655765641_sbc2ThrsNJcYOZ4U.png', NULL, 'Active', '100.00', '130.00', 'Percent', 4, 'Pieces', 1, 12, 100, 'beauty,skin care', 0, NULL, 'Johnson Soft Cream 24H Moisture 300Ml', 'Johnson Soft Cream 24H Moisture 300Ml', NULL, 0, '2022-06-20 19:54:01', '2022-06-20 19:54:01'),
+(18, 2, 4, 10, 8, 'Johnson Shampoo 500 ml new shape', 'johnson-shampoo-500-ml-new-shape', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries&nbsp;<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>', '1655765960_gn4usB5NE83RM09O.png', NULL, 'Active', '20.00', '40.00', 'Percent', 8, 'Pieces', 1, 10, 100, 'shamp,babay', 0, NULL, 'Johnson Shampoo 500 ml new shape', 'Johnson Shampoo 500 ml new shape', NULL, 0, '2022-06-20 19:59:20', '2022-06-20 19:59:20'),
+(19, 2, 4, 10, 8, 'Green Wealth Neo Hair Lotion - Hair Treatment and Root Nutrients 120 m', 'green-wealth-neo-hair-lotion---hair-treatment-and-root-nutrients-120-m', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries&nbsp;<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>', '1655766345_CgeqIYUhuc2xkABW.png', NULL, 'Active', '90.00', '120.00', NULL, NULL, 'Pieces', 1, 10, 100, 'shampu', 0, NULL, 'Green Wealth Neo Hair Lotion - Hair Treatment and Root Nutrients 120 m', 'Green Wealth Neo Hair Lotion - Hair Treatment and Root Nutrients 120 m', NULL, 0, '2022-06-20 20:05:45', '2022-06-20 20:05:45'),
+(20, 2, 4, 11, 9, 'Flexible Kids Sunglasses Polarized Sun Glasses Girls Boys', 'flexible-kids-sunglasses-polarized-sun-glasses-girls-boys', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>\r\n\r\n<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>', '1655766847_qnNPekO5I9vfO3lB.jpg', NULL, 'Active', '80.00', '100.00', NULL, NULL, 'Pieces', 1, 10, 100, 'sun-glass', 0, '[\"[\\\"2\\\",\\\"Red\\\"]\",\"[\\\"2\\\",\\\"Green\\\"]\",\"[\\\"2\\\",\\\"White\\\"]\",\"[\\\"2\\\",\\\"Black\\\"]\",\"[\\\"1\\\",\\\"Sm\\\"]\",\"[\\\"1\\\",\\\"Md\\\"]\",\"[\\\"1\\\",\\\"Lg\\\"]\"]', 'Flexible Kids Sunglasses Polarized Sun Glasses Girls Boys', 'Flexible Kids Sunglasses Polarized Sun Glasses Girls Boys', NULL, 0, '2022-06-20 20:14:07', '2022-06-20 20:14:47');
 
 -- --------------------------------------------------------
 
@@ -562,7 +639,36 @@ INSERT INTO `product_images` (`id`, `product_id`, `image`, `created_at`, `update
 (44, 13, '1655070739_1d4mzObigXcZD095.jpeg', '2022-06-12 18:52:19', '2022-06-12 18:52:19'),
 (45, 13, '1655070739_vJHl2XyvcVLJGfYt.jpeg', '2022-06-12 18:52:19', '2022-06-12 18:52:19'),
 (46, 13, '1655070739_4ZNdIxtgX5VRysy6.jpeg', '2022-06-12 18:52:19', '2022-06-12 18:52:19'),
-(47, 13, '1655070739_Obfi4yKMq5TsB4Es.jpg', '2022-06-12 18:52:19', '2022-06-12 18:52:19');
+(47, 13, '1655070739_Obfi4yKMq5TsB4Es.jpg', '2022-06-12 18:52:19', '2022-06-12 18:52:19'),
+(48, 14, '1655763246_SM46jJuVEHzaTCt3.png', '2022-06-20 19:14:06', '2022-06-20 19:14:06'),
+(49, 14, '1655763246_TGdJ29fpCIe3H2r4.png', '2022-06-20 19:14:07', '2022-06-20 19:14:07'),
+(50, 14, '1655763247_uB1LUpWxGQmdrzHB.png', '2022-06-20 19:14:07', '2022-06-20 19:14:07'),
+(51, 14, '1655763247_VRtxmERaIsgOZkHE.png', '2022-06-20 19:14:07', '2022-06-20 19:14:07'),
+(52, 14, '1655763247_5YzxgwNs3dYEC2mn.png', '2022-06-20 19:14:07', '2022-06-20 19:14:07'),
+(53, 15, '1655764164_FquzEUvvh22oN99S.png', '2022-06-20 19:29:25', '2022-06-20 19:29:25'),
+(54, 15, '1655764165_VqHnUFjSUXtsNSHN.png', '2022-06-20 19:29:25', '2022-06-20 19:29:25'),
+(55, 15, '1655764165_aOZ0oXDAdlU2uXeQ.png', '2022-06-20 19:29:25', '2022-06-20 19:29:25'),
+(56, 15, '1655764165_oTeuQgeEKMmdZuL6.png', '2022-06-20 19:29:25', '2022-06-20 19:29:25'),
+(57, 15, '1655764165_aEooT8lb9CQyaRm3.png', '2022-06-20 19:29:25', '2022-06-20 19:29:25'),
+(58, 16, '1655764351_yR0ORs1iC6PKskYI.png', '2022-06-20 19:32:31', '2022-06-20 19:32:31'),
+(59, 16, '1655764351_T93VUGGeFO1jsBcx.png', '2022-06-20 19:32:31', '2022-06-20 19:32:31'),
+(60, 16, '1655764351_4em2Nr0pomLpBKtt.png', '2022-06-20 19:32:31', '2022-06-20 19:32:31'),
+(61, 16, '1655764351_EOEx58e3cqfblq6A.png', '2022-06-20 19:32:31', '2022-06-20 19:32:31'),
+(62, 16, '1655764351_5brssNKRKX3KHgUr.png', '2022-06-20 19:32:31', '2022-06-20 19:32:31'),
+(63, 17, '1655765641_aXyGfSUUDLW11U8G.png', '2022-06-20 19:54:01', '2022-06-20 19:54:01'),
+(64, 17, '1655765641_TLGRVoai7nwIC1ok.png', '2022-06-20 19:54:01', '2022-06-20 19:54:01'),
+(65, 17, '1655765641_nID5ixj26rfmjbDp.png', '2022-06-20 19:54:01', '2022-06-20 19:54:01'),
+(66, 17, '1655765641_PGDy5KsA3kX1IWED.png', '2022-06-20 19:54:02', '2022-06-20 19:54:02'),
+(67, 18, '1655765960_vbdd9y3xRsg5f1Us.png', '2022-06-20 19:59:20', '2022-06-20 19:59:20'),
+(68, 18, '1655765960_w1vLRP8x73i2wT6p.png', '2022-06-20 19:59:20', '2022-06-20 19:59:20'),
+(69, 19, '1655766345_9BWlUVLbO7x9ng1m.png', '2022-06-20 20:05:45', '2022-06-20 20:05:45'),
+(70, 19, '1655766345_95Lbyj0n7eyUQK9e.png', '2022-06-20 20:05:45', '2022-06-20 20:05:45'),
+(71, 19, '1655766345_yiN9lyqufhBRPtjC.png', '2022-06-20 20:05:45', '2022-06-20 20:05:45'),
+(72, 19, '1655766345_77MvdExplu4SUo09.png', '2022-06-20 20:05:46', '2022-06-20 20:05:46'),
+(73, 19, '1655766346_590V1oIUyou70HDj.png', '2022-06-20 20:05:46', '2022-06-20 20:05:46'),
+(74, 20, '1655766847_MnOxYwNAsf0ayZDR.png', '2022-06-20 20:14:07', '2022-06-20 20:14:07'),
+(75, 20, '1655766847_KKpTTj0M5c3g2Tt2.jpeg', '2022-06-20 20:14:07', '2022-06-20 20:14:07'),
+(76, 20, '1655766847_82lxJxfFb5hGVpyt.jpg', '2022-06-20 20:14:07', '2022-06-20 20:14:07');
 
 -- --------------------------------------------------------
 
@@ -748,10 +854,10 @@ INSERT INTO `subcategories` (`id`, `category_id`, `name`, `banner`, `icon`, `sta
 (6, 3, 'Men Watches', NULL, '1655025417_tAXky6LHnw41djrU.png', 'Active', 'men-watches', 'men watches', 'men watches category', '2022-06-12 06:16:57', '2022-06-12 06:16:57'),
 (7, 3, 'Men Shoes', NULL, '1655025456_gkreRGGow6jNSnBo.png', 'Active', 'men-shoes', 'men shoes', 'men shoes category', '2022-06-12 06:17:36', '2022-06-12 06:17:36'),
 (8, 3, 'Men Accessories', NULL, '1655029222_Uc2V5G8AFEObW6Ve.png', 'Active', 'men-accessories', 'men accessories', 'men accessories category', '2022-06-12 07:20:23', '2022-06-12 07:20:23'),
-(9, 4, 'Jewelry', NULL, '1655062636_H3S3obyFY9gDPMU7.png', 'Active', 'jewelry', 'jewelry', 'jewelry category', '2022-06-12 16:37:16', '2022-06-12 16:37:16'),
-(10, 4, 'Beauty', NULL, '1655062988_sUHM8OisF45ZOQrN.png', 'Active', 'beauty', 'beauty', 'beauty category.', '2022-06-12 16:43:08', '2022-06-12 16:43:08'),
+(10, 4, 'Skin & body care', NULL, '1655062988_sUHM8OisF45ZOQrN.png', 'Active', 'skin-&-body-care', 'beauty', 'beauty category.', '2022-06-12 16:43:08', '2022-06-20 19:47:53'),
 (11, 4, 'Eyewear', NULL, '1655063657_wBrf8iWE5U25nfep.png', 'Active', 'eyewear', 'eyewear', 'eyewear category', '2022-06-12 16:54:17', '2022-06-12 16:54:17'),
-(12, 4, 'Bags', NULL, '1655063924_al0QMxriJhxl343p.png', 'Active', 'bags', 'bags', 'bags category', '2022-06-12 16:58:44', '2022-06-12 16:58:44');
+(12, 4, 'Bags', NULL, '1655063924_al0QMxriJhxl343p.png', 'Active', 'bags', 'bags', 'bags category', '2022-06-12 16:58:44', '2022-06-12 16:58:44'),
+(13, 4, 'Parfumes & Fragment', NULL, '1655761537_P7x6NTh5L700zeD3.png', 'Active', 'parfumes-&-fragment', 'Parfumes & Fragment', 'Parfumes & Fragment', '2022-06-20 18:45:37', '2022-06-20 18:45:37');
 
 -- --------------------------------------------------------
 
@@ -809,21 +915,32 @@ INSERT INTO `subscription_options` (`id`, `subscription_id`, `option`, `created_
 (11, 3, 'Marketing', '2022-06-12 05:59:26', '2022-06-12 05:59:26'),
 (12, 3, 'Storage', '2022-06-12 05:59:26', '2022-06-12 05:59:26'),
 (13, 3, 'Packaging', '2022-06-12 05:59:26', '2022-06-12 05:59:26'),
-(14, 3, 'Shipping', '2022-06-12 05:59:26', '2022-06-12 05:59:26'),
-(40, 1, 'Marketing', '2022-05-17 04:24:06', '2022-05-17 04:24:06'),
-(41, 1, 'Storage', '2022-05-17 04:24:06', '2022-05-17 04:24:06'),
-(42, 1, 'Packaging', '2022-05-17 04:24:06', '2022-05-17 04:24:06'),
-(43, 1, 'Shipping', '2022-05-17 04:24:06', '2022-05-17 04:24:06'),
-(44, 2, '1 Months free', '2022-05-17 04:24:06', '2022-05-17 04:24:06'),
-(45, 2, 'Marketing', '2022-05-17 04:24:06', '2022-05-17 04:24:06'),
-(46, 2, 'Storage', '2022-05-17 04:24:06', '2022-05-17 04:24:06'),
-(47, 2, 'Packaging', '2022-05-17 04:24:06', '2022-05-17 04:24:06'),
-(48, 2, 'Shipping', '2022-05-17 04:24:06', '2022-05-17 04:24:06'),
-(49, 3, '3 Months Free', '2022-05-17 04:24:06', '2022-05-17 04:24:06'),
-(50, 3, 'Marketing', '2022-05-17 04:24:06', '2022-05-17 04:24:06'),
-(51, 3, 'Storage', '2022-05-17 04:24:06', '2022-05-17 04:24:06'),
-(52, 3, 'Packaging', '2022-05-17 04:24:06', '2022-05-17 04:24:06'),
-(53, 3, 'Shipping', '2022-05-17 04:24:06', '2022-05-17 04:24:06');
+(14, 3, 'Shipping', '2022-06-12 05:59:26', '2022-06-12 05:59:26');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transactions`
+--
+
+CREATE TABLE `transactions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `order_id` bigint(20) UNSIGNED NOT NULL,
+  `amount` double NOT NULL DEFAULT '0',
+  `status` enum('Pending','Complete','Failed') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Pending',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `transactions`
+--
+
+INSERT INTO `transactions` (`id`, `user_id`, `order_id`, `amount`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 1140, 'Pending', '2022-06-29 10:50:13', '2022-06-29 10:50:13'),
+(2, 1, 2, 1140, 'Pending', '2022-06-30 00:25:25', '2022-06-30 00:25:25'),
+(3, 1, 3, 1140, 'Pending', '2022-06-30 00:26:59', '2022-06-30 00:26:59');
 
 -- --------------------------------------------------------
 
@@ -860,6 +977,31 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `av
 (4, 'Mr. Customer', 'customer@customer.com', '2022-06-12 05:59:25', '$2y$10$jkDvRvfpuyCuQowNNm1qGuuns/b4m06ZNw0T7sYIQAx4m2ASuSwCq', NULL, 'Customer', NULL, NULL, '0.00', '0.00', NULL, NULL, '2022-06-12 05:59:25', '2022-06-12 05:59:25'),
 (5, 'Mr. Customer 2', 'customer2@customer.com', '2022-06-12 05:59:25', '$2y$10$0h6Fc4P28sQy8K.XCgIhg.HPoEfL37xW5YOpHXvVqmsEJk3fioDo6', NULL, 'Customer', NULL, NULL, '0.00', '0.00', NULL, NULL, '2022-06-12 05:59:25', '2022-06-12 05:59:25'),
 (6, 'Mr. Customer 3', 'customer3@customer.com', '2022-06-12 05:59:25', '$2y$10$fTYZ6OH0T5AL/wPhdtLu.etviLDFWV4W9pSLMd6wBdw0utp8YovLW', NULL, 'Customer', NULL, NULL, '0.00', '0.00', NULL, NULL, '2022-06-12 05:59:25', '2022-06-12 05:59:25');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_details`
+--
+
+CREATE TABLE `user_details` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `state_id` bigint(20) UNSIGNED NOT NULL,
+  `city_id` bigint(20) UNSIGNED NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `postal_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `user_details`
+--
+
+INSERT INTO `user_details` (`id`, `user_id`, `state_id`, `city_id`, `phone`, `postal_code`, `address`, `created_at`, `updated_at`) VALUES
+(1, 1, 2861, 102817, '+1 (994) 802-8265', '11114', 'Reprehenderit praese', '2022-06-29 10:50:13', '2022-06-30 00:26:59');
 
 --
 -- Indexes for dumped tables
@@ -920,6 +1062,18 @@ ALTER TABLE `general_settings`
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `order_details`
+--
+ALTER TABLE `order_details`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1015,11 +1169,23 @@ ALTER TABLE `subscription_options`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `transactions`
+--
+ALTER TABLE `transactions`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- Indexes for table `user_details`
+--
+ALTER TABLE `user_details`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -1035,7 +1201,7 @@ ALTER TABLE `attributes`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1059,7 +1225,7 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT for table `coupons`
 --
 ALTER TABLE `coupons`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1077,7 +1243,19 @@ ALTER TABLE `general_settings`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `order_details`
+--
+ALTER TABLE `order_details`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `payment_invoices`
@@ -1095,13 +1273,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `sellers`
@@ -1137,7 +1315,7 @@ ALTER TABLE `states`
 -- AUTO_INCREMENT for table `subcategories`
 --
 ALTER TABLE `subcategories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `subscriptions`
@@ -1149,13 +1327,25 @@ ALTER TABLE `subscriptions`
 -- AUTO_INCREMENT for table `subscription_options`
 --
 ALTER TABLE `subscription_options`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `transactions`
+--
+ALTER TABLE `transactions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `user_details`
+--
+ALTER TABLE `user_details`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables

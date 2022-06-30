@@ -14,20 +14,21 @@
   <div id="main-wrapper">
     <div class="row">
       <div class="col-md-12">
-
         <div class="row mailbox-header">
           <div class="col-md-9">
             <h4 class="panel-title">Order List</h4>
           </div>
 
           <div class="col-md-3">
-            <form action="{{ url(routePrefix() . '/product') }}" method="get">
-              @csrf
+            <form action="{{ url(routePrefix() . '/orders') }}" method="get">
               <div class="input-group">
                 <input class="form-control input-search" type="search" name="keyword"
                   value="{{ isset($keyword) ? $keyword : ''  }}" placeholder="Search from here...">
                 <span class="input-group-btn">
                   <button class="btn btn-info" type="submit"><i class="fa fa-search"></i></button>
+                </span>
+                <span class="input-group-btn">
+                  <a href="{{ url( routePrefix() .'/orders') }}" class="btn btn-warning">Clear</a>
                 </span>
               </div>
             </form>
@@ -75,6 +76,8 @@
                   @endforeach
                 </tbody>
               </table>
+
+              {{ $orders->links() }}
             </div>
           </div>
         </div>
