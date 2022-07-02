@@ -14,6 +14,69 @@ active
   </div>
   <div id="main-wrapper">
     <div class="row">
+      <div class="col-lg-3 col-md-6">
+        <div class="panel-green dashboar-card">
+          <div>
+            <p>Total Revenue</p>
+            <h2><span data-plugin=" counterup">65841</span>
+            </h2>
+            <p>Jan - Apr 2017</p>
+          </div>
+          <div>
+            <i class="fa fa-money" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div><!-- end col -->
+
+      <div class="col-lg-3 col-md-6">
+        <div class="panel-blue dashboar-card">
+          <div>
+            <p>Total Customer</p>
+            <h2><span data-plugin=" counterup">65841</span>
+            </h2>
+            <p>Jan - Apr 2017</p>
+          </div>
+          <div>
+            <i class="fa fa-user"></i>
+          </div>
+        </div>
+      </div><!-- end col -->
+
+      <div class="col-lg-3 col-md-6">
+        <div class="panel-yellow dashboar-card">
+          <div>
+            <p>Total Products</p>
+            <h2><span data-plugin=" counterup">65841</span>
+            </h2>
+            <p>Jan - Apr 2017</p>
+          </div>
+          <div>
+            <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+
+          </div>
+        </div>
+      </div><!-- end col -->
+
+      <div class="col-lg-3 col-md-6">
+        <div class="panel-red dashboar-card">
+          <div>
+            <p>Total Shop</p>
+            <h2><span data-plugin=" counterup">65841</span>
+            </h2>
+            <p>Jan - Apr 2017</p>
+          </div>
+          <div>
+            <i class="fa fa-user"></i>
+          </div>
+        </div>
+      </div><!-- end col -->
+
+
+    </div>
+    <!-- end row -->
+    <hr>
+
+    <div class="row">
       <div class="col-md-6">
         <div class="panel panel-white">
           <div class="panel-heading clearfix">
@@ -87,6 +150,7 @@ active
         </div>
       </div>
     </div>
+
     <div class="row">
       <div class="col-md-6">
         <div class="panel panel-white">

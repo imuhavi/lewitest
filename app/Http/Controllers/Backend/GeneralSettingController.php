@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
@@ -13,11 +14,11 @@ class GeneralSettingController extends Controller
   public function settings()
   {
     try {
-      $socialArr = [];  
+      $socialArr = [];
       $data = GeneralSetting::first();
       $social = SocialConfig::all();
       foreach ($social as $item) {
-          $socialArr[$item->type] = $item;
+        $socialArr[$item->type] = $item;
       }
       return view($this->VIEW_PATH . 'index', compact('data', 'socialArr'));
     } catch (\Throwable $th) {
@@ -30,26 +31,26 @@ class GeneralSettingController extends Controller
     $request->validate([
       'app_name' => 'required|min:2|max:40'
     ]);
-    
+
     try {
       $data = GeneralSetting::first();
 
-      if($data->app_name !== $request->app_name){
+      if ($data->app_name !== $request->app_name) {
         $data->app_name = $request->app_name;
       }
-      if(env('app_name') !== $data->app_name){
+      if (env('app_name') !== $data->app_name) {
         set_env('app_name', str_replace(' ', '-', $request->app_name));
       }
-      
-      if($request->file('app_logo_white')) {
-        if(hasFile($data->app_logo_white)){
+
+      if ($request->file('app_logo_white')) {
+        if (hasFile($data->app_logo_white)) {
           removeImage($data->app_logo_white);
         }
         uploadImage($request->file('app_logo_white'));
         $data->app_logo_white = session('fileName');
       }
-      if($request->file('app_logo_black')) {
-        if(hasFile($data->app_logo_black)){
+      if ($request->file('app_logo_black')) {
+        if (hasFile($data->app_logo_black)) {
           removeImage($data->app_logo_black);
         }
         uploadImage($request->file('app_logo_black'));
@@ -58,6 +59,9 @@ class GeneralSettingController extends Controller
 
       $data->app_email = $request->app_email ?? $data->app_email;
       $data->app_phone = $request->app_phone ?? $data->app_phone;
+      $data->shipping_cost = $request->shipping_cost ?? $data->shipping_cost;
+      $data->shipping_days = $request->shipping_days ?? $data->shipping_days;
+      $data->tax = $request->tax ?? $data->tax;
       $data->app_address = $request->app_address ?? $data->app_address;
       $data->app_copyright_text = $request->app_copyright_text ?? $data->app_copyright_text;
       $data->save();
@@ -100,43 +104,43 @@ class GeneralSettingController extends Controller
       'mail_from_name' => 'required'
     ]);
     try {
-        $data = GeneralSetting::first();
+      $data = GeneralSetting::first();
 
-        if(env('mail_mailer') !== $request->mail_type){
-            set_env('mail_mailer', strtoupper($request->mail_type));
-            $data->mail_type = strtoupper($request->mail_type);
-        }
-        if(env('mail_host') !== $request->mail_host){
-            set_env('mail_host', strtolower($request->mail_host));
-            $data->mail_host = strtolower($request->mail_host);
-        }
-        if(env('mail_port') !== $request->mail_port){
-            set_env('mail_port', $request->mail_port);
-            $data->mail_port = $request->mail_port;
-        }
-        if(env('mail_username') !== $request->mail_username){
-            set_env('mail_username', $request->mail_username);
-            $data->mail_username = $request->mail_username;
-        }
-        if(env('mail_password') !== $request->mail_password){
-            set_env('mail_password', $request->mail_password);
-            $data->mail_password = $request->mail_password;
-        }
-        if(env('mail_encryption') !== $request->mail_encryption){
-            set_env('mail_encryption', strtolower($request->mail_encryption));
-            $data->mail_encryption = strtolower($request->mail_encryption);
-        }
-        if(env('mail_from_address') !== $request->mail_address){
-            set_env('mail_from_address', strtolower($request->mail_address));
-            $data->mail_address = strtolower($request->mail_address);
-        }
-        if(env('mail_from_name') !== $request->mail_from_name){
-            set_env('mail_from_name', strtolower($request->mail_from_name));
-            $data->mail_from_name = strtolower($request->mail_from_name);
-        }
-        $data->save();
-          
-          return redirect()->back()->with('success', 'mail config updated successfully !');
+      if (env('mail_mailer') !== $request->mail_type) {
+        set_env('mail_mailer', strtoupper($request->mail_type));
+        $data->mail_type = strtoupper($request->mail_type);
+      }
+      if (env('mail_host') !== $request->mail_host) {
+        set_env('mail_host', strtolower($request->mail_host));
+        $data->mail_host = strtolower($request->mail_host);
+      }
+      if (env('mail_port') !== $request->mail_port) {
+        set_env('mail_port', $request->mail_port);
+        $data->mail_port = $request->mail_port;
+      }
+      if (env('mail_username') !== $request->mail_username) {
+        set_env('mail_username', $request->mail_username);
+        $data->mail_username = $request->mail_username;
+      }
+      if (env('mail_password') !== $request->mail_password) {
+        set_env('mail_password', $request->mail_password);
+        $data->mail_password = $request->mail_password;
+      }
+      if (env('mail_encryption') !== $request->mail_encryption) {
+        set_env('mail_encryption', strtolower($request->mail_encryption));
+        $data->mail_encryption = strtolower($request->mail_encryption);
+      }
+      if (env('mail_from_address') !== $request->mail_address) {
+        set_env('mail_from_address', strtolower($request->mail_address));
+        $data->mail_address = strtolower($request->mail_address);
+      }
+      if (env('mail_from_name') !== $request->mail_from_name) {
+        set_env('mail_from_name', strtolower($request->mail_from_name));
+        $data->mail_from_name = strtolower($request->mail_from_name);
+      }
+      $data->save();
+
+      return redirect()->back()->with('success', 'mail config updated successfully !');
     } catch (\Throwable $th) {
       return redirect()->back()->with('error', $th->getMessage());
     }

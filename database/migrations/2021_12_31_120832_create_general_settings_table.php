@@ -20,7 +20,7 @@ class CreateGeneralSettingsTable extends Migration
       $table->string('app_logo_black')->nullable();
       $table->decimal('shipping_cost')->default(30);
       $table->string('shipping_days')->default(7);
-      $table->integer('tax')->nullable();
+      $table->integer('tax')->default(15);
       $table->string('app_phone')->nullable();
       $table->string('app_email')->nullable();
       $table->string('app_address')->nullable();

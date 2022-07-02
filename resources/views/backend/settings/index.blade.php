@@ -133,14 +133,13 @@
                     enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
-
                       <div class="row">
                         <div class="col-sm-3">
                           <p class="mb-0">Website Name</p>
                         </div>
                         <div class="col-sm-9">
                           <input type="text" name="app_name" id="website_title" class="form-control"
-                            value="{{ $data->app_name }}">
+                            value="{{ $data->app_name ?? '' }}">
                           @error('app_name')
                           <small class="text-danger">{{ $message }}</small>
                           @enderror
@@ -156,7 +155,7 @@
                             name="app_logo_white" id="app_logo_white" class="form-control">
                         </div>
                         <div class="col-sm-4" style="margin-top: 10px">
-                          @if($data->app_logo_white)
+                          @if($data->app_logo_white ?? '')
                           <img class="img avatar" id="whiteLogo"
                             src="{{ asset('backend/uploads/' . $data->app_logo_white) }}" alt="" width="80px"
                             height="80px">
@@ -177,7 +176,7 @@
                             name="app_logo_black" id="app_logo_black" class="form-control">
                         </div>
                         <div class="col-sm-4" style="margin-top: 10px">
-                          @if($data->app_logo_black)
+                          @if($data->app_logo_black ?? '')
                           <img class="img avatar" id="blackLogo"
                             src="{{ asset('backend/uploads/' . $data->app_logo_black) }}" alt="" width="80px"
                             height="80px">
@@ -195,7 +194,7 @@
                         </div>
                         <div class="col-sm-9">
                           <input type="email" id="email" class="form-control" name="app_email"
-                            value="{{ $data->app_email }}">
+                            value="{{ $data->app_email ?? '' }}">
                         </div>
                       </div>
 
@@ -205,7 +204,7 @@
                           <p class="mb-0">Web Mobile Number</p>
                         </div>
                         <div class="col-sm-9">
-                          <input type="tel" name="app_phone" class="form-control" value="{{ $data->app_phone }}"
+                          <input type="tel" name="app_phone" class="form-control" value="{{ $data->app_phone ?? '' }}"
                             id="phone">
                         </div>
                       </div>
@@ -216,8 +215,41 @@
                         </div>
                         <div class="col-sm-9">
                           <textarea name="app_address" id="address"
-                            class="form-control">{{ $data->app_address }}</textarea>
+                            class="form-control">{{ $data->app_address ?? '' }}</textarea>
                         </div>
+                      </div>
+
+                      <hr>
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <p class="mb-0">Shipping Cost</p>
+                        </div>
+                        <div class="col-sm-9">
+                          <input type="tel" name="shipping_cost" class="form-control"
+                            value="{{ $data->shipping_cost ?? '' }}" id="phone">
+                        </div>
+                      </div>
+
+                      <hr>
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <p class="mb-0">Shipping Days</p>
+                        </div>
+                        <div class="col-sm-9">
+                          <input type="tel" name="shipping_days" class="form-control"
+                            value="{{ $data->shipping_days ?? '' }}" id="shipping_days">
+                        </div>
+                      </div>
+
+                      <hr>
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <p class="mb-0">Tax</p>
+                        </div>
+                        <div class="col-sm-9">
+                          <input type="tel" name="tax" class="form-control" value="{{ $data->tax ?? '' }}" id="tax">
+                        </div>
+
                       </div>
                       <hr>
                       <div class="row">
@@ -226,9 +258,10 @@
                         </div>
                         <div class="col-sm-9">
                           <textarea name="app_copyright_text" id="address"
-                            class="form-control">{{ $data->app_copyright_text }}</textarea>
+                            class="form-control">{{ $data->app_copyright_text ?? '' }}</textarea>
                         </div>
                       </div>
+
                       <div class="row" style="margin-top: 20px">
                         <div class="col-sm-12 text-right ">
                           <button class="btn btn-info" type="submit">Update</button>
@@ -253,7 +286,7 @@
                         </div>
                         <div class="col-sm-9">
                           <input type="text" name="seo_title" id="seo_title" class="form-control"
-                            value="{{ $data->seo_title }}">
+                            value="{{ $data->seo_title ?? '' }}">
                           @error('seo_title')
                           <small class="text-danger">{{ $message }}</small>
                           @enderror
@@ -266,7 +299,7 @@
                         </div>
                         <div class="col-sm-9">
                           <textarea name="seo_description" id="seo_description"
-                            class="form-control">{{ $data->seo_description }}</textarea>
+                            class="form-control">{{ $data->seo_description ?? '' }}</textarea>
                           @error('seo_description')
                           <small class="text-danger">{{ $message }}</small>
                           @enderror
@@ -279,7 +312,7 @@
                         </div>
                         <div class="col-sm-9">
                           <textarea name="seo_keywords" id="seo_keywords"
-                            class="form-control">{{ $data->seo_keywords }}</textarea>
+                            class="form-control">{{ $data->seo_keywords ?? '' }}</textarea>
                           @error('seo_keywords')
                           <small class="text-danger">{{ $message }}</small>
                           @enderror
@@ -312,8 +345,8 @@
                         <div class="col-sm-5">
                           <select name="mail_type" id="" class="form-control">
                             <option value="" selected disabled>Select Type</option>
-                            <option value="SMTP" @if($data->mail_type == 'SMTP') selected @endif>SMTP</option>
-                            <option value="GMAIL" @if($data->mail_type == 'GMAIL') selected @endif>GMAIL</option>
+                            <option value="SMTP" @if($data->mail_type ?? '' == 'SMTP') selected @endif>SMTP</option>
+                            <option value="GMAIL" @if($data->mail_type ?? '' == 'GMAIL') selected @endif>GMAIL</option>
                           </select>
                         </div>
                       </div>
@@ -324,7 +357,7 @@
                           <p class="mb-0">Mail Host</p>
                         </div>
                         <div class="col-sm-5">
-                          <input type="text" name="mail_host" value="{{ $data->mail_host }}" class="form-control"
+                          <input type="text" name="mail_host" value="{{ $data->mail_host ?? '' }}" class="form-control"
                             id="mail_host">
                         </div>
                       </div>
@@ -335,8 +368,8 @@
                           <p class="mb-0">Mail Port</p>
                         </div>
                         <div class="col-sm-5">
-                          <input type="number" value="{{ $data->mail_port }}" name="mail_port" class="form-control"
-                            id="mail_port">
+                          <input type="number" value="{{ $data->mail_port ?? '' }}" name="mail_port"
+                            class="form-control" id="mail_port">
                         </div>
                       </div>
 
@@ -346,7 +379,7 @@
                           <p class="mb-0">Mail Username</p>
                         </div>
                         <div class="col-sm-5">
-                          <input type="text" name="mail_username" value="{{ $data->mail_username }}"
+                          <input type="text" name="mail_username" value="{{ $data->mail_username ?? '' }}"
                             class="form-control" id="mail_username">
                         </div>
                       </div>
@@ -357,7 +390,7 @@
                           <p class="mb-0">Mail Password</p>
                         </div>
                         <div class="col-sm-5">
-                          <input type="text" name="mail_password" value="{{ $data->mail_password }}"
+                          <input type="text" name="mail_password" value="{{ $data->mail_password ?? '' }}"
                             class="form-control" id="mail_password">
                         </div>
                       </div>
@@ -368,7 +401,7 @@
                           <p class="mb-0">Mail Encryption</p>
                         </div>
                         <div class="col-sm-5">
-                          <input type="text" name="mail_encryption" value="{{ $data->mail_encryption }}"
+                          <input type="text" name="mail_encryption" value="{{ $data->mail_encryption ?? '' }}"
                             class="form-control" id="mail_encryption">
                         </div>
                       </div>
@@ -379,8 +412,8 @@
                           <p class="mb-0">Mail Address</p>
                         </div>
                         <div class="col-sm-5">
-                          <input type="email" name="mail_address" value="{{ $data->mail_address }}" class="form-control"
-                            id="mail_address">
+                          <input type="email" name="mail_address" value="{{ $data->mail_address ?? '' }}"
+                            class="form-control" id="mail_address">
                         </div>
                       </div>
 
@@ -390,7 +423,7 @@
                           <p class="mb-0">Mail From Name</p>
                         </div>
                         <div class="col-sm-5">
-                          <input type="text" name="mail_from_name" value="{{ $data->mail_from_name }}"
+                          <input type="text" name="mail_from_name" value="{{ $data->mail_from_name ?? '' }}"
                             class="form-control" id="mail_from_name">
                         </div>
                       </div>
@@ -418,8 +451,8 @@
                           <p class="mb-0">App Id</p>
                         </div>
                         <div class="col-sm-5">
-                          <input type="text" name="app_id" value="{{ $socialArr['Facebook']->app_id }}" id="app_id"
-                            class="form-control">
+                          <input type="text" name="app_id" value="{{ $socialArr['Facebook']->app_id ?? '' }}"
+                            id="app_id" class="form-control">
                         </div>
                       </div>
                       <hr>
@@ -428,7 +461,7 @@
                           <p class="mb-0">App Secret</p>
                         </div>
                         <div class="col-sm-5">
-                          <input type="text" name="app_secret" value="{{ $socialArr['Facebook']->app_secret }}"
+                          <input type="text" name="app_secret" value="{{ $socialArr['Facebook']->app_secret ?? '' }}"
                             class="form-control" id="app_secret">
                         </div>
                       </div>
@@ -456,7 +489,7 @@
                           <p class="mb-0">App Id</p>
                         </div>
                         <div class="col-sm-5">
-                          <input type="text" name="app_id" value="{{ $socialArr['Google']->app_id }}" id="app_id"
+                          <input type="text" name="app_id" value="{{ $socialArr['Google']->app_id ?? '' }}" id="app_id"
                             class="form-control">
                         </div>
                       </div>
@@ -466,7 +499,7 @@
                           <p class="mb-0">App Secret</p>
                         </div>
                         <div class="col-sm-5">
-                          <input type="text" name="app_secret" value="{{ $socialArr['Google']->app_secret }}"
+                          <input type="text" name="app_secret" value="{{ $socialArr['Google']->app_secret ?? '' }}"
                             class="form-control" id="app_secret">
                         </div>
                       </div>
@@ -494,7 +527,7 @@
                           <p class="mb-0">App Id</p>
                         </div>
                         <div class="col-sm-5">
-                          <input type="text" name="app_id" value="{{ $socialArr['Twitter']->app_id }}" id="app_id"
+                          <input type="text" name="app_id" value="{{ $socialArr['Twitter']->app_id ?? '' }}" id="app_id"
                             class="form-control">
                         </div>
                       </div>
@@ -504,7 +537,7 @@
                           <p class="mb-0">App Secret</p>
                         </div>
                         <div class="col-sm-5">
-                          <input type="text" name="app_secret" value="{{ $socialArr['Twitter']->app_secret }}"
+                          <input type="text" name="app_secret" value="{{ $socialArr['Twitter']->app_secret ?? '' }}"
                             class="form-control" id="app_secret">
                         </div>
                       </div>
