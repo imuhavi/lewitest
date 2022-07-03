@@ -1,6 +1,7 @@
 @extends('backend.master')
 @section('order_active') active @endsection
 @section('content')
+
 <div class="page-inner">
   <div class="page-title">
     <div class="page-breadcrumb">
@@ -13,6 +14,7 @@
   </div>
   <div id="main-wrapper">
     <div class="row">
+      @if($page == 'index')
       <div class="col-md-12">
         <div class="row mailbox-header">
           <div class="col-md-9">
@@ -63,21 +65,21 @@
                     </td>
                     <td>
                       @if($item->status == 'Complete')
-                          @php
-                            $status = 'success';
-                          @endphp
+                      @php
+                      $status = 'success';
+                      @endphp
                       @elseif($item->status == 'Cancel')
-                          @php
-                            $status = 'danger';
-                          @endphp
+                      @php
+                      $status = 'danger';
+                      @endphp
                       @elseif($item->status == 'Accept')
-                          @php
-                            $status = 'info';
-                          @endphp
+                      @php
+                      $status = 'info';
+                      @endphp
                       @elseif($item->status == 'Pending')
-                          @php
-                            $status = 'warning';
-                          @endphp
+                      @php
+                      $status = 'warning';
+                      @endphp
                       @endif
                       <span class="badge badge-pill badge-{{$status}}">
                         {{ $item->status }}
@@ -88,20 +90,23 @@
                     </td>
                     <td>{{ $item->created_at->format('d-M-Y') }}</td>
                     <td>
-                      <a class="btn btn-info" href="{{ url(routePrefix(). '/product/' . $item->id) }}"><i
+                      <a class="btn btn-info" href="{{ url(routePrefix(). '/order/' . $item->id) }}"><i
                           class="fa fa-eye"></i></a>
-                      
+
                       @if($item->status == 'Pending')
-                        <a class="btn btn-success" href="{{ url(routePrefix(). '/order/' . $item->id . '/update/accept') }}">
-                          <i class="fa fa-check"></i>
-                        </a>
-                        <a class="btn btn-warning" href="{{ url(routePrefix(). '/order/' . $item->id . '/update/cancel') }}">
-                          <i class="fa fa-times"></i>
-                        </a>
+                      <a class="btn btn-success"
+                        href="{{ url(routePrefix(). '/order/' . $item->id . '/update/accept') }}">
+                        <i class="fa fa-check"></i>
+                      </a>
+                      <a class="btn btn-warning"
+                        href="{{ url(routePrefix(). '/order/' . $item->id . '/update/cancel') }}">
+                        <i class="fa fa-times"></i>
+                      </a>
                       @elseif($item->status == 'Accept')
-                        <a class="btn btn-success" href="{{ url(routePrefix(). '/order/' . $item->id . '/update/complete') }}">
-                          <i class="fa fa-check"></i>
-                        </a>
+                      <a class="btn btn-success"
+                        href="{{ url(routePrefix(). '/order/' . $item->id . '/update/complete') }}">
+                        <i class="fa fa-check"></i>
+                      </a>
                       @endif
                     </td>
                   </tr>
@@ -114,10 +119,143 @@
           </div>
         </div>
       </div>
-    </div><!-- Row -->
+    </div>
+
+    @elseif($page == 'show')
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-info">
+
+          <div class="panel-heading clearfix">
+            <div class="text-left float-left">
+              <h3 class="panel-title">Order</h3>
+            </div>
+            <div class="text-right">
+              <a href="{{ url( routePrefix() .'/orders') }}" class="btn btn-info btn-sm">Go back</a>
+            </div>
+          </div>
+
+          <div class="panel-body">
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <th class="45%" width="45%">Invoice No:</th>
+                  <td width="10%">:</td>
+                  <td class="45%" width="45%">#{{ $singgleOrder->id }}</td>
+                </tr>
+
+                <tr>
+                  <th class="45%" width="45%">Date:</th>
+                  <td width="10%">:</td>
+                  <td class="45%" width="45%">{{ date('d F, Y', strtotime($singgleOrder->created_at))}}</td>
+                </tr>
+
+                <tr>
+                  <th class="45%" width="45%">Customer Name</th>
+                  <td width="10%">:</td>
+                  <td class="45%" width="45%">{{ $singgleOrder->user ? $singgleOrder->user->name : 'N/A' }}</td>
+                </tr>
+
+                <tr>
+                  <th class="45%" width="45%">Customer Email</th>
+                  <td width="10%">:</td>
+                  <td class="45%" width="45%">{{ $singgleOrder->user ? $singgleOrder->user->email : 'N/A' }}</td>
+                </tr>
+
+                <tr>
+                  <th class="45%" width="45%">Shipping Address</th>
+                  <td width="10%">:</td>
+                  <td class="45%" width="45%">
+                    @if($singgleOrder->user && $singgleOrder->user->userDetail)
+                    <p>{{ $singgleOrder->city($singgleOrder->user->userDetail->city_id) }}, {{
+                      $singgleOrder->state($singgleOrder->user->userDetail->state_id) }}, {{
+                      $singgleOrder->user->userDetail->address }}, {{ $singgleOrder->user->userDetail->postal_code }}
+                    </p>
+                    @else
+                    N/A
+                    @endif
+                  </td>
+                </tr>
+
+                <tr>
+                  <th class="45%" width="45%">Product Name</th>
+                  <td width="10%">:</td>
+                  <td class="45%" width="45%">{{ $singgleOrder->order_details[0]->product->name }}</td>
+                </tr>
+
+                @if(!empty($singgleOrder->order_details[0]->size))
+                <tr>
+                  <th class="45%" width="45%">Product Size</th>
+                  <td width="10%">:</td>
+                  <td class="45%" width="45%">{{ $singgleOrder->order_details[0]->size }}</td>
+                </tr>
+                @endif
+
+                @if(!empty($singgleOrder->order_details[0]->color))
+                <tr>
+                  <th class="45%" width="45%">Product Color</th>
+                  <td width="10%">:</td>
+                  <td class="45%" width="45%">{{ $singgleOrder->order_details[0]->color }}</td>
+                </tr>
+                @endif
+
+                <tr>
+                  <th class="45%" width="45%">Unit Price</th>
+                  <td width="10%">:</td>
+                  <td class="45%" width="45%">{{ number_format($singgleOrder->order_details[0]->unit_price, 2) }}</td>
+                </tr>
+
+                <tr>
+                  <th class="45%" width="45%">Product Quantity</th>
+                  <td width="10%">:</td>
+                  <td class="45%" width="45%">{{ $singgleOrder->order_details[0]->quantity }}</td>
+                </tr>
+
+                <tr>
+                  <th class="45%" width="45%">Shipping Cost</th>
+                  <td width="10%">:</td>
+                  <td class="45%" width="45%">SAR {{ number_format($singgleOrder->shipping_cost, 2) }}</td>
+                </tr>
+
+                <tr>
+                  <th class="45%" width="45%">Tax</th>
+                  <td width="10%">:</td>
+                  <td class="45%" width="45%">SAR {{ number_format($singgleOrder->tax, 2) }}
+                  </td>
+                </tr>
+
+                @php
+                $discount = $order->coupon_discount_amount ?? 0
+                @endphp
+
+                @if($discount != 0)
+                <tr>
+                  <th class="45%" width="45%">Discount Amount</th>
+                  <td width="10%">:</td>
+                  <td class="45%" width="45%">SAR {{ $singgleOrder->order_details[0]->quantity }}</td>
+                </tr>
+                @endif
+
+                <tr>
+                  <th class="45%" width="45%">Total Amount</th>
+                  <td width="10%">:</td>
+                  <td class="45%" width="45%">SAR {{ number_format(($singgleOrder->amount + $singgleOrder->shipping_cost
+                    +
+                    $singgleOrder->tax) - $discount, 2) }}</td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    @endif
+
+
   </div><!-- Main Wrapper -->
   <div class="page-footer">
-    <p class="no-s">Made with <i class="fa fa-heart"></i> by stacks</p>
+    <p class="no-s">Made with <i class="fa fa-heart"></i> by 5dots</p>
   </div>
 </div><!-- Page Inner -->
 @endsection

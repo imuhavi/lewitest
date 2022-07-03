@@ -33,6 +33,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']
   Route::get('product/image/delete/{image}', [ProductController::class, 'destroyImage']);
   Route::get('product-draft', [ProductController::class, 'productDraft'])->name('productDraft');
   Route::get('orders', [DashboardController::class, 'orderList'])->name('orderList');
+  Route::get('order/{id}', [DashboardController::class, 'show'])->name('show');
 
   # Update status
   Route::get('order/{order}/update/{status}', [DashboardController::class, 'updateStatus']);

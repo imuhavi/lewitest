@@ -748,7 +748,7 @@
     </div><!-- Row -->
   </div><!-- Main Wrapper -->
   <div class="page-footer">
-    <p class="no-s">Made with <i class="fa fa-heart"></i> by stacks</p>
+    <p class="no-s">Made with <i class="fa fa-heart"></i> by 5dots</p>
   </div>
 </div><!-- Page Inner -->
 @endsection

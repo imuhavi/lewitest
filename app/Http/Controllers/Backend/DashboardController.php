@@ -21,19 +21,26 @@ class DashboardController extends Controller
   public function orderList(Request $request)
   {
     $sql = Order::orderBy('created_at', 'DESC');
-
+    $page = 'index';
     $keyword = '';
     if ($request->keyword) {
       $keyword = $request->keyword;
       $sql->whereHas('user', function ($q) use ($keyword) {
-            $q->where('name', 'like', '%' . $keyword . '%');
-          })
-          ->orWhere('id', $keyword)
-          ->orWhere('payment_method', 'like', '%' . $keyword . '%')
-          ->orWhere('status', 'like', '%' . $keyword . '%');
+        $q->where('name', 'like', '%' . $keyword . '%');
+      })
+        ->orWhere('id', $keyword)
+        ->orWhere('payment_method', 'like', '%' . $keyword . '%')
+        ->orWhere('status', 'like', '%' . $keyword . '%');
     }
-    $orders = $sql->paginate(2);
-    return view($this->VIEW_PATH . 'orders.index', compact('orders', 'keyword'));
+    $orders = $sql->paginate(5);
+    return view($this->VIEW_PATH . 'orders.index', compact('orders', 'keyword', 'page'));
+  }
+
+  public function show(Order $order, $id)
+  {
+    $page = 'show';
+    $singgleOrder = $order->findOrFail($id);
+    return view($this->VIEW_PATH . 'orders.index', compact('singgleOrder', 'page'));
   }
 
   public function updateStatus(Order $order, $status)
