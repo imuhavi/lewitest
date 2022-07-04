@@ -229,6 +229,43 @@
                       value="{{ old('name') }}">
                   </div>
 
+                  <div class="col-12">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Your Email Address"
+                      value="{{ old('email') }}">
+                  </div>
+                  <div class="col-12">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="inputAddress" placeholder="Password" name="password"
+                      required autocomplete="new-password">
+                  </div>
+
+                  <div class="col-12">
+                    <label for="password" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="inputAddress" placeholder="Confirm Password"
+                      name="password_confirmation">
+                  </div>
+
+                  <div class="col-12">
+                    <button class="login-btn">Register</button>
+                  </div>
+
+                  <div class="col-12 text-center">
+                    <p class="login_or">Or</p>
+                  </div>
+
+                  <div class="col-12 login-with-google">
+                    <button class="google-login"><i class="fab fa-google"></i> Login With Google</button>
+                  </div>
+
+                  <div class="col-12 login-with-google">
+                    <button class="twitter-login"><i class="fab fa-twitter"></i> Login With Twitter</button>
+                  </div>
+
+                  <div class="col-12 login-with-google">
+                    <button class="apple-login"><i class="fab fa-apple"></i> Login With Apple</button>
+                  </div>
+
                   <div class="d-flex justify-content-center">
                     <p>Already have an account? <a href="#" class="fs-6 fw-bold" data-bs-toggle="modal"
                         data-bs-target="#signIn">Login</a></p>
