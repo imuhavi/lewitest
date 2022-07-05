@@ -7,8 +7,8 @@
 {{-- Main Content --}}
 @yield('content')
 
-
-</main><!-- Page Content -->
+</main>
+<!-- Page Content -->
 <nav class="cd-nav-container" id="cd-nav">
   <header>
     <h3>DEMOS</h3>
@@ -74,6 +74,7 @@
 <script src="{{ asset('backend/') }}/assets/js/meteor.min.js"></script>
 <script src="{{ asset('backend/') }}/assets/js/pages/dashboard.js"></script>
 <script src="{{ asset('backend/') }}/assets/js/pages/table-data.js"></script>
+<script src="{{ asset('backend/') }}/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 <script>
   var successNotification = "{{ session('success') }}"
   var infoNotification = "{{ session('info') }}"

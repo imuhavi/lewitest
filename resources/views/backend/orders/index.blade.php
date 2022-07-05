@@ -18,7 +18,27 @@
       <div class="col-md-12">
         <div class="row mailbox-header">
           <div class="col-md-9">
-            <h4 class="panel-title">Order List</h4>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="input-group" style="display: flex">
+                  <div>
+                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                      <span class="icon-cloud-download" style="font-size: 14px;"></span> Export <span
+                        class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#">Excel</a></li>
+                      <li><a href="#">CSV</a></li>
+                    </ul>
+                  </div>
+                  <input type="text" class="form-control date-picker" placeholder="From" style="margin: 0 10px">
+                  <input type="text" class="form-control date-picker" placeholder="To">
+                </div>
+              </div>
+              <div class="col-md-4">
+
+              </div>
+            </div>
           </div>
 
           <div class="col-md-3">
@@ -30,7 +50,8 @@
                   <button class="btn btn-info" type="submit"><i class="fa fa-search"></i></button>
                 </span>
                 <span class="input-group-btn">
-                  <a href="{{ url( routePrefix() .'/orders') }}" class="btn btn-warning">Clear</a>
+                  <a href="{{ url( routePrefix() .'/orders') }}" class="btn btn-warning"
+                    style="margin-left: 10px">Clear</a>
                 </span>
               </div>
             </form>
@@ -49,6 +70,7 @@
                     <th>Payment Method</th>
                     <th>Status</th>
                     <th>Customer</th>
+                    <th>Store</th>
                     <th>Date</th>
                     <th>Action</th>
                   </tr>
@@ -88,6 +110,11 @@
                     <td>
                       {{ $item->user->name }}
                     </td>
+
+                    <td>
+                      {{ $item->order_details[0]->seller->shop_name ?? '' }}
+                    </td>
+
                     <td>{{ $item->created_at->format('d-M-Y') }}</td>
                     <td>
                       <a class="btn btn-info" href="{{ url(routePrefix(). '/order/' . $item->id) }}"><i
@@ -128,7 +155,7 @@
 
           <div class="panel-heading clearfix">
             <div class="text-left float-left">
-              <h3 class="panel-title">Order</h3>
+              <h3 class="panel-title">Order Information</h3>
             </div>
             <div class="text-right">
               <a href="{{ url( routePrefix() .'/orders') }}" class="btn btn-info btn-sm">Go back</a>

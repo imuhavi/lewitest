@@ -28,8 +28,6 @@
     type="text/css" />
   <link href="{{ asset('backend/') }}/assets/plugins/slidepushmenus/css/component.css" rel="stylesheet"
     type="text/css" />
-  <link href="{{ asset('backend/') }}/assets/plugins/weather-icons-master/css/weather-icons.min.css" rel="stylesheet"
-    type="text/css" />
   <link href="{{ asset('backend/') }}/assets/plugins/datatables/css/jquery.datatables.min.css" rel="stylesheet"
     type="text/css" />
   <link href="{{ asset('backend/') }}/assets/plugins/datatables/css/jquery.datatables_themeroller.css" rel="stylesheet"
@@ -37,6 +35,9 @@
   <link href="{{ asset('backend/') }}/assets/plugins/toastr/toastr.min.css" rel="stylesheet" type="text/css" />
 
   <link href="{{ asset('backend/') }}/assets/plugins/summernote-master/summernote.css" rel="stylesheet"
+    type="text/css" />
+
+  <link href="{{ asset('backend/') }}/assets/plugins/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet"
     type="text/css" />
 
   <!-- Theme Styles -->
@@ -47,12 +48,6 @@
 
   <script src="{{ asset('backend/') }}/assets/plugins/3d-bold-navigation/js/modernizr.js"></script>
 
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
 
 </head>
 
