@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\Product;
+use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class DashboardController extends Controller
@@ -14,7 +17,13 @@ class DashboardController extends Controller
 
   public function dashboard()
   {
-    return view($this->VIEW_PATH . 'dashboard');
+    $customers = User::whereRole('Customer')->count();
+    $products = Product::whereStatus('Active')->count();
+    $shops = Shop::whereStatus('Active')->count();
+    $sales = Order::whereStatus('Complete')->value(DB::raw("SUM(amount - coupon_discount_amount)"));
+    $orders = Order::whereStatus('Pending')->latest()->take(10)->get();
+    $pending_amount = $orders->sum('amount') - $orders->sum('coupon_discount_amount');
+    return view($this->VIEW_PATH . 'dashboard', compact('customers', 'products', 'shops', 'sales', 'orders', 'pending_amount'));
   }
 
 

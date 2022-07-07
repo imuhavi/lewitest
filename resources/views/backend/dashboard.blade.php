@@ -17,10 +17,9 @@ active
       <div class="col-lg-3 col-md-6">
         <div class="panel-green dashboar-card">
           <div>
-            <h3>Total Revenue</h3>
-            <h2><span data-plugin=" counterup">SAR 2049</span>
+            <h3>Total Sale</h3>
+            <h2><span data-plugin=" counterup">SAR {{ $sales ?? 0 }}</span>
             </h2>
-            <p>Jan - Apr 2017</p>
           </div>
           <div>
             <i class="fa fa-money" aria-hidden="true"></i>
@@ -32,9 +31,8 @@ active
         <div class="panel-blue dashboar-card">
           <div>
             <h3>Total Customer</h3>
-            <h2><span data-plugin=" counterup">3293</span>
+            <h2><span data-plugin=" counterup">{{ $customers }}</span>
             </h2>
-            <p>Jan - Apr 2017</p>
           </div>
           <div>
             <i class="fa fa-user"></i>
@@ -46,9 +44,8 @@ active
         <div class="panel-yellow dashboar-card">
           <div>
             <h3>Total Product</h3>
-            <h2><span data-plugin=" counterup">500</span>
+            <h2><span data-plugin=" counterup">{{ $products }}</span>
             </h2>
-            <p>Jan - Apr 2017</p>
           </div>
           <div>
             <i class="fa fa-shopping-bag" aria-hidden="true"></i>
@@ -61,9 +58,8 @@ active
         <div class="panel-red dashboar-card">
           <div>
             <h3>Total Shop</h3>
-            <h2><span data-plugin=" counterup">20</span>
+            <h2><span data-plugin=" counterup">{{ $shops }}</span>
             </h2>
-            <p>Jan - Apr 2017</p>
           </div>
           <div>
             <i class="icon-home"></i>
@@ -109,21 +105,24 @@ active
           <div class="panel-body statement-card">
             <div class="statement-card-head">
               <h3>Latest Order</h3>
-              <p><sup>$</sup><b>207,430</b></p>
+              <p><sup>$</sup><b>{{ $pending_amount }}</b></p>
             </div>
             <table class="table table-responsive">
               <tbody>
-                <tr>
-                  <th scope="row">ORDER ID 4111</th>
-                  <td>johndoe</td>
-                  <td>N1</td>
-                  <td class="text-success"><b>$16</b></td>
-                </tr>
+                @foreach($orders as $item)
+                  <tr>
+                    <th scope="row">ORDER ID 4111</th>
+                    <td>johndoe</td>
+                    <td>N1</td>
+                    <td class="text-success"><b>$16</b></td>
+                  </tr>
+                @endforeach
               </tbody>
             </table>
           </div>
         </div>
       </div>
+
     </div>
   </div><!-- Main Wrapper -->
   <div class="page-footer">

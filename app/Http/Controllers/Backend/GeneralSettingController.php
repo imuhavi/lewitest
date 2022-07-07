@@ -145,4 +145,21 @@ class GeneralSettingController extends Controller
       return redirect()->back()->with('error', $th->getMessage());
     }
   }
+
+  public function updatePayment(Request $request)
+  {
+    $request->validate([
+      'myfatoorah_token' => 'required'
+    ]);
+    
+    try{
+      if (env('MYFATOORAH_TOKEN')) {
+        set_env('MYFATOORAH_TOKEN', $request->myfatoorah_token);
+      }
+      return redirect()->back()->with('success', 'Myfatoorah token updated successfully !');
+    } catch (\Throwable $th) {
+      return redirect()->back()->with('error', $th->getMessage());
+    }
+  }
+
 }

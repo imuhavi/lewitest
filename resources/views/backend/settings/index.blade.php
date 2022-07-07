@@ -555,7 +555,7 @@
               {{-- Payment Method --}}
               <div role="tabpanel" class="tab-pane fade" id="payment">
                 <div class="card mb-4">
-                  <form action="" method="post" enctype="multipart/form-data">
+                  <form action="{{ route('settings.payment.update') }}" method="post">
                     @csrf
                     <div class="card-body">
 
@@ -563,17 +563,8 @@
                         <div class="col-sm-3">
                           <p class="mb-0">Publisable Key</p>
                         </div>
-                        <div class="col-sm-5">
-                          <input type="text" name="publisable_key" id="publisable_key" class="form-control">
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">Publisable Secret</p>
-                        </div>
-                        <div class="col-sm-5">
-                          <input type="text" name="publisable_sectet" class="form-control" id="publisable_sectet">
+                        <div class="col-sm-9">
+                          <textarea name="myfatoorah_token" style="height: 250px; width: 100%;" class="form-control">{{ env('MYFATOORAH_TOKEN') }}</textarea>
                         </div>
                       </div>
 
