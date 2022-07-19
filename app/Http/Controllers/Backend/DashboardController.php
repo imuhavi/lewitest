@@ -30,6 +30,7 @@ class DashboardController extends Controller
   public function orderList(Request $request)
   {
     $sql = Order::orderBy('created_at', 'DESC');
+
     $page = 'index';
     $keyword = '';
     if ($request->keyword) {
@@ -41,7 +42,8 @@ class DashboardController extends Controller
         ->orWhere('payment_method', 'like', '%' . $keyword . '%')
         ->orWhere('status', 'like', '%' . $keyword . '%');
     }
-    $orders = $sql->paginate(5);
+
+    $orders = $sql->paginate(10);
     return view($this->VIEW_PATH . 'orders.index', compact('orders', 'keyword', 'page'));
   }
 

@@ -9,6 +9,8 @@ use App\Models\Product;
 use App\Models\States;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Mail\OrderPlaced;
+use Illuminate\Support\Facades\Mail;
 use App\Models\UserDetail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -170,6 +172,7 @@ class CheckoutController extends Controller
           'order_id' => $order->id,
           'amount' => $order->amount,
         ]);
+
         Session::forget('cart');
         Session::forget('coupon');
         DB::commit();
@@ -185,6 +188,7 @@ class CheckoutController extends Controller
   {
 
     $order = $order; // Make a design like invoice.......
+    Mail::to(Auth::user()->email)->send(new OrderPlaced($order));
     return view($this->VIEW_PATH . 'invoice', compact('order'));
   }
 }
