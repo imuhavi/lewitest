@@ -186,8 +186,6 @@ class CheckoutController extends Controller
 
   public function orderPlaced(Order $order)
   {
-
-    $order = $order; // Make a design like invoice.......
     Mail::to(Auth::user()->email)->send(new OrderPlaced($order));
     return view($this->VIEW_PATH . 'invoice', compact('order'));
   }

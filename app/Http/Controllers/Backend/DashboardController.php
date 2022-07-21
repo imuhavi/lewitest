@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\UpdateOrder;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class DashboardController extends Controller
@@ -59,6 +61,8 @@ class DashboardController extends Controller
     $order->update([
       'status' => ucfirst($status)
     ]);
+
+    Mail::to($order->user->email)->send(new UpdateOrder($order));
 
     Alert::success('Status !', 'Status updated successfully !');
     return redirect()->back();
