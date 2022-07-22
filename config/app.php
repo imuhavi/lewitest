@@ -169,7 +169,6 @@ return [
     Intervention\Image\ImageServiceProvider::class,
     Basel\MyFatoorah\MyFatoorahServiceProvider::class,
     RealRashid\SweetAlert\SweetAlertServiceProvider::class,
-    Laravel\Socialite\SocialiteServiceProvider::class,
 
     /*
          * Application Service Providers...
@@ -236,7 +235,6 @@ return [
     'View' => Illuminate\Support\Facades\View::class,
     'Image' => Intervention\Image\Facades\Image::class,
     'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
-    'Socialite' => Laravel\Socialite\Facades\Socialite::class,
   ],
 
 ];
