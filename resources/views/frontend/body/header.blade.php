@@ -186,7 +186,7 @@
               </div>
 
               <div class="col-12 login-with-google">
-                <button class="google-login"><i class="fab fa-google"></i> Login With Google</button>
+                <a class="google-login" href="{{ route('gmail') }}"><i class="fab fa-google"></i> Login With Google</a>
               </div>
 
               <div class="col-12 login-with-google">

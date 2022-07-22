@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\UserProfileController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\SocailLoginController;
 use App\Http\Controllers\SubscriptionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -71,6 +72,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
   Route::get('/payment/fail_callback', 'MyFatoorahController@failCallback')->name('MyFatoorah.fail');
 });
 # MyFatoorah End
+
+Route::get('login/google', [SocailLoginController::class, 'redirectToProvider'])->name('gmail');
+Route::get('login/google/callback', [SocailLoginController::class, 'handleProviderCallback']);
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';
