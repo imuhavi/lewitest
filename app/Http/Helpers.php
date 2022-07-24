@@ -2,6 +2,7 @@
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\SocialConfig;
 use Illuminate\Support\Str;
 
 if (!function_exists('uploadImage')) {
@@ -106,5 +107,12 @@ if (!function_exists('getCart')) {
       }
     }
     return $data;
+  }
+}
+
+if (!function_exists('social_credential')) {
+  function social_credential($provider)
+  {
+    return SocialConfig::whereType(ucfirst($provider))->first();
   }
 }
