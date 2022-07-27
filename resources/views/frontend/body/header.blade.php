@@ -190,7 +190,10 @@
               </div>
 
               <div class="col-12 login-with-google">
-                <button class="twitter-login"><i class="fab fa-twitter"></i> Login With Twitter</button>
+                <!-- <button class="twitter-login"><i class="fab fa-twitter"></i> Login With Twitter</button> -->
+
+                <a class="twitter-login" href="{{ route('github') }}"><i class="fab fa-github"></i> Login With
+                  Github</a>
               </div>
 
               <div class="col-12 login-with-google">
