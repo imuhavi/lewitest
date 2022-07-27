@@ -564,7 +564,8 @@
                           <p class="mb-0">Publisable Key</p>
                         </div>
                         <div class="col-sm-9">
-                          <textarea name="myfatoorah_token" style="height: 250px; width: 100%;" class="form-control">{{ env('MYFATOORAH_TOKEN') }}</textarea>
+                          <textarea name="myfatoorah_token" style="height: 250px; width: 100%;"
+                            class="form-control">{{ env('MYFATOORAH_TOKEN') }}</textarea>
                         </div>
                       </div>
 
