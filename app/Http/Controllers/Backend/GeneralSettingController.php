@@ -16,6 +16,7 @@ class GeneralSettingController extends Controller
     try {
       $socialArr = [];
       $data = GeneralSetting::first();
+      // return $data;
       $social = SocialConfig::all();
       foreach ($social as $item) {
         $socialArr[$item->type] = $item;
@@ -31,6 +32,7 @@ class GeneralSettingController extends Controller
     $request->validate([
       'app_name' => 'required|min:2|max:40'
     ]);
+
 
     try {
       $data = GeneralSetting::first();
@@ -151,8 +153,8 @@ class GeneralSettingController extends Controller
     $request->validate([
       'myfatoorah_token' => 'required'
     ]);
-    
-    try{
+
+    try {
       if (env('MYFATOORAH_TOKEN')) {
         set_env('MYFATOORAH_TOKEN', $request->myfatoorah_token);
       }
@@ -161,5 +163,4 @@ class GeneralSettingController extends Controller
       return redirect()->back()->with('error', $th->getMessage());
     }
   }
-
 }

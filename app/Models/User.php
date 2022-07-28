@@ -27,6 +27,8 @@ class User extends Authenticatable implements MustVerifyEmail
     'address',
     'balance',
     'due_balance',
+    'provider_id',
+    'provider',
     'role'
   ];
 
@@ -53,7 +55,7 @@ class User extends Authenticatable implements MustVerifyEmail
   {
     return $this->hasOne(Seller::class);
   }
-  
+
   public function shop()
   {
     return $this->hasOne(Shop::class)->orderBy('updated_at', 'desc');
