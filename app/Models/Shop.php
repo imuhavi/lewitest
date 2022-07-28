@@ -10,4 +10,9 @@ class Shop extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function subscription()
+    {
+        return $this->belongsTo(Subscription::class);
+    }
 }

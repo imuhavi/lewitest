@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\SocialConfigController;
 use App\Http\Controllers\Backend\SubcategoryController;
 use App\Http\Controllers\Backend\AttributesController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Backend\ShopController;
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']], function () {
 
@@ -28,7 +29,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']
     'brand' => BrandController::class,
     'attributes' => AttributesController::class
   ]);
+  
+  # Shop
+  Route::get('/shop/{shop}', [ShopController::class, 'statusChange']);
 
+  # Product
   Route::get('product/delete/{product}', [ProductController::class, 'destroy']);
   Route::get('product/image/delete/{image}', [ProductController::class, 'destroyImage']);
   Route::get('product-draft', [ProductController::class, 'productDraft'])->name('productDraft');

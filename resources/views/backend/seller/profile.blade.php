@@ -1,10 +1,10 @@
 @extends('backend.master')
 @section('meta_title')
-{{ Str::title($data->shop_name) }} View
+  {{ Str::title($data->shop_name) }} View
 @endsection
 
 @section('meta_description')
-{{ Str::limit($data->name, 100) }}
+  <!-- {{ Str::limit($data->name, 100) }} -->
 @section('content')
 <div class="page-inner">
   <div class="page-title">

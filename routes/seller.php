@@ -4,7 +4,7 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\ProductController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['prefix' => 'seller', 'middleware' => ['auth', 'verified', 'seller']], function () {
+Route::group(['prefix' => 'seller', 'middleware' => ['auth', 'verified', 'seller', 'active_shop']], function () {
 
   Route::get('/dashboard', [DashboardController::class, 'dashboard']); // Not Done
 

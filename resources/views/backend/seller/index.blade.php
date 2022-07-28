@@ -65,6 +65,9 @@
                     <th width="120" style="text-align: center">
                       Action
                     </th>
+                    <th width="120" style="text-align: center">
+                      Shop status
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -84,9 +87,18 @@
                       <span class="text-danger">No number added</span>
                       @endif
                     </td>
-                    <td>
-                      <a class="btn btn-sm btn-info" href="{{ url( routePrefix() . '/seller/' . $item->id) }}"><i
-                          class="fa fa-eye"></i></a>
+                    <td style="text-align: center">
+                      <a class="btn btn-sm btn-info" href="{{ url( routePrefix() . '/seller/' . $item->id) }}">
+                        <i class="fa fa-eye"></i>
+                      </a>
+                    </td>
+                    <td style="text-align: center">
+                      @if($item->shop && (strtotime('+' . $item->shop->subscription->days . ' day', strtotime($item->shop->created_at)) > strtotime('now')))
+                        <a class="btn btn-sm btn-{{ ($item->shop->status == 'Active') ? 'success' : 'danger' }}" 
+                          href="{{ url( routePrefix() . '/shop/' . $item->shop->id) }}">
+                          <i class="fa fa-dot-circle-o"></i>
+                        </a>
+                      @endif 
                     </td>
                   </tr>
                   @empty

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Seller;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -31,7 +30,7 @@ class SellerController extends Controller
   public function sellerShow($id)
   {
     $page = 'show';
-    $data = Seller::where('user_id', $id)->first();
+    $data = User::find($id);
     return view($this->SELLER_PROFILE, compact('page', 'data'));
   }
 

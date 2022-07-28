@@ -241,6 +241,7 @@
       </div>
     </section>
   </main>
+  <a href="{{ url('/') }}">Back to shopping</a>
 
 </body>
 
