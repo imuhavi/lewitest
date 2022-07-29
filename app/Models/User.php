@@ -29,7 +29,8 @@ class User extends Authenticatable implements MustVerifyEmail
     'due_balance',
     'provider_id',
     'provider',
-    'role'
+    'role',
+    'email_verified_at'
   ];
 
   /**

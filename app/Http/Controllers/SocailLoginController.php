@@ -30,8 +30,6 @@ class SocailLoginController extends Controller
   public function handleGoogleProviderCallback()
   {
     $user = Socialite::driver('google')->user();
-    // $user->token;
-
     $currentTime = Carbon::now()->format('Y-m-d H:i:s');
     if (User::where('email', $user->getEmail())->where('provider_id', $user->getId())->exists()) {
       $getUser = User::where('email', $user->getEmail())->first();
@@ -46,7 +44,7 @@ class SocailLoginController extends Controller
           'email' => $user->getEmail(),
           'provider_id' => $user->getId(),
           'provider' => 'google',
-          'email_verified_at' => $currentTime,
+          'email_verified_at' => Carbon::now(),
         ]);
         Auth::login($create_user, true);
         return redirect(RouteServiceProvider::HOME);
@@ -62,7 +60,6 @@ class SocailLoginController extends Controller
   public function handleGithubProviderCallback()
   {
     $user = Socialite::driver('github')->user();
-    // $user->token;
     $currentTime = Carbon::now()->format('Y-m-d H:i:s');
     if (User::where('email', $user->getEmail())->where('provider_id', $user->getId())->exists()) {
       $getUser = User::where('email', $user->getEmail())->first();
