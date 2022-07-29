@@ -30,7 +30,6 @@ class SocailLoginController extends Controller
   public function handleGoogleProviderCallback()
   {
     $user = Socialite::driver('google')->user();
-    $currentTime = Carbon::now()->format('Y-m-d H:i:s');
     if (User::where('email', $user->getEmail())->where('provider_id', $user->getId())->exists()) {
       $getUser = User::where('email', $user->getEmail())->first();
       Auth::guard()->login($getUser, true);
