@@ -67,7 +67,7 @@
               $product->discount }}</h3>
 
             <p class="previous-price">SAR <span class="old-price">{{ $product->price }}</span> <span
-                class="discount">OFF {{ round($discount) }}%</span>
+                class="discount">OFF {{ $product->discount }} SAR</span>
             </p>
             @endif
 
@@ -194,7 +194,7 @@
                     <h6>
                       @if($product->discount !== null && ($product->discount_type == 'Flat' || $product->discount_type
                       == 'Percent'))
-                      <span class="discount">OFF {{round($discount) }}%</span>
+                      <span class="discount">OFF {{ $product->discount }} SAR</span>
                       @else
                       <span class="discount">Not Available</span>
                       @endif
@@ -275,7 +275,7 @@
               <div class="d-flex justify-content-between">
                 <div class="off">
                   <span class="old-price text-dark">SAR {{ $item->price ?? '' }}</span>
-                  <span class="discount">{{ round($discount ?? '') }}% OFF</span>
+                  <span class="discount">SAR {{ $item->discount }} OFF</span>
                 </div>
                 <span class="wishlist"><i class="far fa-heart"></i></span>
               </div>
