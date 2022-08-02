@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Middleware\app\Seller;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
