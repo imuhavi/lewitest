@@ -80,7 +80,7 @@ return [
     |
     */
 
-  'locale' => 'ar',
+  'locale' => 'en',
 
   /*
     |--------------------------------------------------------------------------
@@ -169,6 +169,7 @@ return [
     Intervention\Image\ImageServiceProvider::class,
     Basel\MyFatoorah\MyFatoorahServiceProvider::class,
     RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+    Maatwebsite\Excel\ExcelServiceProvider::class,
 
     /*
          * Application Service Providers...
@@ -178,6 +179,7 @@ return [
     // App\Providers\BroadcastServiceProvider::class,
     App\Providers\EventServiceProvider::class,
     App\Providers\RouteServiceProvider::class,
+
 
   ],
 
@@ -235,6 +237,7 @@ return [
     'View' => Illuminate\Support\Facades\View::class,
     'Image' => Intervention\Image\Facades\Image::class,
     'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+    'Excel' => Maatwebsite\Excel\Facades\Excel::class,
   ],
 
 ];
