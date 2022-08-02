@@ -1,10 +1,10 @@
 @extends('backend.master')
 @section('meta_title')
-  {{ Str::title($data->shop_name) }} View
+{{ Str::title($data->shop_name) }} View
 @endsection
 
 @section('meta_description')
-  <!-- {{ Str::limit($data->name, 100) }} -->
+<!-- {{ Str::limit($data->name, 100) }} -->
 @section('content')
 <div class="page-inner">
   <div class="page-title">
@@ -24,19 +24,18 @@
             <div class="panel-title">Seller Profile</div>
           </div>
           <div class="panel-body">
-            @if ($data->shop_logo)
-            <img src="{{ asset('/backend/uploads/' . $data->shop_logo) }}" class="thumbnail-img"
-              alt="Seller - {{ $data->shop_logo }}">
+            @if ($data->shop->shop_logo)
+            <img src="{{ asset('/backend/uploads/' . $data->shop->shop_logo) }}" class="thumbnail-img"
+              alt="Seller - {{ $data->shop->shop_logo }}">
             @else
             <img src="{{ asset('backend/assets/default-img/noimage.jpg') }}" class="thumbnail-img"
               alt="Default Shop Logo">
             @endif
-            <h4 class="text-center m-t-lg">{{ $data->shop_name }}</h4>
+            <h4 class="text-center m-t-lg">{{ $data->shop->shop_name }}</h4>
             <hr>
             <ul class="list-unstyled text-center">
               <li>
-                <p><i class="icon-pointer m-r-xs"></i>{{ $data->shop_address }}, {{ $data->city }},
-                  {{ $data->country }}</p>
+                <p><i class="icon-pointer m-r-xs"></i>{{ $data->shop->address }}, {{ $data->shop->city }}</p>
               </li>
               <li>
                 <p><i class="icon-envelope-open m-r-xs"></i><a href="#">{{ $data->email }}</a>
@@ -67,15 +66,15 @@
                 <tr>
                   <th class="45%" width="45%">Shop Name</th>
                   <td width="10%">:</td>
-                  <td class="45%" width="45%">{{ $data->shop_name }}</td>
+                  <td class="45%" width="45%">{{ $data->shop->shop_name }}</td>
                 </tr>
                 <tr>
                   <th width="45%">Shop Logo</th>
                   <td width="10%">:</td>
                   <td width="45%">
-                    @if ($data->shop_logo)
-                    <img src="{{ asset('/backend/uploads/' . $data->shop_logo) }}" class="thumbnail-img"
-                      alt="Shop logo - {{ $data->shop_logo }}">
+                    @if ($data->shop->shop_logo)
+                    <img src="{{ asset('/backend/uploads/'.$data->shop->shop_logo) }}" class="thumbnail-img"
+                      alt="Shop logo - {{ $data->shop->shop_logo }}">
                     @else
                     <img src="{{ asset('backend/assets/default-img/noimage.jpg') }}" class="thumbnail-img"
                       alt="Default Shop Logo">
@@ -91,18 +90,27 @@
                 <tr>
                   <th width="45%">Seller Phone Number</th>
                   <td width="10%">:</td>
-                  <td width="45%">{{ $data->primary_phone }}, {{ $data->secondary_phone }}</td>
+                  <td width="45%">@if($data->phone_1)
+                    {{ $data->phone_1 }}
+                    @else
+                    <span class="text-danger">No number added</span>
+                    @endif , @if($data->phone_2)
+                    {{ $data->phone_2 }}
+                    @else
+                    <span class="text-danger">No number added</span>
+                    @endif
+                  </td>
                 </tr>
                 <tr>
                   <th width="45%">Shop Location</th>
                   <td width="10%">:</td>
-                  <td width="45%">{{ $data->shop_location ?? null }}</td>
+                  <td width="45%">{{ $data->shop->state ?? null }}, {{ $data->shop->city ?? null }}</td>
                 </tr>
 
                 <tr>
                   <th width="45%">Shop Address</th>
                   <td width="10%">:</td>
-                  <td width="45%">{{ $data->shop_address ?? null }}, {{ $data->city }}</td>
+                  <td width="45%">{{ $data->shop->address ?? null }}, {{ $data->shop->postal_code }}</td>
                 </tr>
               </tbody>
             </table>

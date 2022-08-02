@@ -89,7 +89,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
+              <a class="nav-link active" aria-current="page" href="{{ route('home') }}">{{ __('Home') }}</a>
             </li>
           </ul>
         </div>
@@ -190,14 +190,13 @@
               </div>
 
               <div class="col-12 login-with-google">
-                <!-- <button class="twitter-login"><i class="fab fa-twitter"></i> Login With Twitter</button> -->
-
-                <a class="twitter-login" href="{{ route('github') }}"><i class="fab fa-github"></i> Login With
-                  Github</a>
+                <a class="twitter-login" href="{{ route('github') }}"><i class="fab fa-twitter"></i> Login With
+                  Twitter</a>
               </div>
 
               <div class="col-12 login-with-google">
-                <button class="apple-login"><i class="fab fa-apple"></i> Login With Apple</button>
+                <a class="apple-login" href="{{ route('github') }}"><i class="fab fa-github"></i> Login With
+                  Github</a>
               </div>
 
               <div class="d-flex justify-content-center">
@@ -259,15 +258,18 @@
                   </div>
 
                   <div class="col-12 login-with-google">
-                    <button class="google-login"><i class="fab fa-google"></i> Login With Google</button>
+                    <a class="google-login" href="{{ route('gmail') }}"><i class="fab fa-google"></i> Login With
+                      Google</a>
                   </div>
 
                   <div class="col-12 login-with-google">
-                    <button class="twitter-login"><i class="fab fa-twitter"></i> Login With Twitter</button>
+                    <a class="twitter-login" href="{{ route('github') }}"><i class="fab fa-twitter"></i> Login With
+                      Twitter</a>
                   </div>
 
                   <div class="col-12 login-with-google">
-                    <button class="apple-login"><i class="fab fa-apple"></i> Login With Apple</button>
+                    <a class="apple-login" href="{{ route('github') }}"><i class="fab fa-github"></i> Login With
+                      Github</a>
                   </div>
 
                   <div class="d-flex justify-content-center">
@@ -292,27 +294,33 @@
 
               <p>We'll send you a link to reset your password.</p>
             </div>
-            <div class="modal-body forgetPassword-modal">
-              <div class="row mt-3 g-3">
-                <div class="col-12">
-                  <label for="email" class="form-label">Email Address *</label>
-                  <input type="email" class="form-control" id="email" placeholder="Your Email Address">
-                </div>
+            <form method="POST" action="{{ route('password.email') }}">
+              @csrf
+              <div class="modal-body forgetPassword-modal">
+                <div class="row mt-3 g-3">
 
-                <div class="col-12">
-                  <button class="login-btn">Submit Email</button>
-                </div>
+                  <div class="col-12">
+                    <label for="email" class="form-label">Email Address *</label>
+                    <input type="email" name="email" class="form-control" id="email" placeholder="Your Email Address">
+                  </div>
 
-                <div class="col-12 text-center">
-                  <p class="login_or">Or</p>
-                </div>
+                  <div class="col-12">
+                    <button class="login-btn">Submit Email</button>
+                  </div>
 
-                <div class="d-flex justify-content-center">
-                  <p>Back to <a href="#" class="fs-6 fw-bold" data-bs-toggle="modal" data-bs-target="#signIn">Login</a>
-                  </p>
+
+                  <div class="col-12 text-center">
+                    <p class="login_or">Or</p>
+                  </div>
+
+                  <div class="d-flex justify-content-center">
+                    <p>Back to <a href="#" class="fs-6 fw-bold" data-bs-toggle="modal"
+                        data-bs-target="#signIn">Login</a>
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>

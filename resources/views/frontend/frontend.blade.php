@@ -71,8 +71,8 @@
             <img class="img-fluid" src="{{ asset('/backend/uploads/'. $womensMain->banner) }}" alt="women's Main">
             <div class="parent-cat-content">
               <h4>{{ $womensMain->name }}</h4>
-              <h2>New Fashion Collection</h2>
-              <p>From only $180.00</p>
+              <h2>{{ __('NEW FASHION COLLECTION') }}</h2>
+              <p>From only SAR 100.00</p>
               <a class="fivedots-btn mt-4"
                 href="{{ route('categoryShop', ['id'=> $womensMain->id, 'slug' => $womensMain->slug]) }}">Shop Now <img
                   class="icon" src="{{ asset('frontend/assets') }}/images/btn-arrow-light.png" alt=""></a>
