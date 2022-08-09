@@ -195,6 +195,17 @@
                     </div>
                   </div>
 
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="product_sku">Product SKU</label>
+                      <input type="text" value="{{ $data ? $data->product_sku : old('product_sku') }}"
+                        name="product_sku" class="form-control m-t-xxs" id="product_sku" placeholder="Product Sku">
+                      @error('slug')
+                      <small class="text-danger">{{ $message }}</small>
+                      @enderror
+                    </div>
+                  </div>
+
                 </div>
               </div>
 

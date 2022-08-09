@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Aug 02, 2022 at 07:27 PM
+-- Generation Time: Aug 03, 2022 at 06:24 AM
 -- Server version: 5.7.34
 -- PHP Version: 8.0.8
 
@@ -349,6 +349,13 @@ CREATE TABLE `general_settings` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `general_settings`
+--
+
+INSERT INTO `general_settings` (`id`, `app_name`, `app_logo_white`, `app_logo_black`, `shipping_cost`, `shipping_days`, `tax`, `app_phone`, `app_email`, `app_address`, `app_copyright_text`, `seo_title`, `seo_description`, `seo_keywords`, `mail_type`, `mail_host`, `mail_port`, `mail_username`, `mail_password`, `mail_encryption`, `mail_address`, `mail_from_name`, `created_at`, `updated_at`) VALUES
+(1, 'Laravel Ecommerce', '', '', '30.00', '7', 15, '01911111111', 'laravel@ecom.com', 'This is demo address', 'This is demo copyright text', 'Laravel Ecommerce', 'Laravel Ecommerce', 'Laravel, Ecommerce', 'SMTP', 'smtp.mailtrap.io', '2525', 'bcbb5a36522425', '04c13fb15063a9', 'tls', 'laravel@ecom.com', 'Laravel Ecommerce', '2022-08-03 06:23:43', '2022-08-03 06:23:43');
+
 -- --------------------------------------------------------
 
 --
@@ -414,6 +421,13 @@ CREATE TABLE `orders` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `coupon_id`, `coupon_discount_amount`, `shipping_cost`, `tax`, `amount`, `payment_method`, `note`, `status`, `created_at`, `updated_at`) VALUES
+(1, 4, NULL, 0.00, 30, 69.00, 460.00, 'COD', 'quick order', 'Pending', '2022-08-02 20:54:16', '2022-08-02 20:54:16');
+
 -- --------------------------------------------------------
 
 --
@@ -432,6 +446,13 @@ CREATE TABLE `order_details` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `order_details`
+--
+
+INSERT INTO `order_details` (`id`, `order_id`, `seller_id`, `product_id`, `unit_price`, `color`, `size`, `quantity`, `created_at`, `updated_at`) VALUES
+(1, 1, 2, 10, 230.00, 'Blue', 'Xl', 2, '2022-08-02 20:54:16', '2022-08-02 20:54:16');
 
 -- --------------------------------------------------------
 
@@ -671,7 +692,7 @@ CREATE TABLE `shops` (
 --
 
 INSERT INTO `shops` (`id`, `user_id`, `subscription_id`, `shop_name`, `shop_logo`, `state`, `city`, `postal_code`, `address`, `status`, `created_at`, `updated_at`) VALUES
-(1, 2, 2, 'ahmmed', '1652513769_JPC7orDbWs1DUJl5.jpeg', 'Eastern Provence', 'Dammam', '32437', '3161 King Abdulaziz Rd, Ar Rabiyah, Dammam', 'Inactive', '2022-05-14 04:36:09', '2022-08-02 19:22:55'),
+(1, 2, 2, 'ahmmed', '1652513769_JPC7orDbWs1DUJl5.jpeg', 'Eastern Provence', 'Dammam', '32437', '3161 King Abdulaziz Rd, Ar Rabiyah, Dammam', 'Inactive', '2022-05-14 04:36:09', '2022-08-02 20:50:40'),
 (2, 3, 3, 'Brendan Sawyer', '1652518971_1mc8wHrVegTqB4sP.png', 'Eastern Provence', 'Dammam', '57242', 'Et pariatur Obcaeca', 'Active', '2022-05-14 06:02:51', '2022-08-02 18:48:50');
 
 -- --------------------------------------------------------
@@ -875,6 +896,13 @@ CREATE TABLE `transactions` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `transactions`
+--
+
+INSERT INTO `transactions` (`id`, `user_id`, `order_id`, `amount`, `status`, `created_at`, `updated_at`) VALUES
+(1, 4, 1, 460, 'Pending', '2022-08-02 20:54:16', '2022-08-02 20:54:16');
+
 -- --------------------------------------------------------
 
 --
@@ -912,7 +940,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `pr
 (4, 'Mr. Customer', 'customer@customer.com', '2022-06-12 05:59:25', '$2y$10$jkDvRvfpuyCuQowNNm1qGuuns/b4m06ZNw0T7sYIQAx4m2ASuSwCq', NULL, NULL, NULL, 'Customer', NULL, NULL, '0.00', '0.00', NULL, NULL, '2022-06-12 05:59:25', '2022-06-12 05:59:25'),
 (5, 'Mr. Customer 2', 'customer2@customer.com', '2022-06-12 05:59:25', '$2y$10$0h6Fc4P28sQy8K.XCgIhg.HPoEfL37xW5YOpHXvVqmsEJk3fioDo6', NULL, NULL, NULL, 'Customer', NULL, NULL, '0.00', '0.00', NULL, NULL, '2022-06-12 05:59:25', '2022-06-12 05:59:25'),
 (6, 'Mr. Customer 3', 'customer3@customer.com', '2022-06-12 05:59:25', '$2y$10$fTYZ6OH0T5AL/wPhdtLu.etviLDFWV4W9pSLMd6wBdw0utp8YovLW', NULL, NULL, NULL, 'Customer', NULL, NULL, '0.00', '0.00', NULL, NULL, '2022-06-12 05:59:25', '2022-06-12 05:59:25'),
-(8, 'Ahmmed Rasel', 'rahmmed.info@gmail.com', '2022-08-02 18:47:01', NULL, '107398901132811099636', 'google', NULL, 'Admin', NULL, NULL, '0.00', '0.00', NULL, 'd5V43ORlMhMXn1EnqIUMY3Jx1vOb1k8qEMuOykUa4itD1mJgLUUQCyOexXE5', '2022-08-02 18:47:01', '2022-08-02 18:47:01');
+(8, 'Ahmmed Rasel', 'rahmmed.info@gmail.com', '2022-08-02 18:47:01', NULL, '107398901132811099636', 'google', NULL, 'Admin', NULL, NULL, '0.00', '0.00', NULL, 'd5V43ORlMhMXn1EnqIUMY3Jx1vOb1k8qEMuOykUa4itD1mJgLUUQCyOexXE5', '2022-08-02 18:47:01', '2022-08-02 18:47:01'),
+(9, 'demo1', 'demon1@customer.com', NULL, '$2y$10$kSVEhf5gNTlH4tTSi4CZveIUaYwydIOYClLgSwfxZXYd6OwBT4hZq', NULL, NULL, NULL, 'Customer', NULL, NULL, '0.00', '0.00', NULL, NULL, '2022-08-02 20:52:01', '2022-08-02 20:52:01');
 
 -- --------------------------------------------------------
 
@@ -931,6 +960,13 @@ CREATE TABLE `user_details` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `user_details`
+--
+
+INSERT INTO `user_details` (`id`, `user_id`, `state_id`, `city_id`, `phone`, `postal_code`, `address`, `created_at`, `updated_at`) VALUES
+(2, 4, 2850, 102819, '34356565', '23424', 'dmeo', '2022-08-02 20:54:16', '2022-08-02 20:54:16');
 
 --
 -- Indexes for dumped tables
@@ -1159,7 +1195,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `general_settings`
 --
 ALTER TABLE `general_settings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1171,13 +1207,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `payment_invoices`
@@ -1249,19 +1285,19 @@ ALTER TABLE `subscription_options`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `user_details`
 --
 ALTER TABLE `user_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
