@@ -53,11 +53,6 @@ class User extends Authenticatable implements MustVerifyEmail
     'email_verified_at' => 'datetime',
   ];
 
-  public function seller()
-  {
-    return $this->hasOne(Seller::class);
-  }
-
   public function shop()
   {
     return $this->hasOne(Shop::class)->orderBy('updated_at', 'desc');

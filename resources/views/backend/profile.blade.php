@@ -185,7 +185,7 @@
               <form action="{{ route('updateProfile') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @php
-                $seller = auth()->user()->seller
+                  $seller = auth()->user()
                 @endphp
                 <div class="card-body">
 
@@ -198,9 +198,9 @@
                         name="shop_logo" id="shop_logo" class="form-control">
                     </div>
                     <div class="col-sm-4">
-                      @if($seller->shop_logo)
+                      @if($seller->shop->shop_logo)
                       <img class="img avatar" id="shop_logo_preview"
-                        src="{{ asset('backend/uploads/' . $seller->shop_logo) }}" alt="Shop-{{ $seller->shop_logo }}"
+                        src="{{ asset('backend/uploads/' . $seller->shop->shop_logo) }}" alt="Shop-{{ $seller->shop_logo }}"
                         width="80px" height="80px">
                       @else
                       <img class="img avatar" id="shop_logo_preview"
@@ -215,7 +215,7 @@
                       <p class="mb-0">Shop Name</p>
                     </div>
                     <div class="col-sm-9">
-                      <input type="text" name="shop_name" value="{{ $seller->shop_name }}" id="shop_name"
+                      <input type="text" name="shop_name" value="{{ $seller->shop->shop_name }}" id="shop_name"
                         class="form-control">
                       @error('shop_name')
                       <small class="text-danger">{{ $message }}</small>
