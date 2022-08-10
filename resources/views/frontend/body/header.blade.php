@@ -189,7 +189,7 @@
                 <a class="google-login" href="{{ route('gmail') }}"><i class="fab fa-google"></i> Login With Google</a>
               </div>
 
-              <div class="col-12 login-with-google">
+              <!-- <div class="col-12 login-with-google">
                 <a class="twitter-login" href="{{ route('github') }}"><i class="fab fa-twitter"></i> Login With
                   Twitter</a>
               </div>
@@ -197,7 +197,7 @@
               <div class="col-12 login-with-google">
                 <a class="apple-login" href="{{ route('github') }}"><i class="fab fa-github"></i> Login With
                   Github</a>
-              </div>
+              </div> -->
 
               <div class="d-flex justify-content-center">
                 <p>Don't have any account? <a href="#" class="fs-6 fw-bold" data-bs-toggle="modal"

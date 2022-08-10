@@ -40,7 +40,8 @@
                 </div>
                 <div class="col-lg-6">
                   <label for="email" class="form-label">Email Address</label>
-                  <input type="email" name="email" class="form-control" id="email" value="{{ Auth::user()->email }}" disabled>
+                  <input type="email" name="email" class="form-control" id="email" value="{{ Auth::user()->email }}"
+                    disabled>
                 </div>
                 <div class="col-5 col-md-6 col-lg-6">
                   <label for="phone" class="form-label">Phone Number</label>
@@ -52,7 +53,7 @@
                   <select id="state" name="state" class="form-select state">
                     <option selected hidden disabled value="">Choose State</option>
                     @foreach($states as $state)
-                    <option  value="{{ $state->id }}">{{ $state->name }}</option>
+                    <option value="{{ $state->id }}">{{ $state->name }}</option>
                     @endforeach
                   </select>
                 </div>
@@ -78,7 +79,8 @@
 
                 <div class="col-12">
                   <label for="orderNotes" name="note" class="form-label">Order Notes</label>
-                  <textarea class="form-control" name="note" id="orderNotes" placeholder="Note About Your Order..."></textarea>
+                  <textarea class="form-control" name="note" id="orderNotes"
+                    placeholder="Note About Your Order..."></textarea>
                 </div>
               </div>
             </div>
@@ -90,11 +92,11 @@
 
               <ul class="payment-method-list">
                 <li>
-                  <input name="payment_method" id="card" type="checkbox" value="Card">
+                  <input name="payment_method" id="card" type="radio" value="Card">
                   <label for="card">Credit Card</label>
                 </li>
                 <li>
-                  <input name="payment_method" id="delivery" type="checkbox" value="COD" checked>
+                  <input name="payment_method" id="delivery" type="radio" value="COD" checked>
                   <label for="delivery">Cash on Delivery</label>
                 </li>
               </ul>

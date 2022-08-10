@@ -346,7 +346,6 @@
                           <select name="mail_type" id="" class="form-control">
                             <option value="" selected disabled>Select Type</option>
                             <option value="SMTP" @if($data->mail_type ?? '' == 'SMTP') selected @endif>SMTP</option>
-                            <option value="GMAIL" @if($data->mail_type ?? '' == 'GMAIL') selected @endif>GMAIL</option>
                           </select>
                         </div>
                       </div>
@@ -390,7 +389,7 @@
                           <p class="mb-0">Mail Password</p>
                         </div>
                         <div class="col-sm-5">
-                          <input type="text" name="mail_password" value="{{ $data->mail_password ?? '' }}"
+                          <input type="password" name="mail_password" value="{{ $data->mail_password ?? '' }}"
                             class="form-control" id="mail_password">
                         </div>
                       </div>

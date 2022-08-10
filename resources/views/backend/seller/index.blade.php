@@ -1,11 +1,11 @@
 @extends('backend.master')
 @section('seller_active') active open @endsection
 @section('meta_title')
-  Seller-list
+Seller-list
 @endsection
 
 @section('meta_description')
-  Seller List
+Seller List
 @endsection
 
 @section('subseller') active @endsection @section('content')
@@ -93,12 +93,13 @@
                       </a>
                     </td>
                     <td style="text-align: center">
-                      @if($item->shop && (strtotime('+' . $item->shop->subscription->days . ' day', strtotime($item->shop->created_at)) > strtotime('now')))
-                        <a class="btn btn-sm btn-{{ ($item->shop->status == 'Active') ? 'success' : 'danger' }}" 
-                          href="{{ url( routePrefix() . '/shop/' . $item->shop->id) }}">
-                          <i class="fa fa-dot-circle-o"></i>
-                        </a>
-                      @endif 
+                      @if($item->shop && (strtotime('+' . $item->shop->subscription->days . ' day',
+                      strtotime($item->shop->created_at)) > strtotime('now')))
+                      <a class="btn btn-sm btn-{{ ($item->shop->status == 'Active') ? 'success' : 'danger' }}"
+                        href="{{ url( routePrefix() . '/shop/' . $item->shop->id) }}">
+                        <i class="fa fa-dot-circle-o"></i>
+                      </a>
+                      @endif
                     </td>
                   </tr>
                   @empty
@@ -123,7 +124,7 @@
   </div>
   <!-- Main Wrapper -->
   <div class="page-footer">
-    <p class="no-s">Made with <i class="fa fa-heart"></i> by stacks</p>
+    <p class="no-s">Made with <i class="fa fa-heart"></i> by 5dots</p>
   </div>
 </div>
 <!-- Page Inner -->
