@@ -6,6 +6,7 @@
             Slider Start Here 
       ----------------------------->
   <section id="showcase" class="bg-dark">
+    @if(count($slider))
     <div id="myCarousel" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
       <ol class="carousel-indicators">
         @foreach($slider as $key => $citem)
@@ -34,7 +35,9 @@
             </div>
           </div>
         </div>
+
         @endif
+
         @endforeach
       </div>
       <a href="#myCarousel" class="carousel-control-prev" data-bs-slide="prev">
@@ -44,6 +47,9 @@
         <span class="carousel-control-next-icon"></span>
       </a>
     </div>
+    @else
+    <h2 class="text-white text-center p-3"> No Slider Available !</h2>
+    @endif
   </section>
 
   <!---------------------------
@@ -64,7 +70,7 @@
           </div>
           @endforeach
         </div>
-
+        @if($womensMain)
         <div class="col-md-6 category-main">
           <div class="parent-cat-item">
             <div class="overflow"></div>
@@ -73,12 +79,16 @@
               <h4>{{ $womensMain->name }}</h4>
               <h2>{{ __('NEW FASHION COLLECTION') }}</h2>
               <p>From only SAR 100.00</p>
+
               <a class="fivedots-btn mt-4"
                 href="{{ route('categoryShop', ['id'=> $womensMain->id, 'slug' => $womensMain->slug]) }}">Shop Now <img
                   class="icon" src="{{ asset('frontend/assets') }}/images/btn-arrow-light.png" alt=""></a>
             </div>
           </div>
         </div>
+        @else
+        <h2>No Womens Category Available!</h2>
+        @endif
 
         <div class="col-md-3 child-category">
           @foreach($womensSub2 as $item)
@@ -103,6 +113,7 @@
   <section id="banner-one">
     <div class="conteiner">
       <div class="row">
+        @if($mensMain)
         <div class="col-lg-12 col-md-12 col-sm-12">
           <div class="banner-content">
             <h5 class="banner-sub-heading">{{ $mensMain->name }}</h5>
@@ -111,6 +122,9 @@
                 src="{{ asset('/backend/uploads'. $mensMain->banner) }}" alt=""></a>
           </div>
         </div>
+        @else
+        <h2>No Mens Category Available!</h2>
+        @endif
       </div>
     </div>
   </section>
@@ -138,6 +152,7 @@
       </div>
 
       <div class="col-md-6 category-main">
+        @if($mensMain)
         <div class="parent-cat-item">
           <div class="overflow"></div>
           <img class="img-fluid parent-cat-banner" src="{{ asset('/backend/uploads/'. $mensMain->banner) }}"
@@ -151,6 +166,7 @@
                 class="icon" src="{{ asset('frontend/assets') }}/images/btn-arrow-light.png" alt=""></a>
           </div>
         </div>
+        @endif
       </div>
 
     </div>

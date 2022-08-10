@@ -15,26 +15,26 @@ class GeneralSettingTableSeeder extends Seeder
   public function run()
   {
     GeneralSetting::create([
-      'app_name' => 'Laravel Ecommerce',
+      'app_name' => '5dots',
       'app_logo_white' => '',
       'app_logo_black' => '',
-      'app_phone' => '01911111111',
+      'app_phone' => '0534588012',
       'shipping_cost' => 30,
       'shipping_days' => 7,
-      'app_email' => 'laravel@ecom.com',
-      'app_address' => 'This is demo address',
-      'app_copyright_text' => 'This is demo copyright text',
-      'seo_title' => 'Laravel Ecommerce',
+      'app_email' => 'info@5dots.sa',
+      'app_address' => 'Al-Khobar',
+      'app_copyright_text' => 'Copyright © 2022 [5dots.sa] All rights reserved.',
+      'seo_title' => '5dots',
       'seo_description' => 'Laravel Ecommerce',
       'seo_keywords' => 'Laravel, Ecommerce',
-      'mail_type' => 'SMTP',
-      'mail_host' => 'smtp.mailtrap.io',
-      'mail_port' => '2525',
-      'mail_username' => 'bcbb5a36522425',
-      'mail_password' => '04c13fb15063a9',
+      'mail_type' => 'smtp',
+      'mail_host' => 'smtp.gmail.com',
+      'mail_port' => '587',
+      'mail_username' => 'rahmmed.info@gmail.com',
+      'mail_password' => 'ibqfnsjvxkybpaql',
       'mail_encryption' => 'tls',
-      'mail_address' => 'laravel@ecom.com',
-      'mail_from_name' => 'Laravel Ecommerce'
+      'mail_address' => '5dots.sa@gmail.com',
+      'mail_from_name' => '5dots'
     ]);
   }
 }
