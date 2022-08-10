@@ -112,7 +112,7 @@
                     </td>
 
                     <td>
-                      {{ $item->order_details[0]->seller->shop_name ?? '' }}
+                      {{ $item->order_details[0]->shop->shop_name ?? '' }}
                     </td>
 
                     <td>{{ $item->created_at->format('d-M-Y') }}</td>
@@ -198,7 +198,7 @@
                     </td>
 
                     <td>
-                      {{ $item->order_details[0]->seller->shop_name ?? '' }}
+                      {{ $item->order_details[0]->shop->shop_name ?? '' }}
                     </td>
 
                     <td>{{ $item->created_at->format('d-M-Y') }}</td>
@@ -283,7 +283,7 @@
                     </td>
 
                     <td>
-                      {{ $item->order_details[0]->seller->shop_name ?? '' }}
+                      {{ $item->order_details[0]->shop->shop_name ?? '' }}
                     </td>
 
                     <td>{{ $item->created_at->format('d-M-Y') }}</td>

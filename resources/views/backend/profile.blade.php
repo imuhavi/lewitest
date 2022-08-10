@@ -223,7 +223,7 @@
                     </div>
                   </div>
                   <hr>
-                  <div class="row">
+                  <!-- <div class="row">
                     <div class="col-sm-3">
                       <p class="mb-0">Email</p>
                     </div>
@@ -231,7 +231,7 @@
                       <input type="email" title="You can not update your verified email" disabled
                         value="{{ $seller->email }}" id="email" class="form-control">
                     </div>
-                  </div>
+                  </div> -->
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">

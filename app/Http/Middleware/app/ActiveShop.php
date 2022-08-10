@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware\app;
 
+use App\Models\Product;
 use App\Models\Shop;
 use Closure;
 use Illuminate\Http\Request;
@@ -25,11 +26,14 @@ class ActiveShop
       &&
       (strtotime('+' . auth()->user()->shop->subscription->days . ' day', strtotime(auth()->user()->shop->created_at)) > strtotime('now'))
     ) {
-      Shop::find(auth()->user()->shop->id)->update([
-        'status' => 'Inactive'
-      ]);
       return $next($request);
     }
+    Shop::find(auth()->user()->shop->id)->update([
+      'status' => 'Inactive'
+    ]);
+    Product::whereSellerId(auth()->user()->id)->update([
+      'status' => 'Inactive'
+    ]);
     return redirect('/')->with('error', 'Your shop has been inactivated! Please contact with the admin.');
   }
 }
