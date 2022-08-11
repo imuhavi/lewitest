@@ -197,14 +197,16 @@
 
                   <div class="form-row">
                     <div class="form-group">
-                      <label for="product_sku">Product SKU</label>
+                      <label for="productSku">Product SKU</label>
                       <input type="text" value="{{ $data ? $data->product_sku : old('product_sku') }}"
-                        name="product_sku" class="form-control m-t-xxs" id="product_sku" placeholder="Product Sku">
+                        name="product_sku" class="form-control m-t-xxs" id="productSku" placeholder="Product Sku"
+                        disabled>
                       @error('slug')
                       <small class="text-danger">{{ $message }}</small>
                       @enderror
                     </div>
                   </div>
+                  <button type="button" class="btn btn-info" onclick="generateSku()">Generate SKU</button>
 
                 </div>
               </div>
@@ -468,10 +470,7 @@
                       <select name="seller_id" id="seller" class="form-control">
                         <option value="" selected>Select One</option>
                         @foreach ( $sellers as $seller_item )
-                        <option value="{{ $seller_item->id }}" @if ( $page=='edit' ) {{ $seller_item->id ==
-                          $data->seller_id ?
-                          'selected'
-                          : '' }} @endif
+                        <option value="{{ $seller_item->id }}" {{ $seller_item->id ==auth()->id() ? 'selected' : '' }}
                           >{{ $seller_item->name }}</option>
                         @endforeach
                       </select>
@@ -789,5 +788,19 @@
       $("#sub_category").empty();
     }
   });
+
+  let productSku = document.getElementById('productSku');
+  let seller = document.getElementById('seller');
+  let productName = document.getElementById('name');
+
+  function generateSku() {
+    if (seller.value.length > 0 && productName.value.length > 1) {
+      productSku.value = productName.value.slice(0, 2).toUpperCase() + '-' + (Math.floor(1000 + Math.random() * 9000)).toString() + '-' + seller.value
+    } else {
+      alert('Please a select & write a product name.');
+    }
+  }
+
+
 </script>
 @endsection

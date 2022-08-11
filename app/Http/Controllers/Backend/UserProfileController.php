@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\States;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -14,7 +15,8 @@ class UserProfileController extends Controller
 
   public function userProfile()
   {
-    return view($this->VIEW_PATH);
+    $states = States::get();
+    return view($this->VIEW_PATH, compact('states'));
   }
 
   public function updateProfile(Request $request)
@@ -30,7 +32,7 @@ class UserProfileController extends Controller
 
       if ($request->file('profile_photo')) {
         if ($user->avatar) {
-          if(hasFile($user->avatar)){
+          if (hasFile($user->avatar)) {
             removeImage($user->avatar);
           }
         }

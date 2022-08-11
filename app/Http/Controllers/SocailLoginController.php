@@ -51,34 +51,34 @@ class SocailLoginController extends Controller
     }
   }
 
-  public function redirectToGithuProvider()
-  {
-    return Socialite::driver('github')->redirect();
-  }
+  // public function redirectToGithuProvider()
+  // {
+  //   return Socialite::driver('github')->redirect();
+  // }
 
-  public function handleGithubProviderCallback()
-  {
-    $user = Socialite::driver('github')->user();
-    $currentTime = Carbon::now()->format('Y-m-d H:i:s');
-    if (User::where('email', $user->getEmail())->where('provider_id', $user->getId())->exists()) {
-      $getUser = User::where('email', $user->getEmail())->first();
-      Auth::guard()->login($getUser, true);
-      return redirect()->to(route('home'));
-    } else {
-      if (User::where('email', $user->getEmail())->exists()) {
-        return redirect()->to(route('login'))->with('error', 'Email Already Register.');
-      } else {
+  // public function handleGithubProviderCallback()
+  // {
+  //   $user = Socialite::driver('github')->user();
+  //   $currentTime = Carbon::now()->format('Y-m-d H:i:s');
+  //   if (User::where('email', $user->getEmail())->where('provider_id', $user->getId())->exists()) {
+  //     $getUser = User::where('email', $user->getEmail())->first();
+  //     Auth::guard()->login($getUser, true);
+  //     return redirect()->to(route('home'));
+  //   } else {
+  //     if (User::where('email', $user->getEmail())->exists()) {
+  //       return redirect()->to(route('login'))->with('error', 'Email Already Register.');
+  //     } else {
 
-        $create_user = User::create([
-          'name' => $user->getName(),
-          'email' => $user->getEmail(),
-          'provider_id' => $user->getId(),
-          'provider' => 'github',
-          'email_verified_at' => Carbon::now(),
-        ]);
-        Auth::login($create_user, true);
-        return redirect(RouteServiceProvider::HOME);
-      }
-    }
-  }
+  //       $create_user = User::create([
+  //         'name' => $user->getName(),
+  //         'email' => $user->getEmail(),
+  //         'provider_id' => $user->getId(),
+  //         'provider' => 'github',
+  //         'email_verified_at' => Carbon::now(),
+  //       ]);
+  //       Auth::login($create_user, true);
+  //       return redirect(RouteServiceProvider::HOME);
+  //     }
+  //   }
+  // }
 }

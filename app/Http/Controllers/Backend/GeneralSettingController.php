@@ -109,8 +109,8 @@ class GeneralSettingController extends Controller
       $data = GeneralSetting::first();
 
       if (env('mail_mailer') !== $request->mail_type) {
-        set_env('mail_mailer', strtoupper($request->mail_type));
-        $data->mail_type = strtoupper($request->mail_type);
+        set_env('mail_mailer', strtolower($request->mail_type));
+        $data->mail_type = strtolower($request->mail_type);
       }
       if (env('mail_host') !== $request->mail_host) {
         set_env('mail_host', strtolower($request->mail_host));

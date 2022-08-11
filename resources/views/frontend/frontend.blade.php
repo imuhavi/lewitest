@@ -102,7 +102,6 @@
           </div>
           @endforeach
         </div>
-
       </div>
     </div>
   </section>
@@ -123,7 +122,7 @@
           </div>
         </div>
         @else
-        <h2>No Mens Category Available!</h2>
+        <h2 class="text-white text-center p-5">No Mens Category Available!</h2>
         @endif
       </div>
     </div>
@@ -160,7 +159,7 @@
           <div class="parent-cat-content">
             <h4>Weekend Sale</h4>
             <h2>New Fashion Collection</h2>
-            <p>From only $180.00</p>
+            <p>From only SAR 180.00</p>
             <a class="fivedots-btn mt-4"
               href="{{ route('categoryShop', ['id'=> $mensMain->id, 'slug' => $mensMain->slug]) }}">Shop Now <img
                 class="icon" src="{{ asset('frontend/assets') }}/images/btn-arrow-light.png" alt=""></a>
@@ -204,9 +203,9 @@
             <img class="img-fluid parent-cat-banner" src="{{ asset('/backend/uploads/'. $accesoriesMain->banner) }}"
               alt="women's Main">
             <div class="parent-cat-content">
-              <h4>{{ $accesoriesMain->name }}</h4>
-              <h2>Accories Collection</h2>
-              <p>From only $180.00</p>
+              <h4>Men's & Women's</h4>
+              <h2>{{ $accesoriesMain->name }}</h2>
+              <p>From only SAR 180.00</p>
               <a class="fivedots-btn mt-4"
                 href="{{ route('categoryShop', ['id'=> $accesoriesMain->id, 'slug' => $accesoriesMain->slug]) }}">Shop
                 Now <img class="icon" src="{{ asset('frontend/assets') }}/images/btn-arrow-light.png"

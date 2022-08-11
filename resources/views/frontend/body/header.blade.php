@@ -30,7 +30,7 @@
   $categories = getCategories()
   @endphp
 
-  @if(request()->path() !== 'subscription' && explode('/', request()->path())[0] !== 'seller-register')
+
   <header>
 
     <!---------------------------
@@ -357,7 +357,6 @@
       </ul>
     </nav>
   </header>
-  @endif
 
   <script>
     let logoutForm = document.getElementById('logoutForm')

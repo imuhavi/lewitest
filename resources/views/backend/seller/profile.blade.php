@@ -112,6 +112,12 @@
                   <td width="10%">:</td>
                   <td width="45%">{{ $data->shop->address ?? null }}, {{ $data->shop->postal_code }}</td>
                 </tr>
+
+                <tr>
+                  <th width="45%">Shop Expired</th>
+                  <td width="10%">:</td>
+                  <td width="45%">{{ $data->shop }}</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -120,7 +126,7 @@
     </div><!-- Row -->
   </div><!-- Main Wrapper -->
   <div class="page-footer">
-    <p class="no-s">Made with <i class="fa fa-heart"></i> by stacks</p>
+    <p class="no-s">Made with <i class="fa fa-heart"></i> by 5dots</p>
   </div>
 </div><!-- Page Inner -->
 @endsection

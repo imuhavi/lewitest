@@ -26,6 +26,7 @@ class ProductController extends Controller
     if ($request->keyword) {
       $keyword = $request->keyword;
       $sql->where('name', 'like', '%' . $keyword . '%')
+        ->orWhere('product_sku', 'like', '%' . $keyword . '%')
         ->orWhere('slug', 'like', '%' . $keyword . '%')
         ->orWhere('purchase_price', 'like', '%' . $keyword . '%')
         ->orWhere('price', 'like', '%' . $keyword . '%')
@@ -34,6 +35,9 @@ class ProductController extends Controller
         ->orWhere('unit', 'like', '%' . $keyword . '%');
     }
 
+    if (auth()->user()->role == 'Seller') {
+      $sql->where('seller_id', auth()->id());
+    }
     $data = $sql->paginate(10);
     return view($this->VIEW_PATH, compact('page', 'data', 'keyword'));
   }

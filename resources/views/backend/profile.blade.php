@@ -185,7 +185,7 @@
               <form action="{{ route('updateProfile') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @php
-                  $seller = auth()->user()
+                $seller = auth()->user()
                 @endphp
                 <div class="card-body">
 
@@ -200,8 +200,8 @@
                     <div class="col-sm-4">
                       @if($seller->shop->shop_logo)
                       <img class="img avatar" id="shop_logo_preview"
-                        src="{{ asset('backend/uploads/' . $seller->shop->shop_logo) }}" alt="Shop-{{ $seller->shop_logo }}"
-                        width="80px" height="80px">
+                        src="{{ asset('backend/uploads/' . $seller->shop->shop_logo) }}"
+                        alt="Shop-{{ $seller->shop_logo }}" width="80px" height="80px">
                       @else
                       <img class="img avatar" id="shop_logo_preview"
                         src="{{ asset('backend/assets/default-img/noimage.jpg') }}" alt="shop default logo" width="80px"
@@ -223,65 +223,43 @@
                     </div>
                   </div>
                   <hr>
-                  <!-- <div class="row">
-                    <div class="col-sm-3">
-                      <p class="mb-0">Email</p>
-                    </div>
-                    <div class="col-sm-9">
-                      <input type="email" title="You can not update your verified email" disabled
-                        value="{{ $seller->email }}" id="email" class="form-control">
-                    </div>
-                  </div> -->
-                  <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <p class="mb-0">Phone(primary)</p>
-                    </div>
-                    <div class="col-sm-9">
-                      <input type="tel" name="primary_phone" value="{{ $seller->primary_phone }}" id="primary_phone"
-                        class="form-control">
-                      @error('primary_phone')
-                      <small class="text-danger">{{ $message }}</small>
-                      @enderror
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <p class="mb-0">Mobile(optional)</p>
-                    </div>
-                    <div class="col-sm-9">
-                      <input type="tel" name="secondary_phone" value="{{ $seller->secondary_phone }}"
-                        id="secondary_phone" class="form-control">
-                      @error('secondary_phone')
-                      <small class="text-danger">{{ $message }}</small>
-                      @enderror
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <p class="mb-0">Address</p>
+                      <p class="mb-0">Shop Address</p>
                     </div>
                     <div class="col-sm-3">
-                      <input type="text" name="shop_location" value="{{ $seller->shop_location }}" id="shop_location"
+                      <input type="text" name="shop_location" value="{{ $seller->shop->address }}" id="shop_location"
                         class="form-control">
                       @error('shop_location')
                       <small class="text-danger">{{ $message }}</small>
                       @enderror
                     </div>
 
-                    <div class="col-sm-3">
-                      <input type="text" name="shop_address" value="{{ $seller->shop_address }}" id="shop_address"
-                        class="form-control">
+                    <div class="col-sm-2">
+                      <select id="state" name="state" class="form-control state">
+                        <option selected hidden disabled value="">Choose State</option>
+                        @foreach($states as $state)
+                        <option value="{{ $state->id }}" {{ $seller->shop->state == $state->id ?
+                          'selected'
+                          : '' }}>{{ $state->name }}
+                        </option>
+                        @endforeach
+                      </select>
                       @error('shop_address')
                       <small class="text-danger">{{ $message }}</small>
                       @enderror
                     </div>
 
-                    <div class="col-sm-3">
-                      <input type="text" name="city" value="{{ $seller->city }}" id="city" class="form-control">
-                      @error('address')
+                    <div class="col-lg-2 col-md-2">
+                      <select name="city" id="city" class="form-control city">
+                        <option selected hidden disabled value="">Choose City</option>
+                      </select>
+                    </div>
+
+                    <div class="col-sm-2">
+                      <input type="text" name="shop_location" value="{{ $seller->shop->postal_code }}"
+                        id="shop_location" class="form-control">
+                      @error('shop_location')
                       <small class="text-danger">{{ $message }}</small>
                       @enderror
                     </div>
@@ -308,4 +286,32 @@
   </div>
 
 </div><!-- Page Inner -->
+@endsection
+
+@section('footer_js')
+<script>
+  $('#state').change(function () {
+    var stateId = $(this).val();
+    if (stateId) {
+      $.ajax({
+        type: "GET",
+        url: "{{url('get-cities')}}/" + stateId,
+        success: function (res) {
+          if (res) {
+            $("#city").empty();
+            $("#city").append('<option>Choose City</option>');
+            $.each(res, function (key, value) {
+              $("#city").append('<option value="' + value.id + '">' + value.name + '</option>');
+            });
+
+          } else {
+            $("#city").empty();
+          }
+        }
+      });
+    } else {
+      $("#city").empty();
+    }
+  });
+</script>
 @endsection

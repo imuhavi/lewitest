@@ -24,15 +24,14 @@ class FrontendController extends Controller
   function frontend()
   {
     $slider = Slider::where('status', 'Active')->get();
-    $categories = Category::whereIn('slug', ['mens', 'womens', 'accessories'])->whereStatus('Active')->take(3)->get();
+    $categories = Category::whereIn('slug', ['mens', 'womens', 'health-&-beauty'])->whereStatus('Active')->take(3)->get();
     $womensSub1 = Subcategory::where('category_id', 2)->get()->slice(0, 2);
-    $womensSub2 = Subcategory::where('category_id', 2)->get()->slice(2, 4);
+    $womensSub2 = Subcategory::where('category_id', 2)->get()->slice(3, 4);
     $mensSub = Subcategory::where('category_id', 3)->get()->slice(0, 4);
     $accesoriesSub = Subcategory::where('category_id', 4)->get()->slice(0, 4);
     $mensMain = Category::where('slug', 'mens')->where('status', 'Active')->first();
-    $accesoriesMain = Category::where('slug', 'accessories')->where('status', 'Active')->first();
+    $accesoriesMain = Category::where('slug', 'health-&-beauty')->where('status', 'Active')->first();
     $womensMain = $categories->where('slug', 'womens')->first();
-    $accesoriesSub = Subcategory::where('category_id', 4)->get()->slice(0, 4);
     $products = Product::orderBy('id', 'desc')->take(8)->get();
     $shops = Shop::where('status', 'Active')->get(['id', 'shop_logo']);
     return view($this->HOME_PATH, compact('slider', 'categories', 'accesoriesSub', 'womensSub1', 'womensSub2', 'mensSub', 'accesoriesMain', 'mensMain', 'womensMain', 'shops', 'products'));
@@ -206,7 +205,7 @@ class FrontendController extends Controller
     $colors = [];
     $sizes = [];
 
-    if($product->attributes){
+    if ($product->attributes) {
       foreach (json_decode($product->attributes) as $attribute) {
         $itemArr = json_decode($attribute);
         $item = Attribute::find($itemArr[0]);
