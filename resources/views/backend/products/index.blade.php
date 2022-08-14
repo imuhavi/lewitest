@@ -54,7 +54,6 @@
     <div class="row">
       @if($page == 'index')
       <div class="col-md-12">
-
         <div class="row mailbox-header">
           <div class="col-md-8">
             <h4 class="panel-title">{{ (str_replace(routePrefix() . '/', '', Request::path()) == 'product-draft') ?
@@ -103,8 +102,9 @@
                     <th>SL</th>
                     <th>Thumbnail</th>
                     <th>Name</th>
+                    <th>SKU Number</th>
                     <th>Category</th>
-                    <th>Brand</th>
+                    <th>Seller</th>
                     <th>Status</th>
                     <th>Action</th>
                   </tr>
@@ -118,8 +118,9 @@
                         alt="Product thumbnail">
                     </td>
                     <td>{{ $item->name }}</td>
+                    <td>{{ $item->product_sku }}</td>
                     <td>{{ $item->category ? $item->category->name : 'N/A' }}</td>
-                    <td>{{ $item->brand ? $item->brand->name : 'N/A' }}</td>
+                    <td>{{ $item->user ? $item->user->name : '' }}</td>
                     <td>{{ $item->status }}</td>
                     <td>
                       <a class="btn btn-info" href="{{ url(routePrefix(). '/product/' . $item->id) }}"><i
@@ -199,8 +200,7 @@
                     <div class="form-group">
                       <label for="productSku">Product SKU</label>
                       <input type="text" value="{{ $data ? $data->product_sku : old('product_sku') }}"
-                        name="product_sku" class="form-control m-t-xxs" id="productSku" placeholder="Product Sku"
-                        disabled>
+                        name="product_sku" class="form-control m-t-xxs" id="productSku" placeholder="Product Sku">
                       @error('slug')
                       <small class="text-danger">{{ $message }}</small>
                       @enderror
@@ -274,6 +274,7 @@
                         </div>
                       </div>
 
+                      @if($page == 'create')
                       <div class="col-md-4">
                         <div class="form-row">
                           <div class="form-group">
@@ -286,6 +287,26 @@
                           </div>
                         </div>
                       </div>
+                      @elseif($page == 'edit')
+
+                      <div class="col-md-4">
+                        <div class="form-row">
+                          <div class="form-group">
+                            <label for="discount_type">Discount type</label>
+                            <select name="discount_type" id="discount_type" class="form-control">
+                              <option selected value="">Select Discount Type</option>
+                              <option value="Percent" @if($data->discount_type =='Percent' ) selected
+                                @endif>Percent
+                              </option>
+                              <option value="Flat" @if($data->discount_type =='Flat' ) selected
+                                @endif>Flat</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      @endif
+
+
 
                       <div class="col-md-4">
                         <div class="form-row">
@@ -448,32 +469,25 @@
                   </div>
                   @endif
 
-                  <div class="form-row">
-                    <div class="form-group">
-                      <label for="brand_name">Choose Brand Name</label>
-                      <select name="brand_id" id="brand_name" class="form-control">
-                        <option value="" selected>Select One</option>
-                        @foreach ( $brand as $brand_item )
-                        <option value="{{ $brand_item->id }}" @if ( $page=='edit' ) {{ $brand_item->id ==
-                          $data->brand_id ?
-                          'selected'
-                          : '' }} @endif
-                          >{{ $brand_item->name }}</option>
-                        @endforeach
-                      </select>
-                    </div>
-                  </div>
+                  <div class="form-row" @if($page=='edit' && auth()->user()->role == 'Seller' ) hidden @endif>
 
-                  <div class="form-row">
                     <div class="form-group">
                       <label for="seller">Choose Seller</label>
-                      <select name="seller_id" id="seller" class="form-control">
+                      @if(auth()->user()->role == 'Seller')
+                      <select name="user_id" id="seller" class="form-control">
+                        <option value="{{ auth()->user()->id }}" readonly>{{ auth()->user()->name }}</option>
+                      </select>
+                      @else
+                      <select name="user_id" id="seller" class="form-control">
                         <option value="" selected>Select One</option>
                         @foreach ( $sellers as $seller_item )
-                        <option value="{{ $seller_item->id }}" {{ $seller_item->id ==auth()->id() ? 'selected' : '' }}
-                          >{{ $seller_item->name }}</option>
+                        <option value="{{ $seller_item->id }}" {{ ($data &&$seller_item->id == $data->user_id) ?
+                          'selected' : ''
+                          }}>{{
+                          $seller_item->name }} </option>
                         @endforeach
                       </select>
+                      @endif
                     </div>
                   </div>
 
@@ -570,7 +584,7 @@
                       src="{{ ($page == 'create' || !$data->thumbnail) ? asset('backend/assets/default-img/noimage.jpg') : asset('backend/uploads/' . $data->thumbnail) }}"
                       id="feature" width="100" height="100" />
                   </div>
-
+                  @if(auth()->user()->role == 'Admin')
                   <div class="from-row status">
                     <label>Publication status : </label>
                     <label class="no-s">
@@ -581,7 +595,7 @@
                       @endif
                     </label>
                   </div>
-
+                  @endif
                   <div class="from-row status">
                     <label>Draft : </label>
                     <label class="no-s">
@@ -663,6 +677,11 @@
                   <td class="45%" width="45%">{{ $data->slug }}</td>
                 </tr>
                 <tr>
+                  <th class="45%" width="45%">Product Sku</th>
+                  <td width="10%">:</td>
+                  <td class="45%" width="45%">{{ $data->product_sku }}</td>
+                </tr>
+                <tr>
                   <th width="45%">Product thumbnail</th>
                   <td width="10%">:</td>
                   <td width="45%">
@@ -691,9 +710,9 @@
                 </tr>
 
                 <tr>
-                  <th width="45%">Brand Name</th>
+                  <th width="45%">Seller Name</th>
                   <td width="10%">:</td>
-                  <td width="45%">{{ $data->brand->name ?? 'NA' }}</td>
+                  <td width="45%">{{ $data->user ? $data->user->name : '' }}</td>
                 </tr>
 
                 <tr>
@@ -734,7 +753,7 @@
                 </tr>
 
                 <tr>
-                  <th width="45%">Subcategory Status</th>
+                  <th width="45%">Product Status</th>
                   <th width="10%">:</th>
                   <td width="45%">
                     <span class="badge badge-pill badge-{{ $data->status === 'Active' ? 'success' : 'danger' }}">{{
@@ -743,7 +762,7 @@
                 </tr>
 
                 <tr>
-                  <th width="45%">Subcategory Create</th>
+                  <th width="45%">Product Create</th>
                   <th width="10%">:</th>
                   <td width="45%">{{ $data->created_at->diffForHumans() }}</td>
                 </tr>

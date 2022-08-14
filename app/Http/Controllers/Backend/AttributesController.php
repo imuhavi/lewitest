@@ -34,8 +34,8 @@ class AttributesController extends Controller
 
     try {
       Attribute::create([
-        'name' => ucwords($request->name),
-        'value' => json_encode(ucwords($request->attribute_value))
+        'name' => $request->name,
+        'value' => json_encode($request->attribute_value)
       ]);
       return back()->with('success', 'Attribute saved successfully .');
     } catch (\Throwable $th) {

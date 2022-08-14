@@ -14,9 +14,9 @@
           <li class="breadcrumb-item active" aria-current="page">
 
             @if(isset($page) && $page == 'subCategoryShop')
-              {{ $subcategory->name }}
+            {{ $subcategory->name }}
             @elseif(isset($page) && $page == 'categoryShop')
-              {{ $category->name }}
+            {{ $category->name }}
             @endif
           </li>
         </ol>
@@ -143,33 +143,7 @@
                 </div>
 
 
-                <div class="accordion-item mt-3">
-                  <h2 class="accordion-header" id="panelsStayOpen-headingFour">
-                    <button class="filter-button" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="true"
-                      aria-controls="panelsStayOpen-collapseFour">
-                      Filter By Brand <i class="fas fa-caret-down text-right"></i>
-                    </button>
-                  </h2>
-                  <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse show"
-                    aria-labelledby="panelsStayOpen-headingFour">
-                    <div class="accordion-body">
-                      <ul class="filter-brand">
-                        @foreach($brands as $item)
-                        <li>
-                          <div class="form-check">
-                            <input class="form-check-input filter-select" value="{{ $item->id }}" type="radio"
-                              name="brand" id="brand-{{ $item->id }}">
-                            <label class="form-check-label" for="brand-{{ $item->id }}">
-                              {{ $item->name }}
-                            </label>
-                          </div>
-                        </li>
-                        @endforeach
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+
 
               </div>
 
@@ -288,36 +262,6 @@
               </div>
             </div>
 
-
-            <div class="accordion-item mt-3">
-              <h2 class="accordion-header" id="panelsStayOpen-headingFour">
-                <button class="filter-button" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="true"
-                  aria-controls="panelsStayOpen-collapseFour">
-                  Filter By Brand <i class="fas fa-caret-down text-right"></i>
-                </button>
-              </h2>
-              <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse show"
-                aria-labelledby="panelsStayOpen-headingFour">
-                <div class="accordion-body">
-                  <input type="hidden" id="selectedBrand" value="">
-                  <ul class="filter-brand">
-                    @foreach($brands as $item)
-                    <li>
-                      <div class="form-check">
-                        <input class="form-check-input filter-select" onchange="setCurrentValue('brand', this.value)"
-                          value="{{ $item->id }}" type="radio" name="brand" id="brand-{{ $item->id }}">
-                        <label class="form-check-label" for="brand-{{ $item->id }}">
-                          {{ $item->name }}
-                        </label>
-                      </div>
-                    </li>
-                    @endforeach
-                  </ul>
-                </div>
-              </div>
-            </div>
-
           </div>
         </aside>
       </div>
@@ -330,7 +274,7 @@
         <div class="row mb-5">
           <div class="col-12 d-flex justify-content-between">
             @if(isset($page))
-              <h2>{{ $page == 'subCategoryShop' ? $subcategory->name : $category->name}}</h2>
+            <h2>{{ $page == 'subCategoryShop' ? $subcategory->name : $category->name}}</h2>
             @endif
             <div class="filter">
               <select id="select_js" onchange="filter()">
@@ -364,7 +308,6 @@
     filterBy = getElement('select_js'),
     color = getElement('selectedColor'),
     size = getElement('selectedSize'),
-    brand = getElement('selectedBrand'),
     skip = 0,
     category = location.pathname.split('/')[3],
     catOrSub = "{{ isset($page) ? $page : '' }}",
@@ -386,7 +329,7 @@
   function fetchProduct() {
     loadMoreBtn.style.display = 'none'
     noDataBtn.style.display = 'block'
-    fetch(`/filter/products?min=${min.value}&max=${max.value}&filterBy=${filterBy.value}&color=${color.value}&size=${size.value}&brand=${brand.value}&skip=${skip}&category=${category}&cat_or_sub=${catOrSub}`)
+    fetch(`/filter/products?min=${min.value}&max=${max.value}&filterBy=${filterBy.value}&color=${color.value}&size=${size.value}&skip=${skip}&category=${category}&cat_or_sub=${catOrSub}`)
       .then(response => response.text())
       .then(data => {
         if (data.length != 0) {
@@ -414,9 +357,6 @@
         break;
       case 'size':
         size.value = value
-        break;
-      case 'brand':
-        brand.value = value
         break;
     }
     filter()

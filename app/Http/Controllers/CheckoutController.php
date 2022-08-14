@@ -159,7 +159,7 @@ class CheckoutController extends Controller
             OrderDetails::create([
               'product_id' => $product->id,
               'order_id' => $order->id,
-              'seller_id' => $product->seller_id,
+              'seller_id' => $product->user_id,
               'unit_price' => $product['price'] - ($item['discount'] / $item['quantity']),
               'quantity' => $item['quantity'],
               'color' => ucfirst($item['color']),

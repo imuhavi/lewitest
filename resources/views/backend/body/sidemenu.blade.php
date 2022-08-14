@@ -10,45 +10,45 @@
       </li>
 
       @if(routePrefix() === 'admin' || routePrefix() === 'seller')
-      
+
       @if(routePrefix() === 'seller')
-        @if(auth()->user()->shop && auth()->user()->shop->status == 'Active')
-          <li class="droplink @yield('product_active')"><a href="#" class="waves-effect waves-button"><span
-                class="menu-icon icon-present"></span>
-              <p>Product Manage</p><span class="arrow"></span>
-            </a>
-            <ul class="sub-menu">
-              <li class="@yield('subproduct_active')"><a href="{{ url(routePrefix(). '/product') }}">Product
-                  List</a>
-              </li>
-              <li class="@yield('/subproduct_active1')"><a href="{{ url(routePrefix(). '/product/create') }}">Add New
-                  Product</a>
-              </li>
-              <li class="@yield('subproduct_active2')"><a href="{{ url(routePrefix() .'/product-draft') }}">Product
-                  Draft</a>
-              </li>
-            </ul>
+      @if(auth()->user()->shop && auth()->user()->shop->status == 'Active')
+      <li class="droplink @yield('product_active')"><a href="#" class="waves-effect waves-button"><span
+            class="menu-icon icon-present"></span>
+          <p>Product Manage</p><span class="arrow"></span>
+        </a>
+        <ul class="sub-menu">
+          <li class="@yield('subproduct_active')"><a href="{{ url(routePrefix(). '/product') }}">Product
+              List</a>
           </li>
-        @endif
-      @else
-        <li class="droplink @yield('product_active')"><a href="#" class="waves-effect waves-button"><span
-              class="menu-icon icon-present"></span>
-            <p>Product Manage</p><span class="arrow"></span>
-          </a>
-          <ul class="sub-menu">
-            <li class="@yield('subproduct_active')"><a href="{{ url(routePrefix(). '/product') }}">Product
-                List</a>
-            </li>
-            <li class="@yield('/subproduct_active1')"><a href="{{ url(routePrefix(). '/product/create') }}">Add New
-                Product</a>
-            </li>
-            <li class="@yield('subproduct_active2')"><a href="{{ url(routePrefix() .'/product-draft') }}">Product
-                Draft</a>
-            </li>
-          </ul>
-        </li>
+          <li class="@yield('/subproduct_active1')"><a href="{{ url(routePrefix(). '/product/create') }}">Add New
+              Product</a>
+          </li>
+          <li class="@yield('subproduct_active2')"><a href="{{ url(routePrefix() .'/product-draft') }}">Product
+              Draft</a>
+          </li>
+        </ul>
+      </li>
       @endif
-      
+      @else
+      <li class="droplink @yield('product_active')"><a href="#" class="waves-effect waves-button"><span
+            class="menu-icon icon-present"></span>
+          <p>Product Manage</p><span class="arrow"></span>
+        </a>
+        <ul class="sub-menu">
+          <li class="@yield('subproduct_active')"><a href="{{ url(routePrefix(). '/product') }}">Product
+              List</a>
+          </li>
+          <li class="@yield('/subproduct_active1')"><a href="{{ url(routePrefix(). '/product/create') }}">Add New
+              Product</a>
+          </li>
+          <li class="@yield('subproduct_active2')"><a href="{{ url(routePrefix() .'/product-draft') }}">Product
+              Draft</a>
+          </li>
+        </ul>
+      </li>
+      @endif
+
       <li class="@yield('customer_active')"><a href="{{ url( routePrefix() .'/customer-list') }}"
           class="waves-effect waves-button"><span class="menu-icon fa fa-users"></span>
           <p>All Customers</p>
@@ -78,11 +78,6 @@
       <li class="@yield('subcategory_active')"><a href="{{ url( routePrefix() . '/subcategory') }}"
           class="waves-effect waves-button"><span class="menu-icon fa fa-sitemap"></span>
           <p>Sub-category</p>
-        </a>
-      </li>
-      <li class="@yield('brand_active')"><a href="{{ url(routePrefix(). '/brand') }}"
-          class="waves-effect waves-button"><span class="menu-icon icon-badge"></span>
-          <p>Brands</p>
         </a>
       </li>
 

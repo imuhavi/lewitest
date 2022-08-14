@@ -5,7 +5,8 @@
     <h3>Seller Information</h3>
   </div>
   <!-- <form action="{{ url('/subscribe-subscription/' . $subscription->id) }}" method="post" enctype="multipart/form-data"> -->
-  <form action="{{ url('/subscribe-subscription/' . $subscription->id) }}" method="post" enctype="multipart/form-data">
+  <form action="{{ url('/subscribe-subscription/' . $subscription->id) }}" method="post" enctype="multipart/form-data"
+    id="sellerRegister">
 
     @csrf
 
@@ -203,7 +204,14 @@
           </div>
 
           <div class="place-order">
-            <button type="submit" class="place-order-button">Register</button>
+            <button class="place-order-button" id="register" type="button" onclick="handleSubmit()">
+              Register
+            </button>
+
+            <button class="place-order-button" id="loading" type="button" style="display: none">
+              <span class="spinner-border spinner-border-sm"></span>
+              Loading...
+            </button>
           </div>
         </div>
       </div>
@@ -266,5 +274,17 @@
       $("#city").empty();
     }
   });
+
+  let placeOrder = document.getElementById('register');
+  let loading = document.getElementById('loading');
+  const form = document.getElementById('sellerRegister');
+
+  const handleSubmit = () => {
+    loading.style.display = '',
+      placeOrder.style.display = 'none',
+      form.submit()
+
+  }
+
 </script>
 @endsection

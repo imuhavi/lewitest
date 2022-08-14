@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ShopCreated;
 use App\Models\Shop;
 use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class SubscriptionController extends Controller
 {
@@ -47,7 +49,7 @@ class SubscriptionController extends Controller
     }
 
     if (auth()->user()->shop) {
-      if(auth()->user()->shop->status == 'Inactive'){
+      if (auth()->user()->shop->status == 'Inactive') {
         return redirect()->back()->with('error', 'Your subscription has been inactivated! Please contact with the admin.');
       }
       return redirect()->back()->with('error', 'You have already subscribed a subscription !');
@@ -55,7 +57,8 @@ class SubscriptionController extends Controller
       if ($r->file('shop_logo')) {
         uploadImage($r->file('shop_logo'));
       }
-      Shop::create([
+
+      $shop = Shop::create([
         'user_id' => $user->id,
         'subscription_id' => $subscription->id,
         'shop_name' => $r->shop_name,
@@ -74,6 +77,7 @@ class SubscriptionController extends Controller
         ]));
       } elseif ($r->payment_method == 'CASH_ON_DELIVERY') {
         event(new Registered($user));
+        Mail::to($user->email)->send(new ShopCreated($shop));
         return redirect('/seller/dashboard')->with('success', 'Subscribe successfully !');
       }
     }

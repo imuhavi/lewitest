@@ -64,6 +64,13 @@
             <table class="table table-striped">
               <tbody>
                 <tr>
+                  <th class="45%" width="45%">Package Name:</th>
+                  <td width="10%">:</td>
+                  <td class="45%" width="45%">{{ $data->shop->subscription->name }} ({{ $data->shop->subscription->days
+                    }} Days)
+                  </td>
+                </tr>
+                <tr>
                   <th class="45%" width="45%">Shop Name</th>
                   <td width="10%">:</td>
                   <td class="45%" width="45%">{{ $data->shop->shop_name }}</td>
@@ -116,7 +123,9 @@
                 <tr>
                   <th width="45%">Shop Expired</th>
                   <td width="10%">:</td>
-                  <td width="45%">{{ $data->shop }}</td>
+
+                  <td width="45%">{{ date('d-M-Y', strtotime('+' . $data->shop->subscription->days . ' day',
+                    strtotime($data->shop->created_at ))) }}</td>
                 </tr>
               </tbody>
             </table>

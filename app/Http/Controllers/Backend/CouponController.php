@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Coupon;
 use App\Models\Product;
@@ -48,12 +47,12 @@ class CouponController extends Controller
 
     $data = $request->except('_token', 'category_ids', 'product_ids');
 
-    if($request->type == 'Category'){
+    if ($request->type == 'Category') {
       $request->validate([
         'category_ids' => 'required'
       ]);
       $data['category_ids'] = json_encode($request->category_ids);
-    }elseif ($request->type == 'Product') {
+    } elseif ($request->type == 'Product') {
       $request->validate([
         'product_ids' => 'required'
       ]);
@@ -100,25 +99,25 @@ class CouponController extends Controller
 
     $data = $request->except('_token', 'category_ids', 'product_ids');
 
-    if($request->type == 'Category'){
+    if ($request->type == 'Category') {
       $request->validate([
         'category_ids' => 'required'
       ]);
       $data['category_ids'] = json_encode($request->category_ids);
       $data['product_ids'] = null;
-    }elseif ($request->type == 'Product') {
+    } elseif ($request->type == 'Product') {
       $request->validate([
         'product_ids' => 'required'
       ]);
       $data['product_ids'] = json_encode($request->product_ids);
       $data['category_ids'] = null;
-    }else{
+    } else {
       $data['category_ids'] = null;
       $data['product_ids'] = null;
     }
-      
+
     $data['code'] = strtolower($request->code);
-    
+
     $coupon->update($data);
 
     return redirect()->back()->with('success', 'Coupon updated successfully.');

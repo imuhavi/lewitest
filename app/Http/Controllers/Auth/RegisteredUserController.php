@@ -48,6 +48,9 @@ class RegisteredUserController extends Controller
     event(new Registered($user));
 
     Auth::login($user);
+    if (count(session('cart')) > 0) {
+      return redirect(RouteServiceProvider::CHECKOUT);
+    }
 
     return redirect(RouteServiceProvider::HOME);
   }

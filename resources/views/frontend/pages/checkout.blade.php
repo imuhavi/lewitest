@@ -25,6 +25,25 @@
 
       <div class="row">
 
+        @if ($errors->any())
+        <div class="alert alert-danger">
+          <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+        @endif
+
+        @if(session('error'))
+        <div class="alert alert-danger">
+          <ul>
+            <li>{{ session('error') }}</li>
+          </ul>
+        </div>
+        @endif
+
+
         <div class="col-lg-7 p-0 left">
           <form action="{{ route('orderPlace') }}" method="post" id="orderPlace">
             @csrf
@@ -204,7 +223,14 @@
             </div>
           </div>
           <div class="place-order">
-            <input type="button" class="place-order-button" onclick="handleSubmit()" value="Place Order" />
+            <button class="place-order-button" id="placeOrder" type="button" onclick="handleSubmit()">
+              Place Order
+            </button>
+
+            <button class="place-order-button" id="loading" type="button" style="display: none">
+              <span class="spinner-border spinner-border-sm"></span>
+              Loading...
+            </button>
           </div>
 
         </div>
@@ -278,10 +304,15 @@
     }
   });
 
+  let placeOrder = document.getElementById('placeOrder');
+  let loading = document.getElementById('loading');
   const form = document.getElementById('orderPlace');
 
   const handleSubmit = () => {
-    form.submit()
-  }
+    loading.style.display = '',
+      placeOrder.style.display = 'none',
+      form.submit()
+
+  } 
 </script>
 @endsection

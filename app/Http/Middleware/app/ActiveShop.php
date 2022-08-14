@@ -31,7 +31,7 @@ class ActiveShop
     Shop::find(auth()->user()->shop->id)->update([
       'status' => 'Inactive'
     ]);
-    Product::whereSellerId(auth()->user()->id)->update([
+    Product::whereUserId(auth()->user()->id)->update([
       'status' => 'Inactive'
     ]);
     return redirect('/')->with('error', 'Your shop has been inactivated! Please contact with the admin.');

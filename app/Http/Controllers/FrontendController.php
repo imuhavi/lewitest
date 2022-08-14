@@ -40,7 +40,6 @@ class FrontendController extends Controller
   function shop()
   {
     $products = Product::orderBy('id', 'asc')->get();
-    $brands = Brand::get();
 
     $min = 10;
     $max = 9000;
@@ -67,7 +66,6 @@ class FrontendController extends Controller
 
     return view($this->VIEW_PATH . 'shop', compact(
       'products',
-      'brands',
       'min',
       'max',
       'colorAttributesArr',
@@ -80,8 +78,6 @@ class FrontendController extends Controller
     $page = 'subCategoryShop';
     $subcategory = Subcategory::with('products')->find($id);
     $productSQL = $subcategory->products;
-    $brandIds = array_unique($productSQL->pluck('brand_id')->toArray());
-    $brands = Brand::find($brandIds);
 
     $minimumPrices = $productSQL->pluck('price')->toArray();
     $maximumPrices = $productSQL->pluck('price')->toArray();
@@ -92,7 +88,6 @@ class FrontendController extends Controller
     $allAttributes = Product::where('attributes', '!=', null)->pluck('attributes');
     $colorAttributesArr = [];
     $sizeAttributesArr = [];
-
     foreach ($allAttributes as $key => $attributes) {
       foreach (json_decode($attributes) as $attribute) {
         $itemArr = json_decode($attribute);
@@ -111,7 +106,6 @@ class FrontendController extends Controller
     return view($this->VIEW_PATH . 'shop', compact(
       'page',
       'subcategory',
-      'brands',
       'min',
       'max',
       'colorAttributesArr',
@@ -124,8 +118,6 @@ class FrontendController extends Controller
     $page = 'categoryShop';
     $category = Category::with('products')->find($id);
     $productSQL = $category->products;
-    $brandIds = array_unique($productSQL->pluck('brand_id')->toArray());
-    $brands = Brand::find($brandIds);
 
     $minimumCategoryPrices = $productSQL->pluck('price')->toArray();
     $maximumCategoryPrices = $productSQL->pluck('price')->toArray();
@@ -155,7 +147,6 @@ class FrontendController extends Controller
     return view($this->VIEW_PATH . 'shop', compact(
       'page',
       'category',
-      'brands',
       'min',
       'max',
       'colorAttributesArr',
@@ -181,9 +172,6 @@ class FrontendController extends Controller
     if ($r->max) {
       $sql->where('price', '<=', $r->max);
     }
-    if ($r->brand) {
-      $sql->where('brand_id', $r->brand);
-    }
     if ($r->filterBy) {
       $sql->orderBy('updated_at', $r->filterBy);
     }
@@ -200,7 +188,7 @@ class FrontendController extends Controller
   function productView($slug)
   {
     $product = Product::where('slug', $slug)->first();
-    $reletedProduct = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->take(8)->get();
+    $reletedProduct = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->where('status', 'Active')->take(8)->get();
 
     $colors = [];
     $sizes = [];

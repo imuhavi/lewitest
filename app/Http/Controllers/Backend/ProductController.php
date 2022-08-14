@@ -20,7 +20,7 @@ class ProductController extends Controller
   public function index(Request $request)
   {
     $page = 'index';
-    $sql = Product::with('category', 'brand')->where('is_draft', 0)->orderBy('created_at', 'DESC');
+    $sql = Product::with('category', 'user')->where('is_draft', 0)->orderBy('created_at', 'DESC');
 
     $keyword = '';
     if ($request->keyword) {
@@ -36,8 +36,9 @@ class ProductController extends Controller
     }
 
     if (auth()->user()->role == 'Seller') {
-      $sql->where('seller_id', auth()->id());
+      $sql->where('user_id', auth()->id());
     }
+
     $data = $sql->paginate(10);
     return view($this->VIEW_PATH, compact('page', 'data', 'keyword'));
   }
@@ -49,11 +50,13 @@ class ProductController extends Controller
     $data = '';
     $page = 'create';
     $category = Category::where('id', '!=', 1)->orderBy('name', 'asc')->get();
+
     $subCategory = Subcategory::orderBy('name', 'asc')->get();
-    $brand = Brand::orderBy('name', 'asc')->get();
+    // $brand = Brand::orderBy('name', 'asc')->get();
     $sellers = User::where('role', 'Seller')->orderBy('name', 'asc')->get();
     $attributes = Attribute::orderBy('name', 'asc')->get();
-    return view($this->VIEW_PATH, compact('data', 'page', 'category', 'subCategory', 'brand', 'sellers', 'attributes'));
+
+    return view($this->VIEW_PATH, compact('data', 'page', 'category', 'subCategory', 'sellers', 'attributes'));
   }
 
 
@@ -91,9 +94,9 @@ class ProductController extends Controller
       }
 
       if ($request->status == 'on') {
-        $data['status'] = 1;
+        $data['status'] = 'Active';
       } else {
-        $data['status'] = 0;
+        $data['status'] = 'Inactive';
       }
 
       if ($request->is_draft == 'on') {
@@ -151,10 +154,9 @@ class ProductController extends Controller
     $data = $product;
     $category = Category::orderBy('name', 'asc')->get();
     $subCategory = Subcategory::orderBy('name', 'asc')->get();
-    $brand = Brand::orderBy('name', 'asc')->get();
     $sellers = User::where('role', 'Seller')->orderBy('name', 'asc')->get();
     $attributes = Attribute::orderBy('name', 'asc')->get();
-    return view($this->VIEW_PATH, compact('data', 'page', 'category', 'subCategory', 'brand', 'sellers', 'attributes'));
+    return view($this->VIEW_PATH, compact('data', 'page', 'category', 'subCategory', 'sellers', 'attributes'));
   }
 
   public function update(Request $request, Product $product)
@@ -261,12 +263,14 @@ class ProductController extends Controller
   public function productDraft(Request $request)
   {
     $page = 'index';
-    $sql = Product::with('category', 'brand')->where('is_draft', 1)->orderBy('created_at', 'DESC');
+    // $sellers = User::where('role', 'Seller')->where('id', auth()->id())->orderBy('name', 'asc')->get();
+    $sql = Product::with('category', 'user')->where('is_draft', 1)->orderBy('created_at', 'DESC');
 
     $keyword = '';
     if ($request->keyword) {
       $keyword = $request->keyword;
       $sql->where('name', 'like', '%' . $keyword . '%')
+        ->orWhere('product_sku', 'like', '%' . $keyword . '%')
         ->orWhere('slug', 'like', '%' . $keyword . '%')
         ->orWhere('purchase_price', 'like', '%' . $keyword . '%')
         ->orWhere('price', 'like', '%' . $keyword . '%')
