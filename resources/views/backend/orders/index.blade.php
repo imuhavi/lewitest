@@ -66,11 +66,11 @@
                 <thead>
                   <tr>
                     <th>Order ID</th>
+                    <th>Product SKU</th>
                     <th>Total Amount</th>
                     <th>Payment Method</th>
                     <th>Status</th>
                     <th>Customer</th>
-                    <th>Store</th>
                     <th>Date</th>
                     <th>Action</th>
                   </tr>
@@ -80,6 +80,10 @@
                   @foreach($orders as $item)
                   <tr>
                     <td>#{{ $item->id }}</td>
+                    <td>
+                      {{ $item->order_details[0]->product->product_sku }}
+                    </td>
+
                     <td>
                       SAR {{ $item->amount + $item->shipping_cost + $item->tax - $item->coupon_discount_amount }}
                     <td>
@@ -111,9 +115,7 @@
                       {{ $item->user->name }}
                     </td>
 
-                    <td>
-                      {{ $item->order_details[0]->shop->shop_name ?? '' }}
-                    </td>
+
 
                     <td>{{ $item->created_at->format('d-M-Y') }}</td>
                     <td>
