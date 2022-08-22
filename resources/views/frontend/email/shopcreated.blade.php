@@ -27,7 +27,7 @@
 
   <div>
     <h4>Package Details:</h4>
-    <p>Package Name: {{ $shop->shop->subscription->name }} ({{ $shop->shop->subscription->days
+    <p>Package Name: {{ $shop->subscription->name }} ({{ $shop->subscription->days
       }} Days)</p>
   </div>
 
