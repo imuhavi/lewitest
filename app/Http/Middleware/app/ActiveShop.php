@@ -34,6 +34,6 @@ class ActiveShop
     Product::whereUserId(auth()->user()->id)->update([
       'status' => 'Inactive'
     ]);
-    return redirect('/')->with('error', 'Your shop has been inactivated! Please contact with the admin.');
+    return redirect('/')->with('error', 'Your request under process please wait for activation.');
   }
 }

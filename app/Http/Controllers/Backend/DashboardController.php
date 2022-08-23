@@ -31,7 +31,14 @@ class DashboardController extends Controller
 
   public function orderList(Request $request)
   {
-    $sql = Order::orderBy('created_at', 'DESC');
+
+    if (auth()->user()->role == "Seller") {
+      // return $products = Product::where('user_id', auth()->id())->pluck("id");
+
+      $sql = Order::orderBy('created_at', 'DESC');
+    } else {
+      $sql = Order::orderBy('created_at', 'DESC');
+    }
 
     $page = 'index';
     $keyword = '';
