@@ -183,10 +183,12 @@ class ProductController extends Controller
       }
 
       if ($request->status == 'on') {
-        $data['status'] = 1;
+
+        $data['status'] = 'Active';
       } else {
-        $data['status'] = 0;
+        $data['status'] = 'Inactive';
       }
+      // return $request->is_draft;
 
       if ($request->is_draft == 'on') {
         $data['is_draft'] = 1;

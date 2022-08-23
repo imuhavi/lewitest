@@ -127,8 +127,8 @@
                           class="fa fa-eye"></i></a>
                       <a class="btn btn-warning" href="{{ url(routePrefix(). '/product/' . $item->id . '/edit') }}"><i
                           class="fa fa-edit"></i></a>
-                      <a class="btn btn-danger" href="{{ url(routePrefix(). '/product/delete/' . $item->id) }}"><i
-                          class="fa fa-trash"></i></a>
+                      <!-- <a class="btn btn-danger" href="{{ url(routePrefix(). '/product/delete/' . $item->id) }}"><i
+                          class="fa fa-trash"></i></a> -->
                     </td>
                   </tr>
                   @endforeach
@@ -475,13 +475,16 @@
                       <label for="seller">Choose Seller</label>
                       @if(auth()->user()->role == 'Seller')
                       <select name="user_id" id="seller" class="form-control">
-                        <option value="{{ auth()->user()->id }}" readonly>{{ auth()->user()->name }}</option>
+                        <option value="{{ auth()->user()->id }}" data-seller="{{ $seller_item->name }}" readonly>{{
+                          auth()->user()->name }}</option>
                       </select>
                       @else
                       <select name="user_id" id="seller" class="form-control">
                         <option value="" selected>Select One</option>
                         @foreach ( $sellers as $seller_item )
-                        <option value="{{ $seller_item->id }}" {{ ($data &&$seller_item->id == $data->user_id) ?
+                        <option value="{{ $seller_item->id }}" data-seller="{{ $seller_item->name }}" {{ ($data &&
+                          $seller_item->id ==
+                          $data->user_id) ?
                           'selected' : ''
                           }}>{{
                           $seller_item->name }} </option>
@@ -810,13 +813,17 @@
 
   let productSku = document.getElementById('productSku');
   let seller = document.getElementById('seller');
-  let productName = document.getElementById('name');
 
+
+  function sellerName() {
+    return seller.options[seller.selectedIndex].textContent.toLowerCase().replace(' ', '_')
+  }
   function generateSku() {
-    if (seller.value.length > 0 && productName.value.length > 1) {
-      productSku.value = productName.value.slice(0, 2).toUpperCase() + '-' + (Math.floor(1000 + Math.random() * 9000)).toString() + '-' + seller.value
+    console.log(seller.value.length, sellerName().length, sellerName())
+    if (seller.value.length > 0 && sellerName().length > 1 && sellerName() != 'select_one') {
+      productSku.value = sellerName().slice(0, 2).toUpperCase() + '-' + (Math.floor(1000 + Math.random() * 9000)).toString() + '-' + seller.value
     } else {
-      alert('Please a select & write a product name.');
+      alert('Please select a seller.');
     }
   }
 
