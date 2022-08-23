@@ -59,7 +59,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']
   Route::post('settings-update', [GeneralSettingController::class, 'update'])->name('settings.update');
   Route::post('settings-seo-update', [GeneralSettingController::class, 'seoUpdate'])->name('settings.seo.update');
   Route::post('settings-mail-update', [GeneralSettingController::class, 'mailUpdate'])->name('settings.mail.update');
-  Route::post('settings-social-update', [SocialConfigController::class, 'update'])->name('settings.social.update');
+  Route::post('settings-social-update', [GeneralSettingController::class, 'socialUpdate'])->name('settings.social.update');
   Route::post('settings-payment-update', [GeneralSettingController::class, 'updatePayment'])->name('settings.payment.update');
 
   // Slider

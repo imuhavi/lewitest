@@ -4,27 +4,16 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\GeneralSetting;
-use App\Models\SocialConfig;
 use Illuminate\Http\Request;
 
 class GeneralSettingController extends Controller
 {
   private $VIEW_PATH = 'backend.settings.';
 
-  public function settings()
+  public function settings(Request $request)
   {
-    try {
-      $socialArr = [];
-      $data = GeneralSetting::first();
-      // return $data;
-      $social = SocialConfig::all();
-      foreach ($social as $item) {
-        $socialArr[$item->type] = $item;
-      }
-      return view($this->VIEW_PATH . 'index', compact('data', 'socialArr'));
-    } catch (\Throwable $th) {
-      return redirect()->back()->with('error', $th->getMessage());
-    }
+    $data = GeneralSetting::first();
+    return view($this->VIEW_PATH . 'index', compact('data'));
   }
 
   public function update(Request $request)
@@ -159,6 +148,31 @@ class GeneralSettingController extends Controller
         set_env('MYFATOORAH_TOKEN', $request->myfatoorah_token);
       }
       return redirect()->back()->with('success', 'Myfatoorah token updated successfully !');
+    } catch (\Throwable $th) {
+      return redirect()->back()->with('error', $th->getMessage());
+    }
+  }
+
+  public function socialUpdate(Request $request)
+  {
+    $request->validate([
+      'app_id' => 'required',
+      'app_secret' => 'required'
+    ]);
+
+    try {
+      $data = GeneralSetting::first();
+      if (env('GOOGLE_CLIENT_ID') !== $request->app_id) {
+        set_env('GOOGLE_CLIENT_ID', strtolower($request->app_id));
+        $data->app_id = strtolower($request->app_id);
+      }
+
+      if (env('GOOGLE_CLIENT_SECRET') !== $request->app_secret) {
+        set_env('GOOGLE_CLIENT_SECRET', strtolower($request->app_secret));
+        $data->app_secret = strtolower($request->app_secret);
+      }
+      $data->save();
+      return redirect()->back()->with('success', 'Social login config updated successfully !');
     } catch (\Throwable $th) {
       return redirect()->back()->with('error', $th->getMessage());
     }

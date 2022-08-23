@@ -36,6 +36,8 @@ class CreateGeneralSettingsTable extends Migration
       $table->string('mail_encryption')->nullable();
       $table->string('mail_address')->nullable();
       $table->string('mail_from_name')->nullable();
+      $table->string('app_id')->nullable();
+      $table->string('app_secret')->nullable();
       $table->timestamps();
     });
   }

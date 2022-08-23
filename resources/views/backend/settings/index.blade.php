@@ -73,14 +73,8 @@
                     <div class="tabs-left" role="tabpanel">
                       <!-- Nav tabs -->
                       <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation"><a href="#facebook" role="tab" data-toggle="tab">Facebook </a></li>
-
                         <li role="presentation"><a href="#google" role="tab" data-toggle="tab">Google</a>
                         </li>
-
-                        <li role="presentation"><a href="#twitter" role="tab" data-toggle="tab">Twitter</a>
-                        </li>
-
                       </ul>
                     </div>
                   </div>
@@ -438,49 +432,11 @@
 
               </div>
 
-              {{-- Social Login Facebook --}}
-              <div role="tabpanel" class="tab-pane fade" id="facebook">
-                <div class="card mb-4">
-                  <form action="{{ url(routePrefix() . '/settings-social-update') }}" method="post">
-                    @csrf
-                    <input type="hidden" name="type" value="Facebook">
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">App Id</p>
-                        </div>
-                        <div class="col-sm-5">
-                          <input type="text" name="app_id" value="{{ $socialArr['Facebook']->app_id ?? '' }}"
-                            id="app_id" class="form-control">
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">App Secret</p>
-                        </div>
-                        <div class="col-sm-5">
-                          <input type="text" name="app_secret" value="{{ $socialArr['Facebook']->app_secret ?? '' }}"
-                            class="form-control" id="app_secret">
-                        </div>
-                      </div>
-
-                      <div class="row" style="margin-top: 20px">
-                        <div class="col-sm-8 text-right ">
-                          <button class="btn btn-info" type="submit">Update</button>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-
               {{-- Social Login Google --}}
               <div role="tabpanel" class="tab-pane fade" id="google">
                 <div class="card mb-4">
-                  <form action="{{ url(routePrefix() . '/settings-social-update') }}" method="post">
+                  <form action="{{ url(routePrefix() . '/settings-social-update') }}" method="POST">
                     @csrf
-                    <input type="hidden" name="type" value="Google">
                     <div class="card-body">
 
                       <div class="row">
@@ -488,7 +444,7 @@
                           <p class="mb-0">App Id</p>
                         </div>
                         <div class="col-sm-5">
-                          <input type="text" name="app_id" value="{{ $socialArr['Google']->app_id ?? '' }}" id="app_id"
+                          <input type="text" name="app_id" value="{{ $data->app_id ?? '' }}" id="app_id"
                             class="form-control">
                         </div>
                       </div>
@@ -498,45 +454,7 @@
                           <p class="mb-0">App Secret</p>
                         </div>
                         <div class="col-sm-5">
-                          <input type="text" name="app_secret" value="{{ $socialArr['Google']->app_secret ?? '' }}"
-                            class="form-control" id="app_secret">
-                        </div>
-                      </div>
-
-                      <div class="row" style="margin-top: 20px">
-                        <div class="col-sm-8 text-right ">
-                          <button class="btn btn-info" type="submit">Update</button>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-
-              {{-- Social Login Twitter --}}
-              <div role="tabpanel" class="tab-pane fade" id="twitter">
-                <div class="card mb-4">
-                  <form action="{{ url(routePrefix() . '/settings-social-update') }}" method="post">
-                    @csrf
-                    <input type="hidden" name="type" value="Twitter">
-                    <div class="card-body">
-
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">App Id</p>
-                        </div>
-                        <div class="col-sm-5">
-                          <input type="text" name="app_id" value="{{ $socialArr['Twitter']->app_id ?? '' }}" id="app_id"
-                            class="form-control">
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">App Secret</p>
-                        </div>
-                        <div class="col-sm-5">
-                          <input type="text" name="app_secret" value="{{ $socialArr['Twitter']->app_secret ?? '' }}"
+                          <input type="text" name="app_secret" value="{{ $data->app_secret  ?? ''}}"
                             class="form-control" id="app_secret">
                         </div>
                       </div>
