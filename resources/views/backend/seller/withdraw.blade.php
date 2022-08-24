@@ -73,37 +73,25 @@
           </div>
 
           <div class="col-md-2">
-            <div class="">
-              <!-- Small modal -->
-              <button type="button" class="btn btn-info" data-toggle="modal" data-target=".bs-example-modal-sm">Payout
-                Request</button>
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target=".bs-example-modal-sm"><i
+                class="icon-plus"></i> Payout
+              Request</button>
 
-              <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog"
-                aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-sm">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                          aria-hidden="true">&times;</span></button>
-                      <h4 class="modal-title" id="mySmallModalLabel">Modal title</h4>
-                    </div>
-                    <div class="modal-body">
-                      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean
-                      massa. Cum
-                      sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.<br><br>Donec
-                      quam
-                      felis,
-                      ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede
-                      justo,
-                      fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a,
-                      venenatis
-                      vitae,
-                      justo.
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-success">Save changes</button>
-                    </div>
+            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="mySmallModalLabel">PAYOUT REQUEST </h4>
+                  </div>
+                  <div class="modal-body">
+                    <h3>Available balance: $10,000.00</h3>
+                  </div>
+                  <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                    <button type="button" class="btn btn-success">Save changes</button>
                   </div>
                 </div>
               </div>
