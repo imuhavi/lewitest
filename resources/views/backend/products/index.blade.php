@@ -475,7 +475,7 @@
                       <label for="seller">Choose Seller</label>
                       @if(auth()->user()->role == 'Seller')
                       <select name="user_id" id="seller" class="form-control">
-                        <option value="{{ auth()->user()->id }}" data-seller="{{ $seller_item->name }}" readonly>{{
+                        <option value="{{ auth()->user()->id }}" data-seller="{{ auth()->user()->name }}" readonly>{{
                           auth()->user()->name }}</option>
                       </select>
                       @else
@@ -598,17 +598,6 @@
                       @endif
                     </label>
                   </div>
-                  @endif
-                  <div class="from-row status">
-                    <label>Draft : </label>
-                    <label class="no-s">
-                      @if($page == 'create')
-                      <input type="checkbox" name="is_draft"> Active
-                      @else
-                      <input type="checkbox" name="is_draft" {{ $data->is_draft == 1 ? 'checked' : '' }}> Active
-                      @endif
-                    </label>
-                  </div>
 
                   <div class="from-row status">
                     <label>Cash on delivery Available : </label>
@@ -621,6 +610,20 @@
                       @endif
                     </label>
                   </div>
+
+                  @endif
+                  <div class="from-row status">
+                    <label>Draft : </label>
+                    <label class="no-s">
+                      @if($page == 'create')
+                      <input type="checkbox" name="is_draft"> Active
+                      @else
+                      <input type="checkbox" name="is_draft" {{ $data->is_draft == 1 ? 'checked' : '' }}> Active
+                      @endif
+                    </label>
+                  </div>
+
+
 
                   <div class="from-row">
                     <button type="submit" class="btn btn-info m-t-xs m-b-xs">{{ $page == 'create' ? 'Publish' :

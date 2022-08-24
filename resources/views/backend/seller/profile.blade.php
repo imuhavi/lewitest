@@ -41,6 +41,12 @@
                 <p><i class="icon-envelope-open m-r-xs"></i><a href="#">{{ $data->email }}</a>
                 </p>
               </li>
+
+              <li>
+                <p><i class="icon-clock m-r-xs"></i><a href="#">Member since {{ $data->shop->created_at->diffForHumans()
+                    }}</a>
+                </p>
+              </li>
             </ul>
             <hr>
             <a class="btn btn-info btn-block" href="#"><i class="icon-plus m-r-xs"></i>View Store</a>
@@ -74,19 +80,6 @@
                   <th class="45%" width="45%">Shop Name</th>
                   <td width="10%">:</td>
                   <td class="45%" width="45%">{{ $data->shop->shop_name }}</td>
-                </tr>
-                <tr>
-                  <th width="45%">Shop Logo</th>
-                  <td width="10%">:</td>
-                  <td width="45%">
-                    @if ($data->shop->shop_logo)
-                    <img src="{{ asset('/backend/uploads/'.$data->shop->shop_logo) }}" class="thumbnail-img"
-                      alt="Shop logo - {{ $data->shop->shop_logo }}">
-                    @else
-                    <img src="{{ asset('backend/assets/default-img/noimage.jpg') }}" class="thumbnail-img"
-                      alt="Default Shop Logo">
-                    @endif
-                  </td>
                 </tr>
 
                 <tr>

@@ -191,6 +191,24 @@
 
                   <div class="row">
                     <div class="col-sm-3">
+                      <p class="mb-0">Package Name:</p>
+                    </div>
+                    <div class="col-sm-3">
+                      <input type="text" class="form-control" value="{{ $seller->shop->subscription->name }} ({{ $seller->shop->subscription->days
+                                      }} Days)" readonly>
+                    </div>
+
+                    <div class="col-sm-3">
+                      <p class="mb-0">Package Expired:</p>
+                    </div>
+                    <div class="col-sm-3">
+                      <input type="text" class="form-control" value="{{ date('d-M-Y', strtotime('+' . $seller->shop->subscription->days . ' day',
+                                          strtotime($seller->shop->created_at ))) }}" readonly>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
                       <p class="mb-0">Shop Logo</p>
                     </div>
                     <div class="col-sm-5">
@@ -222,6 +240,21 @@
                       @enderror
                     </div>
                   </div>
+
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Shop Created</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <input type="text" readonly value="{{ $seller->shop->created_at->diffForHumans() }}"
+                        id="shop_name" class="form-control">
+                      @error('shop_name')
+                      <small class="text-danger">{{ $message }}</small>
+                      @enderror
+                    </div>
+                  </div>
+
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
@@ -264,6 +297,9 @@
                       @enderror
                     </div>
                   </div>
+                  <hr>
+
+
                   <div class="row" style="margin-top: 20px">
                     <div class="col-sm-12 text-right ">
                       <button class="btn btn-info" type="submit">Save Change</button>
@@ -282,7 +318,7 @@
   </div><!-- Main Wrapper -->
 
   <div class="page-footer">
-    <p class="no-s">Made with <i class="fa fa-heart"></i> by stacks</p>
+    <p class="no-s">Made with <i class="fa fa-heart"></i> by 5dots</p>
   </div>
 
 </div><!-- Page Inner -->
