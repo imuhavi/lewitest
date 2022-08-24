@@ -15,7 +15,7 @@
   <div id="main-wrapper">
     <div class="row">
       <div class="col-lg-4 col-md-6">
-        <div class="panel-green dashboar-card">
+        <div class="panel-red dashboar-card">
           <div>
             <h3>Avaiable Balance</h3>
             <h2><span data-plugin=" counterup">SAR 1000.00</span>
@@ -29,7 +29,7 @@
 
       <div class="col-md-4"></div>
       <div class="col-lg-4 col-md-6">
-        <div class="panel-blue dashboar-card">
+        <div class="panel-yellow dashboar-card">
           <div>
             <h3>Pending Balance</h3>
             <h2><span data-plugin=" counterup">SAR 100.00</span>
@@ -73,30 +73,39 @@
           </div>
 
           <div class="col-md-2">
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target=".bs-example-modal-sm"><i
-                class="icon-plus"></i> Payout
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Payout
               Request</button>
-
-            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
               aria-hidden="true">
-              <div class="modal-dialog modal-sm">
+              <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="mySmallModalLabel">PAYOUT REQUEST </h4>
+                    <h3 class="modal-title" id="myModalLabel">PAYOUT REQUEST</h3>
+
                   </div>
+                  <hr>
                   <div class="modal-body">
-                    <h3>Available balance: $10,000.00</h3>
+                    <h3>Available balance: <strong>SAR 10,000.00</strong></h3>
+
+                    <form action="" method="post">
+                      <div class="input-group m-b-sm">
+                        <span class="input-group-addon" id="basic-addon1">SAR</span>
+                        <input type="number" min="1000" class="form-control" placeholder="Amount"
+                          aria-describedby="basic-addon1">
+                      </div>
+                    </form>
+                    <small>Minimum withdrawal limit is SAR 1000.00</small>
                   </div>
                   <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-success">Save changes</button>
                   </div>
                 </div>
               </div>
             </div>
-
           </div>
 
           <div class="col-md-3">
@@ -143,6 +152,7 @@
                   <tr>
                     <td>Tiger Nixon</td>
                     <td>System Architect</td>
+                    <td>Edinburgh</td>
                     <td>Edinburgh</td>
                     <td>
                       <a class="btn btn-info" href="#">Edit</a>
