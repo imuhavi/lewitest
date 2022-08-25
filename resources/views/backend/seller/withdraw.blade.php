@@ -73,7 +73,8 @@
           </div>
 
           <div class="col-md-2">
-            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Payout
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><i
+                class="icon-plus"></i> Payout
               Request</button>
             <!-- Modal -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -93,16 +94,17 @@
                     <form action="" method="post">
                       <div class="input-group m-b-sm">
                         <span class="input-group-addon" id="basic-addon1">SAR</span>
-                        <input type="number" min="1000" class="form-control" placeholder="Amount"
+                        <input name="amount" type="number" min="1000" class="form-control" placeholder="Amount"
                           aria-describedby="basic-addon1">
                       </div>
-                    </form>
-                    <small>Minimum withdrawal limit is SAR 1000.00</small>
+
+                      <small>Minimum withdrawal limit is SAR 1000.00</small>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success">Save changes</button>
+                    <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                    <button type="submit" class="btn btn-success">Submit</button>
                   </div>
+                  </form>
                 </div>
               </div>
             </div>

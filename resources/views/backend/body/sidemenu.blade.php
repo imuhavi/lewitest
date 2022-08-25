@@ -119,7 +119,7 @@
       @endif
 
       @if(routePrefix() === 'seller')
-      <li class="@yield('withdraw_active')"><a href="{{ url(routePrefix(). '/customer-list') }}"
+      <li class="@yield('withdraw_active')"><a href="{{ url(routePrefix(). '/my-withdraw') }}"
           class="waves-effect waves-button"><span class="menu-icon fa fa-users"></span>
           <p>My Withdraws</p>
         </a>
