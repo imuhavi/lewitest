@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'seller', 'middleware' => ['auth', 'verified', 'seller', 'active_shop']], function () {
 
-  Route::get('/dashboard', [DashboardController::class, 'dashboard']); // Not Done
+  Route::get('/dashboard', [DashboardController::class, 'dashboard']);
 
   Route::resources([
     'product' => ProductController::class
@@ -16,6 +16,7 @@ Route::group(['prefix' => 'seller', 'middleware' => ['auth', 'verified', 'seller
 
   Route::get('product-draft', [ProductController::class, 'productDraft'])->name('productDraft');
   Route::get('orders', [DashboardController::class, 'orderList'])->name('orderList');
+  Route::get('customer-list', [DashboardController::class, 'customerList'])->name('customerList');
   Route::get('my-withdraw', [WithdrawController::class, 'myWithraw'])->name('myWithraw');
   Route::post('withdrow-request', [WithdrawController::class, 'withdrawRequest'])->name('withdrawRequest');
 });

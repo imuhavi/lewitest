@@ -18,7 +18,7 @@
         <div class="panel-red dashboar-card">
           <div>
             <h3>Avaiable Balance</h3>
-            <h2><span data-plugin=" counterup">SAR 1000.00</span>
+            <h2><span data-plugin=" counterup">SAR {{ number_format(auth()->user()->balance, 2) }}</span>
             </h2>
           </div>
           <div>
@@ -89,16 +89,16 @@
                   </div>
                   <hr>
                   <div class="modal-body">
-                    <h3>Available balance: <strong>SAR 10,000.00</strong></h3>
+                    <h3>Available balance: <strong>SAR {{ number_format(auth()->user()->balance, 2) }}</strong></h3>
 
                     <form action="" method="post">
                       <div class="input-group m-b-sm">
                         <span class="input-group-addon" id="basic-addon1">SAR</span>
-                        <input name="amount" type="number" min="1000" class="form-control" placeholder="Amount"
+                        <input name="amount" type="number" required max="{{ number_format(auth()->user()->balance) }}" class="form-control" placeholder="Amount"
                           aria-describedby="basic-addon1">
                       </div>
 
-                      <small>Minimum withdrawal limit is SAR 1000.00</small>
+                      <small>Minimum withdrawal limit is SAR 100.00</small>
                   </div>
                   <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
