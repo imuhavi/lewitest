@@ -186,7 +186,7 @@ class CheckoutController extends Controller
 
   public function orderPlaced(Order $order)
   {
-    Mail::to(Auth::user()->email)->send(new OrderPlaced($order));
+    Mail::to([Auth::user()->email, '5dots@gmail.com'])->send(new OrderPlaced($order));
     return view($this->VIEW_PATH . 'invoice', compact('order'));
   }
 }
