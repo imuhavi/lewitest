@@ -16,7 +16,7 @@ class CreateOrderDetailsTable extends Migration
     Schema::create('order_details', function (Blueprint $table) {
       $table->id();
       $table->unsignedBigInteger('order_id');
-      $table->unsignedBigInteger('seller_id');
+      $table->unsignedBigInteger('user_id')->comment('seller_id');
       $table->unsignedBigInteger('product_id');
       $table->double('unit_price', 10, 2)->default(0.00);
       $table->string('color')->nullable();
