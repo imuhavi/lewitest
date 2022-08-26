@@ -842,7 +842,6 @@
       margin-bottom: 10px;
     }
 
-
     .checkout-btn {
       text-align: center;
       margin-top: 20px;
@@ -851,11 +850,6 @@
     .checkout_text button {
       width: 100%;
       font-size: 12px;
-    }
-
-    .checkout_text {
-      display: flex;
-      flex-direction: column;
     }
     
     .checkout_text .vat {

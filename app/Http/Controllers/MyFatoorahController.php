@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ShopCreated;
 use App\Models\PaymentInvoice;
+use App\Models\SellerTransaction;
 use App\Models\Shop;
 use App\Models\Subscription;
 use App\Models\User;
 use Basel\MyFatoorah\MyFatoorah;
 use Exception;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class MyFatoorahController extends Controller
 {
@@ -54,7 +58,8 @@ class MyFatoorahController extends Controller
             $result = $this->myfatoorah->getPaymentStatus('paymentId', $request->paymentId);
             if ($result && $result['IsSuccess'] == true && $result['Data']['InvoiceStatus'] == "Paid") {
                 $this->createInvoice($result['Data']);
-                echo "success payment";
+                return redirect('/seller/dashboard')->with('success', 'Subscribe successfully !');
+                // echo "success payment";
             }
         }
     }
@@ -77,14 +82,24 @@ class MyFatoorahController extends Controller
         $paymentarray = array_merge($request, end($request['InvoiceTransactions']));
         $paymentarray['order_id'] = $paymentarray['CustomerReference'];
         $paymentarray['client_id'] = $UserDefinedField->user_id;
+        $paymentarray['TransactionId'] = $request['InvoiceId'];
 
         $PaymentInvoice = PaymentInvoice::create($paymentarray);
 
-        Shop::where('user_id', $UserDefinedField->user_id)->first()->update([
+        $shop = Shop::where('user_id', $UserDefinedField->user_id)->first();
+        $shop->update([
             'status' => 'Active'
         ]);
 
         // Create a transaction table including user_id, payment method, payment invoice, amount, status
-        dd('All passed !');
+        SellerTransaction::create([
+            'user_id' => $UserDefinedField->user_id,
+            'payment_invoice_id' => $PaymentInvoice->id,
+            'amount' => $PaymentInvoice->InvoiceDisplayValue
+        ]);
+        $user = User::find($UserDefinedField->user_id);
+        event(new Registered($user));
+        Mail::to($user->email)->send(new ShopCreated($shop));
+        return true;
     }
 }
