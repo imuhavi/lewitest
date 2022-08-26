@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Mail\UpdateOrder;
 use App\Models\Order;
+use App\Models\OrderDetails;
 use App\Models\Product;
 use App\Models\Shop;
 use App\Models\User;
@@ -33,9 +34,9 @@ class DashboardController extends Controller
   {
 
     if (auth()->user()->role == "Seller") {
-      // return $products = Product::where('user_id', auth()->id())->pluck("id");
-
-      $sql = Order::orderBy('created_at', 'DESC');
+      $seller_products_id = auth()->user()->product->pluck('id');
+      $orders_id = array_unique(OrderDetails::whereIn('product_id', $seller_products_id)->pluck('order_id')->toArray());
+      $sql = Order::orderBy('created_at', 'DESC')->whereIn('id', $orders_id);
     } else {
       $sql = Order::orderBy('created_at', 'DESC');
     }
@@ -54,6 +55,14 @@ class DashboardController extends Controller
 
     $orders = $sql->paginate(10);
     return view($this->VIEW_PATH . 'orders.index', compact('orders', 'keyword', 'page'));
+  }
+
+  public function customerList()
+  {
+    $seller_products_id = auth()->user()->product->pluck('id');
+    $orders_id = array_unique(OrderDetails::whereIn('product_id', $seller_products_id)->pluck('order_id')->toArray());
+    $customers = array_unique(Order::orderBy('created_at', 'DESC')->whereIn('id', $orders_id)->pluck('user_id')->toArray());
+    return User::whereIn('id', $customers)->get();
   }
 
   public function show(Order $order, $id)

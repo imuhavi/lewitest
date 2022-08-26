@@ -43,5 +43,9 @@
     15) Coupon CRUD
 
 ## test card:
+    Visa/Master
+    4508750015741019
+    12/25
+    300
 
 ### Checkout Process Demo

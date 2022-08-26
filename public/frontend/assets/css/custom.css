@@ -551,11 +551,6 @@ nav .main_menu li a.active_menu {
   margin: 10px;
 }
 
-.releted-product-item {
-  margin: 10px;
-  box-shadow: 0px 0px 4px -2px rgb(100, 100, 100);
-}
-
 .product-content {
   padding: 20px;
 }
@@ -755,18 +750,28 @@ nav .main_menu li a.active_menu {
   color: var(--hover-color);
 }
 
-.color-active {
-box-shadow: 0px 0px 3px 1px black;
+.color-1 {
+  width: 16px;
+  height: 16px;
+  background-color: #f64d52;
 }
 
-.size-active {
-  box-shadow: 0px 0px 3px 1px black;
+.color-2 {
+  width: 16px;
+  height: 16px;
+  background-color: #00d9ff;
 }
 
-.color {
-  width: 35px;
-  height: 35px;
-  border: 2px solid rgba(34, 34, 34, 0.15);
+.color-3 {
+  width: 16px;
+  height: 16px;
+  background-color: #fc842d;
+}
+
+.color-4 {
+  width: 16px;
+  height: 16px;
+  background-color: #f64d52;
 }
 
 .nice-number {
@@ -823,24 +828,6 @@ box-shadow: 0px 0px 3px 1px black;
 }
 
 .cart-btn:hover {
-  color: #222;
-  background-color: transparent;
-  border: 1px solid #222;
-}
-
-.cart-btn-hidden {
-  display: none;
-  background-color: #222;
-  color: #fff;
-  padding: 15px 20px;
-  text-transform: capitalize;
-  font-weight: 500;
-  font-size: 16px;
-  margin: 0px 20px;
-  transition: all linear 0.3s;
-}
-
-.cart-btn-hidden:hover {
   color: #222;
   background-color: transparent;
   border: 1px solid #222;
@@ -1020,7 +1007,7 @@ box-shadow: 0px 0px 3px 1px black;
 .filter-color,
 .filter-brand,
 .filter-size {
-  height: 175px;
+  height: 200px;
   margin-top: 20px;
   margin-bottom: 20px;
   overflow-x: scroll;
@@ -1312,7 +1299,7 @@ box-shadow: 0px 0px 3px 1px black;
   padding: 20px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 5px 0px;
-  margin-top: 10px;
+  margin-top: 30px;
 }
 
 .checkout_text h6 {

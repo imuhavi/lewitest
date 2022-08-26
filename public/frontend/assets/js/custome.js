@@ -22,7 +22,6 @@ $(document).ready(function () {
 });
 
 
-
 $(function () {
 
   // Product Gallery Image Slider
@@ -62,9 +61,12 @@ $(function () {
 
 
 
-
   // Product Image Zoom.
-  $("#img_01").ezPlus();
+  // $("#img_01").elevateZoom();
+  // $("#img_02").elevateZoom();
+  // $("#img_03").elevateZoom();
+  // $("#img_04").elevateZoom();
+  // $("#img_05").elevateZoom();
 
 
   /*==========NICE NUMBER==========*/

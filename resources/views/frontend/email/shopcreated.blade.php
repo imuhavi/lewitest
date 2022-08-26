@@ -24,12 +24,14 @@
     <p class="main-content__body" data-lead-id="main-content-body">We are glad that you have registered to our package.
       Your Registraion is done. Please contact with Admin to active your shop as soon as.</p>
   </div>
-
-  <div>
-    <h4>Package Details:</h4>
-    <p>Package Name: {{ $shop->subscription->name }} ({{ $shop->subscription->days
-      }} Days)</p>
-  </div>
+  
+  @if($shop && $shop->subscription)
+    <div>
+      <h4>Package Details:</h4>
+      <p>Package Name: {{ $shop->subscription->name }} ({{ $shop->subscription->days
+        }} Days)</p>
+    </div>
+  @endif
 
   <div>
     <h4>Contact Info: </h4>
