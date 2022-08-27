@@ -166,6 +166,7 @@ class GeneralSettingController extends Controller
         set_env('GOOGLE_CLIENT_ID', strtolower($request->app_id));
         $data->app_id = strtolower($request->app_id);
       }
+      $data->save();
 
       if (env('GOOGLE_CLIENT_SECRET') !== $request->app_secret) {
         set_env('GOOGLE_CLIENT_SECRET', strtolower($request->app_secret));

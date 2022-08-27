@@ -26,7 +26,7 @@ class FrontendController extends Controller
     $slider = Slider::where('status', 'Active')->get();
     $categories = Category::whereIn('slug', ['mens', 'womens', 'health-&-beauty'])->whereStatus('Active')->take(3)->get();
     $womensSub1 = Subcategory::where('category_id', 2)->get()->slice(0, 2);
-    $womensSub2 = Subcategory::where('category_id', 2)->get()->slice(3, 4);
+    $womensSub2 = Subcategory::where('category_id', 2)->get()->slice(2, 4);
     $mensSub = Subcategory::where('category_id', 3)->get()->slice(0, 4);
     $accesoriesSub = Subcategory::where('category_id', 4)->get()->slice(0, 4);
     $mensMain = Category::where('slug', 'mens')->where('status', 'Active')->first();
