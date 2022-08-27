@@ -53,3 +53,22 @@
   text-align: left;
   margin-bottom: 0px;
 }
+
+.dashboar-card {
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboar-card p,
+h2 {
+  margin: 0;
+  padding: 2px 0;
+}
+
+.dashboar-card i {
+  font-size: 80px;
+}
