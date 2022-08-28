@@ -32,7 +32,7 @@ class FrontendController extends Controller
     $mensMain = Category::where('slug', 'mens')->where('status', 'Active')->first();
     $accesoriesMain = Category::where('slug', 'health-&-beauty')->where('status', 'Active')->first();
     $womensMain = $categories->where('slug', 'womens')->first();
-    $products = Product::orderBy('id', 'desc')->take(8)->get();
+    $products = Product::whereStatus('Active')->orderBy('id', 'desc')->take(8)->get();
     $shops = Shop::where('status', 'Active')->get(['id', 'shop_logo']);
     return view($this->HOME_PATH, compact('slider', 'categories', 'accesoriesSub', 'womensSub1', 'womensSub2', 'mensSub', 'accesoriesMain', 'mensMain', 'womensMain', 'shops', 'products'));
   }
@@ -206,7 +206,6 @@ class FrontendController extends Controller
       $colors = array_unique($colors);
       $sizes = array_unique($sizes);
     }
-
     return view($this->VIEW_PATH . 'productView', compact('product', 'reletedProduct', 'colors', 'sizes'));
   }
 

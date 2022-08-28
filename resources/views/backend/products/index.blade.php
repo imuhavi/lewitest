@@ -8,7 +8,8 @@
 <style>
   .content {
     position: relative;
-    width: 50%;
+    width: 90%;
+    margin: 20px;
   }
 
   /* Make the image responsive */
@@ -173,6 +174,7 @@
                 </div>
                 <br>
                 <div class="panel-body">
+
                   <div class="form-row">
                     <div class="form-group">
                       <label for="name">Product Name</label>
@@ -330,6 +332,7 @@
                           </div>
                         </div>
                       </div>
+
                       <div class="col-md-4">
                         <div class="form-row">
                           <div class="form-group">
@@ -513,12 +516,14 @@
                       $old_attributes_arr = [];
                       @endphp
 
+                      @if(!empty($old_attributes))
                       @foreach($old_attributes as $old_attribute)
                       @php
                       $old_attributes_arr[] = explode(',', str_replace('"', '', str_replace(']', '', str_replace('[',
                       '', $old_attribute))))[1];
                       @endphp
                       @endforeach
+                      @endif
 
                       @foreach($attributes as $item)
                       {{ $loop->iteration }}. {{ $item->name }}
@@ -562,15 +567,19 @@
                       <small class="text-danger">{{ $message }}</small>
                       @enderror
                       @if($page == 'edit' && $data->images)
-                      @foreach($data->images as $image)
-                      <div class="content">
-                        <img src="{{ asset('backend/uploads/' . $image->image) }}" alt="Product images">
-                        <a href="{{ url(routePrefix() . '/product/image/delete/' . $image->id) }}"
-                          class="btn-img btn-danger">
-                          <i class="fa fa-trash"></i>
-                        </a>
+                      <div class="row">
+                        @foreach($data->images as $image)
+                        <div class="col-md-6">
+                          <div class="content">
+                            <img src="{{ asset('backend/uploads/' . $image->image) }}" alt="Product images">
+                            <a href="{{ url(routePrefix() . '/product/image/delete/' . $image->id) }}"
+                              class="btn-img btn-danger">
+                              <i class="fa fa-trash"></i>
+                            </a>
+                          </div>
+                        </div>
+                        @endforeach
                       </div>
-                      @endforeach
                       @endif
                     </div>
 
@@ -587,6 +596,7 @@
                       src="{{ ($page == 'create' || !$data->thumbnail) ? asset('backend/assets/default-img/noimage.jpg') : asset('backend/uploads/' . $data->thumbnail) }}"
                       id="feature" width="100" height="100" />
                   </div>
+
                   @if(auth()->user()->role == 'Admin')
                   <div class="from-row status">
                     <label>Publication status : </label>
@@ -655,6 +665,7 @@
           </div>
         </div>
       </form>
+
       @elseif($page == 'show')
 
       <div class="col-md-8 col-md-offset-2">
