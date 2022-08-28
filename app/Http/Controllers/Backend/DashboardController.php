@@ -61,8 +61,9 @@ class DashboardController extends Controller
   {
     $seller_products_id = auth()->user()->product->pluck('id');
     $orders_id = array_unique(OrderDetails::whereIn('product_id', $seller_products_id)->pluck('order_id')->toArray());
-    $customers = array_unique(Order::orderBy('created_at', 'DESC')->whereIn('id', $orders_id)->pluck('user_id')->toArray());
-    return User::whereIn('id', $customers)->get();
+    $users = array_unique(Order::orderBy('created_at', 'DESC')->whereIn('id', $orders_id)->pluck('user_id')->toArray());
+    $data = User::whereIn('id', $users)->paginate(10);
+    return view($this->VIEW_PATH . 'seller.customer', compact('data'));
   }
 
   public function show(Order $order, $id)

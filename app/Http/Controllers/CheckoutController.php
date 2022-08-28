@@ -159,7 +159,7 @@ class CheckoutController extends Controller
             OrderDetails::create([
               'product_id' => $product->id,
               'order_id' => $order->id,
-              'seller_id' => $product->user_id,
+              'user_id' => $product->user_id,
               'unit_price' => $product['price'] - ($item['discount'] / $item['quantity']),
               'quantity' => $item['quantity'],
               'color' => ucfirst($item['color']),
@@ -186,7 +186,7 @@ class CheckoutController extends Controller
 
   public function orderPlaced(Order $order)
   {
-    Mail::to([Auth::user()->email, '5dots@gmail.com'])->send(new OrderPlaced($order));
+    Mail::to([Auth::user()->email, '5dots.sa@gmail.com'])->send(new OrderPlaced($order));
     return view($this->VIEW_PATH . 'invoice', compact('order'));
   }
 }

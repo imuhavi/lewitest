@@ -158,7 +158,7 @@
                     <th>Payment Method</th>
                     <th>Status</th>
                     <th>Customer</th>
-                    <th>Store</th>
+                    <th>Product SKU</th>
                     <th>Date</th>
                     <th>Action</th>
                   </tr>
@@ -200,7 +200,7 @@
                     </td>
 
                     <td>
-                      {{ $item->order_details[0]->shop->shop_name ?? '' }}
+                      {{ $item->order_details[0]->product->product_sku }}
                     </td>
 
                     <td>{{ $item->created_at->format('d-M-Y') }}</td>
@@ -382,6 +382,12 @@
                   <th class="45%" width="45%">Product Name</th>
                   <td width="10%">:</td>
                   <td class="45%" width="45%">{{ $singgleOrder->order_details[0]->product->name }}</td>
+                </tr>
+
+                <tr>
+                  <th class="45%" width="45%">Product SKU</th>
+                  <td width="10%">:</td>
+                  <td class="45%" width="45%">{{ $singgleOrder->order_details[0]->product->product_sku }}</td>
                 </tr>
 
                 @if(!empty($singgleOrder->order_details[0]->size))

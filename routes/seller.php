@@ -16,6 +16,7 @@ Route::group(['prefix' => 'seller', 'middleware' => ['auth', 'verified', 'seller
 
   Route::get('product-draft', [ProductController::class, 'productDraft'])->name('productDraft');
   Route::get('orders', [DashboardController::class, 'orderList'])->name('orderList');
+  Route::get('order/{id}', [DashboardController::class, 'show'])->name('show');
   Route::get('customer-list', [DashboardController::class, 'customerList'])->name('customerList');
   Route::get('my-withdraw', [WithdrawController::class, 'myWithraw'])->name('myWithraw');
   Route::post('withdrow-request', [WithdrawController::class, 'withdrawRequest'])->name('withdrawRequest');

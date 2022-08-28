@@ -95,6 +95,16 @@
       padding: 5px;
       text-align: right;
     }
+
+    .btn-success {
+      background-color: black;
+      padding: 10px;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    .
   </style>
 </head>
 
@@ -238,10 +248,12 @@
             </tr>
           </table>
         </div>
+        <div class="row">
+          <a class="btn-success" href="{{ url('/') }}">Back Home</a>
+        </div>
       </div>
     </section>
   </main>
-  <a href="{{ url('/') }}">Back to shopping</a>
 
 </body>
 
