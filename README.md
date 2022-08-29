@@ -43,9 +43,16 @@
     15) Coupon CRUD
 
 ## test card:
+
     Visa/Master
     4508750015741019
     12/25
     300
 
 ### Checkout Process Demo
+
+## Problem
+
+1. Payment unpaid and payment method card order list dekha jabe na (Seller & admin) DashboardController
+
+2. Seller er Balance dekhate hobe User Table a balance coloum a.

@@ -135,6 +135,15 @@ Seller-list
                     </td>
                   </tr>
 
+
+                  <tr>
+                    <th class="45%" width="45%">Customer Phone Number</th>
+                    <td width="10%">:</td>
+                    <td class="45%" width="45%">
+                      {{ $data->userDetail->state->name }}
+                    </td>
+                  </tr>
+
                   <tr>
                     <th class="45%" width="45%">Customer Created</th>
                     <td width="10%">:</td>

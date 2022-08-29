@@ -10,6 +10,7 @@ use App\Models\States;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Mail\OrderPlaced;
+use App\Models\GeneralSetting;
 use Illuminate\Support\Facades\Mail;
 use App\Models\UserDetail;
 use Carbon\Carbon;
@@ -142,41 +143,84 @@ class CheckoutController extends Controller
           ]
         );
 
-        $order = Order::create([
-          'user_id' => auth()->id(),
-          'coupon_id' => $coupon ? $coupon['coupon_id'] : null,
-          'coupon_discount_amount' => $coupon ? $coupon['discount'] : 0,
-          'shipping_cost' => 30,
-          'tax' => $cart['total'] * 0.15,
-          'amount' => $cart['total'],
-          'payment_method' => 'COD',
-          'note' => $request->note
-        ]);
+        $shipping = GeneralSetting::first();
+        if (!empty($shipping)) {
+          $order = Order::create([
+            'user_id' => auth()->id(),
+            'coupon_id' => $coupon ? $coupon['coupon_id'] : null,
+            'coupon_discount_amount' => $coupon ? $coupon['discount'] : 0,
+            'shipping_cost' => $shipping->shipping_cost ?? 0,
+            'tax' => $cart['total'] * 0.15,
+            'amount' => $cart['total'],
+            'payment_method' => 'COD',
+            'note' => $request->note
+          ]);
 
-        foreach ($cart['cart'] as $item) {
-          $product = Product::findOrFail($item['product_id']);
-          if (!empty($order) && !empty($product)) {
-            OrderDetails::create([
-              'product_id' => $product->id,
-              'order_id' => $order->id,
-              'user_id' => $product->user_id,
-              'unit_price' => $product['price'] - ($item['discount'] / $item['quantity']),
-              'quantity' => $item['quantity'],
-              'color' => ucfirst($item['color']),
-              'size' => ucfirst($item['size'])
-            ]);
+          foreach ($cart['cart'] as $item) {
+            $product = Product::findOrFail($item['product_id']);
+            if (!empty($order) && !empty($product)) {
+              OrderDetails::create([
+                'product_id' => $product->id,
+                'order_id' => $order->id,
+                'user_id' => $product->user_id,
+                'unit_price' => $product['price'] - ($item['discount'] / $item['quantity']),
+                'quantity' => $item['quantity'],
+                'color' => ucfirst($item['color']),
+                'size' => ucfirst($item['size'])
+              ]);
+            }
           }
-        }
-        Transaction::create([
-          'user_id' => auth()->id(),
-          'order_id' => $order->id,
-          'amount' => $order->amount,
-        ]);
+          Transaction::create([
+            'user_id' => auth()->id(),
+            'order_id' => $order->id,
+            'amount' => $order->amount,
+          ]);
 
-        Session::forget('cart');
-        Session::forget('coupon');
-        DB::commit();
-        return redirect('/order-placed/' . $order->id)->with('success', 'Order placed successfully !');
+          Session::forget('cart');
+          Session::forget('coupon');
+          DB::commit();
+          return redirect('/order-placed/' . $order->id)->with('success', 'Order placed successfully !');
+        }
+      } elseif ($request->payment_method == 'Card') {
+
+        $shipping = GeneralSetting::first();
+        if (!empty($shipping)) {
+          $order = Order::create([
+            'user_id' => auth()->id(),
+            'coupon_id' => $coupon ? $coupon['coupon_id'] : null,
+            'coupon_discount_amount' => $coupon ? $coupon['discount'] : 0,
+            'shipping_cost' => $shipping->shipping_cost ?? 0,
+            'tax' => $cart['total'] * 0.15,
+            'amount' => $cart['total'],
+            'payment_method' => 'Card',
+            'note' => $request->note
+          ]);
+
+          foreach ($cart['cart'] as $item) {
+            $product = Product::findOrFail($item['product_id']);
+            if (!empty($order) && !empty($product)) {
+              OrderDetails::create([
+                'product_id' => $product->id,
+                'order_id' => $order->id,
+                'user_id' => $product->user_id,
+                'unit_price' => $product['price'] - ($item['discount'] / $item['quantity']),
+                'quantity' => $item['quantity'],
+                'color' => ucfirst($item['color']),
+                'size' => ucfirst($item['size'])
+              ]);
+            }
+          }
+
+          Session::forget('cart');
+          Session::forget('coupon');
+          DB::commit();
+
+          return redirect(route('MyFatoorah.index', [
+            'user' => auth()->user(),
+            'subscription' => Null,
+            'payable_amount' =>  $order->amount,
+          ]));
+        }
       }
     } catch (\Exception $e) {
       DB::rollback();

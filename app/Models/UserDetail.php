@@ -10,8 +10,8 @@ class UserDetail extends Model
   use HasFactory;
   protected $guarded = [];
 
-  public function states()
+  public function state()
   {
-    return $this->hasOne(States::class);
+    return $this->belongsTo(States::class);
   }
 }

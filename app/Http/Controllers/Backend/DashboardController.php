@@ -33,6 +33,7 @@ class DashboardController extends Controller
   public function orderList(Request $request)
   {
 
+    //  Unpaid & Payment method Card dekha jabe na.
     if (auth()->user()->role == "Seller") {
       $seller_products_id = auth()->user()->product->pluck('id');
       $orders_id = array_unique(OrderDetails::whereIn('product_id', $seller_products_id)->pluck('order_id')->toArray());
