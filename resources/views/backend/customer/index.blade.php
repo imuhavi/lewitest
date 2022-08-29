@@ -72,7 +72,7 @@ Seller-list
                     <td>{{ $data->firstitem() + $key }}</td>
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->email }}</td>
-                    <td>{{ $item->phone }}</td>
+                    <td>{{ $item->phone_1 ?? 'Not Found' }}, {{ $item->phone_2 ?? 'Not Found' }}</td>
                     <td>
                       <a class="btn btn-sm btn-info" href="{{ url( routePrefix() . '/customer/' . $item->id) }}"><i
                           class="fa fa-eye"></i></a>
@@ -99,7 +99,57 @@ Seller-list
         </div>
       </div>
       @elseif ($page == 'show')
-      {{ $data }}
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="panel panel-info">
+
+            <div class="panel-heading clearfix">
+              <div class="text-left float-left">
+                <h3 class="panel-title">Customer Details</h3>
+              </div>
+              <div class="text-right">
+                <a href="{{ url( routePrefix() .'/orders') }}" class="btn btn-info btn-sm">Go back</a>
+              </div>
+            </div>
+
+            <div class="panel-body">
+              <table class="table table-striped">
+                <tbody>
+                  <tr>
+                    <th class="45%" width="45%">Customer Name:</th>
+                    <td width="10%">:</td>
+                    <td class="45%" width="45%">{{ $data->name }}</td>
+                  </tr>
+
+                  <tr>
+                    <th class="45%" width="45%">Customer Email:</th>
+                    <td width="10%">:</td>
+                    <td class="45%" width="45%">{{ $data->email }}</td>
+                  </tr>
+
+                  <tr>
+                    <th class="45%" width="45%">Customer Phone Number</th>
+                    <td width="10%">:</td>
+                    <td class="45%" width="45%">
+                      05{{ $data->userDetail->phone }}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th class="45%" width="45%">Customer Created</th>
+                    <td width="10%">:</td>
+                    <td class="45%" width="45%">
+                      {{ $data->created_at->diffForHumans() }}
+                    </td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
       @endif
     </div><!-- Row -->
   </div><!-- Main Wrapper -->

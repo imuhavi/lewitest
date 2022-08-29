@@ -310,7 +310,6 @@
             </div>
           </div>
         </div>
-        <button type="submit" class="btn btn-info m-t-xs m-b-xs">Update</button>
         </form>
       </div>
     </div>

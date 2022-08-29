@@ -9,4 +9,9 @@ class UserDetail extends Model
 {
   use HasFactory;
   protected $guarded = [];
+
+  public function states()
+  {
+    return $this->hasOne(States::class);
+  }
 }
