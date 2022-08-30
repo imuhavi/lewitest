@@ -17,7 +17,7 @@ class CreateWithdrawsTable extends Migration
       $table->id();
       $table->unsignedBigInteger('user_id');
       $table->double('amount', 10, 2)->default(0.00);
-      $table->enum('status', ['Pending', 'Accept', 'Paid'])->default('Pending');;
+      $table->enum('status', ['Pending', 'Accept', 'Paid'])->default('Pending');
       $table->timestamps();
     });
   }

@@ -11,7 +11,8 @@ class WithdrawController extends Controller
 
   public function myWithraw()
   {
-    return view($this->VIEW_PATH . '.withdraw');
+    $data = Withdraw::whereUserId(auth()->user()->id)->paginate(10);
+    return view($this->VIEW_PATH . '.withdraw', compact('data'));
   }
 
 
@@ -21,10 +22,19 @@ class WithdrawController extends Controller
       'amount' => 'required'
     ]);
 
-    $user = auth()->user();
-    Withdraw::create([
-      'user_id' => $user->id,
-      'amount' => $r->amount
-    ]);
+    try {
+      $user = auth()->user();
+      if ($user->balance > $r->amount) {
+        Withdraw::create([
+          'user_id' => $user->id,
+          'amount' => $r->amount
+        ]);
+        return back()->with('success', 'Your Request has been submited.');
+      } else {
+        return redirect()->back()->with('error', 'Balance Not Avaiable.');
+      }
+    } catch (\Throwable $th) {
+      return redirect()->back()->with('error', $th->getMessage());
+    }
   }
 }

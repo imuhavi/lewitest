@@ -35,7 +35,7 @@
             <hr>
             <ul class="list-unstyled text-center">
               <li>
-                <p><i class="icon-pointer m-r-xs"></i>{{ $data->shop->address }}, {{ $data->shop->city }}</p>
+                <p><i class="icon-pointer m-r-xs"></i>{{ $data->shop->address }}, {{ $data->shop->city->name }}</p>
               </li>
               <li>
                 <p><i class="icon-envelope-open m-r-xs"></i><a href="#">{{ $data->email }}</a>
@@ -43,7 +43,7 @@
               </li>
 
               <li>
-                <p><i class="icon-clock m-r-xs"></i><a href="#">Member since {{ $data->shop->created_at->diffForHumans()
+                <p><i class="icon-clock m-r-xs"></i><a href="#">Member Since {{ $data->shop->created_at->diffForHumans()
                     }}</a>
                 </p>
               </li>
@@ -104,7 +104,7 @@
                 <tr>
                   <th width="45%">Shop Location</th>
                   <td width="10%">:</td>
-                  <td width="45%">{{ $data->shop->state ?? null }}, {{ $data->shop->city ?? null }}</td>
+                  <td width="45%">{{ $data->shop->state->name ?? null }}, {{ $data->shop->city->name ?? null }}</td>
                 </tr>
 
                 <tr>
@@ -113,6 +113,13 @@
                   <td width="45%">{{ $data->shop->address ?? null }}, {{ $data->shop->postal_code }}</td>
                 </tr>
 
+                <tr>
+                  <th width="45%">Shop Created</th>
+                  <td width="10%">:</td>
+
+                  <td width="45%">{{ $data->shop->created_at->format('d-M-Y')
+                    }}</td>
+                </tr>
                 <tr>
                   <th width="45%">Shop Expired</th>
                   <td width="10%">:</td>

@@ -56,3 +56,4 @@
 1. Payment unpaid and payment method card order list dekha jabe na (Seller & admin) DashboardController
 
 2. Seller er Balance dekhate hobe User Table a balance coloum a.
+3. Shop Inactive korar sathe sathe product seller er product gulo inactive hoye jabe.

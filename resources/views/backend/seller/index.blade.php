@@ -72,7 +72,7 @@ Seller List
                 </thead>
                 <tbody>
                   @forelse ( $data as $key => $item )
-                  <tr>
+                  <tr style="color:{{ ($item->shop->status == 'Inactive') ? 'red' : '' }}">
                     <td>{{ $data->firstitem() + $key }}</td>
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->email }}</td>

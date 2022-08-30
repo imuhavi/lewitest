@@ -91,11 +91,12 @@
                   <div class="modal-body">
                     <h3>Available balance: <strong>SAR {{ number_format(auth()->user()->balance, 2) }}</strong></h3>
 
-                    <form action="" method="post">
+                    <form action="{{ route('withdrawRequest') }}" method="post">
+                      @csrf
                       <div class="input-group m-b-sm">
                         <span class="input-group-addon" id="basic-addon1">SAR</span>
-                        <input name="amount" type="number" required max="{{ number_format(auth()->user()->balance) }}" class="form-control" placeholder="Amount"
-                          aria-describedby="basic-addon1">
+                        <input name="amount" type="number" required max="{{ number_format(auth()->user()->balance) }}"
+                          class="form-control" placeholder="Amount" aria-describedby="basic-addon1">
                       </div>
 
                       <small>Minimum withdrawal limit is SAR 100.00</small>
@@ -135,14 +136,12 @@
           <div class="panel-heading clearfix">
             <h4 class="panel-title">Withdraw Request List</h4>
           </div>
-
-
-
           <div class="panel-body">
             <div class="table-responsive">
               <table id="example" class="display table" style="width: 100%; cellspacing: 0;">
                 <thead>
                   <tr>
+                    <th>Sl</th>
                     <th>Date</th>
                     <th>Amount</th>
                     <th>Transation Type</th>
@@ -151,15 +150,45 @@
                   </tr>
                 </thead>
                 <tbody>
+                  @forelse($data as $key => $item)
                   <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>Edinburgh</td>
+                    <td>{{ $data->firstitem() + $key }}</td>
+                    <td>{{ $item->created_at->format('d-M-Y') }}</td>
+                    <td>SR {{ $item->amount }}</td>
+                    <td>Not Avaiable</td>
                     <td>
-                      <a class="btn btn-info" href="#">Edit</a>
+                      @if($item->status == 'Complete')
+                      @php
+                      $status = 'success';
+                      @endphp
+                      @elseif($item->status == 'Cancel')
+                      @php
+                      $status = 'danger';
+                      @endphp
+                      @elseif($item->status == 'Accept')
+                      @php
+                      $status = 'info';
+                      @endphp
+                      @elseif($item->status == 'Pending')
+                      @php
+                      $status = 'warning';
+                      @endphp
+                      @endif
+                      <span class="badge badge-pill badge-{{$status}}">
+                        {{ $item->status }}
+                      </span>
+                    </td>
+                    <td>
+                      <a class="btn btn-info" href="#">view</a>
                     </td>
                   </tr>
+                  @empty
+                  <tr>
+                    <td colspan="5" class="text-center">
+                      <strong>No Withdrow Request Avaiable!</strong>
+                    </td>
+                  </tr>
+                  @endforelse
                 </tbody>
               </table>
             </div>
