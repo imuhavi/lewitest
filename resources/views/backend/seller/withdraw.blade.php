@@ -13,6 +13,7 @@
     </div>
   </div>
   <div id="main-wrapper">
+    @if(auth()->user()->role == 'seller')
     <div class="row">
       <div class="col-lg-4 col-md-6">
         <div class="panel-red dashboar-card">
@@ -44,7 +45,7 @@
     </div>
     <!-- end row -->
     <hr>
-
+    @endif
     <div class="row">
       <div class="col-md-12">
         <div class="row mailbox-header">
@@ -179,7 +180,26 @@
                       </span>
                     </td>
                     <td>
-                      <a class="btn btn-info" href="#">view</a>
+                      <a class="btn btn-info" href="{{ url(routePrefix(). '/withdrow/' . $item->id) }}"><i
+                          class="fa fa-eye"></i></a>
+
+                      @if(auth()->user()->role == 'Admin')
+                      @if($item->status == 'Pending')
+                      <a class="btn btn-success"
+                        href="{{ url(routePrefix(). '/withdrow/' . $item->id . '/update/accept') }}">
+                        <i class="fa fa-check"></i>
+                      </a>
+                      <a class="btn btn-warning"
+                        href="{{ url(routePrefix(). '/withdrow/' . $item->id . '/update/cancel') }}">
+                        <i class="fa fa-times"></i>
+                      </a>
+                      @elseif($item->status == 'Accept')
+                      <a class="btn btn-success"
+                        href="{{ url(routePrefix(). '/withdrow/' . $item->id . '/update/complete') }}">
+                        <i class="fa fa-check"></i>
+                      </a>
+                      @endif
+                      @endif
                     </td>
                   </tr>
                   @empty
@@ -196,6 +216,37 @@
         </div>
       </div>
     </div><!-- Row -->
+
+    @if($page == 'show')
+    <div class="col-md-8 col-md-offset-2">
+      <div class="panel panel-info">
+
+        <div class="panel-heading clearfix">
+          <div class="text-left float-left">
+            <h3 class="panel-title">Withdraw</h3>
+          </div>
+          <div class="text-right">
+            <a href="{{ url(routePrefix() . '/withdraw') }}" class="btn btn-info btn-sm">Go back</a>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          <table class="table table-striped">
+            <tbody>
+              <tr>
+                <th class="45%" width="45%">Seller Name</th>
+                <td width="10%">:</td>
+                <td class="45%" width="45%">{{ $singgleWithdraw }}</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    @endif
+
   </div><!-- Main Wrapper -->
   <div class="page-footer">
     <p class="no-s">Made with <i class="fa fa-heart"></i> by 5dots</p>

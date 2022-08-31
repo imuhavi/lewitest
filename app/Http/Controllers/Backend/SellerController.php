@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Withdraw;
 use Illuminate\Http\Request;
 
 class SellerController extends Controller
@@ -36,6 +37,15 @@ class SellerController extends Controller
 
   public function paymentWithdraw()
   {
-    return view($this->VIEW_PATH . '.withdraw');
+    $page = '';
+    $data = Withdraw::orderBy('created_at', 'DESC')->paginate(10);
+    return view($this->VIEW_PATH . '.withdraw', compact('data', 'page'));
+  }
+
+  public function show(Withdraw $withdraw, $id)
+  {
+    $page = 'show';
+    $singgleWithdraw = $withdraw->findOrFail($id);
+    return view($this->VIEW_PATH . 'seller.withdraw', compact('singgleWithdraw', 'page'));
   }
 }

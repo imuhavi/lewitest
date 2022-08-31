@@ -122,6 +122,7 @@
                       <a class="btn btn-info" href="{{ url(routePrefix(). '/order/' . $item->id) }}"><i
                           class="fa fa-eye"></i></a>
 
+                      @if(auth()->user()->role == 'Admin')
                       @if($item->status == 'Pending')
                       <a class="btn btn-success"
                         href="{{ url(routePrefix(). '/order/' . $item->id . '/update/accept') }}">
@@ -136,6 +137,7 @@
                         href="{{ url(routePrefix(). '/order/' . $item->id . '/update/complete') }}">
                         <i class="fa fa-check"></i>
                       </a>
+                      @endif
                       @endif
                     </td>
                   </tr>

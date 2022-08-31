@@ -41,10 +41,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']
   # Update status
   Route::get('order/{order}/update/{status}', [DashboardController::class, 'updateStatus']);
 
+  # Withdraw System
+  Route::get('withdraw/{id}', [SellerController::class, 'show'])->name('show');
+  Route::get('withdraw/{withdraw}/update/{status}', [SellerController::class, 'updateStatus']);
+
+  Route::get('seller-withdraw', [SellerController::class, 'paymentWithdraw'])->name('paymentWithdraw'); // Not Done
+
   // Seller
   Route::get('seller-list', [SellerController::class, 'sellerList'])->name('sellerList');
   Route::get('seller/{id}', [SellerController::class, 'sellerShow'])->name('sellerShow');
-  Route::get('seller-withdraw', [SellerController::class, 'paymentWithdraw'])->name('paymentWithdraw'); // Not Done
+
 
   // Customer
   Route::get('customer-list', [CustomerController::class, 'customerList'])->name('customerList');

@@ -11,7 +11,8 @@ class WithdrawController extends Controller
 
   public function myWithraw()
   {
-    $data = Withdraw::whereUserId(auth()->user()->id)->paginate(10);
+    $data = Withdraw::orderBy('created_at', 'DESC')->whereUserId(auth()->user()->id)->paginate(10);
+
     return view($this->VIEW_PATH . '.withdraw', compact('data'));
   }
 
