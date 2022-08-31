@@ -13,6 +13,7 @@
     </div>
   </div>
   <div id="main-wrapper">
+    @if($page == 'withdraw')
     @if(auth()->user()->role == 'seller')
     <div class="row">
       <div class="col-lg-4 col-md-6">
@@ -49,6 +50,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="row mailbox-header">
+          @if(auth()->user()->role == 'Seller')
           <div class="col-md-7">
             <div class="row">
               <div class="col-md-6">
@@ -127,10 +129,52 @@
               </div>
             </form>
           </div>
+          @else
+          <div class="col-md-8">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="input-group" style="display: flex">
+                  <div>
+                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                      <span class="icon-cloud-download" style="font-size: 14px;"></span> Export <span
+                        class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#">Excel</a></li>
+                      <li><a href="#">CSV</a></li>
+                    </ul>
+                  </div>
+                  <input type="text" class="form-control date-picker" placeholder="From" style="margin: 0 10px">
+                  <input type="text" class="form-control date-picker" placeholder="To">
+                </div>
+              </div>
+              <div class="col-md-4">
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <form action="{{ url(routePrefix() . '/orders') }}" method="get">
+              <div class="input-group">
+                <input class="form-control input-search" type="search" name="keyword"
+                  value="{{ isset($keyword) ? $keyword : ''  }}" placeholder="Search from here...">
+                <span class="input-group-btn">
+                  <button class="btn btn-info" type="submit"><i class="fa fa-search"></i></button>
+                </span>
+                <span class="input-group-btn">
+                  <a href="{{ url( routePrefix() .'/orders') }}" class="btn btn-warning"
+                    style="margin-left: 10px">Clear</a>
+                </span>
+              </div>
+            </form>
+          </div>
+          @endif
+
+
         </div>
       </div>
     </div>
-
     <div class="row">
       <div class="col-md-12">
         <div class="panel panel-white">
@@ -158,7 +202,7 @@
                     <td>SR {{ $item->amount }}</td>
                     <td>Not Avaiable</td>
                     <td>
-                      @if($item->status == 'Complete')
+                      @if($item->status == 'Paid')
                       @php
                       $status = 'success';
                       @endphp
@@ -180,22 +224,22 @@
                       </span>
                     </td>
                     <td>
-                      <a class="btn btn-info" href="{{ url(routePrefix(). '/withdrow/' . $item->id) }}"><i
+                      <a class="btn btn-info" href="{{ url(routePrefix(). '/withdraw/' . $item->id) }}"><i
                           class="fa fa-eye"></i></a>
 
                       @if(auth()->user()->role == 'Admin')
                       @if($item->status == 'Pending')
                       <a class="btn btn-success"
-                        href="{{ url(routePrefix(). '/withdrow/' . $item->id . '/update/accept') }}">
+                        href="{{ url(routePrefix(). '/withdraw/' . $item->id . '/update/accept') }}">
                         <i class="fa fa-check"></i>
                       </a>
                       <a class="btn btn-warning"
-                        href="{{ url(routePrefix(). '/withdrow/' . $item->id . '/update/cancel') }}">
+                        href="{{ url(routePrefix(). '/withdraw/' . $item->id . '/update/cancel') }}">
                         <i class="fa fa-times"></i>
                       </a>
                       @elseif($item->status == 'Accept')
                       <a class="btn btn-success"
-                        href="{{ url(routePrefix(). '/withdrow/' . $item->id . '/update/complete') }}">
+                        href="{{ url(routePrefix(). '/withdraw/' . $item->id . '/update/paid') }}">
                         <i class="fa fa-check"></i>
                       </a>
                       @endif
@@ -217,7 +261,7 @@
       </div>
     </div><!-- Row -->
 
-    @if($page == 'show')
+    @elseif($page == 'show')
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-info">
 
@@ -226,7 +270,7 @@
             <h3 class="panel-title">Withdraw</h3>
           </div>
           <div class="text-right">
-            <a href="{{ url(routePrefix() . '/withdraw') }}" class="btn btn-info btn-sm">Go back</a>
+            <a href="{{ url(routePrefix() . '/seller-withdraw') }}" class="btn btn-info btn-sm">Go back</a>
           </div>
         </div>
 
@@ -236,7 +280,69 @@
               <tr>
                 <th class="45%" width="45%">Seller Name</th>
                 <td width="10%">:</td>
-                <td class="45%" width="45%">{{ $singgleWithdraw }}</td>
+                <td class="45%" width="45%">{{ $data->user->name }}</td>
+              </tr>
+
+              <tr>
+                <th class="45%" width="45%">Seller Email</th>
+                <td width="10%">:</td>
+                <td class="45%" width="45%">{{ $data->user->email }}</td>
+              </tr>
+
+              <tr>
+                <th class="45%" width="45%">Seller Phone Number 1</th>
+                <td width="10%">:</td>
+                <td class="45%" width="45%">{{ $data->user->phone_1 }}</td>
+              </tr>
+
+              <tr>
+                <th class="45%" width="45%">Seller Phone Number 2</th>
+                <td width="10%">:</td>
+                <td class="45%" width="45%">{{ $data->user->phone_2 ?? 'Not Found' }}</td>
+              </tr>
+
+              <tr>
+                <th class="45%" width="45%">Withdraw Request Amount</th>
+                <td width="10%">:</td>
+                <td class="45%" width="45%">SR {{ $data->amount }}</td>
+              </tr>
+
+              <tr>
+                <th class="45%" width="45%">Withdraw Status</th>
+                <td width="10%">:</td>
+                <td class="45%" width="45%">
+                  @if($data->status == 'Paid')
+                  @php
+                  $status = 'success';
+                  @endphp
+                  @elseif($data->status == 'Cancel')
+                  @php
+                  $status = 'danger';
+                  @endphp
+                  @elseif($data->status == 'Accept')
+                  @php
+                  $status = 'info';
+                  @endphp
+                  @elseif($data->status == 'Pending')
+                  @php
+                  $status = 'warning';
+                  @endphp
+                  @endif
+                  <span class="badge badge-pill badge-{{$status}}">
+                    {{ $data->status }}
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <th class="45%" width="45%">Requested Date</th>
+                <td width="10%">:</td>
+                <td class="45%" width="45%">{{ $data->created_at->format('d-M-Y') }}</td>
+              </tr>
+
+              <tr>
+                <th class="45%" width="45%">Request Created</th>
+                <td width="10%">:</td>
+                <td class="45%" width="45%">{{ $data->created_at->diffForHumans() }}</td>
               </tr>
 
             </tbody>

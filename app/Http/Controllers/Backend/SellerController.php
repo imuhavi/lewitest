@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\UpdateWithdrawStatus;
 use App\Models\User;
 use App\Models\Withdraw;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SellerController extends Controller
 {
@@ -37,7 +40,7 @@ class SellerController extends Controller
 
   public function paymentWithdraw()
   {
-    $page = '';
+    $page = 'withdraw';
     $data = Withdraw::orderBy('created_at', 'DESC')->paginate(10);
     return view($this->VIEW_PATH . '.withdraw', compact('data', 'page'));
   }
@@ -45,7 +48,19 @@ class SellerController extends Controller
   public function show(Withdraw $withdraw, $id)
   {
     $page = 'show';
-    $singgleWithdraw = $withdraw->findOrFail($id);
-    return view($this->VIEW_PATH . 'seller.withdraw', compact('singgleWithdraw', 'page'));
+    $data = $withdraw->findOrFail($id)->first();
+    return view($this->VIEW_PATH . 'withdraw', compact('data', 'page'));
+  }
+
+  public function updateStatus(Withdraw $withdraw, $status)
+  {
+    $withdraw->update([
+      'status' => ucfirst($status)
+    ]);
+
+    Mail::to($withdraw->user->email)->send(new UpdateWithdrawStatus($withdraw));
+
+    Alert::success('Status!', 'Status updated successfully!');
+    return redirect()->back();
   }
 }
