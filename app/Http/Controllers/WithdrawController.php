@@ -8,12 +8,11 @@ use Illuminate\Http\Request;
 class WithdrawController extends Controller
 {
   private $VIEW_PATH = 'backend.seller';
-
   public function myWithraw()
   {
+    $page = 'withdraw';
     $data = Withdraw::orderBy('created_at', 'DESC')->whereUserId(auth()->user()->id)->paginate(10);
-
-    return view($this->VIEW_PATH . '.withdraw', compact('data'));
+    return view($this->VIEW_PATH . '.withdraw', compact('data', 'page'));
   }
 
 

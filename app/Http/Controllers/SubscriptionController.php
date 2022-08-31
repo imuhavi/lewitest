@@ -63,8 +63,8 @@ class SubscriptionController extends Controller
         'subscription_id' => $subscription->id,
         'shop_name' => $r->shop_name,
         'shop_logo' => session('fileName'),
-        'state' => $r->state,
-        'city' => $r->city,
+        'state_id' => $r->state,
+        'city_id' => $r->city,
         'postal_code' => $r->postal_code,
         'address' => $r->address
       ]);
