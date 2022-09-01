@@ -98,7 +98,7 @@ class MyFatoorahController extends Controller
       'status' => 'Active'
     ]);
 
-    // Create a transaction table including user_id, payment method, payment invoice, amount, status
+    // Create a transaction table including user_id, payment method, payment invoice, amount, status.
     SellerTransaction::create([
       'user_id' => $UserDefinedField->user_id,
       'payment_invoice_id' => $PaymentInvoice->id,

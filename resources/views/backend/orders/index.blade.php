@@ -377,9 +377,10 @@
                   <td width="10%">:</td>
                   <td class="45%" width="45%">
                     @if($singleOrder->user && $singleOrder->user->userDetail)
-                    <p>{{ $singleOrder->city($singleOrder->user->userDetail->city_id) }}, {{
-                      $singleOrder->state($singleOrder->user->userDetail->state_id) }}, {{
-                      $singleOrder->user->userDetail->address }}, {{ $singleOrder->user->userDetail->postal_code }}
+                    <p>{{ $singleOrder->user->userDetail->postal_code }}, {{
+                      $singleOrder->user->userDetail->address }}, {{
+                      $singleOrder->city($singleOrder->user->userDetail->city_id) }}, {{
+                      $singleOrder->state($singleOrder->user->userDetail->state_id) }}.
                     </p>
                     @else
                     N/A
