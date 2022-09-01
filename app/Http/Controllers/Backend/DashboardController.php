@@ -70,8 +70,8 @@ class DashboardController extends Controller
   public function show(Order $order, $id)
   {
     $page = 'show';
-    $singgleOrder = $order->findOrFail($id);
-    return view($this->VIEW_PATH . 'orders.index', compact('singgleOrder', 'page'));
+    $singleOrder = $order->findOrFail($id);
+    return view($this->VIEW_PATH . 'orders.index', compact('singleOrder', 'page'));
   }
 
   public function updateStatus(Order $order, $status)

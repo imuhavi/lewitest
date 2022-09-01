@@ -66,8 +66,8 @@
                 <thead>
                   <tr>
                     <th>Order ID</th>
-                    <th>Product SKU</th>
                     <th>Total Amount</th>
+                    <th>Order Create</th>
                     <th>Payment Method</th>
                     <th>Status</th>
                     <th>Customer</th>
@@ -81,11 +81,13 @@
                   <tr>
                     <td>#{{ $item->id }}</td>
                     <td>
-                      {{ $item->order_details[0]->product->product_sku }}
+                      SAR {{ $item->amount + $item->shipping_cost + $item->tax - $item->coupon_discount_amount }}
+                    </td>
+                    <td>
+                      {{ $item->created_at->diffForHumans() }}
                     </td>
 
-                    <td>
-                      SAR {{ $item->amount + $item->shipping_cost + $item->tax - $item->coupon_discount_amount }}
+
                     <td>
                       {{ $item->payment_method }}
                     </td>
@@ -202,7 +204,7 @@
                     </td>
 
                     <td>
-                      {{ $item->order_details[0]->product->product_sku }}
+                      {{ $item->order_details }}
                     </td>
 
                     <td>{{ $item->created_at->format('d-M-Y') }}</td>
@@ -344,35 +346,40 @@
                 <tr>
                   <th class="45%" width="45%">Invoice No:</th>
                   <td width="10%">:</td>
-                  <td class="45%" width="45%">#{{ $singgleOrder->id }}</td>
+                  <td class="45%" width="45%">#{{ $singleOrder->id }}</td>
+                </tr>
+                <tr>
+                  <th class="45%" width="45%">Order Created:</th>
+                  <td width="10%">:</td>
+                  <td class="45%" width="45%">{{ $singleOrder->created_at->diffForHumans() }}</td>
                 </tr>
 
                 <tr>
                   <th class="45%" width="45%">Date:</th>
                   <td width="10%">:</td>
-                  <td class="45%" width="45%">{{ date('d F, Y', strtotime($singgleOrder->created_at))}}</td>
+                  <td class="45%" width="45%">{{ date('d F, Y', strtotime($singleOrder->created_at))}}</td>
                 </tr>
 
                 <tr>
                   <th class="45%" width="45%">Customer Name</th>
                   <td width="10%">:</td>
-                  <td class="45%" width="45%">{{ $singgleOrder->user ? $singgleOrder->user->name : 'N/A' }}</td>
+                  <td class="45%" width="45%">{{ $singleOrder->user ? $singleOrder->user->name : 'N/A' }}</td>
                 </tr>
 
                 <tr>
                   <th class="45%" width="45%">Customer Email</th>
                   <td width="10%">:</td>
-                  <td class="45%" width="45%">{{ $singgleOrder->user ? $singgleOrder->user->email : 'N/A' }}</td>
+                  <td class="45%" width="45%">{{ $singleOrder->user ? $singleOrder->user->email : 'N/A' }}</td>
                 </tr>
 
                 <tr>
                   <th class="45%" width="45%">Shipping Address</th>
                   <td width="10%">:</td>
                   <td class="45%" width="45%">
-                    @if($singgleOrder->user && $singgleOrder->user->userDetail)
-                    <p>{{ $singgleOrder->city($singgleOrder->user->userDetail->city_id) }}, {{
-                      $singgleOrder->state($singgleOrder->user->userDetail->state_id) }}, {{
-                      $singgleOrder->user->userDetail->address }}, {{ $singgleOrder->user->userDetail->postal_code }}
+                    @if($singleOrder->user && $singleOrder->user->userDetail)
+                    <p>{{ $singleOrder->city($singleOrder->user->userDetail->city_id) }}, {{
+                      $singleOrder->state($singleOrder->user->userDetail->state_id) }}, {{
+                      $singleOrder->user->userDetail->address }}, {{ $singleOrder->user->userDetail->postal_code }}
                     </p>
                     @else
                     N/A
@@ -381,55 +388,15 @@
                 </tr>
 
                 <tr>
-                  <th class="45%" width="45%">Product Name</th>
-                  <td width="10%">:</td>
-                  <td class="45%" width="45%">{{ $singgleOrder->order_details[0]->product->name }}</td>
-                </tr>
-
-                <tr>
-                  <th class="45%" width="45%">Product SKU</th>
-                  <td width="10%">:</td>
-                  <td class="45%" width="45%">{{ $singgleOrder->order_details[0]->product->product_sku }}</td>
-                </tr>
-
-                @if(!empty($singgleOrder->order_details[0]->size))
-                <tr>
-                  <th class="45%" width="45%">Product Size</th>
-                  <td width="10%">:</td>
-                  <td class="45%" width="45%">{{ $singgleOrder->order_details[0]->size }}</td>
-                </tr>
-                @endif
-
-                @if(!empty($singgleOrder->order_details[0]->color))
-                <tr>
-                  <th class="45%" width="45%">Product Color</th>
-                  <td width="10%">:</td>
-                  <td class="45%" width="45%">{{ $singgleOrder->order_details[0]->color }}</td>
-                </tr>
-                @endif
-
-                <tr>
-                  <th class="45%" width="45%">Unit Price</th>
-                  <td width="10%">:</td>
-                  <td class="45%" width="45%">{{ number_format($singgleOrder->order_details[0]->unit_price, 2) }}</td>
-                </tr>
-
-                <tr>
-                  <th class="45%" width="45%">Product Quantity</th>
-                  <td width="10%">:</td>
-                  <td class="45%" width="45%">{{ $singgleOrder->order_details[0]->quantity }}</td>
-                </tr>
-
-                <tr>
                   <th class="45%" width="45%">Shipping Cost</th>
                   <td width="10%">:</td>
-                  <td class="45%" width="45%">SAR {{ number_format($singgleOrder->shipping_cost, 2) }}</td>
+                  <td class="45%" width="45%">SAR {{ number_format($singleOrder->shipping_cost, 2) }}</td>
                 </tr>
 
                 <tr>
                   <th class="45%" width="45%">Tax</th>
                   <td width="10%">:</td>
-                  <td class="45%" width="45%">SAR {{ number_format($singgleOrder->tax, 2) }}
+                  <td class="45%" width="45%">SAR {{ number_format($singleOrder->tax, 2) }}
                   </td>
                 </tr>
 
@@ -441,18 +408,51 @@
                 <tr>
                   <th class="45%" width="45%">Discount Amount</th>
                   <td width="10%">:</td>
-                  <td class="45%" width="45%">SAR {{ $singgleOrder->order_details[0]->quantity }}</td>
+                  <td class="45%" width="45%">SAR {{ $singleOrder->order_details[0]->quantity }}</td>
                 </tr>
                 @endif
 
                 <tr>
                   <th class="45%" width="45%">Total Amount</th>
                   <td width="10%">:</td>
-                  <td class="45%" width="45%">SAR {{ number_format(($singgleOrder->amount + $singgleOrder->shipping_cost
+                  <td class="45%" width="45%">SAR {{ number_format(($singleOrder->amount + $singleOrder->shipping_cost
                     +
-                    $singgleOrder->tax) - $discount, 2) }}</td>
+                    $singleOrder->tax) - $discount, 2) }}</td>
                 </tr>
-
+                <tr>
+                  <table class="table table-striped">
+                    <thead>
+                      <th>SL</th>
+                      <th>Product Name</th>
+                      <th>Product SKU</th>
+                      <th>Size</th>
+                      <th>Color</th>
+                      <th>Quanity</th>
+                    </thead>
+                    <tbody>
+                      @foreach($singleOrder->order_details as $key => $order)
+                      <tr>
+                        <td>{{ $key+1 }}</td>
+                        <td>{{ $order->product->name }}</td>
+                        <td>{{ $order->product->product_sku }}</td>
+                        <td>
+                          @if(!empty($order->size))
+                          {{ $order->size }}
+                          @endif
+                        </td>
+                        <td>
+                          @if(!empty($order->color))
+                          {{ $order->color }}
+                          @endif
+                        </td>
+                        <td>
+                          {{ $order->quantity }}
+                        </td>
+                      </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                </tr>
               </tbody>
             </table>
           </div>

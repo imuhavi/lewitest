@@ -712,6 +712,30 @@
                   </td>
                 </tr>
 
+                @if(!empty($colors))
+                <tr>
+                  <th width="45%">Color</th>
+                  <td width="10%">:</td>
+                  <td width="45%">
+                    @foreach($colors as $color)
+                    {{ $color }}<br>
+                    @endforeach
+                  </td>
+                </tr>
+                @endif
+
+                @if(!empty($sizes))
+                <tr>
+                  <th width="45%">Sizes</th>
+                  <td width="10%">:</td>
+                  <td width="45%">
+                    @foreach($sizes as $size)
+                    {{ $size }}<br>
+                    @endforeach
+                  </td>
+                </tr>
+                @endif
+
                 <tr>
                   <th width="45%">Parent Category</th>
                   <td width="10%">:</td>
@@ -733,15 +757,9 @@
                 </tr>
 
                 <tr>
-                  <th width="45%">Purchase Quantity</th>
+                  <th width="45%">Product Quantity</th>
                   <td width="10%">:</td>
                   <td width="45%">{{ $data->quantity }}</td>
-                </tr>
-
-                <tr>
-                  <th width="45%">Purchase Price</th>
-                  <td width="10%">:</td>
-                  <td width="45%">{{ $data->purchase_price }}</td>
                 </tr>
 
                 <tr>

@@ -64,19 +64,19 @@
 
       @if(routePrefix() === 'admin')
       <li class="@yield('slider_active')"><a href="{{ url( routePrefix() . '/sliders') }}"
-          class="waves-effect waves-button"><span class="menu-icon icon-grid"></span>
+          class="waves-effect waves-button"><span class="menu-icon icon-screen-desktop"></span>
           <p>Sliders</p>
         </a>
       </li>
 
       <li class="@yield('category_active')"><a href="{{ url( routePrefix() . '/category') }}"
-          class="waves-effect waves-button"><span class="menu-icon icon-grid"></span>
+          class="waves-effect waves-button"><span class="menu-icon icon-list"></span>
           <p>Category</p>
         </a>
       </li>
 
       <li class="@yield('subcategory_active')"><a href="{{ url( routePrefix() . '/subcategory') }}"
-          class="waves-effect waves-button"><span class="menu-icon fa fa-sitemap"></span>
+          class="waves-effect waves-button"><span class="menu-icon icon-grid"></span>
           <p>Sub-category</p>
         </a>
       </li>
@@ -87,13 +87,13 @@
         </a>
       </li>
       <li class="@yield('attributes_active')"><a href="{{ url(routePrefix().'/attributes') }}"
-          class="waves-effect waves-button"><span class="menu-icon icon-tag"></span>
+          class="waves-effect waves-button"><span class="menu-icon icon-hourglass"></span>
           <p>Attributes</p>
         </a>
       </li>
       <li class="droplink @yield('seller_active')"><a href="#" class="waves-effect waves-button"><span
             class="menu-icon fa fa-user-plus"></span>
-          <p>Seller Management</p><span class="arrow"></span>
+          <p>Seller Manage</p><span class="arrow"></span>
         </a>
         <ul class="sub-menu">
           <li class="@yield('subseller')"><a href="{{ url(routePrefix() .'/seller-list') }}">Seller

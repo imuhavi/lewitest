@@ -6,6 +6,11 @@
 @endsection
 @section('content')
 
+<style>
+  .description-head li a.active {
+    color: orangered;
+  }
+</style>
 <main>
   <section id="product-detials">
     <div class="container">
@@ -103,6 +108,8 @@
             </div>
             @endif
 
+            <p class="category">Vendor Name: {{ $product->user->name }}</p>
+
             <div class="product-qty mt-5">
               <div class="nice-number">
                 <input class="qty-input" type="number" value="1" min="0">
@@ -114,16 +121,18 @@
             </div>
 
             <p class="category">Category: {{ $product->subcategory->name }}</p>
-            <div class="d-flex share-product">
+            <!-- <div class="d-flex share-product">
               <p>Share This Item:</p>
               <ul class="d-flex">
                 <li class="me-3"><a href="#"><i class="fab fa-twitter"></i></a></li>
                 <li class="me-3"><a href="#"><i class="fab fa-instagram"></i></li>
                 <li class="me-3"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
               </ul>
-            </div>
+            </div> -->
 
             <p class="category">Available Quantity: {{ $product->quantity }} {{ $product->unit }}</p>
+
+
 
             <!-- <div class="installment-payment d-flex border justify-content-between align-items-center">
               <p>or 4 interest-free payment of <br> 300 AED. <a href="#">Learn More</a></p>
@@ -322,6 +331,10 @@
       $(this).addClass("size-active");
     })
   });
+
+  $(document).ready(function () {
+    $('')
+  })
 
   $(document).ready(function () {
     $('.cart-btn').on('click', function (e) {

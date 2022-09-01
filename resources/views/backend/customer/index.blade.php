@@ -72,7 +72,7 @@ Seller-list
                     <td>{{ $data->firstitem() + $key }}</td>
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->email }}</td>
-                    <td>{{ $item->phone_1 ?? 'Not Found' }}, {{ $item->phone_2 ?? 'Not Found' }}</td>
+                    <td>05{{ $item->userDetail->phone ?? 'Not Found' }}</td>
                     <td>
                       <a class="btn btn-sm btn-info" href="{{ url( routePrefix() . '/customer/' . $item->id) }}"><i
                           class="fa fa-eye"></i></a>
@@ -108,7 +108,7 @@ Seller-list
                 <h3 class="panel-title">Customer Details</h3>
               </div>
               <div class="text-right">
-                <a href="{{ url( routePrefix() .'/orders') }}" class="btn btn-info btn-sm">Go back</a>
+                <a href="{{ url( routePrefix() .'/customer-list') }}" class="btn btn-info btn-sm">Go back</a>
               </div>
             </div>
 
@@ -137,10 +137,12 @@ Seller-list
 
 
                   <tr>
-                    <th class="45%" width="45%">Customer Phone Number</th>
+                    <th class="45%" width="45%">Customer Address</th>
                     <td width="10%">:</td>
                     <td class="45%" width="45%">
-                      {{ $data->userDetail->state->name }}
+                      {{ $data->userDetail->postal_code }}, {{ $data->userDetail->address }}, {{
+                      $data->userDetail->city->name }}, {{
+                      $data->userDetail->state->name }}.
                     </td>
                   </tr>
 

@@ -14,4 +14,9 @@ class UserDetail extends Model
   {
     return $this->belongsTo(States::class);
   }
+
+  public function city()
+  {
+    return $this->belongsTo(Cities::class);
+  }
 }
