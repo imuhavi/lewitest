@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Aug 28, 2022 at 10:49 AM
+-- Generation Time: Sep 02, 2022 at 12:52 PM
 -- Server version: 5.7.34
 -- PHP Version: 8.0.8
 
@@ -372,6 +372,7 @@ CREATE TABLE `orders` (
   `tax` double(10,2) NOT NULL DEFAULT '0.00',
   `amount` double(10,2) NOT NULL DEFAULT '0.00',
   `payment_method` enum('Card','COD') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'COD',
+  `is_paid` enum('Paid','Unpaid') COLLATE utf8mb4_unicode_ci DEFAULT 'Unpaid',
   `note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` enum('Pending','Accept','Complete','Cancel') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Pending',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -382,10 +383,11 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `user_id`, `coupon_id`, `coupon_discount_amount`, `shipping_cost`, `tax`, `amount`, `payment_method`, `note`, `status`, `created_at`, `updated_at`) VALUES
-(2, 3, NULL, 0.00, 30, 24.57, 163.80, 'COD', 'Qucik Delivery', 'Pending', '2022-08-28 08:07:40', '2022-08-28 08:07:40'),
-(3, 3, NULL, 0.00, 30, 45.74, 304.95, 'COD', 'helwo', 'Pending', '2022-08-28 09:51:01', '2022-08-28 09:51:01'),
-(4, 3, NULL, 0.00, 30, 27.81, 185.40, 'COD', 'hwllow', 'Pending', '2022-08-28 09:51:50', '2022-08-28 09:51:50');
+INSERT INTO `orders` (`id`, `user_id`, `coupon_id`, `coupon_discount_amount`, `shipping_cost`, `tax`, `amount`, `payment_method`, `is_paid`, `note`, `status`, `created_at`, `updated_at`) VALUES
+(2, 3, NULL, 0.00, 30, 24.57, 163.80, 'COD', 'Unpaid', 'Qucik Delivery', 'Pending', '2022-08-28 08:07:40', '2022-08-28 08:07:40'),
+(3, 3, NULL, 0.00, 30, 45.74, 304.95, 'COD', 'Unpaid', 'helwo', 'Pending', '2022-08-28 09:51:01', '2022-08-28 09:51:01'),
+(4, 3, NULL, 0.00, 30, 27.81, 185.40, 'COD', 'Unpaid', 'hwllow', 'Complete', '2022-08-28 09:51:50', '2022-08-31 14:53:43'),
+(5, 8, NULL, 0.00, 30, 224.16, 1494.40, 'COD', 'Unpaid', 'Est commodi unde non', 'Pending', '2022-08-31 16:49:13', '2022-08-31 16:49:13');
 
 -- --------------------------------------------------------
 
@@ -413,7 +415,9 @@ CREATE TABLE `order_details` (
 INSERT INTO `order_details` (`id`, `order_id`, `user_id`, `product_id`, `unit_price`, `color`, `size`, `quantity`, `created_at`, `updated_at`) VALUES
 (1, 2, 2, 5, 163.80, 'Black', '', 1, '2022-08-28 08:07:40', '2022-08-28 08:07:40'),
 (2, 3, 2, 3, 304.95, '', '', 1, '2022-08-28 09:51:01', '2022-08-28 09:51:01'),
-(3, 4, 2, 1, 185.40, 'Yellow', 'MD', 1, '2022-08-28 09:51:50', '2022-08-28 09:51:50');
+(3, 4, 2, 1, 185.40, 'Yellow', 'MD', 1, '2022-08-28 09:51:50', '2022-08-28 09:51:50'),
+(4, 5, 6, 7, 878.40, 'Black', 'XL', 1, '2022-08-31 16:49:13', '2022-08-31 16:49:13'),
+(5, 5, 2, 2, 308.00, 'Blue', '', 2, '2022-08-31 16:49:13', '2022-08-31 16:49:13');
 
 -- --------------------------------------------------------
 
@@ -518,12 +522,13 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `user_id`, `category_id`, `sub_category_id`, `name`, `slug`, `product_sku`, `description`, `thumbnail`, `pdf`, `status`, `purchase_price`, `price`, `discount_type`, `discount`, `unit`, `min`, `max`, `quantity`, `tags`, `isCashAvailable`, `attributes`, `meta_title`, `meta_description`, `meta_image`, `is_draft`, `created_at`, `updated_at`) VALUES
-(1, 2, 2, 1, 'Calvin Benson', 'Nostrum at ab dolore', 'RA-5593-2', '<p>Dolor qui perspiciat.&nbsp;Dolor qui perspiciat.&nbsp;Dolor qui perspiciat.&nbsp;Dolor qui perspiciat.</p>', '1661598902_71lYxVMUXN0FAP6K.jpg', NULL, 'Active', '150.00', '206.00', 'Percent', 10, 'Pieces', 1, 10, 20, 'Doloremque asperiore', 0, '[\"[\\\"2\\\",\\\"Black\\\"]\",\"[\\\"2\\\",\\\"Yellow\\\"]\",\"[\\\"1\\\",\\\"MD\\\"]\"]', 'Odio recusandae Qui', 'Error consequatur s', NULL, 0, '2022-08-27 11:15:02', '2022-08-28 06:21:42'),
-(2, 2, 3, 6, 'Tate Guerrero Watch', 'tate-guerrero-watch', 'RA-1589-2', '<p>Reprehenderit earum .&nbsp;Reprehenderit earum .&nbsp;Reprehenderit earum .</p>', '1661599075_7FPtno4tUVDuvug0.png', NULL, 'Active', '200.00', '350.00', 'Percent', 12, 'Pieces', 1, 10, 100, 'Blanditiis quia dolo', 0, '[\"[\\\"2\\\",\\\"Green\\\"]\",\"[\\\"2\\\",\\\"Blue\\\"]\",\"[\\\"2\\\",\\\"Black\\\"]\"]', 'Quia asperiores non', 'Libero ad reprehende', NULL, 0, '2022-08-27 11:17:55', '2022-08-28 06:21:20'),
-(3, 2, 4, 10, 'Nathan Mcker', 'nathan-mcker', 'RA-9401-2', '<p>Aliqua. Eius accusam.</p>', '1661667119_YtvNFPLviBP1oBFf.png', NULL, 'Active', '200.00', '321.00', 'Percent', 5, 'Pieces', 1, 10, 100, 'Sunt alias neque dol', 0, NULL, 'Omnis dolor cumque n', 'Anim nulla vel earum', NULL, 0, '2022-08-28 06:11:59', '2022-08-28 06:28:56'),
-(4, 2, 4, 12, 'Vivian Franklin', 'Cillum vel eligendi', 'RA-8952-2', '<p>In commodo ea eligen.</p>', '1661668850_8ZWgBAgIV7HbCRNU.jpeg', NULL, 'Active', '100.00', '150.00', 'Flat', 20, 'Sint qui provident', 1, 20, 100, 'Ut aut nostrum tempo', 0, NULL, 'Id nulla eaque volup', 'Voluptatem dolore as', NULL, 0, '2022-08-28 06:40:50', '2022-08-28 06:49:37'),
-(5, 2, 2, 4, 'Donna Douglas', 'Voluptas nihil digni', 'RA-5279-2', '<p>Rerum in ratione arc.</p>', '1661669109_ikvKHVfsGztFLXCq.png', NULL, 'Active', '120.00', '180.00', 'Percent', 9, 'Pieces', 1, 10, 100, 'Distinctio Sint off', 0, '[\"[\\\"2\\\",\\\"Green\\\"]\",\"[\\\"2\\\",\\\"Blue\\\"]\",\"[\\\"2\\\",\\\"Black\\\"]\"]', 'Libero aspernatur et', 'Facere anim dolorem', NULL, 0, '2022-08-28 06:45:09', '2022-08-28 06:49:23'),
-(6, 2, 2, 4, 'Sloane Mcconnell', 'Esse adipisci nihil', 'RA-7163-2', '<p>Et voluptate dicta m.</p>', '1661669265_rJZePQghCAoNLSdd.png', NULL, 'Active', '100.00', '180.00', NULL, NULL, 'Pieces', 1, 10, 100, 'Facere dolor laborum', 0, '[\"[\\\"2\\\",\\\"Red\\\"]\",\"[\\\"2\\\",\\\"Green\\\"]\",\"[\\\"2\\\",\\\"Blue\\\"]\",\"[\\\"1\\\",\\\"LG\\\"]\",\"[\\\"1\\\",\\\"MD\\\"]\"]', 'In quo cupidatat qui', 'Pariatur Suscipit e', NULL, 0, '2022-08-28 06:47:17', '2022-08-28 06:49:13');
+(1, 2, 2, 1, 'Calvin Benson', 'Nostrum at ab dolore', 'RA-5593-2', '<p>Dolor qui perspiciat.&nbsp;Dolor qui perspiciat.&nbsp;Dolor qui perspiciat.&nbsp;Dolor qui perspiciat.</p>', '1661598902_71lYxVMUXN0FAP6K.jpg', NULL, 'Active', '150.00', '206.00', 'Percent', 10, 'Pieces', 1, 10, 20, 'Doloremque asperiore', 0, '[\"[\\\"2\\\",\\\"Black\\\"]\",\"[\\\"2\\\",\\\"Yellow\\\"]\",\"[\\\"1\\\",\\\"MD\\\"]\"]', 'Odio recusandae Qui', 'Error consequatur s', NULL, 0, '2022-08-27 11:15:02', '2022-08-30 05:18:46'),
+(2, 2, 3, 6, 'Tate Guerrero Watch', 'tate-guerrero-watch', 'RA-1589-2', '<p>Reprehenderit earum .&nbsp;Reprehenderit earum .&nbsp;Reprehenderit earum .</p>', '1661599075_7FPtno4tUVDuvug0.png', NULL, 'Active', '200.00', '350.00', 'Percent', 12, 'Pieces', 1, 10, 100, 'Blanditiis quia dolo', 0, '[\"[\\\"2\\\",\\\"Green\\\"]\",\"[\\\"2\\\",\\\"Blue\\\"]\",\"[\\\"2\\\",\\\"Black\\\"]\"]', 'Quia asperiores non', 'Libero ad reprehende', NULL, 0, '2022-08-27 11:17:55', '2022-08-30 05:18:46'),
+(3, 2, 4, 10, 'Nathan Mcker', 'nathan-mcker', 'RA-9401-2', '<p>Aliqua. Eius accusam.</p>', '1661667119_YtvNFPLviBP1oBFf.png', NULL, 'Active', '200.00', '321.00', 'Percent', 5, 'Pieces', 1, 10, 100, 'Sunt alias neque dol', 0, NULL, 'Omnis dolor cumque n', 'Anim nulla vel earum', NULL, 0, '2022-08-28 06:11:59', '2022-08-30 05:18:46'),
+(4, 2, 4, 12, 'Vivian Franklin', 'Cillum vel eligendi', 'RA-8952-2', '<p>In commodo ea eligen.</p>', '1661668850_8ZWgBAgIV7HbCRNU.jpeg', NULL, 'Active', '100.00', '150.00', 'Flat', 20, 'Sint qui provident', 1, 20, 100, 'Ut aut nostrum tempo', 0, NULL, 'Id nulla eaque volup', 'Voluptatem dolore as', NULL, 0, '2022-08-28 06:40:50', '2022-08-30 05:18:46'),
+(5, 2, 2, 4, 'Donna Douglas', 'Voluptas nihil digni', 'RA-5279-2', '<p>Rerum in ratione arc.</p>', '1661669109_ikvKHVfsGztFLXCq.png', NULL, 'Active', '120.00', '180.00', 'Percent', 9, 'Pieces', 1, 10, 100, 'Distinctio Sint off', 0, '[\"[\\\"2\\\",\\\"Green\\\"]\",\"[\\\"2\\\",\\\"Blue\\\"]\",\"[\\\"2\\\",\\\"Black\\\"]\"]', 'Libero aspernatur et', 'Facere anim dolorem', NULL, 0, '2022-08-28 06:45:09', '2022-08-30 05:18:46'),
+(6, 2, 2, 4, 'Sloane Mcconnell', 'Esse adipisci nihil', 'RA-7163-2', '<p>Et voluptate dicta m.</p>', '1661669265_rJZePQghCAoNLSdd.png', NULL, 'Active', '100.00', '180.00', NULL, NULL, 'Pieces', 1, 10, 100, 'Facere dolor laborum', 0, '[\"[\\\"2\\\",\\\"Red\\\"]\",\"[\\\"2\\\",\\\"Green\\\"]\",\"[\\\"2\\\",\\\"Blue\\\"]\",\"[\\\"1\\\",\\\"LG\\\"]\",\"[\\\"1\\\",\\\"MD\\\"]\"]', 'In quo cupidatat qui', 'Pariatur Suscipit e', NULL, 0, '2022-08-28 06:47:17', '2022-08-30 05:18:46'),
+(7, 6, 3, 5, 'Kamal Mercado', 'Voluptatem sit at in', 'IS-4701-6', '<p>helow</p>', '1661964349_mh3WBo2zZjje8b4i.jpeg', NULL, 'Active', '230.00', '976.00', 'Percent', 10, 'Pieces', 1, 20, 83, 'Excepturi consequatu,Quisquam aspernatur', 0, '[\"[\\\"2\\\",\\\"Blue\\\"]\",\"[\\\"2\\\",\\\"Black\\\"]\",\"[\\\"2\\\",\\\"Yellow\\\"]\",\"[\\\"1\\\",\\\"LG\\\"]\",\"[\\\"1\\\",\\\"MD\\\"]\",\"[\\\"1\\\",\\\"XL\\\"]\"]', 'Esse beatae ut omnis', 'Tempora tempor autem', NULL, 0, '2022-08-31 16:45:49', '2022-09-01 09:06:16');
 
 -- --------------------------------------------------------
 
@@ -569,7 +574,11 @@ INSERT INTO `product_images` (`id`, `product_id`, `image`, `created_at`, `update
 (23, 6, '1661669237_8N4Pn1yyr0Alrxli.png', '2022-08-28 06:47:17', '2022-08-28 06:47:17'),
 (24, 6, '1661669237_EZEKb85qFR0CGPKu.png', '2022-08-28 06:47:17', '2022-08-28 06:47:17'),
 (25, 6, '1661669237_1oKJcARtDir6MxXQ.png', '2022-08-28 06:47:17', '2022-08-28 06:47:17'),
-(26, 6, '1661669237_W5xe48gUyUtMcGlB.jpeg', '2022-08-28 06:47:18', '2022-08-28 06:47:18');
+(26, 6, '1661669237_W5xe48gUyUtMcGlB.jpeg', '2022-08-28 06:47:18', '2022-08-28 06:47:18'),
+(28, 7, '1661964349_WydjeB4DKfGfNQsN.jpg', '2022-08-31 16:45:49', '2022-08-31 16:45:49'),
+(29, 7, '1661964349_HVzZM8ovddUpTg6G.jpeg', '2022-08-31 16:45:49', '2022-08-31 16:45:49'),
+(30, 7, '1661964349_0nrlw1NAhITssJsJ.jpeg', '2022-08-31 16:45:49', '2022-08-31 16:45:49'),
+(31, 7, '1661964349_zz2YGhTWyfjByA1Q.jpeg', '2022-08-31 16:45:49', '2022-08-31 16:45:49');
 
 -- --------------------------------------------------------
 
@@ -605,8 +614,8 @@ CREATE TABLE `shops` (
   `subscription_id` bigint(20) UNSIGNED NOT NULL,
   `shop_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `shop_logo` text COLLATE utf8mb4_unicode_ci,
-  `state` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `state_id` bigint(20) UNSIGNED NOT NULL,
+  `city_id` bigint(20) UNSIGNED NOT NULL,
   `postal_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` enum('Active','Inactive') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Inactive',
@@ -618,8 +627,11 @@ CREATE TABLE `shops` (
 -- Dumping data for table `shops`
 --
 
-INSERT INTO `shops` (`id`, `user_id`, `subscription_id`, `shop_name`, `shop_logo`, `state`, `city`, `postal_code`, `address`, `status`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, 'rahmmed', '1661597920_7IiAdpP7jlfLrdXE.png', '2849', '102809', '32437', '3161 King Abdulaziz Rd, Ar Rabiyah, Dammam', 'Active', '2022-08-27 10:58:41', '2022-08-27 11:03:21');
+INSERT INTO `shops` (`id`, `user_id`, `subscription_id`, `shop_name`, `shop_logo`, `state_id`, `city_id`, `postal_code`, `address`, `status`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 'rahmmed', '1661597920_7IiAdpP7jlfLrdXE.png', 2849, 102809, '32437', '3161 King Abdulaziz Rd, Ar Rabiyah, Dammam', 'Active', '2022-08-27 10:58:41', '2022-08-30 05:18:46'),
+(2, 6, 2, 'Daphne Ramos', '1661963591_7M1F2S4JXj2mxfmV.png', 2852, 102838, '97694', 'In dolor aut recusan', 'Active', '2022-08-31 16:33:11', '2022-09-01 09:06:16'),
+(3, 7, 2, 'Emmanuel Johns', '1661963718_kCfCA8OytjZ9xOnO.png', 2856, 102820, '18401', 'Qui lorem labore sap', 'Inactive', '2022-08-31 16:35:18', '2022-08-31 16:35:18'),
+(4, 9, 2, 'Grady Wolf', '1662023836_J6q1W4I4nptWC5Wx.png', 2849, 102808, '41405', 'Autem veniam aut pa', 'Inactive', '2022-09-01 09:17:16', '2022-09-01 09:17:16');
 
 -- --------------------------------------------------------
 
@@ -805,7 +817,8 @@ CREATE TABLE `transactions` (
 INSERT INTO `transactions` (`id`, `user_id`, `order_id`, `amount`, `status`, `created_at`, `updated_at`) VALUES
 (1, 3, 2, 163.8, 'Pending', '2022-08-28 08:07:40', '2022-08-28 08:07:40'),
 (2, 3, 3, 304.95, 'Pending', '2022-08-28 09:51:01', '2022-08-28 09:51:01'),
-(3, 3, 4, 185.4, 'Pending', '2022-08-28 09:51:50', '2022-08-28 09:51:50');
+(3, 3, 4, 185.4, 'Pending', '2022-08-28 09:51:50', '2022-08-28 09:51:50'),
+(4, 8, 5, 1494.4, 'Pending', '2022-08-31 16:49:13', '2022-08-31 16:49:13');
 
 -- --------------------------------------------------------
 
@@ -839,8 +852,14 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `provider_id`, `provider`, `avatar`, `role`, `phone_1`, `phone_2`, `balance`, `due_balance`, `address`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Farish Ahmmed', '5dots@gmail.com', '2022-08-27 09:41:00', '$2y$10$N0ApoYgIqCgTO9gWaeO61esg5a04F8JTltCdWT6gZWY6TNRgpJlti', NULL, NULL, NULL, 'Admin', NULL, NULL, '0.00', '0.00', NULL, NULL, '2022-08-27 09:41:00', '2022-08-27 09:41:00'),
-(2, 'Rasel Ahmmed', 'rahmmed.info@gmail.com', '2022-08-27 11:06:02', '$2y$10$01NphdqtDGNbAseGMmqLP.ocgN/NC7QOCHqGx6Nn3cfphhpv26Que', NULL, NULL, NULL, 'Seller', '0587934940', NULL, '0.00', '0.00', '3161 King Abdulaziz Rd, Ar Rabiyah, Dammam', NULL, '2022-08-27 10:58:40', '2022-08-27 11:06:02'),
-(3, 'Ahmmed Rasel', 'rahmmed.bd24@gmail.com', '2022-08-28 08:03:12', '$2y$10$c/r5qTDoz04vXLiCLK9wc./Tf/QEvOzjg8AdGM8C3ryGEGYIVAEFq', NULL, NULL, NULL, 'Customer', NULL, NULL, '0.00', '0.00', NULL, NULL, '2022-08-28 08:01:31', '2022-08-28 08:03:12');
+(2, 'Rasel Ahmmed', 'rahmmed.info@gmail.com', '2022-08-27 11:06:02', '$2y$10$01NphdqtDGNbAseGMmqLP.ocgN/NC7QOCHqGx6Nn3cfphhpv26Que', NULL, NULL, NULL, 'Seller', '058345439', NULL, '2000.00', '0.00', '3161 King Abdulaziz Rd, Ar Rabiyah, Dammam', NULL, '2022-08-27 10:58:40', '2022-08-31 16:28:44'),
+(3, 'Ahmmed Rasel', 'rahmmed.bd24@gmail.com', '2022-08-28 08:03:12', '$2y$10$c/r5qTDoz04vXLiCLK9wc./Tf/QEvOzjg8AdGM8C3ryGEGYIVAEFq', NULL, NULL, NULL, 'Customer', NULL, NULL, '0.00', '0.00', NULL, NULL, '2022-08-28 08:01:31', '2022-08-28 08:03:12'),
+(4, 'Fakhrul Islam', 'fakhrulislam@gmail.com', NULL, '$2y$10$1wJ6GC9CX.i.bNMY8RXALO7JQoFQK.9kmabHxbrp9avP7LicwzZb2', NULL, NULL, NULL, 'Customer', NULL, NULL, '0.00', '0.00', NULL, NULL, '2022-08-29 17:33:47', '2022-08-29 17:33:47'),
+(5, 'Rasel Ahmmed', 'rasel@gmail.com', '2022-08-01 17:39:48', '$2y$10$w9v5e9/khwEGpYqvRc606O/gOSMq5qDVKqeNHafa0eRdxj52S5Mea', NULL, NULL, NULL, 'Customer', NULL, NULL, '0.00', '0.00', NULL, NULL, '2022-08-29 17:39:13', '2022-08-29 17:39:13'),
+(6, 'Isadora Steele', 'dyritup@mailinator.com', '2022-08-01 16:43:51', '$2y$10$oJNJmsFDpEnH9kD6GBBQAu.kUXWJev9cB3fn6gLDSNOtkmL3WC2T6', NULL, NULL, NULL, 'Seller', '059845355', NULL, '0.00', '0.00', 'Sequi et voluptatem', NULL, '2022-08-31 16:29:23', '2022-08-31 16:34:43'),
+(7, 'Melissa Jenkins', 'rymofepuhy@mailinator.com', NULL, '$2y$10$Zk2TSYqvqhVYcAu9pf.vyO06kFicZFFHWZZu7d6Riwg4bN5aVANgG', NULL, NULL, NULL, 'Seller', '05+1 (222) 738-4803', NULL, '0.00', '0.00', 'Qui lorem labore sap', NULL, '2022-08-31 16:35:18', '2022-08-31 16:35:18'),
+(8, 'Zane Solomon', 'zanusop@mailinator.com', '2022-08-01 16:48:29', '$2y$10$2/Ip5yWbfG336AiJjyuGCuD4sruDmP.5naNq1Qk7mqR1l.Q5vZssy', NULL, NULL, NULL, 'Customer', NULL, NULL, '0.00', '0.00', NULL, NULL, '2022-08-31 16:48:05', '2022-08-31 16:48:05'),
+(9, 'Micah Freeman', 'bapa@mailinator.com', NULL, '$2y$10$gveoHRjQlwiMXQfszukWI.KVQQKSdhjQU1UjAukQeShB6q4h7.jfm', NULL, NULL, NULL, 'Seller', '05+1 (999) 924-9712', NULL, '0.00', '0.00', 'Autem veniam aut pa', NULL, '2022-09-01 09:17:16', '2022-09-01 09:17:16');
 
 -- --------------------------------------------------------
 
@@ -865,7 +884,8 @@ CREATE TABLE `user_details` (
 --
 
 INSERT INTO `user_details` (`id`, `user_id`, `state_id`, `city_id`, `phone`, `postal_code`, `address`, `created_at`, `updated_at`) VALUES
-(2, 3, 2850, 102824, '94305543', '34345', 'Demo Address', '2022-08-28 08:07:40', '2022-08-28 09:51:50');
+(2, 3, 2850, 102824, '94305543', '34345', 'Demo Address', '2022-08-28 08:07:40', '2022-08-28 09:51:50'),
+(3, 8, 2850, 102845, '9492345', '34345', 'Quisquam et cupidita', '2022-08-31 16:49:13', '2022-08-31 16:49:13');
 
 -- --------------------------------------------------------
 
@@ -881,6 +901,16 @@ CREATE TABLE `withdraws` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `withdraws`
+--
+
+INSERT INTO `withdraws` (`id`, `user_id`, `amount`, `status`, `created_at`, `updated_at`) VALUES
+(1, 2, 200.00, 'Pending', '2022-08-30 06:10:03', '2022-08-30 06:10:03'),
+(2, 2, 200.00, 'Paid', '2022-08-30 06:10:33', '2022-08-31 14:59:18'),
+(3, 2, 300.00, 'Paid', '2022-08-30 06:12:36', '2022-08-31 14:52:21'),
+(4, 2, 129.00, 'Paid', '2022-08-31 16:20:50', '2022-08-31 16:24:46');
 
 --
 -- Indexes for dumped tables
@@ -1112,13 +1142,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `payment_invoices`
@@ -1136,13 +1166,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `seller_transactions`
@@ -1154,7 +1184,7 @@ ALTER TABLE `seller_transactions`
 -- AUTO_INCREMENT for table `shops`
 --
 ALTER TABLE `shops`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `sliders`
@@ -1190,25 +1220,25 @@ ALTER TABLE `subscription_options`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `user_details`
 --
 ALTER TABLE `user_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `withdraws`
 --
 ALTER TABLE `withdraws`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
