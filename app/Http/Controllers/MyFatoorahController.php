@@ -34,7 +34,7 @@ class MyFatoorahController extends Controller
     ];
     try {
       $result = $this->myfatoorah->sendPayment(
-        'Customer Name',
+        $user->name,
         $r->payable_amount,
         [
           'CustomerMobile' => $user->phone_1,
@@ -93,10 +93,10 @@ class MyFatoorahController extends Controller
 
     $PaymentInvoice = PaymentInvoice::create($paymentarray);
 
-    $shop = Shop::where('user_id', $UserDefinedField->user_id)->first();
-    $shop->update([
-      'status' => 'Active'
-    ]);
+    // $shop = Shop::where('user_id', $UserDefinedField->user_id)->first();
+    // $shop->update([
+    //   'status' => 'Active'
+    // ]);
 
     // Create a transaction table including user_id, payment method, payment invoice, amount, status.
     SellerTransaction::create([

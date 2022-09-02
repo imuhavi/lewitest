@@ -101,6 +101,13 @@
                     @endif
                   </td>
                 </tr>
+
+                <tr>
+                  <th width="45%">Seller Bank Account</th>
+                  <td width="10%">:</td>
+                  <td width="45%">{{ $data->shop->account_number }}</td>
+                </tr>
+
                 <tr>
                   <th width="45%">Shop Location</th>
                   <td width="10%">:</td>

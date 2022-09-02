@@ -56,4 +56,3 @@
 1. Payment unpaid and payment method card order list dekha jabe na (Seller & admin) DashboardController
 
 2. Seller er Balance dekhate hobe User Table a balance coloum a.
-3. Different Seller er product order korle multiple order generate hobe akhon just akta order e generate hoitechy.

@@ -18,6 +18,7 @@ class SubscriptionController extends Controller
     $r->validate([
       'full_name' => 'required',
       'shop_name' => 'required',
+      'account_number' => 'required',
       'shop_logo' => 'required',
       'email' => 'required|email',
       'phone' => 'required',
@@ -62,6 +63,7 @@ class SubscriptionController extends Controller
         'user_id' => $user->id,
         'subscription_id' => $subscription->id,
         'shop_name' => $r->shop_name,
+        'account_number' => 'SA' . $r->account_number,
         'shop_logo' => session('fileName'),
         'state_id' => $r->state,
         'city_id' => $r->city,

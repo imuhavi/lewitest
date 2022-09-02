@@ -62,6 +62,7 @@ Seller List
                     <th>Name</th>
                     <th>Email Address</th>
                     <th>Phone Number(s)</th>
+                    <th>Created</th>
                     <th width="120" style="text-align: center">
                       Action
                     </th>
@@ -87,6 +88,7 @@ Seller List
                       <span class="text-danger">No number added</span>
                       @endif
                     </td>
+                    <td>{{ $item->created_at->diffForHumans() }}</td>
                     <td style="text-align: center">
                       <a class="btn btn-sm btn-info" href="{{ url( routePrefix() . '/seller/' . $item->id) }}">
                         <i class="fa fa-eye"></i>
@@ -97,9 +99,10 @@ Seller List
                       strtotime($item->shop->created_at)) > strtotime('now')))
                       <a class="btn btn-sm btn-{{ ($item->shop->status == 'Active') ? 'success' : 'danger' }}"
                         href="{{ url( routePrefix() . '/shop/' . $item->shop->id) }}">
-                        <i class="fa fa-dot-circle-o"></i>
+                        <i class="icon-check"></i>
                       </a>
                       @endif
+                      <a class="btn btn-sm btn-info" href="#"><i class="icon-envelope"></i></a>
                     </td>
                   </tr>
                   @empty
@@ -116,8 +119,6 @@ Seller List
           </div>
         </div>
       </div>
-      @elseif ($page == 'show')
-      {{ $data }}
       @endif
     </div>
     <!-- Row -->
