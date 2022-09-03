@@ -8,6 +8,12 @@
   <link href='https://fonts.googleapis.com/css?family=Lato:300,400|Montserrat:700' rel='stylesheet' type='text/css'>
   <style>
     @import url(//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css);
+
+    .rewnew-btn {
+      padding: 15px;
+      background-color: black;
+      color: white;
+    }
   </style>
   <link rel="stylesheet" href="https://2-22-4-dot-lead-pages.appspot.com/static/lp918/min/default_thank_you.css">
   <script src="https://2-22-4-dot-lead-pages.appspot.com/static/lp918/min/jquery-1.9.1.min.js"></script>
@@ -21,12 +27,16 @@
   </header>
   <div class="main-content">
     <i class="fa fa-check main-content__checkmark" id="checkmark"></i>
-    <p class="main-content__body" data-lead-id="main-content-body"><strong>Hi, {{ $shop->shop_name }}</strong>, <br> We
+    <p class="main-content__body" data-lead-id="main-content-body"><strong>Hi {{ $shop->shop_name }}</strong>, <br> We
       are glad that you are
       the Seller of
       5dots. Your
       Subscription will be expired {{ date('d-M-Y', strtotime('+' . $shop->subscription->days . ' day',
       strtotime($shop->created_at ))) }}. Before expired Please renew your package.</p>
+  </div>
+
+  <div>
+    <a class="rewnew-btn" href="{{ route('subscription') }}">Rewnew Now</a>
   </div>
 
   @if($shop && $shop->subscription)
