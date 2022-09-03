@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Sep 02, 2022 at 12:52 PM
+-- Generation Time: Sep 02, 2022 at 04:43 PM
 -- Server version: 5.7.34
 -- PHP Version: 8.0.8
 
@@ -460,7 +460,9 @@ CREATE TABLE `payment_invoices` (
 --
 
 INSERT INTO `payment_invoices` (`id`, `order_id`, `client_id`, `InvoiceId`, `InvoiceStatus`, `InvoiceValue`, `Currency`, `InvoiceDisplayValue`, `TransactionId`, `TransactionStatus`, `PaymentGateway`, `PaymentId`, `CardNumber`, `created_at`, `updated_at`) VALUES
-(1, 2, 2, 1630964, 'Paid', '89.756', 'KD', '1,104.000 SR', 1630964, 'Succss', 'VISA/MASTER', 7071630964124383973, '450875xxxxxx1019', '2022-08-27 11:03:21', '2022-08-27 11:03:21');
+(1, 2, 2, 1630964, 'Paid', '89.756', 'KD', '1,104.000 SR', 1630964, 'Succss', 'VISA/MASTER', 7071630964124383973, '450875xxxxxx1019', '2022-08-27 11:03:21', '2022-08-27 11:03:21'),
+(2, 11, 11, 1641975, 'Paid', '520.772', 'KD', '6,405.500 SR', 1641975, 'Succss', 'VISA/MASTER', 7071641975124804773, '450875xxxxxx1019', '2022-09-02 16:15:55', '2022-09-02 16:15:55'),
+(3, 11, 11, 1641975, 'Paid', '520.772', 'KD', '6,405.500 SR', 1641975, 'Succss', 'VISA/MASTER', 7071641975124804773, '450875xxxxxx1019', '2022-09-02 16:16:41', '2022-09-02 16:16:41');
 
 -- --------------------------------------------------------
 
@@ -600,7 +602,9 @@ CREATE TABLE `seller_transactions` (
 --
 
 INSERT INTO `seller_transactions` (`id`, `user_id`, `payment_invoice_id`, `amount`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, '1,104.000 SR', '2022-08-27 11:03:21', '2022-08-27 11:03:21');
+(1, 2, 1, '1,104.000 SR', '2022-08-27 11:03:21', '2022-08-27 11:03:21'),
+(2, 11, 2, '6,405.500 SR', '2022-09-02 16:15:55', '2022-09-02 16:15:55'),
+(3, 11, 3, '6,405.500 SR', '2022-09-02 16:16:41', '2022-09-02 16:16:41');
 
 -- --------------------------------------------------------
 
@@ -613,6 +617,7 @@ CREATE TABLE `shops` (
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `subscription_id` bigint(20) UNSIGNED NOT NULL,
   `shop_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `account_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `shop_logo` text COLLATE utf8mb4_unicode_ci,
   `state_id` bigint(20) UNSIGNED NOT NULL,
   `city_id` bigint(20) UNSIGNED NOT NULL,
@@ -627,11 +632,13 @@ CREATE TABLE `shops` (
 -- Dumping data for table `shops`
 --
 
-INSERT INTO `shops` (`id`, `user_id`, `subscription_id`, `shop_name`, `shop_logo`, `state_id`, `city_id`, `postal_code`, `address`, `status`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, 'rahmmed', '1661597920_7IiAdpP7jlfLrdXE.png', 2849, 102809, '32437', '3161 King Abdulaziz Rd, Ar Rabiyah, Dammam', 'Active', '2022-08-27 10:58:41', '2022-08-30 05:18:46'),
-(2, 6, 2, 'Daphne Ramos', '1661963591_7M1F2S4JXj2mxfmV.png', 2852, 102838, '97694', 'In dolor aut recusan', 'Active', '2022-08-31 16:33:11', '2022-09-01 09:06:16'),
-(3, 7, 2, 'Emmanuel Johns', '1661963718_kCfCA8OytjZ9xOnO.png', 2856, 102820, '18401', 'Qui lorem labore sap', 'Inactive', '2022-08-31 16:35:18', '2022-08-31 16:35:18'),
-(4, 9, 2, 'Grady Wolf', '1662023836_J6q1W4I4nptWC5Wx.png', 2849, 102808, '41405', 'Autem veniam aut pa', 'Inactive', '2022-09-01 09:17:16', '2022-09-01 09:17:16');
+INSERT INTO `shops` (`id`, `user_id`, `subscription_id`, `shop_name`, `account_number`, `shop_logo`, `state_id`, `city_id`, `postal_code`, `address`, `status`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 'rahmmed', 'SA0129139432942904324', '1661597920_7IiAdpP7jlfLrdXE.png', 2849, 102809, '32437', '3161 King Abdulaziz Rd, Ar Rabiyah, Dammam', 'Active', '2022-08-27 10:58:41', '2022-08-30 05:18:46'),
+(2, 6, 2, 'Daphne Ramos', 'SA0129139432942904322', '1661963591_7M1F2S4JXj2mxfmV.png', 2852, 102838, '97694', 'In dolor aut recusan', 'Active', '2022-08-31 16:33:11', '2022-09-01 09:06:16'),
+(3, 7, 2, 'Emmanuel Johns', 'SA0129139432942904334', '1661963718_kCfCA8OytjZ9xOnO.png', 2856, 102820, '18401', 'Qui lorem labore sap', 'Inactive', '2022-08-31 16:35:18', '2022-08-31 16:35:18'),
+(4, 9, 2, 'Grady Wolf', 'SA0129139432942904394', '1662023836_J6q1W4I4nptWC5Wx.png', 2849, 102808, '41405', 'Autem veniam aut pa', 'Inactive', '2022-09-01 09:17:16', '2022-09-01 09:17:16'),
+(5, 10, 2, 'Keefe Wynn', 'SA012913943294290432234', '1662123672_6uzydkVEpEDP5pCa.png', 2856, 102814, '23597', 'Enim lorem maiores q', 'Inactive', '2022-09-02 13:01:12', '2022-09-02 13:01:12'),
+(6, 11, 3, 'Kendall Thornton', 'SA000000295909430594', '1662135240_l94GN2AZccfH8yLU.png', 2853, 102804, '70835', 'Quos corporis conseq', 'Inactive', '2022-09-02 16:14:00', '2022-09-02 16:14:00');
 
 -- --------------------------------------------------------
 
@@ -859,7 +866,9 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `pr
 (6, 'Isadora Steele', 'dyritup@mailinator.com', '2022-08-01 16:43:51', '$2y$10$oJNJmsFDpEnH9kD6GBBQAu.kUXWJev9cB3fn6gLDSNOtkmL3WC2T6', NULL, NULL, NULL, 'Seller', '059845355', NULL, '0.00', '0.00', 'Sequi et voluptatem', NULL, '2022-08-31 16:29:23', '2022-08-31 16:34:43'),
 (7, 'Melissa Jenkins', 'rymofepuhy@mailinator.com', NULL, '$2y$10$Zk2TSYqvqhVYcAu9pf.vyO06kFicZFFHWZZu7d6Riwg4bN5aVANgG', NULL, NULL, NULL, 'Seller', '05+1 (222) 738-4803', NULL, '0.00', '0.00', 'Qui lorem labore sap', NULL, '2022-08-31 16:35:18', '2022-08-31 16:35:18'),
 (8, 'Zane Solomon', 'zanusop@mailinator.com', '2022-08-01 16:48:29', '$2y$10$2/Ip5yWbfG336AiJjyuGCuD4sruDmP.5naNq1Qk7mqR1l.Q5vZssy', NULL, NULL, NULL, 'Customer', NULL, NULL, '0.00', '0.00', NULL, NULL, '2022-08-31 16:48:05', '2022-08-31 16:48:05'),
-(9, 'Micah Freeman', 'bapa@mailinator.com', NULL, '$2y$10$gveoHRjQlwiMXQfszukWI.KVQQKSdhjQU1UjAukQeShB6q4h7.jfm', NULL, NULL, NULL, 'Seller', '05+1 (999) 924-9712', NULL, '0.00', '0.00', 'Autem veniam aut pa', NULL, '2022-09-01 09:17:16', '2022-09-01 09:17:16');
+(9, 'Micah Freeman', 'bapa@mailinator.com', NULL, '$2y$10$gveoHRjQlwiMXQfszukWI.KVQQKSdhjQU1UjAukQeShB6q4h7.jfm', NULL, NULL, NULL, 'Seller', '05+1 (999) 924-9712', NULL, '0.00', '0.00', 'Autem veniam aut pa', NULL, '2022-09-01 09:17:16', '2022-09-01 09:17:16'),
+(10, 'Francesca Nichols', 'suxigic@mailinator.com', NULL, '$2y$10$YS/D7sRGmtjhX7Enq2LzZOvX0QaJCFoToWOxC6qsXF3KD2BW60iLa', NULL, NULL, NULL, 'Seller', '05348337704', NULL, '0.00', '0.00', 'Enim lorem maiores q', NULL, '2022-09-02 13:01:12', '2022-09-02 13:01:12'),
+(11, 'Lacey Lopez', 'dihogyvyq@mailinator.com', '2022-09-02 16:17:37', '$2y$10$c/3itQS9FNrUdONVrl8dk.0XyMCiafe.LZ2s/5bviIRDh5SgKnw7i', NULL, NULL, NULL, 'Seller', '05197090445', NULL, '0.00', '0.00', 'Quos corporis conseq', NULL, '2022-09-02 16:14:00', '2022-09-02 16:14:00');
 
 -- --------------------------------------------------------
 
@@ -907,7 +916,7 @@ CREATE TABLE `withdraws` (
 --
 
 INSERT INTO `withdraws` (`id`, `user_id`, `amount`, `status`, `created_at`, `updated_at`) VALUES
-(1, 2, 200.00, 'Pending', '2022-08-30 06:10:03', '2022-08-30 06:10:03'),
+(1, 2, 200.00, 'Paid', '2022-08-30 06:10:03', '2022-09-02 12:58:39'),
 (2, 2, 200.00, 'Paid', '2022-08-30 06:10:33', '2022-08-31 14:59:18'),
 (3, 2, 300.00, 'Paid', '2022-08-30 06:12:36', '2022-08-31 14:52:21'),
 (4, 2, 129.00, 'Paid', '2022-08-31 16:20:50', '2022-08-31 16:24:46');
@@ -1154,7 +1163,7 @@ ALTER TABLE `order_details`
 -- AUTO_INCREMENT for table `payment_invoices`
 --
 ALTER TABLE `payment_invoices`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -1178,13 +1187,13 @@ ALTER TABLE `product_images`
 -- AUTO_INCREMENT for table `seller_transactions`
 --
 ALTER TABLE `seller_transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `shops`
 --
 ALTER TABLE `shops`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `sliders`
@@ -1226,7 +1235,7 @@ ALTER TABLE `transactions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `user_details`
