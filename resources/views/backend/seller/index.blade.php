@@ -93,6 +93,12 @@ Seller List
                       <a class="btn btn-sm btn-info" href="{{ url( routePrefix() . '/seller/' . $item->id) }}">
                         <i class="fa fa-eye"></i>
                       </a>
+
+                      <a class="btn btn-sm btn-warning" id="sendMail" href="{{ route('sendAlert', $item->id) }}"
+                        onclick="handleSubmit()"><i class="icon-envelope"></i></a>
+
+                      <a class="btn btn-sm btn-danger" id="loading" style="display: none;"
+                        href="{{ route('sendAlert', $item->id) }}" onclick="handleSubmit()"><i class="icon-ban"></i></a>
                     </td>
                     <td style="text-align: center">
                       @if($item->shop && (strtotime('+' . $item->shop->subscription->days . ' day',
@@ -102,8 +108,6 @@ Seller List
                         <i class="icon-check"></i>
                       </a>
                       @endif
-                      <a class="btn btn-sm btn-info" href="{{ route('sendAlert', $item->id) }}"><i
-                          class="icon-envelope"></i></a>
                     </td>
                   </tr>
                   @empty
@@ -130,4 +134,15 @@ Seller List
   </div>
 </div>
 <!-- Page Inner -->
+@endsection
+@section('footer_js')
+<script>
+  let send = document.getElementById('sendMail');
+  let loading = document.getElementById('loading');
+
+  const handleSubmit = () => {
+    loading.style.display = '',
+      send.style.display = 'none'
+  }
+</script>
 @endsection
