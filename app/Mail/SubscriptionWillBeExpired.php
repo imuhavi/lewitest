@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SubscriptionRenewAlert extends Mailable
+class SubscriptionWillBeExpired extends Mailable
 {
   use Queueable, SerializesModels;
 
@@ -16,10 +16,10 @@ class SubscriptionRenewAlert extends Mailable
    *
    * @return void
    */
-  public $seller;
-  public function __construct($seller)
+  public $shop;
+  public function __construct($shop)
   {
-    $this->seller = $seller;
+    $this->shop = $shop;
   }
 
   /**

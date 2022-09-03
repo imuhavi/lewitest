@@ -21,8 +21,12 @@
   </header>
   <div class="main-content">
     <i class="fa fa-check main-content__checkmark" id="checkmark"></i>
-    <p class="main-content__body" data-lead-id="main-content-body">We are glad that you are the Seller of 5dots. Your
-      Subscription will be expired soon. Before expired Please renew your package.</p>
+    <p class="main-content__body" data-lead-id="main-content-body"><strong>Hi, {{ $shop->shop_name }}</strong>, <br> We
+      are glad that you are
+      the Seller of
+      5dots. Your
+      Subscription will be expired {{ date('d-M-Y', strtotime('+' . $shop->subscription->days . ' day',
+      strtotime($shop->created_at ))) }}. Before expired Please renew your package.</p>
   </div>
 
   @if($shop && $shop->subscription)
@@ -30,6 +34,8 @@
     <h4>Package Details:</h4>
     <p>Package Name: {{ $shop->subscription->name }} ({{ $shop->subscription->days
       }} Days)</p>
+    <p>Expired: {{ date('d-M-Y', strtotime('+' . $shop->subscription->days . ' day',
+      strtotime($shop->created_at ))) }}</p>
   </div>
   @endif
 
@@ -40,8 +46,8 @@
   </div>
 
   <footer class="footer" id="footer">
-    <p class="text-center">Copyright &copy
-      <script type="text/javascript"> document.write(new Date().getFullYear());</script> [5dots.sa] All
+    <p class="text-center">Copyright &copy;
+      <script type="text/javascript">document.write(new Date().getFullYear());</script> [5dots.sa] All
       rights reserved.
     </p>
   </footer>

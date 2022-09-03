@@ -66,7 +66,7 @@
   </div>
 
   <div class="footer-bottom">
-    <p class="text-center">Copyright &copy
+    <p class="text-center">Copyright &copy;
       <script type="text/javascript"> document.write(new Date().getFullYear());</script> [5dots.sa] All
       rights reserved.
     </p>
