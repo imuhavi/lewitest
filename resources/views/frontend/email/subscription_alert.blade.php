@@ -12,7 +12,10 @@
     .rewnew-btn {
       padding: 15px;
       background-color: black;
-      color: white;
+      color: white !important;
+      text-decoration: none;
+      border-radius: 5px;
+      margin: 20px 0px;
     }
   </style>
   <link rel="stylesheet" href="https://2-22-4-dot-lead-pages.appspot.com/static/lp918/min/default_thank_you.css">
