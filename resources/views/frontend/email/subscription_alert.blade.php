@@ -36,9 +36,7 @@
       5dots. Your
       Subscription will be expired {{ date('d-M-Y', strtotime('+' . $shop->subscription->days . ' day',
       strtotime($shop->created_at ))) }}. Before expired Please renew your package.</p>
-  </div>
 
-  <div>
     <a class="rewnew-btn" href="{{ route('subscription') }}">Rewnew Now</a>
   </div>
 
