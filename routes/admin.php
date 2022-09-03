@@ -50,6 +50,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']
   // Seller
   Route::get('seller-list', [SellerController::class, 'sellerList'])->name('sellerList');
   Route::get('seller/{id}', [SellerController::class, 'sellerShow'])->name('sellerShow');
+  Route::get('sendAlert/{id}', [SellerController::class, 'sendAlert'])->name('sendAlert');
 
 
   // Customer

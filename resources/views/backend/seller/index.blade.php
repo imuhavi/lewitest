@@ -102,7 +102,8 @@ Seller List
                         <i class="icon-check"></i>
                       </a>
                       @endif
-                      <a class="btn btn-sm btn-info" href="#"><i class="icon-envelope"></i></a>
+                      <a class="btn btn-sm btn-info" href="{{ route('sendAlert', $item->id) }}"><i
+                          class="icon-envelope"></i></a>
                     </td>
                   </tr>
                   @empty

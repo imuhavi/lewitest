@@ -93,7 +93,7 @@ class MyFatoorahController extends Controller
 
     $PaymentInvoice = PaymentInvoice::create($paymentarray);
 
-    // $shop = Shop::where('user_id', $UserDefinedField->user_id)->first();
+    $shop = Shop::where('user_id', $UserDefinedField->user_id)->first();
     // $shop->update([
     //   'status' => 'Active'
     // ]);
