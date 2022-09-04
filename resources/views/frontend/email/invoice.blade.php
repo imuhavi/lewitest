@@ -242,6 +242,13 @@
     </section>
   </main>
 
+  <footer class="footer" id="footer">
+    <p class="text-center">Copyright &copy;
+      <script type="text/javascript"> document.write(new Date().getFullYear());</script> [5dots.sa] All
+      rights reserved.
+    </p>
+  </footer>
+
 </body>
 
 </html>

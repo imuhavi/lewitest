@@ -311,8 +311,7 @@
   const handleSubmit = () => {
     loading.style.display = '',
       placeOrder.style.display = 'none',
-      form.submit()
-
+      form.submit();
   } 
 </script>
 @endsection
