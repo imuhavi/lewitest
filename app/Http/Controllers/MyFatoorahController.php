@@ -36,11 +36,10 @@ class MyFatoorahController extends Controller
         "paid_amount" => $r->payable_amount
       ];
     }elseif($r->payment_for == 'place_order'){
-      $subscription = null;
       $arr = [
         "user_id" => $user->id,
         "order_id" => $r->order_id,
-        "subscription_id" => ($subscription && $subscription->id) ? $subscription->id : null,
+        "subscription_id" => null,
         "paid_amount" => $r->payable_amount
       ];
     }
