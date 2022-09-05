@@ -53,7 +53,9 @@
 
 ## Problem
 
-1. Payment unpaid and payment method card order list dekha jabe na (Seller & admin) DashboardController
+0. Payment unpaid and payment method card order list dekha jabe na (Seller & admin) DashboardController
 
-2. Dashboard
-3. Withdraw
+1. Dashboard
+2. Withdraw
+3. Payment method based on product.
+4. Home page search
