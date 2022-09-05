@@ -41,7 +41,6 @@
                 <p><i class="icon-envelope-open m-r-xs"></i><a href="#">{{ $data->email }}</a>
                 </p>
               </li>
-
               <li>
                 <p><i class="icon-clock m-r-xs"></i><a href="#">Member Since {{ $data->shop->created_at->diffForHumans()
                     }}</a>
@@ -49,7 +48,8 @@
               </li>
             </ul>
             <hr>
-            <a class="btn btn-info btn-block" href="#"><i class="icon-plus m-r-xs"></i>View Store</a>
+            <a class="btn btn-{{ $data->shop->status == 'Inactive' ? 'danger' : 'info' }} btn-block" href="#">Shop is {{
+              $data->shop->status }}</a>
           </div>
         </div>
       </div>
@@ -101,6 +101,13 @@
                     @endif
                   </td>
                 </tr>
+
+                <tr>
+                  <th width="45%">Seller Bank Account</th>
+                  <td width="10%">:</td>
+                  <td width="45%">{{ $data->shop->account_number }}</td>
+                </tr>
+
                 <tr>
                   <th width="45%">Shop Location</th>
                   <td width="10%">:</td>

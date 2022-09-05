@@ -189,8 +189,10 @@
                     <th>Sl</th>
                     <th>Date</th>
                     <th>Amount</th>
-                    <th>Transation Type</th>
+                    <th>Seller</th>
+                    <th>Email</th>
                     <th>Status</th>
+                    <th>Created</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -200,7 +202,8 @@
                     <td>{{ $data->firstitem() + $key }}</td>
                     <td>{{ $item->created_at->format('d-M-Y') }}</td>
                     <td>SR {{ $item->amount }}</td>
-                    <td>Not Avaiable</td>
+                    <td>{{ $item->user->name }}</td>
+                    <td>{{ $item->user->email }}</td>
                     <td>
                       @if($item->status == 'Paid')
                       @php
@@ -223,6 +226,7 @@
                         {{ $item->status }}
                       </span>
                     </td>
+                    <td>{{ $item->created_at->diffForHumans() }}</td>
                     <td>
                       <a class="btn btn-info" href="{{ url(routePrefix(). '/withdraw/' . $item->id) }}"><i
                           class="fa fa-eye"></i></a>

@@ -19,7 +19,7 @@
 
   <main>
     <h3>Invoice No: #{{ $order->id }}</h3>
-    Your order status changed to <i><b>{{ $order->status }}</b></i>
+    Your order is <i><b>{{ $order->status }}</b></i>
   </main>
 
 </body>

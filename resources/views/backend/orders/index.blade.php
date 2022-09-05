@@ -1,9 +1,15 @@
 @extends('backend.master')
 @section('order_active') active @endsection
-@section('content')
 
+@section('content')
+<style>
+  @page {
+    size: auto;
+    margin: 0mm;
+  }
+</style>
 <div class="page-inner">
-  <div class="page-title">
+  <div class="page-title" id="page-title">
     <div class="page-breadcrumb">
       <ol class="breadcrumb breadcrumb-with-header">
         <li><a href="{{ url(routePrefix(). '/dashboard') }}">Dashboard</a></li>
@@ -19,23 +25,18 @@
         <div class="row mailbox-header">
           <div class="col-md-9">
             <div class="row">
-              <div class="col-md-6">
-                <div class="input-group" style="display: flex">
-                  <div>
-                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-                      <span class="icon-cloud-download" style="font-size: 14px;"></span> Export <span
-                        class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="#">Excel</a></li>
-                      <li><a href="#">CSV</a></li>
-                    </ul>
+              <div class="col-md-7">
+                <form action="{{ route('download') }}" method="get">
+                  <div class="input-group" style="display: flex">
+
+                    <input type="text" class="form-control date-picker" placeholder="From" name="from">
+                    <input type="text" class="form-control date-picker" placeholder="To" name="to">
+                    <input class="btn btn-info" name="excel" type="submit" value="Download Exel" style="margin: 0 10px">
+                    <input class="btn btn-warning" name="pdf" type="submit" value="Download PDF">
                   </div>
-                  <input type="text" class="form-control date-picker" placeholder="From" style="margin: 0 10px">
-                  <input type="text" class="form-control date-picker" placeholder="To">
-                </div>
+                </form>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-3">
 
               </div>
             </div>
@@ -327,109 +328,72 @@
     </div>
 
     @elseif($page == 'show')
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <div class="panel panel-info">
 
-          <div class="panel-heading clearfix">
-            <div class="text-left float-left">
-              <h3 class="panel-title">Order Information</h3>
-            </div>
-            <div class="text-right">
-              <a href="{{ url( routePrefix() .'/orders') }}" class="btn btn-info btn-sm">Go back</a>
-            </div>
-          </div>
-
-          <div class="panel-body">
-            <table class="table table-striped">
-              <tbody>
-                <tr>
-                  <th class="45%" width="45%">Invoice No:</th>
-                  <td width="10%">:</td>
-                  <td class="45%" width="45%">#{{ $singleOrder->id }}</td>
-                </tr>
-                <tr>
-                  <th class="45%" width="45%">Order Created:</th>
-                  <td width="10%">:</td>
-                  <td class="45%" width="45%">{{ $singleOrder->created_at->diffForHumans() }}</td>
-                </tr>
-
-                <tr>
-                  <th class="45%" width="45%">Date:</th>
-                  <td width="10%">:</td>
-                  <td class="45%" width="45%">{{ date('d F, Y', strtotime($singleOrder->created_at))}}</td>
-                </tr>
-
-                <tr>
-                  <th class="45%" width="45%">Customer Name</th>
-                  <td width="10%">:</td>
-                  <td class="45%" width="45%">{{ $singleOrder->user ? $singleOrder->user->name : 'N/A' }}</td>
-                </tr>
-
-                <tr>
-                  <th class="45%" width="45%">Customer Email</th>
-                  <td width="10%">:</td>
-                  <td class="45%" width="45%">{{ $singleOrder->user ? $singleOrder->user->email : 'N/A' }}</td>
-                </tr>
-
-                <tr>
-                  <th class="45%" width="45%">Shipping Address</th>
-                  <td width="10%">:</td>
-                  <td class="45%" width="45%">
-                    @if($singleOrder->user && $singleOrder->user->userDetail)
-                    <p>{{ $singleOrder->user->userDetail->postal_code }}, {{
-                      $singleOrder->user->userDetail->address }}, {{
-                      $singleOrder->city($singleOrder->user->userDetail->city_id) }}, {{
-                      $singleOrder->state($singleOrder->user->userDetail->state_id) }}.
-                    </p>
-                    @else
-                    N/A
-                    @endif
-                  </td>
-                </tr>
-
-                <tr>
-                  <th class="45%" width="45%">Shipping Cost</th>
-                  <td width="10%">:</td>
-                  <td class="45%" width="45%">SAR {{ number_format($singleOrder->shipping_cost, 2) }}</td>
-                </tr>
-
-                <tr>
-                  <th class="45%" width="45%">Tax</th>
-                  <td width="10%">:</td>
-                  <td class="45%" width="45%">SAR {{ number_format($singleOrder->tax, 2) }}
-                  </td>
-                </tr>
-
-                @php
-                $discount = $order->coupon_discount_amount ?? 0
-                @endphp
-
-                @if($discount != 0)
-                <tr>
-                  <th class="45%" width="45%">Discount Amount</th>
-                  <td width="10%">:</td>
-                  <td class="45%" width="45%">SAR {{ $singleOrder->order_details[0]->quantity }}</td>
-                </tr>
-                @endif
-
-                <tr>
-                  <th class="45%" width="45%">Total Amount</th>
-                  <td width="10%">:</td>
-                  <td class="45%" width="45%">SAR {{ number_format(($singleOrder->amount + $singleOrder->shipping_cost
-                    +
-                    $singleOrder->tax) - $discount, 2) }}</td>
-                </tr>
-                <tr>
+    <div id="main-wrapper">
+      <div class="row">
+        <div class="invoice col-md-12">
+          <div class="panel panel-white">
+            <div class="panel-body" id="print_invoice">
+              <div class="row">
+                <div class="col-md-12">
+                  <table class="table">
+                    <tr>
+                      <td style="border-top: none !important;">
+                        <h2 class="m-b-md m-t-xxs"><b>5dots</b></h2>
+                        Al-Khobar<br>
+                        Phone: (123) 456-7890
+                      </td>
+                      <td class="text-right" style="border-top: none !important;">
+                        <h2 class="m-b-md m-t-xxs">Invoice: #{{ $singleOrder->id }}</h2>
+                        <a href="{{ url( routePrefix() .'/orders') }}" class="btn btn-info btn-sm" id="button">Go
+                          back</a>
+                        <button type="button" class="btn btn-default" onclick="invoicePrint()"><i
+                            class="fa fa-print"></i>
+                          Print</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong class="m-b-md">Shipping Address</strong><br>
+                        @if($singleOrder->user && $singleOrder->user->userDetail)
+                        <p>{{ $singleOrder->user->userDetail->postal_code }}, {{
+                          $singleOrder->user->userDetail->address }},<br> {{
+                          $singleOrder->city($singleOrder->user->userDetail->city_id) }}, <br>{{
+                          $singleOrder->state($singleOrder->user->userDetail->state_id) }}.
+                        </p>
+                        @else
+                        N/A
+                        @endif
+                      </td>
+                      <td class="text-right">
+                        <strong class="m-b-md">Customer Details</strong><br>
+                        <p>
+                          {{ $singleOrder->user ? $singleOrder->user->name : 'N/A' }} <br>
+                          {{ $singleOrder->user ? $singleOrder->user->email : 'N/A' }} <br>
+                          {{ $singleOrder->user ? $singleOrder->user->phone_1 : 'N/A <br>' }}
+                          {{ date('d F, Y', strtotime($singleOrder->created_at))}}
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="col-md-12">
                   <table class="table table-striped">
                     <thead>
-                      <th>SL</th>
-                      <th>Product Name</th>
-                      <th>Product SKU</th>
-                      <th>Size</th>
-                      <th>Color</th>
-                      <th>Quanity</th>
+                      <tr>
+                        <th>SL</th>
+                        <th>Product Name</th>
+                        <th>SKU</th>
+                        <th>Size</th>
+                        <th>Color</th>
+                        <th>Quanity</th>
+                        <th>Price</th>
+                        <th class="text-right">Total</th>
+                      </tr>
                     </thead>
+                    @php
+                    $total = 0;
+                    @endphp
                     <tbody>
                       @foreach($singleOrder->order_details as $key => $order)
                       <tr>
@@ -449,23 +413,101 @@
                         <td>
                           {{ $order->quantity }}
                         </td>
+                        <td>
+                          SA {{ $order->unit_price }}
+                        </td>
+                        <td class="text-right">
+                          SA {{ $order->unit_price * $order->quantity}}
+                        </td>
+
+                        @php
+                        $total += ($order->unit_price * $order->quantity)
+                        @endphp
                       </tr>
                       @endforeach
                     </tbody>
                   </table>
-                </tr>
-              </tbody>
-            </table>
+                </div>
+                <div class="col-md-12">
+                  @php
+                  $discount = $singleOrder->coupon_discount_amount
+                  @endphp
+
+                  <table class="table">
+                    <tr>
+                      <td width="75%" style="border-top: none;"></td>
+                      <td style="border-top: none;">
+                        <table class="table">
+                          <tr>
+                            <td class="text-right" style="padding: 5px !important">
+                              <h4 class="no-m">Subtotal</h4>
+                              <h3 class="no-m m-t-sm">SA {{ number_format($total, 2) }}</h3>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-right" style="padding: 5px !important">
+                              <h4 class="no-m">Shipping</h4>
+                              <h3 class="no-m m-t-sm">SA {{ number_format($singleOrder->shipping_cost, 2) }}</h3>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-right" style="padding: 5px !important">
+                              <h4 class="no-m">Tax</h4>
+                              <h3 class="no-m m-t-sm">SA {{ $singleOrder->tax }}</h3>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-right" style="padding: 5px !important">
+                              <h4 class="no-m">Discount</h4>
+                              <h3 class="no-m m-t-sm">SA {{ number_format($discount, 2) }}</h3>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-right" style="padding: 5px !important">
+                              <h4 class="no-m text-success">Total Amount</h4>
+                              <h2 class="no-m text-success m-t-sm">SA {{ number_format(($singleOrder->amount +
+                                $singleOrder->shipping_cost
+                                +
+                                $singleOrder->tax) - $discount, 2) }}</h2>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+
+              </div>
+              <!--row-->
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      </div><!-- Row -->
+    </div><!-- Main Wrapper -->
     @endif
 
 
   </div><!-- Main Wrapper -->
-  <div class="page-footer">
+  <div class="page-footer" id="page-footer">
     <p class="no-s">Made with <i class="fa fa-heart"></i> by 5dots</p>
   </div>
 </div><!-- Page Inner -->
+@endsection
+
+@section('footer_js')
+<script>
+  let button = document.getElementById("button");
+  let page_title = document.getElementById("page-title");
+  let footer = document.getElementById("page-footer")
+  function invoicePrint() {
+    footer.style.display = 'none'
+    button.style.display = 'none';
+    page_title.style.display = 'none';
+    window.print()
+  }
+</script>
 @endsection

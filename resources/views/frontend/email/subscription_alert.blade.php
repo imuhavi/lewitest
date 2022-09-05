@@ -16,6 +16,15 @@
       color: white !important;
       text-align: center;
     }
+
+    .rewnew-btn {
+      padding: 15px;
+      background-color: black;
+      color: white !important;
+      text-decoration: none;
+      border-radius: 5px;
+      margin: 20px 0px;
+    }
   </style>
   <link rel="stylesheet" href="https://2-22-4-dot-lead-pages.appspot.com/static/lp918/min/default_thank_you.css">
   <script src="https://2-22-4-dot-lead-pages.appspot.com/static/lp918/min/jquery-1.9.1.min.js"></script>
@@ -25,14 +34,21 @@
 
 <body>
   <header class="site-header" id="header">
-    <h1 class="site_header__title" data-lead-id="site-header-title">Thank You!</h1>
+    <h1 class="site_header__title" data-lead-id="site-header-title">Subscription Expired!</h1>
   </header>
   <div class="main-content">
     <i class="fa fa-check main-content__checkmark" id="checkmark"></i>
-    <p class="main-content__body" data-lead-id="main-content-body">Congratulation! We are glad that you have
-      subscription to 5dots. Your request under process please wait for activation.</p>
+    <p class="main-content__body" data-lead-id="main-content-body"><strong>Hi {{ $shop->shop_name }}</strong>, <br> We
+      are glad that you are
+      the Seller of
+      5dots. Your
+      Subscription will be expired {{ date('d-M-Y', strtotime('+' . $shop->subscription->days . ' day',
+      strtotime($shop->created_at ))) }}. Before expired Please renew your package.</p>
   </div>
 
+  <div style="padding: 20px 0px; margin: 20px 0px">
+    <a class="rewnew-btn" href="{{ route('subscription') }}">Rewnew Now</a>
+  </div>
   @if($shop && $shop->subscription)
   <div>
     <h4>Package Details:</h4>
@@ -51,7 +67,7 @@
 
   <footer class="footer" id="footer">
     <p class="text-center">Copyright &copy;
-      <script type="text/javascript"> document.write(new Date().getFullYear());</script> [5dots.sa] All
+      <script type="text/javascript">document.write(new Date().getFullYear());</script> [5dots.sa] All
       rights reserved.
     </p>
   </footer>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\UserProfileController;
 use App\Http\Controllers\CartController;
@@ -54,6 +55,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
   Route::get('/remove-coupon', [CheckoutController::class, 'removeCoupon']);
   Route::post('/place-order', [CheckoutController::class, 'orderPlace'])->name('orderPlace');
   Route::get('/order-placed/{order}', [CheckoutController::class, 'orderPlaced']);
+  Route::get('/order-search', [DashboardController::class, 'download'])->name('download');
 });
 
 # Subscribe & register for seller

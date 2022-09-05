@@ -44,7 +44,7 @@ class MyFatoorahController extends Controller
     }
     try {
       $result = $this->myfatoorah->sendPayment(
-        'Customer Name',
+        $user->name,
         $r->payable_amount,
         [
           'CustomerMobile' => $user->phone_1,

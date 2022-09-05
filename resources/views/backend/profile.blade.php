@@ -299,7 +299,6 @@
                   </div>
                   <hr>
 
-
                   <div class="row" style="margin-top: 20px">
                     <div class="col-sm-12 text-right ">
                       <button class="btn btn-info" type="submit">Save Change</button>

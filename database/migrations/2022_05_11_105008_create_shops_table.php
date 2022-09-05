@@ -18,6 +18,7 @@ class CreateShopsTable extends Migration
       $table->unsignedBigInteger('user_id');
       $table->unsignedBigInteger('subscription_id');
       $table->string('shop_name')->nullable();
+      $table->string('account_number')->nullable();
       $table->text('shop_logo')->nullable();
       $table->unsignedBigInteger('state_id')->nullable();
       $table->unsignedBigInteger('city_id')->nullable();

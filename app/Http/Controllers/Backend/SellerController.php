@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SubscriptionWillBeExpired;
 use App\Mail\UpdateWithdrawStatus;
+use App\Models\Shop;
 use App\Models\User;
 use App\Models\Withdraw;
 use Illuminate\Http\Request;
@@ -62,5 +64,13 @@ class SellerController extends Controller
 
     Alert::success('Status!', 'Status updated successfully!');
     return redirect()->back();
+  }
+
+  public function sendAlert(Shop $shop, $id)
+  {
+    $user = User::whereId($id)->first();
+    $shop = $shop->where('user_id', $id)->first();
+    Mail::to($user->email)->send(new SubscriptionWillBeExpired($shop));
+    return redirect()->back()->with('success', 'Message send successfully !');
   }
 }

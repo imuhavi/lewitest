@@ -42,19 +42,19 @@
               </div>
 
               <div class="col-lg-6">
-                <label for="fullName" class="form-label">Brand Name</label>
-                <input type="text" name="shop_name" class="form-control" id="fullName" placeholder="Your Full Name"
+                <label for="brand" class="form-label">Brand Name</label>
+                <input type="text" name="shop_name" class="form-control" id="brand" placeholder="Your Brand Name"
                   value="{{ old('shop_name') }}">
               </div>
 
               <div class=" col-lg-6">
-                <label for="fullName" class="form-label">Brand Logo</label>
-                <input type="file" name="shop_logo" class="form-control" id="fullName" placeholder="Your Full Name">
+                <label for="brandLogo" class="form-label">Brand Logo</label>
+                <input type="file" name="shop_logo" class="form-control" id="brandLogo" placeholder="Your Full Name">
               </div>
 
               <div class="col-lg-6">
-                <label for="fullName" class="form-label">Selected Package</label>
-                <input type="text" class="form-control" id="fullName" value="{{ $subscription->name }}" readonly>
+                <label for="package" class="form-label">Selected Package</label>
+                <input type="text" class="form-control" id="package" value="{{ $subscription->name }}" readonly>
               </div>
 
               <div class="col-lg-6">
@@ -63,13 +63,24 @@
                   value="{{ old('email') }}">
               </div>
               <div class="col-12 col-md-6 col-lg-6">
-                <label for="email" class="form-label">Phone Number</label>
+                <label for="phone" class="form-label">Phone Number</label>
                 <div class="input-group mb-2">
                   <div class="input-group-prepend">
                     <div class="input-group-text">05</div>
                   </div>
-                  <input type="text" name="phone" class="form-control" id="inlineFormInputGroup"
-                    placeholder="Phone Number" value="{{ old('phone') }}">
+                  <input type="number" name="phone" class="form-control" id="phone" placeholder="Phone Number"
+                    value="{{ old('phone') }}">
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <label for="iban" class="form-label">Your Bank Account (IBAN)</label>
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">SA</div>
+                  </div>
+                  <input type="number" name="account_number" class="form-control" id="iban"
+                    placeholder="Bank Account Number" value="{{ old('account_number') }}">
                 </div>
               </div>
 
