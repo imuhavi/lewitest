@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\OrderExport;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class DashboardController extends Controller
 {
@@ -93,9 +96,11 @@ class DashboardController extends Controller
     $from = date('Y-m-d', strtotime($request->from));
     $to = date('Y-m-d', strtotime($request->to));
     if ($request->excel) {
-      return 'excel';
+      return Excel::download(new OrderExport($from, $to), 'order.xlsx');
     } else {
-      'pdf';
+      $orders = Order::whereBetween('created_at', [$from, $to])->get();
+      $pdf = Pdf::loadView('exports.orders', compact('orders'));
+      return $pdf->download('invoice.pdf');
     }
   }
 }
