@@ -96,11 +96,11 @@ class DashboardController extends Controller
     $from = date('Y-m-d', strtotime($request->from));
     $to = date('Y-m-d', strtotime($request->to));
     if ($request->excel) {
-      return Excel::download(new OrderExport($from, $to), 'order.xlsx');
+      return Excel::download(new OrderExport($from, $to), 'orders.xlsx');
     } else {
       $orders = Order::whereBetween('created_at', [$from, $to])->get();
       $pdf = Pdf::loadView('exports.orders', compact('orders'));
-      return $pdf->download('invoice.pdf');
+      return $pdf->download('orders.pdf');
     }
   }
 }
