@@ -216,8 +216,10 @@ class CheckoutController extends Controller
           DB::commit();
 
           return redirect(route('MyFatoorah.index', [
+            'payment_for' => 'place_order',
             'user' => auth()->user(),
-            'subscription' => Null,
+            'subscription' => null,
+            'order_id' => $order->id,
             'payable_amount' =>  $order->amount,
           ]));
         }

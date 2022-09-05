@@ -25,13 +25,23 @@ class MyFatoorahController extends Controller
 
   public function index(Request $r)
   {
+    // $r->payment_for = place_order || subscription
     $user = User::find($r->user);
-    $subscription = Subscription::find($r->subscription);
-    $arr = [
-      "user_id" => $user->id,
-      "subscription_id" => $subscription->id,
-      "paid_amount" => $r->payable_amount
-    ];
+    if($r->payment_for == 'subscription'){
+      $subscription = Subscription::find($r->subscription);
+      $arr = [
+        "user_id" => $user->id,
+        "subscription_id" => $subscription->id,
+        "paid_amount" => $r->payable_amount
+      ];
+    }elseif($r->payment_for == 'place_order'){
+      $subscription = null;
+      $arr = [
+        "user_id" => $user->id,
+        "subscription_id" => ($subscription && $subscription->id) ? $subscription->id : null,
+        "paid_amount" => $r->payable_amount
+      ];
+    }
     try {
       $result = $this->myfatoorah->sendPayment(
         'Customer Name',
@@ -42,7 +52,7 @@ class MyFatoorahController extends Controller
           'UserDefinedField' => json_encode($arr),
           "InvoiceItems" => [
             [
-              "ItemName" => $subscription->name,
+              "ItemName" => ($subscription && $subscription->name) ? $subscription->name : "Purchase products",
               "Quantity" => 1,
               "UnitPrice" => $r->payable_amount
             ]
@@ -93,20 +103,24 @@ class MyFatoorahController extends Controller
 
     $PaymentInvoice = PaymentInvoice::create($paymentarray);
 
-    $shop = Shop::where('user_id', $UserDefinedField->user_id)->first();
-    $shop->update([
-      'status' => 'Active'
-    ]);
+    if(true){
+      $shop = Shop::where('user_id', $UserDefinedField->user_id)->first();
+      $shop->update([
+        'status' => 'Active'
+      ]);
 
-    // Create a transaction table including user_id, payment method, payment invoice, amount, status.
-    SellerTransaction::create([
-      'user_id' => $UserDefinedField->user_id,
-      'payment_invoice_id' => $PaymentInvoice->id,
-      'amount' => $PaymentInvoice->InvoiceDisplayValue
-    ]);
-    $user = User::find($UserDefinedField->user_id);
-    event(new Registered($user));
-    Mail::to($user->email)->send(new ShopCreated($shop));
+      // Create a transaction table including user_id, payment method, payment invoice, amount, status.
+      SellerTransaction::create([
+        'user_id' => $UserDefinedField->user_id,
+        'payment_invoice_id' => $PaymentInvoice->id,
+        'amount' => $PaymentInvoice->InvoiceDisplayValue
+      ]);
+      $user = User::find($UserDefinedField->user_id);
+      event(new Registered($user));
+      Mail::to($user->email)->send(new ShopCreated($shop));
+    }else{
+      // order will be paid
+    }
     return true;
   }
 }

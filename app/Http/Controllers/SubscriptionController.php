@@ -71,8 +71,10 @@ class SubscriptionController extends Controller
 
       if ($r->payment_method == 'MY_FATOORAH') {
         return redirect(route('MyFatoorah.index', [
+          'payment_for' => 'subscription',
           'user' => $user,
           'subscription' => $subscription,
+          'order_id' => null,
           'payable_amount' => $r->payable_amount
         ]));
       } elseif ($r->payment_method == 'CASH_ON_DELIVERY') {

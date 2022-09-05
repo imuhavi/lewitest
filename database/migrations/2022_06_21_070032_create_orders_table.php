@@ -22,7 +22,7 @@ class CreateOrdersTable extends Migration
       $table->double('tax', 10, 2)->default(0.00);
       $table->double('amount', 10, 2)->default(0.00);
       $table->enum('payment_method', ['Card', 'COD'])->default('COD');
-      $table->enum('is_paid', ['Paid', 'unpaid'])->default('COD');
+      $table->enum('is_paid', ['Paid', 'Unpaid'])->default('Unpaid');
       $table->string('note')->nullable();
       $table->enum('status', ['Pending', 'Accept', 'Complete', 'Cancel'])->default('Pending');
       $table->timestamps();
