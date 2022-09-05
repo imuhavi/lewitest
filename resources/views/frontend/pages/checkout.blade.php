@@ -189,6 +189,7 @@
               <div class="col-6">
                 <h6>Shipping Cost:</h6>
               </div>
+
               <!-- Shipping cost backend theke asbe -->
               <div class="col-6">
                 <h6 class="price-text sub-total-text text-end"> SAR 30</h6>
