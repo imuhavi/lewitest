@@ -85,4 +85,15 @@ class DashboardController extends Controller
     Alert::success('Status !', 'Status updated successfully !');
     return redirect()->back();
   }
+
+  public function download(Request $request)
+  {
+    $from = date('Y-m-d', strtotime($request->from));
+    $to = date('Y-m-d', strtotime($request->to));
+    if ($request->excel) {
+      return 'excel';
+    } else {
+      'pdf';
+    }
+  }
 }

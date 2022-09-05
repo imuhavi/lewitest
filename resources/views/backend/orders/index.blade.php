@@ -25,23 +25,18 @@
         <div class="row mailbox-header">
           <div class="col-md-9">
             <div class="row">
-              <div class="col-md-6">
-                <div class="input-group" style="display: flex">
-                  <div>
-                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-                      <span class="icon-cloud-download" style="font-size: 14px;"></span> Export <span
-                        class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="#">Excel</a></li>
-                      <li><a href="#">CSV</a></li>
-                    </ul>
+              <div class="col-md-7">
+                <form action="{{ route('download') }}" method="get">
+                  <div class="input-group" style="display: flex">
+
+                    <input type="text" class="form-control date-picker" placeholder="From" name="from">
+                    <input type="text" class="form-control date-picker" placeholder="To" name="to">
+                    <input class="btn btn-info" name="excel" type="submit" value="Download Exel" style="margin: 0 10px">
+                    <input class="btn btn-warning" name="pdf" type="submit" value="Download PDF">
                   </div>
-                  <input type="text" class="form-control date-picker" placeholder="From" style="margin: 0 10px">
-                  <input type="text" class="form-control date-picker" placeholder="To">
-                </div>
+                </form>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-3">
 
               </div>
             </div>
