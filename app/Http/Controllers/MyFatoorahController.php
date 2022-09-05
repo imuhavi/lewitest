@@ -28,14 +28,15 @@ class MyFatoorahController extends Controller
   {
     // $r->payment_for = place_order || subscription
     $user = User::find($r->user);
-    if($r->payment_for == 'subscription'){
+    if ($r->payment_for == 'subscription') {
       $subscription = Subscription::find($r->subscription);
       $arr = [
         "user_id" => $user->id,
         "subscription_id" => $subscription->id,
         "paid_amount" => $r->payable_amount
       ];
-    }elseif($r->payment_for == 'place_order'){
+    } elseif ($r->payment_for == 'place_order') {
+      $subscription = null;
       $arr = [
         "user_id" => $user->id,
         "order_id" => $r->order_id,
@@ -105,11 +106,11 @@ class MyFatoorahController extends Controller
     $PaymentInvoice = PaymentInvoice::create($paymentarray);
 
     $user = User::find($UserDefinedField->user_id);
-    if($user->role == 'Seller'){
+    if ($user->role == 'Seller') {
       $shop = Shop::where('user_id', $UserDefinedField->user_id)->first();
-      $shop->update([
-        'status' => 'Active'
-      ]);
+      // $shop->update([
+      //   'status' => 'Active'
+      // ]);
       // Create a transaction table including user_id, payment method, payment invoice, amount, status.
       SellerTransaction::create([
         'user_id' => $UserDefinedField->user_id,
@@ -118,7 +119,7 @@ class MyFatoorahController extends Controller
       ]);
       event(new Registered($user));
       Mail::to($user->email)->send(new ShopCreated($shop));
-    }elseif($user->role == 'Customer'){
+    } elseif ($user->role == 'Customer') {
       Order::find($UserDefinedField->order_id)->update([
         'is_paid' => 'Paid'
       ]);
