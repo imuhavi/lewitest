@@ -38,6 +38,8 @@ class DashboardController extends Controller
       $seller_products_id = auth()->user()->product->pluck('id');
       $orders_id = array_unique(OrderDetails::whereIn('product_id', $seller_products_id)->pluck('order_id')->toArray());
       $sql = Order::orderBy('created_at', 'DESC')->whereIn('id', $orders_id);
+    } elseif (auth()->user()->role == "Customer") {
+      $sql = Order::orderBy('created_at', 'DESC')->where('user_id', auth()->id());
     } else {
       $sql = Order::orderBy('created_at', 'DESC');
     }
