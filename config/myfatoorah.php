@@ -10,8 +10,8 @@ return [
 
   'DisplayCurrencyIso' => 'SAR',
 
-  'CallBackUrl' => 'http://127.0.0.1:8000/payment/success_callback',
+  'CallBackUrl' => 'https://5dots.sa/payment/success_callback',
 
-  'ErrorUrl' => 'http://127.0.0.1:8000/payment/fail_callback',
+  'ErrorUrl' => 'https://5dots.sa/payment/fail_callback',
 
 ];

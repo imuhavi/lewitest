@@ -79,9 +79,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
 Route::get('login/google', [SocailLoginController::class, 'redirectToGoogleProvider'])->name('gmail');
 Route::get('login/google/callback', [SocailLoginController::class, 'handleGoogleProviderCallback']);
 
-# Github Login
-Route::get('login/github', [SocailLoginController::class, 'redirectToGithuProvider'])->name('github');
-Route::get('login/github/callback', [SocailLoginController::class, 'handleGithubProviderCallback']);
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/admin.php';

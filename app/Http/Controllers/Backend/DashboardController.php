@@ -56,7 +56,7 @@ class DashboardController extends Controller
         ->orWhere('status', 'like', '%' . $keyword . '%');
     }
 
-    $orders = $sql->paginate(10);
+    $orders = $sql->paginate(5);
     return view($this->VIEW_PATH . 'orders.index', compact('orders', 'keyword', 'page'));
   }
 
