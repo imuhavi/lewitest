@@ -135,7 +135,7 @@ class CheckoutController extends Controller
           ['user_id' => auth()->id()],
           [
             'user_id' => auth()->id(),
-            'phone' => $request->phone,
+            'phone' => '05' . $request->phone,
             'state_id' => $request->state,
             'city_id' => $request->city,
             'postal_code' => $request->postal_code,
@@ -182,6 +182,17 @@ class CheckoutController extends Controller
           return redirect('/order-placed/' . $order->id)->with('success', 'Order placed successfully !');
         }
       } elseif ($request->payment_method == 'Card') {
+        UserDetail::updateOrCreate(
+          ['user_id' => auth()->id()],
+          [
+            'user_id' => auth()->id(),
+            'phone' => '05' . $request->phone,
+            'state_id' => $request->state,
+            'city_id' => $request->city,
+            'postal_code' => $request->postal_code,
+            'address' => $request->address,
+          ]
+        );
 
         $shipping = GeneralSetting::first();
         if (!empty($shipping)) {

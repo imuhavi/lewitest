@@ -64,8 +64,15 @@
                 </div>
                 <div class="col-5 col-md-6 col-lg-6">
                   <label for="phone" class="form-label">Phone Number</label>
-                  <input type="text" class="form-control" id="inputAddress" name="phone" placeholder="Your Phone Number"
-                    value="{{ old('phone') ?? (Auth::user()->userDetail ? Auth::user()->userDetail->phone : Auth::user()->phone) }}">
+
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">05</div>
+                    </div>
+                    <input type="text" class="form-control" id="inputAddress" name="phone"
+                      placeholder="Your Phone Number"
+                      value="{{ old('phone') ?? (Auth::user()->userDetail ? Auth::user()->userDetail->phone : Auth::user()->phone) }}">
+                  </div>
                 </div>
                 <div class="col-lg-5 col-md-6">
                   <label for="state" class="form-label">State</label>

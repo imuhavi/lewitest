@@ -59,3 +59,4 @@
 2. Withdraw
 3. Payment method based on product.
 4. Home page search
+5. Payment a shipping cost, text and discount calculate hobe.
