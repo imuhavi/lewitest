@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Sep 02, 2022 at 04:43 PM
+-- Generation Time: Sep 05, 2022 at 04:21 PM
 -- Server version: 5.7.34
 -- PHP Version: 8.0.8
 
@@ -384,7 +384,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `coupon_id`, `coupon_discount_amount`, `shipping_cost`, `tax`, `amount`, `payment_method`, `is_paid`, `note`, `status`, `created_at`, `updated_at`) VALUES
-(2, 3, NULL, 0.00, 30, 24.57, 163.80, 'COD', 'Unpaid', 'Qucik Delivery', 'Pending', '2022-08-28 08:07:40', '2022-08-28 08:07:40'),
+(2, 3, NULL, 100.00, 30, 24.57, 163.80, 'COD', 'Unpaid', 'Qucik Delivery', 'Pending', '2022-08-28 08:07:40', '2022-08-28 08:07:40'),
 (3, 3, NULL, 0.00, 30, 45.74, 304.95, 'COD', 'Unpaid', 'helwo', 'Pending', '2022-08-28 09:51:01', '2022-08-28 09:51:01'),
 (4, 3, NULL, 0.00, 30, 27.81, 185.40, 'COD', 'Unpaid', 'hwllow', 'Complete', '2022-08-28 09:51:50', '2022-08-31 14:53:43'),
 (5, 8, NULL, 0.00, 30, 224.16, 1494.40, 'COD', 'Unpaid', 'Est commodi unde non', 'Pending', '2022-08-31 16:49:13', '2022-08-31 16:49:13');
