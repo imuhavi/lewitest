@@ -225,13 +225,13 @@ class CheckoutController extends Controller
           Session::forget('cart');
           Session::forget('coupon');
           DB::commit();
-
+          $total_pay = ($order->amount + $order->shipping_cost + $order->tax) - $order->coupon_discount_amount;
           return redirect(route('MyFatoorah.index', [
             'payment_for' => 'place_order',
             'user' => auth()->user(),
             'subscription' => null,
             'order_id' => $order->id,
-            'payable_amount' =>  $order->amount,
+            'payable_amount' =>  $total_pay,
           ]));
         }
       }
