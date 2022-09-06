@@ -98,7 +98,16 @@ class DashboardController extends Controller
     if ($request->excel) {
       return Excel::download(new OrderExport($from, $to), 'orders.xlsx');
     } else {
-      $orders = Order::whereBetween('created_at', [$from, $to])->get();
+      if (auth()->user()->role == "Seller") {
+        $seller_products_id = auth()->user()->product->pluck('id');
+        $orders_id = array_unique(OrderDetails::whereIn('product_id', $seller_products_id)->pluck('order_id')->toArray());
+        $sql = Order::whereBetween('created_at', [$from, $to])->whereIn('id', $orders_id);
+      } elseif (auth()->user()->role == "Customer") {
+        $sql = Order::whereBetween('created_at', [$from, $to])->where('user_id', auth()->id());
+      } else {
+        $sql = Order::whereBetween('created_at', [$from, $to]);
+      }
+      $orders = $sql->get();
       $pdf = Pdf::loadView('exports.orders', compact('orders'));
       return $pdf->download('orders.pdf');
     }
