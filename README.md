@@ -41,6 +41,8 @@
     13) Products CRUD
     14) Draft Products CRUD
     15) Coupon CRUD
+    16) Dashboard
+    17) Payment a shipping cost, text and discount calculate hobe.
 
 ## test card:
 
@@ -54,9 +56,6 @@
 ## Problem
 
 0. Payment unpaid and payment method card order list dekha jabe na (Seller & admin) DashboardController
-
-1. Dashboard
 2. Withdraw
 3. Payment method based on product.
 4. Home page search
-5. Payment a shipping cost, text and discount calculate hobe.
