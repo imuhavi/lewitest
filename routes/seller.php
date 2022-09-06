@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\SellerController;
 use App\Http\Controllers\WithdrawController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,7 @@ Route::group(['prefix' => 'seller', 'middleware' => ['auth', 'verified', 'seller
   Route::get('orders', [DashboardController::class, 'orderList'])->name('orderList');
   Route::get('order/{id}', [DashboardController::class, 'show'])->name('show');
   Route::get('customer-list', [DashboardController::class, 'customerList'])->name('customerList');
-  Route::get('my-withdraw', [WithdrawController::class, 'myWithraw'])->name('myWithraw');
+  Route::get('withdraw', [WithdrawController::class, 'myWithraw'])->name('myWithraw');
+  Route::get('withdraw/{id}', [SellerController::class, 'show'])->name('show');
   Route::post('withdrow-request', [WithdrawController::class, 'withdrawRequest'])->name('withdrawRequest');
 });

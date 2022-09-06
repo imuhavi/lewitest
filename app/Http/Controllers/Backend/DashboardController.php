@@ -24,13 +24,13 @@ class DashboardController extends Controller
   public function dashboard()
   {
     if (auth()->user()->role == 'Customer') {
-      $orders = Order::whereUserId(auth()->id())->latest()->take(10)->get();
+      $orders = Order::whereUserId(auth()->id())->latest()->take(5)->get();
     } elseif (auth()->user()->role == 'Admin') {
-      $orders = Order::latest()->take(10)->get();
+      $orders = Order::latest()->take(5)->get();
     } elseif (auth()->user()->role == 'Seller') {
       $order_ids = OrderDetails::whereUserId(auth()->user()->id)->pluck('order_id');
       $orders_data = Order::whereIn('id', $order_ids);
-      $orders = $orders_data->latest()->take(10)->get();
+      $orders = $orders_data->latest()->take(5)->get();
     }
 
     $amount = $orders->sum('amount') - $orders->sum('coupon_discount_amount');
@@ -40,14 +40,16 @@ class DashboardController extends Controller
       $complete_order = array_filter($orders_data->get()->toArray(), function ($sale) {
         return $sale['status'] == 'Complete' ? $sale : null;
       });
+
       foreach ($complete_order as $item) {
         $sales = $item['amount'] - $item['coupon_discount_amount'];
       }
+
       $customers = User::find($orders_data->pluck('user_id'))->count();
       $products = count(array_filter(auth()->user()->product->toArray(), function ($product) {
         return $product['status'] == 'Active' ? 1 : 0;
       }));
-      return view($this->VIEW_PATH . 'dashboard', compact('customers', 'products', 'sales', 'orders', 'amount'));
+      return view($this->VIEW_PATH . 'dashboard', compact('customers', 'products', 'orders', 'amount'));
     } elseif (auth()->user()->role == 'Admin') {
       $shops = Shop::whereStatus('Active')->count();
       $customers = User::whereRole('Customer')->count();

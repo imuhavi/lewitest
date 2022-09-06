@@ -15,67 +15,101 @@ active
   <div id="main-wrapper">
     <div class="row">
 
-      @if(auth()->user()->role == 'Admin' || auth()->user()->role == 'Seller')
-        <div class="col-lg-3 col-md-6">
-          <div class="panel-green dashboar-card">
-            <div>
-              <h3>Total Sale</h3>
-              <h2><span data-plugin=" counterup">SAR {{ $sales ?? 0 }}</span>
-              </h2>
-            </div>
-            <div>
-              <i class="fa fa-money" aria-hidden="true"></i>
-            </div>
-          </div>
-        </div><!-- end col -->
-      @endif
-
-      @if(auth()->user()->role == 'Admin' || auth()->user()->role == 'Seller')
-        <div class="col-lg-3 col-md-6">
-          <div class="panel-blue dashboar-card">
-            <div>
-              <h3>Total Customer</h3>
-              <h2><span data-plugin=" counterup">{{ $customers }}</span>
-              </h2>
-            </div>
-            <div>
-              <i class="fa fa-user"></i>
-            </div>
-          </div>
-        </div><!-- end col -->
-      @endif
-
-      @if(auth()->user()->role == 'Admin' || auth()->user()->role == 'Seller')
-        <div class="col-lg-3 col-md-6">
-          <div class="panel-yellow dashboar-card">
-            <div>
-              <h3>Total Product</h3>
-              <h2><span data-plugin=" counterup">{{ $products }}</span>
-              </h2>
-            </div>
-            <div>
-              <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-
-            </div>
-          </div>
-        </div><!-- end col -->
-      @endif
-
       @if(auth()->user()->role == 'Admin')
-        <div class="col-lg-3 col-md-6">
-          <div class="panel-red dashboar-card">
-            <div>
-              <h3>Total Shop</h3>
-              <h2><span data-plugin=" counterup">{{ $shops }}</span>
-              </h2>
-            </div>
-            <div>
-              <i class="icon-home"></i>
-            </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="panel-green dashboar-card">
+          <div>
+            <h3>Total Sales</h3>
+            <h2><span data-plugin=" counterup">SAR {{ $sales ?? 0 }}</span>
+            </h2>
           </div>
-        </div><!-- end col -->
-      @endif
+          <div>
+            <i class="fa fa-money" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div><!-- end col -->
 
+      <div class="col-lg-3 col-md-6">
+        <div class="panel-blue dashboar-card">
+          <div>
+            <h3>Total Customer</h3>
+            <h2><span data-plugin=" counterup">{{ $customers }}</span>
+            </h2>
+          </div>
+          <div>
+            <i class="fa fa-user"></i>
+          </div>
+        </div>
+      </div><!-- end col -->
+
+      <div class="col-lg-3 col-md-6">
+        <div class="panel-yellow dashboar-card">
+          <div>
+            <h3>Total Product</h3>
+            <h2><span data-plugin=" counterup">{{ $products }}</span>
+            </h2>
+          </div>
+          <div>
+            <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+
+          </div>
+        </div>
+      </div><!-- end col -->
+
+      <div class="col-lg-3 col-md-6">
+        <div class="panel-red dashboar-card">
+          <div>
+            <h3>Total Shop</h3>
+            <h2><span data-plugin=" counterup">{{ $shops }}</span>
+            </h2>
+          </div>
+          <div>
+            <i class="icon-home"></i>
+          </div>
+        </div>
+      </div><!-- end col -->
+
+      @else
+      <div class="col-lg-4 col-md-6">
+        <div class="panel-green dashboar-card">
+          <div>
+            <h3>Total Sales</h3>
+            <h2><span data-plugin=" counterup">SAR {{ $sales ?? 0 }}</span>
+            </h2>
+          </div>
+          <div>
+            <i class="fa fa-money" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div><!-- end col -->
+
+      <div class="col-lg-4 col-md-6">
+        <div class="panel-blue dashboar-card">
+          <div>
+            <h3>Total Customer</h3>
+            <h2><span data-plugin=" counterup">{{ $customers }}</span>
+            </h2>
+          </div>
+          <div>
+            <i class="fa fa-user"></i>
+          </div>
+        </div>
+      </div><!-- end col -->
+
+      <div class="col-lg-4 col-md-6">
+        <div class="panel-yellow dashboar-card">
+          <div>
+            <h3>Total Product</h3>
+            <h2><span data-plugin=" counterup">{{ $products }}</span>
+            </h2>
+          </div>
+          <div>
+            <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+
+          </div>
+        </div>
+      </div><!-- end col -->
+      @endif
 
     </div>
     <!-- end row -->
@@ -83,30 +117,64 @@ active
 
     <div class="row">
       @if(auth()->user()->role == 'Admin' || auth()->user()->role == 'Seller')
-        <div class="col-md-6">
-          <div class="panel panel-white">
-            <div class="panel-heading clearfix">
-              <h3 class="panel-title">Latest Withdrow</h3>
+      <div class="col-md-6">
+        <div class="panel panel-white">
+          <div class="panel-heading clearfix">
+            <h3 class="panel-title">Latest Withdrow</h3>
+          </div>
+          <div class="panel-body statement-card">
+            <div class="statement-card-head">
+              <h3>Latest Order</h3>
+              <p><sup>$</sup><b>207,430</b></p>
             </div>
-            <div class="panel-body statement-card">
-              <div class="statement-card-head">
-                <h3>Latest Order</h3>
-                <p><sup>$</sup><b>207,430</b></p>
-              </div>
-              <table class="table table-responsive">
-                <tbody>
-                  <tr>
-                    <th scope="row">ORDER ID 4111</th>
-                    <td>johndoe</td>
-                    <td>N1</td>
-                    <td class="text-success"><b>$16</b></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            <table class="table table-responsive">
+              <tbody>
+                <tr>
+                  <th scope="row">ORDER ID 4111</th>
+                  <td>johndoe</td>
+                  <td>N1</td>
+                  <td class="text-success"><b>$16</b></td>
+                </tr>
+
+                <tr>
+                  <th scope="row">ORDER ID 4111</th>
+                  <td>johndoe</td>
+                  <td>N1</td>
+                  <td class="text-success"><b>$16</b></td>
+                </tr>
+
+                <tr>
+                  <th scope="row">ORDER ID 4111</th>
+                  <td>johndoe</td>
+                  <td>N1</td>
+                  <td class="text-success"><b>$16</b></td>
+                </tr>
+
+                <tr>
+                  <th scope="row">ORDER ID 4111</th>
+                  <td>johndoe</td>
+                  <td>N1</td>
+                  <td class="text-success"><b>$16</b></td>
+                </tr>
+
+                <tr>
+                  <th scope="row">ORDER ID 4111</th>
+                  <td>johndoe</td>
+                  <td>N1</td>
+                  <td class="text-success"><b>$16</b></td>
+                </tr>
+
+                <tr>
+                  <th scope="row">ORDER ID 4111</th>
+                  <td>johndoe</td>
+                  <td>N1</td>
+                  <td class="text-success"><b>$16</b></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
-      @endif
+      </div>
 
       <div class="col-md-6">
         <div class="panel panel-white">
@@ -115,10 +183,10 @@ active
           </div>
           <div class="panel-body statement-card">
             @if(auth()->user()->role == 'Admin' || auth()->user()->role == 'Seller')
-              <div class="statement-card-head">
-                <h3>Latest Orders</h3>
-                <p><small>Amount: </small><b>SAR {{ number_format($amount, 2) }}</b></p>
-              </div>
+            <div class="statement-card-head">
+              <h3>Latest Orders</h3>
+              <p><small>Amount: </small><b>SAR {{ number_format($amount, 2) }}</b></p>
+            </div>
             @endif
 
             <table class="table table-responsive">
@@ -165,6 +233,66 @@ active
           </div>
         </div>
       </div>
+      @else
+      <div class="col-md-12">
+        <div class="panel panel-white">
+          <div class="panel-heading clearfix">
+            <h3 class="panel-title">Orders</h3>
+          </div>
+          <div class="panel-body statement-card">
+            @if(auth()->user()->role == 'Admin' || auth()->user()->role == 'Seller')
+            <div class="statement-card-head">
+              <h3>Latest Orders</h3>
+              <p><small>Amount: </small><b>SAR {{ number_format($amount, 2) }}</b></p>
+            </div>
+            @endif
+
+            <table class="table table-responsive">
+              <thead>
+                <tr>
+                  <th>Order Id</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach($orders as $item)
+                <tr>
+                  <td scope="row">#{{ $item->id }}</td>
+                  <td>{{ $item->created_at->format('d-M-y') }}</td>
+                  <td>
+                    @if($item->status == 'Complete')
+                    @php
+                    $status = 'success';
+                    @endphp
+                    @elseif($item->status == 'Cancel')
+                    @php
+                    $status = 'danger';
+                    @endphp
+                    @elseif($item->status == 'Accept')
+                    @php
+                    $status = 'info';
+                    @endphp
+                    @elseif($item->status == 'Pending')
+                    @php
+                    $status = 'warning';
+                    @endphp
+                    @endif
+                    <span class="badge badge-pill badge-{{$status}}">
+                      {{ $item->status }}
+                    </span>
+                  </td>
+                  <td class="text-success"><b>SAR {{ $item->amount }}</b></td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      @endif
+
 
     </div>
   </div><!-- Main Wrapper -->

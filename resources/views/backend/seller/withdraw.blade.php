@@ -274,7 +274,7 @@
             <h3 class="panel-title">Withdraw</h3>
           </div>
           <div class="text-right">
-            <a href="{{ url(routePrefix() . '/seller-withdraw') }}" class="btn btn-info btn-sm">Go back</a>
+            <a href="{{ url(routePrefix() . '/withdraw') }}" class="btn btn-info btn-sm">Go back</a>
           </div>
         </div>
 

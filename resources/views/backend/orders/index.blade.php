@@ -160,10 +160,10 @@
                   <tr>
                     <th>Order ID</th>
                     <th>Total Amount</th>
+                    <th>Order Create</th>
                     <th>Payment Method</th>
                     <th>Status</th>
                     <th>Customer</th>
-                    <th>Product SKU</th>
                     <th>Date</th>
                     <th>Action</th>
                   </tr>
@@ -175,6 +175,12 @@
                     <td>#{{ $item->id }}</td>
                     <td>
                       SAR {{ $item->amount + $item->shipping_cost + $item->tax - $item->coupon_discount_amount }}
+                    </td>
+                    <td>
+                      {{ $item->created_at->diffForHumans() }}
+                    </td>
+
+
                     <td>
                       {{ $item->payment_method }}
                     </td>
@@ -204,15 +210,14 @@
                       {{ $item->user->name }}
                     </td>
 
-                    <td>
-                      {{ $item->order_details }}
-                    </td>
+
 
                     <td>{{ $item->created_at->format('d-M-Y') }}</td>
                     <td>
                       <a class="btn btn-info" href="{{ url(routePrefix(). '/order/' . $item->id) }}"><i
                           class="fa fa-eye"></i></a>
 
+                      @if(auth()->user()->role == 'Admin')
                       @if($item->status == 'Pending')
                       <a class="btn btn-success"
                         href="{{ url(routePrefix(). '/order/' . $item->id . '/update/accept') }}">
@@ -227,6 +232,7 @@
                         href="{{ url(routePrefix(). '/order/' . $item->id . '/update/complete') }}">
                         <i class="fa fa-check"></i>
                       </a>
+                      @endif
                       @endif
                     </td>
                   </tr>
