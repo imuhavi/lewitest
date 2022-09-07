@@ -82,7 +82,8 @@
                   <tr>
                     <td>#{{ $item->id }}</td>
                     <td>
-                      SAR {{ $item->amount + $item->shipping_cost + $item->tax - $item->coupon_discount_amount }}
+                      SAR {{ number_format($item->amount + $item->shipping_cost + $item->tax -
+                      $item->coupon_discount_amount, 2) }}
                     </td>
                     <td>
                       {{ $item->created_at->diffForHumans() }}
@@ -160,11 +161,12 @@
                   <tr>
                     <th>Order ID</th>
                     <th>Total Amount</th>
-                    <th>Order Create</th>
+                    <th>SKU Number</th>
                     <th>Payment Method</th>
                     <th>Status</th>
                     <th>Customer</th>
                     <th>Date</th>
+                    <th>Order Create</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -172,69 +174,42 @@
 
                   @foreach($orders as $item)
                   <tr>
-                    <td>#{{ $item->id }}</td>
-                    <td>
-                      SAR {{ $item->amount + $item->shipping_cost + $item->tax - $item->coupon_discount_amount }}
-                    </td>
-                    <td>
-                      {{ $item->created_at->diffForHumans() }}
-                    </td>
+                    <td>#{{ $item->order_id }}</td>
+                    <td>{{ number_format($item->unit_price, 2) }}</td>
+                    <td>{{ $item->product->product_sku }}</td>
 
-
+                    <td>{{ $item->order->payment_method }}</td>
                     <td>
-                      {{ $item->payment_method }}
-                    </td>
-                    <td>
-                      @if($item->status == 'Complete')
+                      @if($item->order->status == 'Complete')
                       @php
                       $status = 'success';
                       @endphp
-                      @elseif($item->status == 'Cancel')
+                      @elseif($item->order->status == 'Cancel')
                       @php
                       $status = 'danger';
                       @endphp
-                      @elseif($item->status == 'Accept')
+                      @elseif($item->order->status == 'Accept')
                       @php
                       $status = 'info';
                       @endphp
-                      @elseif($item->status == 'Pending')
+                      @elseif($item->order->status == 'Pending')
                       @php
                       $status = 'warning';
                       @endphp
                       @endif
                       <span class="badge badge-pill badge-{{$status}}">
-                        {{ $item->status }}
+                        {{ $item->order->status }}
                       </span>
                     </td>
-                    <td>
-                      {{ $item->user->name }}
-                    </td>
-
-
-
+                    <td>{{ $item->order->user->name }}</td>
                     <td>{{ $item->created_at->format('d-M-Y') }}</td>
+                    <td>{{ $item->created_at->diffForHumans() }}</td>
                     <td>
-                      <a class="btn btn-info" href="{{ url(routePrefix(). '/order/' . $item->id) }}"><i
+                      <a class="btn btn-info" href="{{ url(routePrefix(). '/order-details/' . $item->id) }}"><i
                           class="fa fa-eye"></i></a>
-
-                      @if(auth()->user()->role == 'Admin')
-                      @if($item->status == 'Pending')
-                      <a class="btn btn-success"
-                        href="{{ url(routePrefix(). '/order/' . $item->id . '/update/accept') }}">
-                        <i class="fa fa-check"></i>
-                      </a>
-                      <a class="btn btn-warning"
-                        href="{{ url(routePrefix(). '/order/' . $item->id . '/update/cancel') }}">
-                        <i class="fa fa-times"></i>
-                      </a>
-                      @elseif($item->status == 'Accept')
-                      <a class="btn btn-success"
-                        href="{{ url(routePrefix(). '/order/' . $item->id . '/update/complete') }}">
-                        <i class="fa fa-check"></i>
-                      </a>
-                      @endif
-                      @endif
                     </td>
+
+
                   </tr>
                   @endforeach
                 </tbody>
@@ -270,7 +245,6 @@
                       {{ $item->created_at->diffForHumans() }}
                     </td>
 
-
                     <td>
                       {{ $item->payment_method }}
                     </td>
@@ -304,24 +278,6 @@
                     <td>
                       <a class="btn btn-info" href="{{ url(routePrefix(). '/order/' . $item->id) }}"><i
                           class="fa fa-eye"></i></a>
-
-                      @if(auth()->user()->role == 'Admin')
-                      @if($item->status == 'Pending')
-                      <a class="btn btn-success"
-                        href="{{ url(routePrefix(). '/order/' . $item->id . '/update/accept') }}">
-                        <i class="fa fa-check"></i>
-                      </a>
-                      <a class="btn btn-warning"
-                        href="{{ url(routePrefix(). '/order/' . $item->id . '/update/cancel') }}">
-                        <i class="fa fa-times"></i>
-                      </a>
-                      @elseif($item->status == 'Accept')
-                      <a class="btn btn-success"
-                        href="{{ url(routePrefix(). '/order/' . $item->id . '/update/complete') }}">
-                        <i class="fa fa-check"></i>
-                      </a>
-                      @endif
-                      @endif
                     </td>
                   </tr>
                   @endforeach
@@ -350,10 +306,10 @@
                       <td style="border-top: none !important;">
                         <h2 class="m-b-md m-t-xxs"><b>5dots</b></h2>
                         Al-Khobar<br>
-                        Phone: (123) 456-7890
+                        Phone: +966 53 458 8012
                       </td>
                       <td class="text-right" style="border-top: none !important;">
-                        <h2 class="m-b-md m-t-xxs">Invoice: #{{ $singleOrder->id }}</h2>
+                        <h2 class="m-b-md m-t-xxs">Invoice: #{{ $singleOrder->order_id }}</h2>
                         <a href="{{ url( routePrefix() .'/orders') }}" class="btn btn-info btn-sm" id="button">Go
                           back</a>
                         <button type="button" class="btn btn-default" onclick="invoicePrint()"><i
@@ -364,6 +320,8 @@
                     <tr>
                       <td>
                         <strong class="m-b-md">Shipping Address</strong><br>
+                        @if(auth()->user()->role == 'Admin' || auth()->user()->role == 'Customer')
+
                         @if($singleOrder->user && $singleOrder->user->userDetail)
                         <p>{{ $singleOrder->user->userDetail->postal_code }}, {{
                           $singleOrder->user->userDetail->address }},<br> {{
@@ -373,19 +331,44 @@
                         @else
                         N/A
                         @endif
+
+                        @else
+
+                        <p>
+                          {{ $singleOrder->order->user->userDetail->postal_code }},
+                          {{ $singleOrder->order->user->userDetail->address }}<br>
+                          {{ $singleOrder->order->city($singleOrder->order->user->userDetail->city_id) }}<br>
+                          {{ $singleOrder->order->state($singleOrder->order->user->userDetail->state_id) }}<br>
+                        </p>
+
+                        @endif
                       </td>
+
+
                       <td class="text-right">
                         <strong class="m-b-md">Customer Details</strong><br>
+                        @if(auth()->user()->role == 'Admin' || auth()->user()->role == 'Customer')
                         <p>
-                          {{ $singleOrder->user ? $singleOrder->user->name : 'N/A' }} <br>
-                          {{ $singleOrder->user ? $singleOrder->user->email : 'N/A' }} <br>
-                          {{ $singleOrder->user ? $singleOrder->user->phone_1 : 'N/A <br>' }}
-                          {{ date('d F, Y', strtotime($singleOrder->created_at))}}
+                          {{ $singleOrder->user->name }}<br>
+                          {{ $singleOrder->user->email }}<br>
+                          {{ $singleOrder->user->userDetail->phone }}<br>
+
                         </p>
+                        @else
+
+                        <p>
+                          {{ $singleOrder->order->user->name }}<br>
+                          {{ $singleOrder->order->user->email }}<br>
+                          {{ $singleOrder->order->user->userDetail->phone }}<br>
+
+
+                        </p>
+                        @endif
                       </td>
                     </tr>
                   </table>
                 </div>
+
                 <div class="col-md-12">
                   <table class="table table-striped">
                     <thead>
@@ -404,6 +387,8 @@
                     $total = 0;
                     @endphp
                     <tbody>
+                      @if(auth()->user()->role !== 'Seller')
+
                       @foreach($singleOrder->order_details as $key => $order)
                       <tr>
                         <td>{{ $key+1 }}</td>
@@ -434,16 +419,49 @@
                         @endphp
                       </tr>
                       @endforeach
+                      @else
+                      <tr>
+                        <td>{{ 1 }}</td>
+                        <td>{{ $singleOrder->product->name }}</td>
+                        <td>{{ $singleOrder->product->product_sku }}</td>
+                        <td>
+                          @if(!empty($singleOrder->size))
+                          {{ $singleOrder->size }}
+                          @endif
+                        </td>
+                        <td>
+                          @if(!empty($singleOrder->color))
+                          {{ $singleOrder->color }}
+                          @endif
+                        </td>
+                        <td>
+                          {{ $singleOrder->quantity }}
+                        </td>
+                        <td>
+                          SA {{ number_format($singleOrder->unit_price, 2) }}
+                        </td>
+                        <td class="text-right">
+                          SA {{ number_format($singleOrder->quantity * $singleOrder->unit_price, 2) }}
+                        </td>
+
+                        @php
+                        $total += ($singleOrder->unit_price * $singleOrder->quantity)
+                        @endphp
+                      </tr>
+
+                      @endif
                     </tbody>
                   </table>
                 </div>
                 <div class="col-md-12">
-                  @php
-                  $discount = $singleOrder->coupon_discount_amount
-                  @endphp
 
                   <table class="table">
                     <tr>
+                      @if(auth()->user()->role == 'Admin' || auth()->user()->role == 'Customer')
+
+                      @php
+                      $discount = $singleOrder->coupon_discount_amount
+                      @endphp
                       <td width="75%" style="border-top: none;"></td>
                       <td style="border-top: none;">
                         <table class="table">
@@ -486,6 +504,47 @@
                           </tr>
                         </table>
                       </td>
+                      @else
+                      @php
+                      $discount = $singleOrder->order->coupon_discount_amount
+                      @endphp
+
+                      <td width="75%" style="border-top: none;"></td>
+                      <td style="border-top: none;">
+                        <table class="table">
+                          <tr>
+                            <td class="text-right" style="padding: 5px !important">
+                              <h4 class="no-m">Subtotal</h4>
+                              <h3 class="no-m m-t-sm">SA {{ number_format($total, 2) }}</h3>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-right" style="padding: 5px !important">
+                              <h4 class="no-m">Shipping</h4>
+                              <h3 class="no-m m-t-sm">SA {{ number_format($singleOrder->order->shipping_cost, 2) }}</h3>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-right" style="padding: 5px !important">
+                              <h4 class="no-m">Tax</h4>
+                              <h3 class="no-m m-t-sm">SA {{ $singleOrder->order->tax }}</h3>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td class="text-right" style="padding: 5px !important">
+                              <h4 class="no-m text-success">Total Amount</h4>
+                              <h2 class="no-m text-success m-t-sm">SA {{ number_format(($total +
+                                $singleOrder->order->shipping_cost
+                                +
+                                $singleOrder->order->tax), 2) }}</h2>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                      @endif
                     </tr>
                   </table>
                 </div>

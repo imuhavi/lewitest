@@ -21,6 +21,11 @@ class Shop extends Model
     return $this->belongsTo(States::class);
   }
 
+  public function user()
+  {
+    return $this->belongsTo(User::class);
+  }
+
   public function city()
   {
     return $this->belongsTo(Cities::class);

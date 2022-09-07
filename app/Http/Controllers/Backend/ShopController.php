@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ShopActive;
 use App\Models\Product;
 use App\Models\Shop;
+use Illuminate\Support\Facades\Mail;
 
 class ShopController extends Controller
 {
@@ -29,6 +31,7 @@ class ShopController extends Controller
           'status' => 'Active'
         ]);
       }
+      Mail::to($shop->user->email)->send(new ShopActive($shop));
     }
     return redirect()->back()->with('success', 'Shop status updated successfully.');
   }

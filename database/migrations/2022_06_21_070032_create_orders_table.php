@@ -15,7 +15,7 @@ class CreateOrdersTable extends Migration
   {
     Schema::create('orders', function (Blueprint $table) {
       $table->id();
-      $table->unsignedBigInteger('user_id');
+      $table->unsignedBigInteger('user_id')->comment('customer_id');
       $table->unsignedBigInteger('coupon_id')->nullable();
       $table->double('coupon_discount_amount', 10, 2)->default(0.00);
       $table->double('shipping_cost')->default(0.00);

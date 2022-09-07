@@ -69,7 +69,7 @@ Seller List
                     <td>{{ $data->firstitem() + $key }}</td>
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->email }}</td>
-                    <td>{{ $item->phone_1 ?? 'Not Found' }}, {{ $item->phone_2 ?? 'Not Found' }}</td>
+                    <td>{{ $item->userDetail->phone }}</td>
                     <td>
                       {{ $item->created_at->diffForHumans() }}
                     </td>

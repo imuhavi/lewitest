@@ -116,12 +116,9 @@ active
     <hr>
 
     <div class="row">
-      @if(auth()->user()->role == 'Admin' || auth()->user()->role == 'Seller')
+      @if(auth()->user()->role == 'Admin')
       <div class="col-md-6">
         <div class="panel panel-white">
-          <div class="panel-heading clearfix">
-            <h3 class="panel-title">Latest Withdrow</h3>
-          </div>
           <div class="panel-body statement-card">
             <div class="statement-card-head">
               <h3>Latest Order</h3>
@@ -178,9 +175,6 @@ active
 
       <div class="col-md-6">
         <div class="panel panel-white">
-          <div class="panel-heading clearfix">
-            <h3 class="panel-title">Orders</h3>
-          </div>
           <div class="panel-body statement-card">
             @if(auth()->user()->role == 'Admin' || auth()->user()->role == 'Seller')
             <div class="statement-card-head">
@@ -233,6 +227,158 @@ active
           </div>
         </div>
       </div>
+
+      <div class="col-md-12">
+        <div class="panel panel-white">
+          <div class="panel-body statement-card">
+            <div class="statement-card-head">
+              <h3>Best Selling Products</h3>
+            </div>
+            <table class="table table-responsive">
+              <thead>
+                <tr>
+                  <th>Sl</th>
+                  <th>Product Image</th>
+                  <th>Product Name</th>
+                  <th>SKU Number</th>
+                  <th>Product Seller</th>
+                  <th>Total Sale</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach($bestSellingProduct as $key => $item)
+                <tr>
+                  <td>{{ $key + 1}}</td>
+                  <td>
+                    <img style="width: 50px" src="{{ asset('backend/uploads/'. $item->product->thumbnail) }}"
+                      alt="{{ $item->product->name }}">
+                  </td>
+                  <td>{{ $item->product->name }}</td>
+                  <td>{{ $item->product->product_sku }}</td>
+                  <td>{{ $item->product->user->name }}</td>
+                  <td>{{ $item->total }}</td>
+                  <td class="text-success"><b>SAR {{ $item->product->price }}</b></td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      @elseif(auth()->user()->role == 'Seller')
+
+      <div class="col-md-6">
+        <div class="panel panel-white">
+          <div class="panel-body statement-card">
+            <div class="statement-card-head">
+              <h3>Latest Order</h3>
+              <p><sup>$</sup><b>207,430</b></p>
+            </div>
+            <table class="table table-responsive">
+              <tbody>
+                <tr>
+                  <th scope="row">ORDER ID 4111</th>
+                  <td>johndoe</td>
+                  <td>N1</td>
+                  <td class="text-success"><b>$16</b></td>
+                </tr>
+
+                <tr>
+                  <th scope="row">ORDER ID 4111</th>
+                  <td>johndoe</td>
+                  <td>N1</td>
+                  <td class="text-success"><b>$16</b></td>
+                </tr>
+
+                <tr>
+                  <th scope="row">ORDER ID 4111</th>
+                  <td>johndoe</td>
+                  <td>N1</td>
+                  <td class="text-success"><b>$16</b></td>
+                </tr>
+
+                <tr>
+                  <th scope="row">ORDER ID 4111</th>
+                  <td>johndoe</td>
+                  <td>N1</td>
+                  <td class="text-success"><b>$16</b></td>
+                </tr>
+
+                <tr>
+                  <th scope="row">ORDER ID 4111</th>
+                  <td>johndoe</td>
+                  <td>N1</td>
+                  <td class="text-success"><b>$16</b></td>
+                </tr>
+
+                <tr>
+                  <th scope="row">ORDER ID 4111</th>
+                  <td>johndoe</td>
+                  <td>N1</td>
+                  <td class="text-success"><b>$16</b></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="panel panel-white">
+          <div class="panel-body statement-card">
+            @if(auth()->user()->role == 'Admin' || auth()->user()->role == 'Seller')
+            <div class="statement-card-head">
+              <h3>Latest Orders</h3>
+              <p><small>Amount: </small><b>SAR {{ number_format($amount, 2) }}</b></p>
+            </div>
+            @endif
+
+            <table class="table table-responsive">
+              <thead>
+                <tr>
+                  <th>Order Id</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach($orders as $item)
+                <tr>
+                  <td scope="row">#{{ $item->id }}</td>
+                  <td>{{ $item->created_at->format('d-M-y') }}</td>
+                  <td>
+                    @if($item->status == 'Complete')
+                    @php
+                    $status = 'success';
+                    @endphp
+                    @elseif($item->status == 'Cancel')
+                    @php
+                    $status = 'danger';
+                    @endphp
+                    @elseif($item->status == 'Accept')
+                    @php
+                    $status = 'info';
+                    @endphp
+                    @elseif($item->status == 'Pending')
+                    @php
+                    $status = 'warning';
+                    @endphp
+                    @endif
+                    <span class="badge badge-pill badge-{{$status}}">
+                      {{ $item->status }}
+                    </span>
+                  </td>
+                  <td class="text-success"><b>SAR {{ $item->amount }}</b></td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
       @else
       <div class="col-md-12">
         <div class="panel panel-white">

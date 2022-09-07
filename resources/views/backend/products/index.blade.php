@@ -90,11 +90,7 @@
             <div class="text-left">
               {{-- --}}
             </div>
-
           </div>
-
-
-
           <div class="panel-body">
             <div class="table-responsive">
               <table class="display table" style="width: 100%; cellspacing: 0;">

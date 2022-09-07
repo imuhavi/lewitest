@@ -42,20 +42,22 @@ class DashboardController extends Controller
       });
 
       foreach ($complete_order as $item) {
-        $sales = $item['amount'] - $item['coupon_discount_amount'];
+        $sale = $item['amount'] - $item['coupon_discount_amount'];
       }
 
       $customers = User::find($orders_data->pluck('user_id'))->count();
       $products = count(array_filter(auth()->user()->product->toArray(), function ($product) {
         return $product['status'] == 'Active' ? 1 : 0;
       }));
+
       return view($this->VIEW_PATH . 'dashboard', compact('customers', 'products', 'orders', 'amount'));
     } elseif (auth()->user()->role == 'Admin') {
+      $bestSellingProduct = OrderDetails::select('product_id', DB::raw('count(*) as total'))->groupBy('product_id')->orderBy('total', 'DESC')->limit(5)->get();
       $shops = Shop::whereStatus('Active')->count();
       $customers = User::whereRole('Customer')->count();
       $products = Product::whereStatus('Active')->count();
       $sales = Order::whereStatus('Complete')->value(DB::raw("SUM(amount - coupon_discount_amount)"));
-      return view($this->VIEW_PATH . 'dashboard', compact('customers', 'products', 'sales', 'orders', 'amount', 'shops'));
+      return view($this->VIEW_PATH . 'dashboard', compact('customers', 'products', 'sales', 'orders', 'amount', 'shops', 'bestSellingProduct'));
     }
     return view($this->VIEW_PATH . 'dashboard', compact('orders'));
   }
@@ -67,8 +69,10 @@ class DashboardController extends Controller
     //  Unpaid & Payment method Card dekha jabe na.
     if (auth()->user()->role == "Seller") {
       $seller_products_id = auth()->user()->product->pluck('id');
+
       $orders_id = array_unique(OrderDetails::whereIn('product_id', $seller_products_id)->pluck('order_id')->toArray());
-      $sql = Order::orderBy('created_at', 'DESC')->whereIn('id', $orders_id);
+
+      $sql = OrderDetails::orderBy('created_at', 'DESC')->whereIn('order_id', $orders_id);
     } elseif (auth()->user()->role == "Customer") {
       $sql = Order::orderBy('created_at', 'DESC')->where('user_id', auth()->id());
     } else {
@@ -103,7 +107,18 @@ class DashboardController extends Controller
   public function show(Order $order, $id)
   {
     $page = 'show';
-    $singleOrder = $order->findOrFail($id);
+
+    if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Customer') {
+      $singleOrder = $order->findOrFail($id);
+    }
+    // return $singleOrder;
+    return view($this->VIEW_PATH . 'orders.index', compact('singleOrder', 'page'));
+  }
+
+  public function showDetails(OrderDetails $orderDetails, $id)
+  {
+    $page = 'show';
+    $singleOrder = $orderDetails->findOrFail($id);
     return view($this->VIEW_PATH . 'orders.index', compact('singleOrder', 'page'));
   }
 
@@ -126,18 +141,21 @@ class DashboardController extends Controller
     if ($request->excel) {
       return Excel::download(new OrderExport($from, $to), 'orders.xlsx');
     } else {
+
       if (auth()->user()->role == "Seller") {
         $seller_products_id = auth()->user()->product->pluck('id');
+
         $orders_id = array_unique(OrderDetails::whereIn('product_id', $seller_products_id)->pluck('order_id')->toArray());
-        $sql = Order::whereBetween('created_at', [$from, $to])->whereIn('id', $orders_id);
-      } elseif (auth()->user()->role == "Customer") {
-        $sql = Order::whereBetween('created_at', [$from, $to])->where('user_id', auth()->id());
+
+        $orders = OrderDetails::whereBetween('created_at', [$from, $to])->whereIn('order_id', $orders_id);
+
+        $pdf = Pdf::loadView('exports.seller_order', compact('orders'));
+        return $pdf->download('orders.pdf');
       } else {
-        $sql = Order::whereBetween('created_at', [$from, $to]);
+        $orders = Order::whereBetween('created_at', [$from, $to])->get();
+        $pdf = Pdf::loadView('exports.orders', compact('orders'));
+        return $pdf->download('orders.pdf');
       }
-      $orders = $sql->get();
-      $pdf = Pdf::loadView('exports.orders', compact('orders'));
-      return $pdf->download('orders.pdf');
     }
   }
 }
