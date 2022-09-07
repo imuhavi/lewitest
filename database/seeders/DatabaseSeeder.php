@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
       CategoryTableSeeder::class,
       GeneralSettingTableSeeder::class,
       UserTableSeeder::class,
-      // SocialConfigTableSeeder::class,
       SubscriptionTableSeeder::class,
       SubscriptionOptionTableSeeder::class,
     ]);

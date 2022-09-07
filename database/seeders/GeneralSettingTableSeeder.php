@@ -25,16 +25,18 @@ class GeneralSettingTableSeeder extends Seeder
       'app_address' => 'Al-Khobar',
       'app_copyright_text' => 'Copyright © 2022 [5dots.sa] All rights reserved.',
       'seo_title' => '5dots',
-      'seo_description' => 'Laravel Ecommerce',
-      'seo_keywords' => 'Laravel, Ecommerce',
+      'seo_description' => '5dots Ecommerce',
+      'seo_keywords' => '5dots, Ecommerce',
       'mail_type' => 'smtp',
-      'mail_host' => 'smtp.gmail.com',
-      'mail_port' => '587',
-      'mail_username' => 'rahmmed.info@gmail.com',
-      'mail_password' => 'ibqfnsjvxkybpaql',
-      'mail_encryption' => 'tls',
-      'mail_address' => '5dots.sa@gmail.com',
-      'mail_from_name' => '5dots'
+      'mail_host' => '5dots.sa',
+      'mail_port' => '465',
+      'mail_username' => 'support@5dots.sa',
+      'mail_password' => 'Pt!bPT{fJ1UC',
+      'mail_encryption' => 'ssl',
+      'mail_address' => 'support@5dots.sa',
+      'mail_from_name' => '5dots',
+      'app_id' => 'app-id',
+      'app_secret' => 'app-secret'
     ]);
   }
 }
