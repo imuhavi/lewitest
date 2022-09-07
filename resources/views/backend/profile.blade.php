@@ -272,7 +272,7 @@
                       <select id="state" name="state" class="form-control state">
                         <option selected hidden disabled value="">Choose State</option>
                         @foreach($states as $state)
-                        <option value="{{ $state->id }}" {{ $seller->shop->state == $state->id ?
+                        <option value="{{ $state->id }}" {{ $seller->shop->state_id == $state->id ?
                           'selected'
                           : '' }}>{{ $state->name }}
                         </option>
