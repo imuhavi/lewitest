@@ -64,22 +64,23 @@
             <p class="summary">{!! Str::limit($product->description, 120) !!}</p>
 
             @if($product->discount == null )
-            <h3 class="price">SAR {{ $product->price }}</h3>
+            <h3 class="price">SAR {{ number_format($product->price, 2) }}</h3>
             @endif
 
             @if($product->discount !== null && $product->discount_type == 'Flat')
-            <h3 class="price" data-price="{{ $product->price - $product->discount }}">SAR {{ $product->price -
-              $product->discount }}</h3>
+            <h3 class="price" data-price="{{ $product->price - $product->discount }}">SAR {{
+              number_format($product->price -
+              $product->discount, 2) }}</h3>
 
-            <p class="previous-price">SAR <span class="old-price">{{ $product->price }}</span> <span
-                class="discount">OFF {{ $product->discount }} SAR</span>
+            <p class="previous-price">SAR <span class="old-price">{{ number_format($product->price, 2) }}</span> <span
+                class="discount">OFF {{ number_format($product->discount, 2) }} SAR</span>
             </p>
             @endif
 
             @if($product->discount !== null && $product->discount_type == 'Percent')
-            <h3 class="price" data-price="{{ $discountAmount }}">SAR {{ $discountAmount }}</h3>
+            <h3 class="price" data-price="{{ $discountAmount }}">SAR {{ number_format($discountAmount, 2) }}</h3>
 
-            <p class="previous-price">SAR <span class="old-price">{{ $product->price }}</span> <span
+            <p class="previous-price">SAR <span class="old-price">{{ number_format($product->price, 2) }}</span> <span
                 class="discount">OFF {{
                 round($product->discount) }}%</span>
             </p>

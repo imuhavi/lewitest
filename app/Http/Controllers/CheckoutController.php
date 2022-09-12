@@ -8,7 +8,6 @@ use App\Models\OrderDetails;
 use App\Models\Product;
 use App\Models\States;
 use App\Models\Transaction;
-use App\Models\User;
 use App\Mail\OrderPlaced;
 use App\Models\GeneralSetting;
 use Illuminate\Support\Facades\Mail;
