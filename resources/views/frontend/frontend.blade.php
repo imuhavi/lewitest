@@ -189,52 +189,6 @@
     </div>
   </section>
 
-  <!--------------------------------
-            Accessories Category Start 
-      --------------------------------->
-
-  @if($accesoriesMain !== null)
-  <section id="accessories-category">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 category-main">
-          <div class="parent-cat-item">
-            <div class="overflow"></div>
-            <img class="img-fluid parent-cat-banner" src="{{ asset('/backend/uploads/'. $accesoriesMain->banner) }}"
-              alt="women's Main">
-            <div class="parent-cat-content">
-              <h4>Men's & Women's</h4>
-              <h2>{{ $accesoriesMain->name }}</h2>
-              <p>From only SAR 180.00</p>
-              <a class="fivedots-btn mt-4"
-                href="{{ route('categoryShop', ['id'=> $accesoriesMain->id, 'slug' => $accesoriesMain->slug]) }}">Shop
-                Now <img class="icon" src="{{ asset('frontend/assets') }}/images/btn-arrow-light.png"
-                  alt="{{ $accesoriesMain->name }}"></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="row gy-5">
-            @foreach($accesoriesSub as $item)
-            <div class="col-md-6">
-              <div class="child-cat-item">
-                <a href="{{ route('subCategoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}"><img
-                    class="img-fluid" src="{{ asset('/backend/uploads/'. $item->icon) }}" alt="womens-1"></a>
-                <h3>{{ $item->name }}</h3>
-                <a class="explore-btn"
-                  href="{{ route('subCategoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}">Explore <img
-                    class="icon" src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
-              </div>
-            </div>
-            @endforeach
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-  @endif
   <!---------------------------------
             Product BY Category one 
       ---------------------------------->

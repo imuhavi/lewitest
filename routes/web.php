@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\UserLoginRegisterController;
 use App\Http\Controllers\Backend\UserProfileController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
@@ -26,6 +27,14 @@ use Illuminate\Support\Facades\Session;
 Route::get('/', [FrontendController::class, 'frontend'])->name('home');
 Route::get('/shop', [FrontendController::class, 'shop'])->name('shop');
 Route::get('/shop-subcategory/{slug}/{id}', [FrontendController::class, 'subCategoryShop'])->name('subCategoryShop');
+
+// User Register Login Route
+Route::get('login', [UserLoginRegisterController::class, 'userLogin'])->middleware('guest')->name('userLogin');
+Route::get('register', [UserLoginRegisterController::class, 'userRegister'])->middleware('guest')->name('userRegister');
+Route::get('forgot-password', [UserLoginRegisterController::class, 'forgotPassword'])
+  ->middleware('guest')
+  ->name('forgotPassword');
+
 
 Route::get('/shop-category/{slug}/{id}', [FrontendController::class, 'categoryShop'])->name('categoryShop');
 

@@ -8,6 +8,7 @@
     margin: 0mm;
   }
 </style>
+
 <div class="page-inner">
   <div class="page-title" id="page-title">
     <div class="page-breadcrumb">
@@ -31,13 +32,13 @@
 
                     <input type="text" class="form-control date-picker" placeholder="From" name="from">
                     <input type="text" class="form-control date-picker" placeholder="To" name="to">
-                    <input class="btn btn-info" name="excel" type="submit" value="Download Exel" style="margin: 0 10px">
+                    <input class="btn btn-info" name="excel" type="submit" value="Download Excel"
+                      style="margin: 0 10px">
                     <input class="btn btn-warning" name="pdf" type="submit" value="Download PDF">
                   </div>
                 </form>
               </div>
               <div class="col-md-3">
-
               </div>
             </div>
           </div>
@@ -295,10 +296,10 @@
     @elseif($page == 'show')
 
     <div id="main-wrapper">
-      <div class="row">
+      <div class="row" id="print_invoice">
         <div class="invoice col-md-12">
           <div class="panel panel-white">
-            <div class="panel-body" id="print_invoice">
+            <div class="panel-body">
               <div class="row">
                 <div class="col-md-12">
                   <table class="table">
@@ -573,8 +574,8 @@
   let footer = document.getElementById("page-footer")
   function invoicePrint() {
     footer.style.display = 'none'
-    button.style.display = 'none';
-    page_title.style.display = 'none';
+    button.style.display = 'none'
+    page_title.style.display = 'none'
     window.print()
   }
 </script>

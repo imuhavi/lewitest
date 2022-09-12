@@ -60,13 +60,6 @@ $(function () {
   });
 
 
-
-
-
-  // Product Image Zoom.
-  // $("#img_01").ezPlus();
-
-
   /*==========NICE NUMBER==========*/
   $('input[type="number"]').niceNumber();
 
