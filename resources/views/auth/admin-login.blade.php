@@ -59,10 +59,12 @@
                     </div>
 
                     <div class="form-group">
-                      <input type="password" name="password" class="form-control password" placeholder="Password">
+                      <input type="password" name="password" class="form-control password" placeholder="Password"
+                        value="{{ old('password') }}">
                     </div>
-                    <button type="submit" class="btn btn-success btn-block">Login</button>
-                    <a href="forgot.html" class="display-block text-center m-t-md text-sm">Forgot Password?</a>
+                    <button type=" submit" class="btn btn-success btn-block">Login</button>
+                    <a href="{{ route('password.email') }}" class="display-block text-center m-t-md text-sm">Forgot
+                      Password?</a>
                     <p class="text-center m-t-xs text-sm">Do not have an account?</p>
                     <a href="{{ route('register') }}" class="btn btn-default btn-block m-t-md">Create an account</a>
                   </form>

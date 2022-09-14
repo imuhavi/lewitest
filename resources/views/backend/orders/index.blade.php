@@ -83,7 +83,7 @@
                   <tr>
                     <td>#{{ $item->id }}</td>
                     <td>
-                      SAR {{ number_format($item->amount + $item->shipping_cost + $item->tax -
+                      SA {{ number_format($item->amount + $item->shipping_cost + $item->tax -
                       $item->coupon_discount_amount, 2) }}
                     </td>
                     <td>
@@ -240,7 +240,7 @@
                   <tr>
                     <td>#{{ $item->id }}</td>
                     <td>
-                      SAR {{ $item->amount + $item->shipping_cost + $item->tax - $item->coupon_discount_amount }}
+                      SA {{ $item->amount + $item->shipping_cost + $item->tax - $item->coupon_discount_amount }}
                     </td>
                     <td>
                       {{ $item->created_at->diffForHumans() }}

@@ -126,7 +126,7 @@
                   <p>Quanity: {{ $item['quantity'] }}</p>
                 </div>
                 <div class="col-3 text-end">
-                  <p>SAR {{ ($item['product_price'] * $item['quantity']) - $item['discount'] }}</p>
+                  <p>SA {{ ($item['product_price'] * $item['quantity']) - $item['discount'] }}</p>
                 </div>
               </div>
               @endforeach
@@ -167,7 +167,7 @@
                   <h6>Subtotal:</h6>
                 </div>
                 <div class="col-6">
-                  <h6 class="price-text sub-total-text text-end"> SAR {{ $cart['total'] }}</h6>
+                  <h6 class="price-text sub-total-text text-end"> SA {{ $cart['total'] }}</h6>
                 </div>
 
                 <div class="col-6">
@@ -175,7 +175,7 @@
                 </div>
                 <!-- Shipping cost backend theke asbe -->
                 <div class="col-6">
-                  <h6 class="price-text sub-total-text text-end"> SAR 30</h6>
+                  <h6 class="price-text sub-total-text text-end"> SA 30</h6>
                 </div>
 
                 @php
@@ -186,7 +186,7 @@
                   <h6>Tax: 15%</h6>
                 </div>
                 <div class="col-6">
-                  <h6 class="price-text sub-total-text text-end"> SAR {{ number_format($tax, 2) }} </h6>
+                  <h6 class="price-text sub-total-text text-end"> SA {{ number_format($tax, 2) }} </h6>
                 </div>
 
                 <div class="col-6">
@@ -194,14 +194,14 @@
                 </div>
 
                 <div class="col-6">
-                  <h6 class="price-text sub-total-text text-end"> SAR {{ $coupon ? $coupon['discount'] : 0 }} </h6>
+                  <h6 class="price-text sub-total-text text-end"> SA {{ $coupon ? $coupon['discount'] : 0 }} </h6>
                 </div>
                 <hr>
                 <div class="col-6">
                   <h5>Total Amount</h5>
                 </div>
                 <div class="col-6">
-                  <h5 class="price-text sub-total-text text-end"> SAR {{ ($cart['total'] + 30 + $tax) - ($coupon ?
+                  <h5 class="price-text sub-total-text text-end"> SA {{ ($cart['total'] + 30 + $tax) - ($coupon ?
                     $coupon['discount'] : 0) }}</h5>
                 </div>
               </div>

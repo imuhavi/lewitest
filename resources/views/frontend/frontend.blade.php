@@ -78,7 +78,7 @@
             <div class="parent-cat-content">
               <h4>{{ $womensMain->name }}</h4>
               <h2>{{ __('NEW FASHION COLLECTION') }}</h2>
-              <p>From only SAR 100.00</p>
+              <p>From only SA 100.00</p>
 
               <a class="fivedots-btn mt-4"
                 href="{{ route('categoryShop', ['id'=> $womensMain->id, 'slug' => $womensMain->slug]) }}">Shop Now <img
@@ -159,7 +159,7 @@
           <div class="parent-cat-content">
             <h4>Weekend Sale</h4>
             <h2>New Fashion Collection</h2>
-            <p>From only SAR 180.00</p>
+            <p>From only SA 180.00</p>
             <a class="fivedots-btn mt-4"
               href="{{ route('categoryShop', ['id'=> $mensMain->id, 'slug' => $mensMain->slug]) }}">Shop Now <img
                 class="icon" src="{{ asset('frontend/assets') }}/images/btn-arrow-light.png" alt=""></a>
@@ -216,12 +216,12 @@
                 25) }}</a>
               @if($product->discount == null )
               <div class="d-flex justify-content-between align-items-center">
-                <h3 class="new-price my-3">SAR <span> {{ $product->price }}</span></h3>
+                <h3 class="new-price my-3">SA <span> {{ $product->price }}</span></h3>
                 <span class="wishlist"><i class="far fa-heart"></i></span>
               </div>
               @endif
               @if($product->discount !== null && $product->discount_type == 'Flat')
-              <h3 class="new-price my-3">SAR <span>{{ $product->price- $product->discount }}</span></h3>
+              <h3 class="new-price my-3">SA <span>{{ $product->price- $product->discount }}</span></h3>
 
               <div class="d-flex justify-content-between">
                 <div class="off">
@@ -232,7 +232,7 @@
               </div>
               @endif
               @if($product->discount !== null && $product->discount_type == 'Percent')
-              <h3 class="new-price my-3">SAR <span>{{ $product->price- $product->discount }}</span></h3>
+              <h3 class="new-price my-3">SA <span>{{ $product->price- $product->discount }}</span></h3>
               <div class="d-flex justify-content-between">
                 <div class="off">
                   <span class="old-price">{{ $product->price }}</span>
@@ -243,7 +243,7 @@
               @endif
               @if($product->discount !== null && $product->discount_type !== 'Percent' && $product->discount_type !==
               'Flat')
-              <h3 class="new-price my-3">SAR <span>{{ $product->price- $product->discount }}</span></h3>
+              <h3 class="new-price my-3">SA <span>{{ $product->price- $product->discount }}</span></h3>
               <div class="d-flex justify-content-between">
                 <div class="off">
                   <span class="old-price">{{ $product->price }}</span>

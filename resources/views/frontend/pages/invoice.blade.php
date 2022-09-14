@@ -217,12 +217,12 @@
                 <h4>Subtotal</h4>
               </td>
               <td>
-                <h4>SAR {{ number_format($subtotal, 2) }}</h4>
+                <h4>SA {{ number_format($subtotal, 2) }}</h4>
               </td>
             </tr>
             <tr>
               <td style="width:180px; text-align: left;">Shipping Cost</td>
-              <td><span>SAR {{ number_format($order->shipping_cost, 2) }}</span></td>
+              <td><span>SA {{ number_format($order->shipping_cost, 2) }}</span></td>
             </tr>
             @php
             $discount = $order->coupon_discount_amount ?? 0
@@ -230,7 +230,7 @@
             @if($discount != 0)
             <tr>
               <td style="width:180px; text-align: left;">Discount Amount</td>
-              <td><span>SAR {{ number_format($discount, 2) }}</span></td>
+              <td><span>SA {{ number_format($discount, 2) }}</span></td>
             </tr>
             @endif
 
@@ -243,7 +243,7 @@
                 <h3>Total</h3>
               </td>
               <td>
-                <h3>SAR {{ number_format(($order->amount + $order->shipping_cost + $order->tax) - $discount, 2) }}</h3>
+                <h3>SA {{ number_format(($order->amount + $order->shipping_cost + $order->tax) - $discount, 2) }}</h3>
               </td>
             </tr>
           </table>

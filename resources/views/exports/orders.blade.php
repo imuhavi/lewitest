@@ -16,7 +16,7 @@
     <tr>
       <td>#{{ $item->id }}</td>
       <td>
-        SAR {{ $item->amount + $item->shipping_cost + $item->tax - $item->coupon_discount_amount }}
+        SA {{ $item->amount + $item->shipping_cost + $item->tax - $item->coupon_discount_amount }}
       </td>
       <td>
         {{ $item->created_at->diffForHumans() }}

@@ -37,7 +37,7 @@
               </div>
               <div class="cart_text_tk">
                 <input type="number" placeholder="1" value="{{ $item['quantity'] }}" min="0">
-                <h6>SAR {{ ($item['product_price'] * $item['quantity']) - $item['discount'] }}</h6>
+                <h6>SA {{ ($item['product_price'] * $item['quantity']) - $item['discount'] }}</h6>
               </div>
             </div>
             @endforeach
@@ -46,7 +46,7 @@
 
         <div class="col-lg-12 col-12 col-sm-12 col-md-12">
           <div class="checkout_text">
-            <h6 class="total">Total Amount <span> SAR {{ $cart['total'] }}</span></h6>
+            <h6 class="total">Total Amount <span> SA {{ $cart['total'] }}</span></h6>
             <div class="checkout-btn">
               <a href="" class="btn common-btn">Proceed to Checkout</a>
             </div>

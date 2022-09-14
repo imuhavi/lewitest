@@ -27,7 +27,7 @@
         <p>Quanity: {{ $item['quantity'] }}</p>
       </div>
       <div class="col-3 text-end">
-        <p>SAR {{ ($item['product_price'] * $item['quantity']) - $item['discount'] }}</p>
+        <p>SA {{ ($item['product_price'] * $item['quantity']) - $item['discount'] }}</p>
         <button type="button" onclick="removeCart('{{ $key }}')" style="border: none;">
           <span class="cart-item-del"><i class="fas fa-trash-alt"></i></span>
         </button>
@@ -41,7 +41,7 @@
         <h5>Total Amount</h5>
       </div>
       <div class="col-6">
-        <h5 class="price-text sub-total-text text-end"> SAR {{ $cart['total'] }} </h5>
+        <h5 class="price-text sub-total-text text-end"> SA {{ $cart['total'] }} </h5>
       </div>
     </div>
   </div>

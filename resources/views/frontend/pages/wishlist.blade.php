@@ -33,7 +33,7 @@
               </div>
               <div class="wishlist-action">
                 <input type="number" placeholder="1" value="1" min="0">
-                <h6>SAR 906</h6>
+                <h6>SA 906</h6>
                 <a href="#" class="cart-btn">add to cart</a>
               </div>
             </div>
@@ -51,7 +51,7 @@
               </div>
               <div class="wishlist-action">
                 <input type="number" placeholder="1" value="1" min="0">
-                <h6>SAR 906</h6>
+                <h6>SA 906</h6>
                 <a href="#" class="cart-btn">add to cart</a>
               </div>
               <div class="cart_text"></div>
@@ -70,7 +70,7 @@
               </div>
               <div class="wishlist-action">
                 <input type="number" placeholder="1" value="1" min="0">
-                <h6>SAR 906</h6>
+                <h6>SA 906</h6>
                 <a href="#" class="cart-btn">add to cart</a>
               </div>
             </div>

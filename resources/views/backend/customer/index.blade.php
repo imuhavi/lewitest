@@ -72,7 +72,7 @@ Seller-list
                     <td>{{ $data->firstitem() + $key }}</td>
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->email }}</td>
-                    <td>05{{ $item->userDetail->phone ?? 'Not Found' }}</td>
+                    <td>{{ $item->phone_1 ?? 'Not Found' }}</td>
                     <td>
                       <a class="btn btn-sm btn-info" href="{{ url( routePrefix() . '/customer/' . $item->id) }}"><i
                           class="fa fa-eye"></i></a>
@@ -131,7 +131,7 @@ Seller-list
                     <th class="45%" width="45%">Customer Phone Number</th>
                     <td width="10%">:</td>
                     <td class="45%" width="45%">
-                      05{{ $data->userDetail->phone }}
+                      05{{ $data->phone_1 }}
                     </td>
                   </tr>
 
@@ -153,7 +153,6 @@ Seller-list
                       {{ $data->created_at->diffForHumans() }}
                     </td>
                   </tr>
-
 
                 </tbody>
               </table>

@@ -41,16 +41,28 @@
                 <input type="email" name="email" class="form-control" id="email" placeholder="Your Email Address"
                   value="{{ old('email') }}">
               </div>
+
               <div class="col-12">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="inputAddress" placeholder="Password" name="password"
-                  required autocomplete="new-password">
+                <label for="phone" class="form-label">Phone Number</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">05</div>
+                  </div>
+                  <input type="number" class="form-control" id="phone" name="phone" placeholder="Your Phone Number"
+                    required value="{{ old('phone') }}">
+                </div>
               </div>
 
               <div class="col-12">
-                <label for="password" class="form-label">Confirm Password</label>
-                <input type="password" class="form-control" id="inputAddress" placeholder="Confirm Password"
-                  name="password_confirmation">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password" name="password"
+                  required autocomplete="new-password" value="{{ old('password') }}">
+              </div>
+
+              <div class="col-12">
+                <label for="cpassword" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="cpassword" placeholder="Confirm Password"
+                  name="password_confirmation" value="{{ old('password') }}">
               </div>
 
               <div class="col-12">

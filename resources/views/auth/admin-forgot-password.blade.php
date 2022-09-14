@@ -54,14 +54,17 @@
                     and we will email you a password reset link that
                     will allow you to choose a new one.</p>
 
+                  @if(session('status'))
                   <div class="alert alert-success" role="alert">
                     {{ session('status') }}
                   </div>
-
+                  @endif
                   <!-- Validation Errors -->
+                  @if(session('errors'))
                   <div class="alert alert-danger" role="alert">
                     {{ session('errors') }}
                   </div>
+                  @endif
                   <!-- <x-auth-validation-errors class="mb-4" :errors="$errors" /> -->
 
                   <div>

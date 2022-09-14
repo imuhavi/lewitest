@@ -70,8 +70,7 @@
                       <div class="input-group-text">05</div>
                     </div>
                     <input type="text" class="form-control" id="inputAddress" name="phone"
-                      placeholder="Your Phone Number"
-                      value="{{ old('phone') ?? (Auth::user()->userDetail ? Auth::user()->userDetail->phone : Auth::user()->phone) }}">
+                      value="{{ Auth::user()->phone_1 }}" disabled>
                   </div>
                 </div>
                 <div class="col-lg-5 col-md-6">
@@ -79,7 +78,15 @@
                   <select id="state" name="state" class="form-select state">
                     <option selected hidden disabled value="">Choose State</option>
                     @foreach($states as $state)
-                    <option value="{{ $state->id }}">{{ $state->name }}</option>
+                    @if(old('state') == $state->name)
+                    <option value="{{ $state->id }}" selected>{{ $state->name }}
+
+                    </option>
+                    @else
+                    <option value="{{ $state->id }}">{{ $state->name }}
+
+                    </option>
+                    @endif
                     @endforeach
                   </select>
                 </div>
@@ -119,12 +126,12 @@
               <ul class="payment-method-list">
                 <li>
                   <input name="payment_method" id="card" type="radio" value="Card">
-                  <label for="card">Credit Card</label>
+                  <label for="card">Pay Card</label>
                 </li>
-                <li>
+                <!-- <li>
                   <input name="payment_method" id="delivery" type="radio" value="COD" checked>
                   <label for="delivery">Cash on Delivery</label>
-                </li>
+                </li> -->
               </ul>
             </div>
           </form>
@@ -150,7 +157,7 @@
                 <p>Quanity: {{ $item['quantity'] }}</p>
               </div>
               <div class="col-3 text-end">
-                <p>SAR {{ ($item['product_price'] * $item['quantity']) - $item['discount'] }}</p>
+                <p>SA {{ ($item['product_price'] * $item['quantity']) - $item['discount'] }}</p>
               </div>
             </div>
             @endforeach
@@ -190,7 +197,7 @@
                 <h6>Subtotal:</h6>
               </div>
               <div class="col-6">
-                <h6 class="price-text sub-total-text text-end"> SAR {{ $cart['total'] }}</h6>
+                <h6 class="price-text sub-total-text text-end"> SA {{ $cart['total'] }}</h6>
               </div>
 
               <div class="col-6">
@@ -199,7 +206,7 @@
 
               <!-- Shipping cost backend theke asbe -->
               <div class="col-6">
-                <h6 class="price-text sub-total-text text-end"> SAR 30</h6>
+                <h6 class="price-text sub-total-text text-end"> SA {{ $shippingCost }}</h6>
               </div>
 
               @php
@@ -210,7 +217,7 @@
                 <h6>Tax: 15%</h6>
               </div>
               <div class="col-6">
-                <h6 class="price-text sub-total-text text-end"> SAR {{ number_format($tax, 2) }} </h6>
+                <h6 class="price-text sub-total-text text-end"> SA {{ number_format($tax, 2) }} </h6>
               </div>
 
               <div class="col-6">
@@ -218,14 +225,15 @@
               </div>
 
               <div class="col-6">
-                <h6 class="price-text sub-total-text text-end"> SAR {{ $coupon ? $coupon['discount'] : 0 }} </h6>
+                <h6 class="price-text sub-total-text text-end"> SA {{ $coupon ? $coupon['discount'] : 0 }} </h6>
               </div>
               <hr>
               <div class="col-6">
                 <h5>Total Amount</h5>
               </div>
               <div class="col-6">
-                <h5 class="price-text sub-total-text text-end"> SAR {{ ($cart['total'] + 30 + $tax) - ($coupon ?
+                <h5 class="price-text sub-total-text text-end"> SA {{ ($cart['total'] + $shippingCost + $tax) - ($coupon
+                  ?
                   $coupon['discount'] : 0) }}</h5>
               </div>
             </div>

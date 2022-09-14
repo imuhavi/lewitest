@@ -61,6 +61,13 @@
                       <input type="email" class="form-control" name="email" value="{{ old('email') }}"
                         placeholder="Email" required>
                     </div>
+
+                    <div class="input-group m-b-sm">
+                      <span class="input-group-addon" id="basic-addon1">05</span>
+                      <input type="number" class="form-control" placeholder="Phone number"
+                        aria-describedby="basic-addon1">
+                    </div>
+
                     <div class="form-group">
                       <input type="password" name="password" class="password form-control" placeholder="Password"
                         required>

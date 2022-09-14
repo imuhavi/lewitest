@@ -64,23 +64,23 @@
             <p class="summary">{!! Str::limit($product->description, 120) !!}</p>
 
             @if($product->discount == null )
-            <h3 class="price">SAR {{ number_format($product->price, 2) }}</h3>
+            <h3 class="price">SA {{ number_format($product->price, 2) }}</h3>
             @endif
 
             @if($product->discount !== null && $product->discount_type == 'Flat')
-            <h3 class="price" data-price="{{ $product->price - $product->discount }}">SAR {{
+            <h3 class="price" data-price="{{ $product->price - $product->discount }}">SA {{
               number_format($product->price -
               $product->discount, 2) }}</h3>
 
-            <p class="previous-price">SAR <span class="old-price">{{ number_format($product->price, 2) }}</span> <span
+            <p class="previous-price">SA <span class="old-price">{{ number_format($product->price, 2) }}</span> <span
                 class="discount">OFF {{ number_format($product->discount, 2) }} SAR</span>
             </p>
             @endif
 
             @if($product->discount !== null && $product->discount_type == 'Percent')
-            <h3 class="price" data-price="{{ $discountAmount }}">SAR {{ number_format($discountAmount, 2) }}</h3>
+            <h3 class="price" data-price="{{ $discountAmount }}">SA {{ number_format($discountAmount, 2) }}</h3>
 
-            <p class="previous-price">SAR <span class="old-price">{{ number_format($product->price, 2) }}</span> <span
+            <p class="previous-price">SA <span class="old-price">{{ number_format($product->price, 2) }}</span> <span
                 class="discount">OFF {{
                 round($product->discount) }}%</span>
             </p>
@@ -186,15 +186,15 @@
                   <td class="w-25">Product Price:</td>
                   <td>
                     @if($product->discount == null )
-                    <h6 class="price">SAR {{ $product->price }}</h6>
+                    <h6 class="price">SA {{ $product->price }}</h6>
                     @endif
 
                     @if($product->discount !== null && $product->discount_type == 'Flat')
-                    <h6>SAR {{ $product->price- $product->discount }}</h6>
+                    <h6>SA {{ $product->price- $product->discount }}</h6>
                     @endif
 
                     @if($product->discount !== null && $product->discount_type == 'Percent')
-                    <h6>SAR {{ $product->price- $product->discount }}</h6>
+                    <h6>SA {{ $product->price- $product->discount }}</h6>
                     @endif
                   </td>
                 </tr>
@@ -272,31 +272,31 @@
 
               @if($item->discount == null )
               <div class="d-flex justify-content-between align-items-center">
-                <h3 class="new-price my-3 text-dark">SAR <span> {{ $item->price ?? '' }}</span></h3>
+                <h3 class="new-price my-3 text-dark">SA <span> {{ $item->price ?? '' }}</span></h3>
 
                 <span class="wishlist"><i class="far fa-heart"></i></span>
               </div>
               @endif
 
               @if($item->discount !== null && $item->discount_type == 'Flat')
-              <h3 class="new-price my-3 text-dark">SAR <span class="text-dark">{{ $item->price- $item->discount
+              <h3 class="new-price my-3 text-dark">SA <span class="text-dark">{{ $item->price- $item->discount
                   }}</span></h3>
 
               <div class="d-flex justify-content-between">
                 <div class="off">
-                  <span class="old-price text-dark">SAR {{ $item->price ?? '' }}</span>
-                  <span class="discount">SAR {{ $item->discount }} OFF</span>
+                  <span class="old-price text-dark">SA {{ $item->price ?? '' }}</span>
+                  <span class="discount">SA {{ $item->discount }} OFF</span>
                 </div>
                 <span class="wishlist"><i class="far fa-heart"></i></span>
               </div>
               @endif
 
               @if($item->discount !== null && $item->discount_type == 'Percent')
-              <h3 class="new-price my-3 text-dark">SAR <span class="text-dark">{{ $discountAmount }}</span></h3>
+              <h3 class="new-price my-3 text-dark">SA <span class="text-dark">{{ $discountAmount }}</span></h3>
 
               <div class="d-flex justify-content-between">
                 <div class="off">
-                  <span class="old-price text-dark">SAR {{ $item->price ?? '' }}</span>
+                  <span class="old-price text-dark">SA {{ $item->price ?? '' }}</span>
                   <span class="discount">{{ round($item->discount) }}% OFF</span>
                 </div>
                 <span class="wishlist"><i class="far fa-heart"></i></span>

@@ -20,7 +20,7 @@ active
         <div class="panel-green dashboar-card">
           <div>
             <h3>Total Sales</h3>
-            <h2><span data-plugin=" counterup">SAR {{ $sales ?? 0 }}</span>
+            <h2><span data-plugin=" counterup">SA {{ $sales ?? 0 }}</span>
             </h2>
           </div>
           <div>
@@ -74,7 +74,7 @@ active
         <div class="panel-green dashboar-card">
           <div>
             <h3>Total Sales</h3>
-            <h2><span data-plugin=" counterup">SAR {{ $sales ?? 0 }}</span>
+            <h2><span data-plugin=" counterup">SA {{ $sales ?? 0 }}</span>
             </h2>
           </div>
           <div>
@@ -179,7 +179,7 @@ active
             @if(auth()->user()->role == 'Admin' || auth()->user()->role == 'Seller')
             <div class="statement-card-head">
               <h3>Latest Orders</h3>
-              <p><small>Amount: </small><b>SAR {{ number_format($amount, 2) }}</b></p>
+              <p><small>Amount: </small><b>SA {{ number_format($amount, 2) }}</b></p>
             </div>
             @endif
 
@@ -219,7 +219,7 @@ active
                       {{ $item->status }}
                     </span>
                   </td>
-                  <td class="text-success"><b>SAR {{ $item->amount }}</b></td>
+                  <td class="text-success"><b>SA {{ $item->amount }}</b></td>
                 </tr>
                 @endforeach
               </tbody>
@@ -258,7 +258,7 @@ active
                   <td>{{ $item->product->product_sku }}</td>
                   <td>{{ $item->product->user->name }}</td>
                   <td>{{ $item->total }}</td>
-                  <td class="text-success"><b>SAR {{ $item->product->price }}</b></td>
+                  <td class="text-success"><b>SA {{ $item->product->price }}</b></td>
                 </tr>
                 @endforeach
               </tbody>
@@ -330,7 +330,7 @@ active
             @if(auth()->user()->role == 'Admin' || auth()->user()->role == 'Seller')
             <div class="statement-card-head">
               <h3>Latest Orders</h3>
-              <p><small>Amount: </small><b>SAR {{ number_format($amount, 2) }}</b></p>
+              <p><small>Amount: </small><b>SA {{ number_format($amount, 2) }}</b></p>
             </div>
             @endif
 
@@ -370,7 +370,7 @@ active
                       {{ $item->status }}
                     </span>
                   </td>
-                  <td class="text-success"><b>SAR {{ $item->amount }}</b></td>
+                  <td class="text-success"><b>SA {{ $item->amount }}</b></td>
                 </tr>
                 @endforeach
               </tbody>
@@ -389,7 +389,7 @@ active
             @if(auth()->user()->role == 'Admin' || auth()->user()->role == 'Seller')
             <div class="statement-card-head">
               <h3>Latest Orders</h3>
-              <p><small>Amount: </small><b>SAR {{ number_format($amount, 2) }}</b></p>
+              <p><small>Amount: </small><b>SA {{ number_format($amount, 2) }}</b></p>
             </div>
             @endif
 
@@ -429,7 +429,7 @@ active
                       {{ $item->status }}
                     </span>
                   </td>
-                  <td class="text-success"><b>SAR {{ $item->amount }}</b></td>
+                  <td class="text-success"><b>SA {{ $item->amount }}</b></td>
                 </tr>
                 @endforeach
               </tbody>
