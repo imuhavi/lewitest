@@ -131,7 +131,7 @@ Seller-list
                     <th class="45%" width="45%">Customer Phone Number</th>
                     <td width="10%">:</td>
                     <td class="45%" width="45%">
-                      05{{ $data->phone_1 }}
+                      {{ $data->phone_1 }}
                     </td>
                   </tr>
 
