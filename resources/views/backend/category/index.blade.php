@@ -156,7 +156,7 @@ Add Category
 
               <div class="form-row">
                 <div class="form-group">
-                  <label for="category_banner">Upload Banner (Ratio: 3:2)</label>
+                  <label for="category_banner">Upload Banner (Size: 445px × 585px)</label>
                   <input type="file" class="form-control" name="banner" id="category_banner"
                     onchange="previewImage('banner', this.files)">
                   @error('banner')

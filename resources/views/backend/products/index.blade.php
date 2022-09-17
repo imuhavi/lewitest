@@ -415,6 +415,7 @@
             </div>
 
             <div class="col-md-4">
+
               <div class="panel panel-info">
                 <div class="panel-heading">
                   <h3 class="panel-title">Product Categories</h3>
@@ -557,7 +558,7 @@
                     </div>
 
                     <div class="form-group">
-                      <label for="images">Upload Product Images</label>
+                      <label for="images">Upload Product Images (Size: 1:1)</label>
                       <input type="file" class="form-control" name="images[]" id="images" multiple>
                       @error('images')
                       <small class="text-danger">{{ $message }}</small>
@@ -580,7 +581,7 @@
                     </div>
 
                     <div class="form-group">
-                      <label for="thumbnail">Upload Thumbnail Image</label>
+                      <label for="thumbnail">Upload Thumbnail Image (Size: 1:1)</label>
                       <input type="file" class="form-control" name="thumbnail" id="thumbnail"
                         onchange="previewImage('feature', this.files)">
                       @error('thumbnail')

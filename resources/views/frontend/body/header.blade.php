@@ -91,14 +91,14 @@
             @endauth
           </li>
           @php
-          $cart = session('cart');
+          $cart = getCart() ?? [];
           @endphp
           <li><a href="#"><img src="{{ asset('frontend/assets') }}/images/heart.png" alt="user-profile"></a></li>
 
           <li class="cartParent"><a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
               aria-controls="offcanvasRight"><img src="{{ asset('frontend/assets') }}/images/shopping-cart.png"
                 alt="user-profile"></a>
-            <div class="totalCart" id="numberOfItem">{{ count($cart) }}</div>
+            <div class="totalCart" id="numberOfItem">{{ count($cart['cart']) }}</div>
           </li>
 
         </ul>

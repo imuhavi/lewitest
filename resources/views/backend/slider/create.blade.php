@@ -36,7 +36,7 @@ Slider Create
                 <div class="card-body">
                   <div class="row">
                     <div class="col-sm-3">
-                      <p class="mb-0">Banner</p>
+                      <p class="mb-0">Banner (Size: 1024px × 240px)</p>
                     </div>
                     <div class="col-sm-5">
                       <input type="file" accept="image/*" onchange="previewImage('slider_banner_preview', this.files)"
