@@ -22,6 +22,25 @@
   <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/custom.css">
   <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/responsive.css">
   <link href="{{ asset('backend/') }}/assets/plugins/toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+  <style>
+    .cartParent {
+      position: relative;
+    }
+
+    .totalCart {
+      position: absolute;
+      background: black;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      color: white;
+      text-align: center;
+      border-radius: 50%;
+      font-size: 12px;
+      top: -12px;
+      left: 20px;
+    }
+  </style>
 </head>
 
 <body>
@@ -71,12 +90,17 @@
                 src="{{ asset('frontend/assets') }}/images/profile.png" alt="user-profile"></a>
             @endauth
           </li>
-
+          @php
+          $cart = session('cart');
+          @endphp
           <li><a href="#"><img src="{{ asset('frontend/assets') }}/images/heart.png" alt="user-profile"></a></li>
 
-          <li><a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+          <li class="cartParent"><a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
               aria-controls="offcanvasRight"><img src="{{ asset('frontend/assets') }}/images/shopping-cart.png"
-                alt="user-profile"></a></li>
+                alt="user-profile"></a>
+            <div class="totalCart" id="numberOfItem">{{ count($cart) }}</div>
+          </li>
+
         </ul>
       </div>
     </div>
@@ -177,11 +201,25 @@
     }
     onload = () => getCart()
 
+
     function removeCart(key) {
       fetch(`/remove-cart/${key}`)
         .then(response => response.json())
         .then(data => {
-          alert(data)
+          console.log(data)
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            icon: 'warning',
+            showConfirmButton: false,
+            timer: 2000
+          })
+          if ($.isEmptyObject(data.error)) {
+            Toast.fire({
+              type: 'success',
+              title: data,
+            })
+          }
           getCart()
         })
         .catch(error => console.log(error))

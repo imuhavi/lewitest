@@ -45,6 +45,9 @@
 <!-- Select 2 -->
 <script src="{{ asset('/frontend/assets/') }}/js/select2.min.js"></script>
 
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 <!-- Nice Select -->
 <script src="{{ asset('/frontend/assets/') }}/js/jquery.nice-select.min.js"></script>
 

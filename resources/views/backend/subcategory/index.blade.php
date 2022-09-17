@@ -147,7 +147,7 @@ Add Subcategory
 
               <div class="form-row">
                 <div class="form-group">
-                  <label for="subcategory_icon">Upload Icon</label>
+                  <label for="subcategory_icon">Upload Icon (Ratio: 1:1)</label>
                   <input type="file" class="form-control" name="icon" id="subcategory_icon"
                     onchange="previewImage('icon', this.files)">
                   @error('icon')

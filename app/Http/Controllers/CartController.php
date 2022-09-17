@@ -17,7 +17,10 @@ class CartController extends Controller
     ];
     $newCart = [];
     $session = session('cart') ?? [];
-
+    /* 
+      Product er minium Qty and Max Qyt Check korte hobe.
+      Jesob product er Color and Size achy oi gulo color and size charar add to cart korte jabe na..
+    */
     foreach ($session as $item) {
       if ($item['product_id'] == $reqCart['product_id'] && $item['color'] == $reqCart['color'] && $item['size'] == $reqCart['size']) {
         $item['quantity'] += intval($reqCart['quantity']);

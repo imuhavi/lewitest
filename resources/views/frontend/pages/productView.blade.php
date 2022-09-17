@@ -272,7 +272,7 @@
 
               @if($item->discount == null )
               <div class="d-flex justify-content-between align-items-center">
-                <h3 class="new-price my-3 text-dark">SA <span> {{ $item->price ?? '' }}</span></h3>
+                <h3 class="new-price my-3 text-dark">SA <span> {{ number_format($item->price, 2)}}</span></h3>
 
                 <span class="wishlist"><i class="far fa-heart"></i></span>
               </div>
@@ -284,7 +284,7 @@
 
               <div class="d-flex justify-content-between">
                 <div class="off">
-                  <span class="old-price text-dark">SA {{ $item->price ?? '' }}</span>
+                  <span class="old-price text-dark">SA {{ number_format($item->price, 2) }}</span>
                   <span class="discount">SA {{ $item->discount }} OFF</span>
                 </div>
                 <span class="wishlist"><i class="far fa-heart"></i></span>
@@ -296,7 +296,7 @@
 
               <div class="d-flex justify-content-between">
                 <div class="off">
-                  <span class="old-price text-dark">SA {{ $item->price ?? '' }}</span>
+                  <span class="old-price text-dark">SA {{ number_format($item->price, 2) }}</span>
                   <span class="discount">{{ round($item->discount) }}% OFF</span>
                 </div>
                 <span class="wishlist"><i class="far fa-heart"></i></span>
@@ -363,7 +363,19 @@
         datType: 'json',
         success: function (data) {
           getCart()
-          alert(data)
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 2000
+          })
+          if ($.isEmptyObject(data.error)) {
+            Toast.fire({
+              type: 'success',
+              title: data,
+            })
+          }
           $('.cart-btn-hidden').hide()
           $('.cart-btn').show()
         }
