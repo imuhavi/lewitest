@@ -195,14 +195,10 @@
     }
 
     let cartWrapper = document.getElementById('offcanvasRight')
-    let totalCart = document.getElementById('numberOfItem')
     function getCart() {
       fetch('/get-cart')
         .then(response => response.text())
-        .then(data => {
-          cartWrapper.innerHTML = data
-          totalCart.innerHTML = data
-        })
+        .then(data => cartWrapper.innerHTML = data)
         .catch(error => console.log(error))
     }
     onload = () => getCart()
