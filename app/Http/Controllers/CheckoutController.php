@@ -119,7 +119,6 @@ class CheckoutController extends Controller
   public function orderPlace(Request $request)
   {
     $request->validate([
-      'phone' => 'required',
       'state' => 'required',
       'city' => 'required',
       'postal_code' => 'required',
@@ -136,7 +135,7 @@ class CheckoutController extends Controller
           ['user_id' => auth()->id()],
           [
             'user_id' => auth()->id(),
-            'phone' => '05' . $request->phone,
+            'phone' => $request->phone,
             'state_id' => $request->state,
             'city_id' => $request->city,
             'postal_code' => $request->postal_code,
@@ -187,7 +186,7 @@ class CheckoutController extends Controller
           ['user_id' => auth()->id()],
           [
             'user_id' => auth()->id(),
-            'phone' => '05' . $request->phone,
+            'phone' => $request->phone,
             'state_id' => $request->state,
             'city_id' => $request->city,
             'postal_code' => $request->postal_code,
