@@ -61,7 +61,7 @@
 3. Payment method based on product.
 4. Home page search.
 5. Best Selling Product Seller.
-6. Add to cart total number of item display.
+6. Add to cart total number of item display.( Done )
 7. Add to cart with color and size if avaiable of product.
-8. Add to cart avaiable quanity.
-9. Add to cart Min Max quanity.
+8. Add to cart check avaiable quanity.
+9. Add to cart check Min / Max quanity.
