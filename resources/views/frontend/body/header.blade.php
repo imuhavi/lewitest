@@ -90,14 +90,16 @@
                 src="{{ asset('frontend/assets') }}/images/profile.png" alt="user-profile"></a>
             @endauth
           </li>
-          @php
-          $cart = getCart() ?? [];
-          @endphp
+
           <li><a href="#"><img src="{{ asset('frontend/assets') }}/images/heart.png" alt="user-profile"></a></li>
 
           <li class="cartParent"><a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
               aria-controls="offcanvasRight"><img src="{{ asset('frontend/assets') }}/images/shopping-cart.png"
                 alt="user-profile"></a>
+            @php
+            $cart = getCart() ?? [];
+            @endphp
+
             <div class="totalCart" id="numberOfItem">{{ count($cart['cart']) }}</div>
           </li>
 
@@ -193,10 +195,14 @@
     }
 
     let cartWrapper = document.getElementById('offcanvasRight')
+    let totalCart = document.getElementById('numberOfItem')
     function getCart() {
       fetch('/get-cart')
         .then(response => response.text())
-        .then(data => cartWrapper.innerHTML = data)
+        .then(data => {
+          cartWrapper.innerHTML = data
+          totalCart.innerHTML = data
+        })
         .catch(error => console.log(error))
     }
     onload = () => getCart()

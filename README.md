@@ -60,4 +60,7 @@
 2. Withdraw
 3. Payment method based on product.
 4. Home page search.
-5. Best Selling Product Seller and admin.
+5. Best Selling Product Seller.
+6. Add to cart total number of item display.
+7. Add to cart with color and size if avaiable of product.
+8. Add to cart avaiable quanity.
