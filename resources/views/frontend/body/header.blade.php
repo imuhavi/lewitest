@@ -111,17 +111,19 @@
           Navbar Mega  Menu
     ---------------------------->
     <nav class="navbar navbar-expand-lg bg-light menu">
+
       <div class="container">
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{{ route('home') }}">{{ __('Home') }}</a>
+              <a class="nav-link active" aria-current="page" href="{{ route('home') }}"><i class="fa fa-home"></i> {{
+                __('Home') }}</a>
             </li>
           </ul>
         </div>
 
         <div class="collapse navbar-collapse mobile-menu" id="navbarNavDropdown">
-          <ul class="main_menu navbar-nav">
+          <ul class="main_menu navbar-nav m-auto">
             @foreach($categories as $category)
             <li class="static"><a href="#">{{
                 $category->name }} <i class="fas fa-angle-down"></i></a>
@@ -143,17 +145,20 @@
           </ul>
         </div>
 
-        <div class="nav-item dropdown d-none d-sm-none d-md-none d-lg-block">
-          <a class="nav-link dropdown-toggle" href="#" id="language" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            Language
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="language">
-            <li><a class="dropdown-item" href="#">Arabic</a></li>
-            <li><a class="dropdown-item" href="#">English</a></li>
-          </ul>
+        <div class="collapse navbar-collapse">
+          <div class="nav-item dropdown d-none d-sm-none d-md-none d-lg-block ms-auto">
+            <a class="nav-link dropdown-toggle" href="#" id="language" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Language
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="language">
+              <li><a class="dropdown-item" href="#">Arabic</a></li>
+              <li><a class="dropdown-item" href="#">English</a></li>
+            </ul>
+          </div>
         </div>
       </div>
+
     </nav>
 
     <!---------------------------
