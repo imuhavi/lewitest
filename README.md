@@ -64,3 +64,4 @@
 6. Add to cart total number of item display.
 7. Add to cart with color and size if avaiable of product.
 8. Add to cart avaiable quanity.
+9. Add to cart Min Max quanity.
