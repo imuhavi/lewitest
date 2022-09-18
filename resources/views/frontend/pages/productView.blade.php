@@ -333,9 +333,6 @@
     })
   });
 
-  $(document).ready(function () {
-    $('')
-  })
 
   $(document).ready(function () {
     $('.cart-btn').on('click', function (e) {
@@ -362,6 +359,7 @@
         },
         datType: 'json',
         success: function (data) {
+          getTotalCart()
           getCart()
           const Toast = Swal.mixin({
             toast: true,

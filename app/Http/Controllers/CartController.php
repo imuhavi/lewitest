@@ -37,6 +37,13 @@ class CartController extends Controller
     return response()->json('Product added successfully !');
   }
 
+  public function totalCart()
+  {
+    $cart = getCart();
+    $total = count($cart['cart']);
+    return response()->json($total);
+  }
+
   public function removeCart($key)
   {
     $session = session('cart');

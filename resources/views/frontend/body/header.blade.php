@@ -93,13 +93,13 @@
 
           <li><a href="#"><img src="{{ asset('frontend/assets') }}/images/heart.png" alt="user-profile"></a></li>
 
+
           <li class="cartParent"><a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
               aria-controls="offcanvasRight"><img src="{{ asset('frontend/assets') }}/images/shopping-cart.png"
                 alt="user-profile"></a>
             @php
-            $cart = getCart() ?? [];
+            $cart = getCart()
             @endphp
-
             <div class="totalCart" id="numberOfItem">{{ count($cart['cart']) }}</div>
           </li>
 
@@ -194,6 +194,18 @@
       if (confirm('Are you sure to logout ?')) logoutForm.submit()
     }
 
+    let totalCart = document.getElementById('numberOfItem');
+    function getTotalCart() {
+      $.ajax({
+        url: '/gettotal-cart',
+        dataType: 'json',
+        success: function (response) {
+          $('#numberOfItem').text(response)
+        }
+      })
+    }
+    onload = () => getTotalCart()
+
     let cartWrapper = document.getElementById('offcanvasRight')
     function getCart() {
       fetch('/get-cart')
@@ -208,6 +220,7 @@
       fetch(`/remove-cart/${key}`)
         .then(response => response.json())
         .then(data => {
+          getTotalCart()
           console.log(data)
           const Toast = Swal.mixin({
             toast: true,
