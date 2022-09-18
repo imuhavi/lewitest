@@ -125,6 +125,7 @@ class CheckoutController extends Controller
       'address' => 'required'
     ]);
 
+    $phone = auth()->user()->phone_1;
     DB::beginTransaction();
     try {
       $cart = getCart();
@@ -135,7 +136,7 @@ class CheckoutController extends Controller
           ['user_id' => auth()->id()],
           [
             'user_id' => auth()->id(),
-            'phone' => $request->phone,
+            'phone' => $phone,
             'state_id' => $request->state,
             'city_id' => $request->city,
             'postal_code' => $request->postal_code,
@@ -186,7 +187,7 @@ class CheckoutController extends Controller
           ['user_id' => auth()->id()],
           [
             'user_id' => auth()->id(),
-            'phone' => $request->phone,
+            'phone' => $phone,
             'state_id' => $request->state,
             'city_id' => $request->city,
             'postal_code' => $request->postal_code,
