@@ -65,13 +65,8 @@
                 <div class="col-5 col-md-6 col-lg-6">
                   <label for="phone" class="form-label">Phone Number</label>
 
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">05</div>
-                    </div>
-                    <input type="text" class="form-control" id="inputAddress" name="phone"
-                      value="{{ Auth::user()->phone_1 }}" disabled>
-                  </div>
+                  <input type="text" class="form-control" id="inputAddress" name="phone"
+                    value="{{ Auth::user()->phone_1 }}" disabled>
                 </div>
                 <div class="col-lg-5 col-md-6">
                   <label for="state" class="form-label">State</label>
