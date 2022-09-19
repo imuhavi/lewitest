@@ -91,8 +91,8 @@
               <p>Color: </p>
               <ul class="d-flex">
                 @foreach($colors as $item)
-                <li><a href="" onclick="return false" title="{{ $item }}" data-color="{{ $item }}" class="color"
-                    style="background-color: {{ strtolower($item) }} !important"></a></li>
+                <li><a href="" onclick="return false" title="{{ $item }}" data-color="{{ $item }}" class="color">{{
+                    strtoupper($item) }}</a></li>
                 @endforeach
               </ul>
             </div>
