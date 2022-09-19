@@ -66,3 +66,4 @@
 8. Add to cart check avaiable quanity.
 9. Add to cart check Min / Max quanity.
 10. After Successfully complete order product qty will be decrement total number of order quanity.
+11. Fixed the invoice Print Preview.
