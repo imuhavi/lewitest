@@ -26,9 +26,10 @@ class CheckoutController extends Controller
   {
     if (session('cart')) {
       $states = States::get();
-      $shipping = GeneralSetting::first();
-      $shippingCost = $shipping->shipping_cost;
-      return view($this->VIEW_PATH . 'checkout', compact('states', 'shippingCost'));
+      $setting = GeneralSetting::first();
+      $shippingCost = $setting->shipping_cost;
+      $tax = $setting->tax;
+      return view($this->VIEW_PATH . 'checkout', compact('states', 'shippingCost', 'tax'));
     }
     return redirect('/');
   }

@@ -152,7 +152,7 @@
                 <p>Quanity: {{ $item['quantity'] }}</p>
               </div>
               <div class="col-3 text-end">
-                <p>SA {{ ($item['product_price'] * $item['quantity']) - $item['discount'] }}</p>
+                <p>SA {{ number_format(($item['product_price'] * $item['quantity']) - $item['discount'], 2) }}</p>
               </div>
             </div>
             @endforeach
@@ -192,7 +192,7 @@
                 <h6>Subtotal:</h6>
               </div>
               <div class="col-6">
-                <h6 class="price-text sub-total-text text-end"> SA {{ $cart['total'] }}</h6>
+                <h6 class="price-text sub-total-text text-end"> SA {{ number_format($cart['total'], 2) }}</h6>
               </div>
 
               <div class="col-6">
@@ -205,14 +205,16 @@
               </div>
 
               @php
-              $tax = $cart['total'] * 0.15;
+              $newtax = $cart['total'] * $tax / 100 ;
               @endphp
 
+              @if(!empty($tax))
               <div class="col-6">
-                <h6>Tax: 15%</h6>
+                <h6>Tax: {{ $tax }}%</h6>
               </div>
+              @endif
               <div class="col-6">
-                <h6 class="price-text sub-total-text text-end"> SA {{ number_format($tax, 2) }} </h6>
+                <h6 class="price-text sub-total-text text-end"> SA {{ number_format($newtax, 2) }} </h6>
               </div>
 
               <div class="col-6">
@@ -220,14 +222,16 @@
               </div>
 
               <div class="col-6">
-                <h6 class="price-text sub-total-text text-end"> SA {{ $coupon ? $coupon['discount'] : 0 }} </h6>
+                <h6 class="price-text sub-total-text text-end"> SA {{ number_format($coupon ? $coupon['discount'] : 0,
+                  2) }} </h6>
               </div>
               <hr>
               <div class="col-6">
                 <h5>Total Amount</h5>
               </div>
               <div class="col-6">
-                <h5 class="price-text sub-total-text text-end"> SA {{ ($cart['total'] + $shippingCost + $tax) - ($coupon
+                <h5 class="price-text sub-total-text text-end"> SA {{ ($cart['total'] + $shippingCost + $newtax) -
+                  ($coupon
                   ?
                   $coupon['discount'] : 0) }}</h5>
               </div>
