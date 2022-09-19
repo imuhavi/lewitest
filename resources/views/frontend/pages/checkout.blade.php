@@ -66,7 +66,7 @@
                   <label for="phone" class="form-label">Phone Number</label>
 
                   <input type="text" class="form-control" id="inputAddress" name="phone"
-                    value="{{ Auth::user()->phone_1 }}" disabled>
+                    value="{{ Auth::user()->phone }}" disabled>
                 </div>
                 <div class="col-lg-5 col-md-6">
                   <label for="state" class="form-label">State</label>

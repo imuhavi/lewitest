@@ -48,7 +48,7 @@
                 <div class="col-5 col-md-6 col-lg-6">
                   <label for="phone" class="form-label">Phone Number</label>
                   <input type="text" class="form-control" id="inputAddress" name="phone" placeholder="Your Phone Number"
-                    value="{{ old('phone') }}" {{ Auth::user()->phone_1 ? 'disabled' : ''}}>
+                    value="{{ old('phone') }}" {{ Auth::user()->phone ? 'disabled' : ''}}>
                 </div>
 
                 <div class="col-lg-5 col-md-6">

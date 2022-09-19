@@ -160,21 +160,6 @@ Add Subcategory
                   id="icon" width="100" height="100" />
               </div>
 
-              <!-- <div class="form-row">
-                <div class="form-group">
-                  <label for="subcategory_banner">Upload Banner</label>
-                  <input type="file" class="form-control" name="banner" id="subcategory_banner"
-                    onchange="previewImage('banner', this.files)">
-                  @error('banner')
-                  <small class="text-danger">{{ $message }}</small>
-                  @enderror
-                </div>
-
-                <img class="img-thumbnail"
-                  src="{{ ($page == 'create' || !$data->banner) ? asset('backend/assets/default-img/noimage.jpg') : asset('backend/uploads/' . $data->banner) }}"
-                  id="banner" width="100" height="100" />
-              </div> -->
-
               <div class="from-row status">
                 <label>Publication status : </label>
                 <label class="no-s">
@@ -247,22 +232,9 @@ Add Subcategory
                   <td width="10%">:</td>
                   <td class="45%" width="45%">{{ $data->name }}</td>
                 </tr>
-                <tr>
-                  <th width="45%">Banner Photo</th>
-                  <td width="10%">:</td>
-                  <td width="45%">
-                    @if($data->banner)
-                    <img src="{{ asset('/backend/uploads/' . $data->banner) }}" class="thumbnail-img"
-                      alt="Category Banner - {{ $data->banner }}">
-                    @else
-                    <img src="{{ asset('backend/assets/default-img/noimage.jpg') }}" class="thumbnail-img"
-                      alt="Default category Banner">
-                    @endif
-                  </td>
-                </tr>
 
                 <tr>
-                  <th width="45%">Category Icon</th>
+                  <th width="45%">Category Banner</th>
                   <td width="10%">:</td>
                   <td width="45%">
                     @if($data->icon)

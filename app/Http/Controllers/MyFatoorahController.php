@@ -50,7 +50,7 @@ class MyFatoorahController extends Controller
         $user->name,
         $r->payable_amount,
         [
-          'CustomerMobile' => $user->phone_1,
+          'CustomerMobile' => $user->phone,
           'CustomerReference' => $user->id,
           'UserDefinedField' => json_encode($arr),
           "InvoiceItems" => [

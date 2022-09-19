@@ -26,7 +26,7 @@ class SellerController extends Controller
       $search = $request->search;
       $sql->where('name', 'like', '%' . $search  . '%')
         ->orWhere('email', 'like', '%' . $search  . '%')
-        ->orWhere('phone_1', 'like', '%' . $search  . '%')
+        ->orWhere('phone', 'like', '%' . $search  . '%')
         ->orWhere('phone_2', 'like', '%' . $search  . '%');
     }
     $data = $sql->paginate(10);

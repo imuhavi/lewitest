@@ -159,15 +159,6 @@
                 <input name="payment_method" id="MY_FATOORAH" value="MY_FATOORAH" type="radio">
                 <label for="MY_FATOORAH">Pay with Card</label>
               </li>
-              <li>
-                <input name="payment_method" id="CASH_ON_DELIVERY" value="CASH_ON_DELIVERY" checked type="radio">
-                <label for="CASH_ON_DELIVERY">Pay in Cash</label>
-              </li>
-              <!-- <li>
-                <input id="paypal" name="payment_method" type="radio">
-                <label for="paypal">Paypal</label>
-              </li>
-              <li> -->
             </ul>
           </div>
 

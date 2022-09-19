@@ -77,25 +77,12 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <p class="mb-0">Phone(primary)</p>
+                      <p class="mb-0">Phone</p>
                     </div>
                     <div class="col-sm-9">
-                      <input type="tel" name="phone" value="{{ auth()->user()->phone_1 }}" id="phone"
+                      <input type="tel" name="phone" value="{{ auth()->user()->phone }}" id="phone"
                         class="form-control">
                       @error('phone')
-                      <small class="text-danger">{{ $message }}</small>
-                      @enderror
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <p class="mb-0">Mobile(optional)</p>
-                    </div>
-                    <div class="col-sm-9">
-                      <input type="tel" name="mobile" value="{{ auth()->user()->phone_2 }}" id="mobile"
-                        class="form-control">
-                      @error('mobile')
                       <small class="text-danger">{{ $message }}</small>
                       @enderror
                     </div>
@@ -115,7 +102,7 @@
                   </div>
                   <div class="row" style="margin-top: 20px">
                     <div class="col-sm-12 text-right ">
-                      <button class="btn btn-info" type="submit">Update</button>
+                      <button class="btn btn-info" type="submit">Save Change</button>
                     </div>
                   </div>
                 </div>
@@ -168,10 +155,12 @@
                   <button class="btn btn-info" type="submit">Update</button>
                 </div>
               </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
+
     @if ( auth()->user()->role === 'Seller')
     <hr>
     <div class="row">
@@ -182,7 +171,7 @@
           </div>
           <div class="panel-body">
             <div class="card mb-4">
-              <form action="{{ route('updateProfile') }}" method="post" enctype="multipart/form-data">
+              <form action="{{ route('updateShop') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @php
                 $seller = auth()->user()

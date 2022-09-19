@@ -23,8 +23,7 @@ class CreateUsersTable extends Migration
       $table->string('provider')->nullable();
       $table->text('avatar')->nullable();
       $table->enum('role', ['Admin', 'Seller', 'Customer'])->default('Customer');
-      $table->string('phone_1')->nullable();
-      $table->string('phone_2')->nullable();
+      $table->string('phone')->nullable();
       $table->decimal('balance', 10, 2)->default(0.00);
       $table->decimal('due_balance', 10, 2)->default(0.00);
       $table->text('address')->nullable();

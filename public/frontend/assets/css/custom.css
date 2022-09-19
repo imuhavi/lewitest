@@ -180,12 +180,18 @@ nav {
 
 .main_menu li a i {
   color: var(--navlink-color);
+  opacity: 0;
 }
 
-.main_menu li:hover>a {
+.main_menu li:hover>a,
+.main_menu li:hover i {
   text-decoration: none;
+  opacity: 1;
+  transition: all linear 0.5s;
   color: var(--hover-color-main);
 }
+
+
 
 .main_menu .home:hover::after {
   transform: scale(0);

@@ -126,7 +126,7 @@ class CheckoutController extends Controller
       'address' => 'required'
     ]);
 
-    $phone = auth()->user()->phone_1;
+    $phone = auth()->user()->phone;
     DB::beginTransaction();
     try {
       $cart = getCart();

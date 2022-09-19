@@ -20,7 +20,7 @@ class CustomerController extends Controller
       $keyword = $request->search;
       $user->where('name', 'like', '%' . $keyword . '%')
         ->orWhere('email', 'like', '%' . $keyword  . '%')
-        ->orWhere('phone_1', 'like', '%' . $keyword  . '%')
+        ->orWhere('phone', 'like', '%' . $keyword  . '%')
         ->orWhere('phone_2', 'like', '%' . $keyword  . '%');
     }
 

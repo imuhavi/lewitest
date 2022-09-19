@@ -149,6 +149,14 @@
       </li>
       @endif
 
+      @if(routePrefix() === 'customer')
+      <li class="@yield('order_active')"><a href="{{ url( routePrefix() .'/orders') }}"
+          class="waves-effect waves-button"><span class="menu-icon icon-basket-loaded"></span>
+          <p>All Orders</p>
+        </a>
+      </li>
+      @endif
+
     </ul>
   </div><!-- Page Sidebar Inner -->
 </div><!-- Page Sidebar -->

@@ -256,19 +256,6 @@ Add Category
                 </tr>
 
                 <tr>
-                  <th width="45%">Category Icon</th>
-                  <td width="10%">:</td>
-                  <td width="45%">
-                    @if($data->icon)
-                    <img src="{{ asset('/backend/uploads/' . $data->icon) }}" class="thumbnail-img"
-                      alt="Category Banner - {{ $data->icon }}">
-                    @else
-                    <img src="{{ asset('backend/assets/default-img/noimage.jpg') }}" class="thumbnail-img"
-                      alt="Default category Banner">
-                    @endif
-                  </td>
-                </tr>
-                <tr>
                   <th width="45%">Category Url</th>
                   <td width="10%">:</td>
                   <td width="45%">{{ $data->slug }}</td>

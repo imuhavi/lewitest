@@ -296,7 +296,7 @@
               <tr>
                 <th class="45%" width="45%">Seller Phone Number 1</th>
                 <td width="10%">:</td>
-                <td class="45%" width="45%">{{ $data->user->phone_1 }}</td>
+                <td class="45%" width="45%">{{ $data->user->phone }}</td>
               </tr>
 
               <tr>

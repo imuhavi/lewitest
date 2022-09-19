@@ -90,12 +90,8 @@
                 <tr>
                   <th width="45%">Seller Phone Number</th>
                   <td width="10%">:</td>
-                  <td width="45%">@if($data->phone_1)
-                    {{ $data->phone_1 }}
-                    @else
-                    <span class="text-danger">No number added</span>
-                    @endif , @if($data->phone_2)
-                    {{ $data->phone_2 }}
+                  <td width="45%">@if($data->phone)
+                    {{ $data->phone }}
                     @else
                     <span class="text-danger">No number added</span>
                     @endif

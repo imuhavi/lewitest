@@ -69,7 +69,7 @@ active
         </div>
       </div><!-- end col -->
 
-      @else
+      @elseif(auth()->user()->role == 'Seller')
       <div class="col-lg-4 col-md-6">
         <div class="panel-green dashboar-card">
           <div>
@@ -109,6 +109,32 @@ active
           </div>
         </div>
       </div><!-- end col -->
+      @else
+      <div class="col-lg-4 col-md-6">
+        <div class="panel-green dashboar-card">
+          <div>
+            <h3>Total Order</h3>
+            <h2><span data-plugin=" counterup">SA {{ $sales ?? 0 }}</span>
+            </h2>
+          </div>
+          <div>
+            <i class="fa fa-money" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div><!-- end col -->
+
+      <div class="col-lg-4 col-md-6">
+        <div class="panel-blue dashboar-card">
+          <div>
+            <h3>Total Customer</h3>
+            <h2><span data-plugin=" counterup">{{ $customers ?? 0 }}</span>
+            </h2>
+          </div>
+          <div>
+            <i class="fa fa-user"></i>
+          </div>
+        </div>
+      </div><!-- end col -->
       @endif
 
     </div>
@@ -121,18 +147,11 @@ active
         <div class="panel panel-white">
           <div class="panel-body statement-card">
             <div class="statement-card-head">
-              <h3>Latest Order</h3>
+              <h3>Latest Withdrow Request</h3>
               <p><sup>$</sup><b>207,430</b></p>
             </div>
             <table class="table table-responsive">
               <tbody>
-                <tr>
-                  <th scope="row">ORDER ID 4111</th>
-                  <td>johndoe</td>
-                  <td>N1</td>
-                  <td class="text-success"><b>$16</b></td>
-                </tr>
-
                 <tr>
                   <th scope="row">ORDER ID 4111</th>
                   <td>johndoe</td>
@@ -193,7 +212,7 @@ active
                 </tr>
               </thead>
               <tbody>
-                @foreach($orders as $item)
+                @forelse($orders as $item)
                 <tr>
                   <td scope="row">#{{ $item->id }}</td>
                   <td>{{ $item->created_at->format('d-M-y') }}</td>
@@ -221,7 +240,11 @@ active
                   </td>
                   <td class="text-success"><b>SA {{ $item->amount }}</b></td>
                 </tr>
-                @endforeach
+                @empty
+                <tr>
+                  <td>No Product Avaiable</td>
+                </tr>
+                @endforelse
               </tbody>
             </table>
           </div>
@@ -272,18 +295,11 @@ active
         <div class="panel panel-white">
           <div class="panel-body statement-card">
             <div class="statement-card-head">
-              <h3>Latest Order</h3>
+              <h3>Latest Withdrow</h3>
               <p><sup>$</sup><b>207,430</b></p>
             </div>
             <table class="table table-responsive">
               <tbody>
-                <tr>
-                  <th scope="row">ORDER ID 4111</th>
-                  <td>johndoe</td>
-                  <td>N1</td>
-                  <td class="text-success"><b>$16</b></td>
-                </tr>
-
                 <tr>
                   <th scope="row">ORDER ID 4111</th>
                   <td>johndoe</td>

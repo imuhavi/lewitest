@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Shop;
 use App\Models\States;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -23,8 +24,7 @@ class UserProfileController extends Controller
   {
     $request->validate([
       'full_name' => 'required|min:2|max:20',
-      'phone' => 'nullable|min:11|max:17',
-      'mobile' => 'nullable|min:11|max:17',
+      'phone' => 'nullable|min:10|max:10',
       'address' => 'max:200'
     ]);
     try {
@@ -41,8 +41,7 @@ class UserProfileController extends Controller
 
       $user->update([
         'name' => $request->full_name,
-        'phone_1' => $request->phone,
-        'phone_2' => $request->mobile,
+        'phone' => $request->phone,
         'address' => $request->address,
         'avatar' => session('fileName') ?? $user->avatar, // You will get file name for one time use on session after successfully upload
       ]);
@@ -67,6 +66,32 @@ class UserProfileController extends Controller
         return redirect()->back()->with('success', 'Password updated successfully.');
       }
       return redirect()->back()->with('warning', 'Current password does not match.');
+    } catch (\Throwable $th) {
+      return redirect()->back()->with('error', $th->getMessage());
+    }
+  }
+
+  public function updateShop(Request $request)
+  {
+    $request->validate([
+      'shop_name' => 'required'
+    ]);
+    try {
+      $shop = Shop::find(auth()->user()->id);
+      if ($request->file('shop_logo')) {
+        if ($shop->shop_logo) {
+          if (hasFile($shop->shop_logo)) {
+            removeImage($shop->shop_logo);
+          }
+        }
+        uploadImage($request->file('shop_logo'));
+      }
+
+      $shop->update([
+        'shop_name' => $request->shop_name,
+        'shop_logo' => session('fileName') ?? $shop->shop_logo, // You will get file name for one time use on session after successfully upload
+      ]);
+      return redirect()->back()->with('success', 'Shop updated successfully !');
     } catch (\Throwable $th) {
       return redirect()->back()->with('error', $th->getMessage());
     }

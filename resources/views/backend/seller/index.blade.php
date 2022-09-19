@@ -78,8 +78,8 @@ Seller List
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->email }}</td>
                     <td>
-                      @if($item->phone_1)
-                      {{ $item->phone_1 }}
+                      @if($item->phone)
+                      {{ $item->phone }}
                       @else
                       <span class="text-danger">No number added</span>
                       @endif , @if($item->phone_2)

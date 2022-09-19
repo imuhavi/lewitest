@@ -843,7 +843,7 @@ CREATE TABLE `users` (
   `provider` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `avatar` text COLLATE utf8mb4_unicode_ci,
   `role` enum('Admin','Seller','Customer') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Customer',
-  `phone_1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `phone_2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `balance` decimal(10,2) NOT NULL DEFAULT '0.00',
   `due_balance` decimal(10,2) NOT NULL DEFAULT '0.00',
@@ -857,7 +857,7 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `provider_id`, `provider`, `avatar`, `role`, `phone_1`, `phone_2`, `balance`, `due_balance`, `address`, `remember_token`, `created_at`, `updated_at`) VALUES
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `provider_id`, `provider`, `avatar`, `role`, `phone`, `phone_2`, `balance`, `due_balance`, `address`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Farish Ahmmed', '5dots@gmail.com', '2022-08-27 09:41:00', '$2y$10$N0ApoYgIqCgTO9gWaeO61esg5a04F8JTltCdWT6gZWY6TNRgpJlti', NULL, NULL, NULL, 'Admin', NULL, NULL, '0.00', '0.00', NULL, NULL, '2022-08-27 09:41:00', '2022-08-27 09:41:00'),
 (2, 'Rasel Ahmmed', 'rahmmed.info@gmail.com', '2022-08-27 11:06:02', '$2y$10$01NphdqtDGNbAseGMmqLP.ocgN/NC7QOCHqGx6Nn3cfphhpv26Que', NULL, NULL, NULL, 'Seller', '058345439', NULL, '2000.00', '0.00', '3161 King Abdulaziz Rd, Ar Rabiyah, Dammam', NULL, '2022-08-27 10:58:40', '2022-08-31 16:28:44'),
 (3, 'Ahmmed Rasel', 'rahmmed.bd24@gmail.com', '2022-08-28 08:03:12', '$2y$10$c/r5qTDoz04vXLiCLK9wc./Tf/QEvOzjg8AdGM8C3ryGEGYIVAEFq', NULL, NULL, NULL, 'Customer', NULL, NULL, '0.00', '0.00', NULL, NULL, '2022-08-28 08:01:31', '2022-08-28 08:03:12'),

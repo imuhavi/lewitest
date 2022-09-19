@@ -19,8 +19,9 @@ class GeneralSettingTableSeeder extends Seeder
       'app_logo_white' => '',
       'app_logo_black' => '',
       'app_phone' => '0534588012',
-      'shipping_cost' => 30,
+      'shipping_cost' => 00,
       'shipping_days' => 7,
+      'tax' => 00,
       'app_email' => 'info@5dots.sa',
       'app_address' => 'Al-Khobar',
       'app_copyright_text' => 'Copyright © 2022 [5dots.sa] All rights reserved.',
@@ -35,8 +36,8 @@ class GeneralSettingTableSeeder extends Seeder
       'mail_encryption' => 'ssl',
       'mail_address' => 'support@5dots.sa',
       'mail_from_name' => '5dots',
-      'app_id' => 'app-id',
-      'app_secret' => 'app-secret'
+      'app_id' => '714160622894-b6r69hrksht10le06klackjee5q3uaii.apps.googleusercontent.com',
+      'app_secret' => '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'
     ]);
   }
 }

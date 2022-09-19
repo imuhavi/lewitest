@@ -60,6 +60,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
   Route::get('/profile', [UserProfileController::class, 'userProfile'])->name('userProfile');
   Route::post('/update-profile', [UserProfileController::class, 'updateProfile'])->name('updateProfile');
   Route::post('/update-password', [UserProfileController::class, 'updatePassword'])->name('updatePassword');
+  Route::post('/update-shop', [UserProfileController::class, 'updateShop'])->name('updateShop');
   Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
   Route::post('/checkout', [CheckoutController::class, 'coupon'])->name('coupon');
   Route::get('/remove-coupon', [CheckoutController::class, 'removeCoupon']);

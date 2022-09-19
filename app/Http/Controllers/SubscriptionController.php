@@ -38,14 +38,14 @@ class SubscriptionController extends Controller
         'email' => $r->email,
         'password' => bcrypt($r->password),
         'role' => 'Seller',
-        'phone_1' => '05' . $r->phone,
+        'phone' => '05' . $r->phone,
         'address' => $r->address
       ]);
       Auth::login($user);
     } else {
       $user = auth()->user();
       $user->update([
-        'phone_1' => '05' . $r->phone
+        'phone' => '05' . $r->phone
       ]);
     }
 
