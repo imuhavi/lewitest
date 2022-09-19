@@ -82,10 +82,6 @@ Seller List
                       {{ $item->phone }}
                       @else
                       <span class="text-danger">No number added</span>
-                      @endif , @if($item->phone_2)
-                      {{ $item->phone_2 }}
-                      @else
-                      <span class="text-danger">No number added</span>
                       @endif
                     </td>
                     <td>{{ $item->created_at->diffForHumans() }}</td>
