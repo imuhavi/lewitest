@@ -65,3 +65,4 @@
 7. Add to cart with color and size if avaiable of product.
 8. Add to cart check avaiable quanity.
 9. Add to cart check Min / Max quanity.
+10. After Successfully complete order product qty will be decrement total number of order quanity.

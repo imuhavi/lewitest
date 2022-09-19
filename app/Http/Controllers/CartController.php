@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -21,22 +22,30 @@ class CartController extends Controller
       Product er minium Qty and Max Qyt Check korte hobe.
       Jesob product er Color and Size achy oi gulo color and size charar add to cart korte jabe na..
     */
-    foreach ($session as $item) {
-      if ($item['product_id'] == $reqCart['product_id'] && $item['color'] == $reqCart['color'] && $item['size'] == $reqCart['size']) {
-        $item['quantity'] += intval($reqCart['quantity']);
-        $alreadyAdded = true;
+
+    $product = Product::findOrFail($reqCart['product_id']);
+    $qtyReq = intval($reqCart['quantity']);
+    if ($product->quantity >= $qtyReq) {
+      foreach ($session as $item) {
+        if ($item['product_id'] == $reqCart['product_id'] && $item['color'] == $reqCart['color'] && $item['size'] == $reqCart['size']) {
+          $item['quantity'] += intval($reqCart['quantity']);
+          $alreadyAdded = true;
+        }
+        $newCart[] = $item;
       }
-      $newCart[] = $item;
+      if ($alreadyAdded == true) {
+        session()->forget('cart');
+        session()->put('cart', $newCart);
+      } elseif ($alreadyAdded == false) {
+        session()->push('cart', $reqCart);
+      }
+      return response()->json('Product added successfully !');
+    } else {
+      return response()->json('Product Quanity is not Avaiable !');
     }
-    if ($alreadyAdded == true) {
-      session()->forget('cart');
-      session()->put('cart', $newCart);
-    } elseif ($alreadyAdded == false) {
-      session()->push('cart', $reqCart);
-    }
-    return response()->json('Product added successfully !');
   }
 
+  // Get total qty
   public function totalCart()
   {
     $cart = getCart();
@@ -44,6 +53,7 @@ class CartController extends Controller
     return response()->json($total);
   }
 
+  // Remove Cart Item
   public function removeCart($key)
   {
     $session = session('cart');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\ShopCreated;
 use App\Models\Order;
 use App\Models\PaymentInvoice;
+use App\Models\Product;
 use App\Models\SellerTransaction;
 use App\Models\Shop;
 use App\Models\Subscription;
@@ -108,9 +109,7 @@ class MyFatoorahController extends Controller
     $user = User::find($UserDefinedField->user_id);
     if ($user->role == 'Seller') {
       $shop = Shop::where('user_id', $UserDefinedField->user_id)->first();
-      // $shop->update([
-      //   'status' => 'Active'
-      // ]);
+
       // Create a transaction table including user_id, payment method, payment invoice, amount, status.
       SellerTransaction::create([
         'user_id' => $UserDefinedField->user_id,
@@ -123,6 +122,14 @@ class MyFatoorahController extends Controller
       Order::find($UserDefinedField->order_id)->update([
         'is_paid' => 'Paid'
       ]);
+
+      // Prouct Quanity Minus hobe order hoyar por
+      $order = Order::findOrFail($UserDefinedField->order_id);
+      foreach ($order->order_details as $item) {
+        $product = Product::where('id', $item->product_id)->first();
+        $product->decrement('quantity', $item->quantity);
+        $product->save();
+      }
     }
     return true;
   }
