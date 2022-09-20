@@ -219,7 +219,7 @@
                           <p class="mb-0">Shipping Cost</p>
                         </div>
                         <div class="col-sm-9">
-                          <input type="tel" name="shipping_cost" class="form-control"
+                          <input type="number" name="shipping_cost" class="form-control"
                             value="{{ $data->shipping_cost ?? '' }}" id="phone">
                         </div>
                       </div>
@@ -230,7 +230,7 @@
                           <p class="mb-0">Shipping Days</p>
                         </div>
                         <div class="col-sm-9">
-                          <input type="tel" name="shipping_days" class="form-control"
+                          <input type="number" name="shipping_days" class="form-control"
                             value="{{ $data->shipping_days ?? '' }}" id="shipping_days">
                         </div>
                       </div>
@@ -241,7 +241,7 @@
                           <p class="mb-0">Tax</p>
                         </div>
                         <div class="col-sm-9">
-                          <input type="tel" name="tax" class="form-control" value="{{ $data->tax ?? '' }}" id="tax">
+                          <input type="number" name="tax" class="form-control" value="{{ $data->tax ?? '' }}" id="tax">
                         </div>
 
                       </div>

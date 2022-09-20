@@ -57,53 +57,59 @@
   ---------------------------->
 
     <div class="nav-top">
-      <div class="container d-flex justify-content-between align-items-center py-2">
-        <form action="" class="search-box-desk d-flex align-items-center py-1 order-sm-1 order-1 order-lg-0">
-          <div class="search-icon">
-            <img class="img-fluid" src="{{ asset('frontend/assets') }}/images/search-normal.png" alt="search-icon">
-          </div>
-          <input class="search border-0 p-2 ms-1" type="search" id="" placeholder="Search items...">
-        </form>
-        <!-- Company Logo -->
-        <a class="navbar-brand order-0 order-sm-0 order-lg-1" href="{{ route('home') }}"><span class="logo">Five
-            Dots</span></a>
-        <!-- User Action -->
-        <ul class="top-bar-right d-flex align-items-center nav-right order-3 order-sm-3 order-lg-2">
-
-          <li>
-            @auth
-            <a href="#" class="signIn" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><img
-                src="{{ asset('frontend/assets') }}/images/profile.png" alt="user-profile"></a>
-
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <li><a class="dropdown-item" href="{{ url(routePrefix(). '/dashboard') }}">{{
-                  Str::words(Auth::user()->name) }}</a>
-              </li>
-              <li><a class="dropdown-item" href="#" onclick="logout()">Log out</a></li>
-            </ul>
-            <form method="POST" id="logoutForm" action="{{ route('logout') }}">
-              @csrf
+      <div class="container py-2">
+        <div class="d-flex justify-content-around align-items-center">
+          <div class="col-md-4 d-flex  justify-content-start">
+            <form action="" class="search-box-desk d-flex align-items-center py-1 order-sm-1 order-1 order-lg-0">
+              <div class="search-icon">
+                <img class="img-fluid" src="{{ asset('frontend/assets') }}/images/search-normal.png" alt="search-icon">
+              </div>
+              <input class="search border-0 p-2 ms-1" type="search" id="" placeholder="Search items...">
             </form>
+          </div>
+          <div class="col-md-4 d-flex justify-content-center">
+            <a class="navbar-brand" href="{{ route('home') }}"><span class="logo">Five
+                Dots</span></a>
+          </div>
+          <div class="col-md-4 d-flex  justify-content-end">
+            <ul class="top-bar-right d-flex">
+              <li>
+                @auth
+                <a href="#" class="signIn" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><img
+                    src="{{ asset('frontend/assets') }}/images/profile.png" alt="user-profile"></a>
 
-            @else
-            <a href="{{ route('userLogin') }}" class="signIn"><img
-                src="{{ asset('frontend/assets') }}/images/profile.png" alt="user-profile"></a>
-            @endauth
-          </li>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li><a class="dropdown-item" href="{{ url(routePrefix(). '/dashboard') }}">{{
+                      Str::words(Auth::user()->name) }}</a>
+                  </li>
+                  <li><a class="dropdown-item" href="#" onclick="logout()">Log out</a></li>
+                </ul>
+                <form method="POST" id="logoutForm" action="{{ route('logout') }}">
+                  @csrf
+                </form>
 
-          <li><a href="#"><img src="{{ asset('frontend/assets') }}/images/heart.png" alt="user-profile"></a></li>
+                @else
+                <a href="{{ route('userLogin') }}" class="signIn"><img
+                    src="{{ asset('frontend/assets') }}/images/profile.png" alt="user-profile"></a>
+                @endauth
+              </li>
+
+              <li><a href="#"><img src="{{ asset('frontend/assets') }}/images/heart.png" alt="user-profile"></a></li>
 
 
-          <li class="cartParent"><a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-              aria-controls="offcanvasRight"><img src="{{ asset('frontend/assets') }}/images/shopping-cart.png"
-                alt="user-profile"></a>
-            @php
-            $cart = getCart()
-            @endphp
-            <div class="totalCart" id="numberOfItem">{{ count($cart['cart']) }}</div>
-          </li>
+              <li class="cartParent"><a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                  aria-controls="offcanvasRight"><img src="{{ asset('frontend/assets') }}/images/shopping-cart.png"
+                    alt="user-profile"></a>
+                @php
+                $cart = getCart()
+                @endphp
+                <div class="totalCart" id="numberOfItem">{{ count($cart['cart']) }}</div>
+              </li>
 
-        </ul>
+            </ul>
+          </div>
+
+        </div>
       </div>
     </div>
 
