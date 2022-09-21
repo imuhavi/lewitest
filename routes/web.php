@@ -47,7 +47,7 @@ Route::post('add-to-cart', [CartController::class, 'addToCart']);
 Route::get('/remove-cart/{key}', [CartController::class, 'removeCart']);
 Route::view('/get-cart', 'frontend.includes.cart');
 Route::get('/gettotal-cart', [CartController::class, 'totalCart']);
-Route::get('/wishlist', [FrontendController::class, 'wishlist'])->name('wishlist');
+Route::get('/wishlist', [FrontendController::class, 'wishlist'])->name('wishlist'); // Not Work
 Route::get('/subscription', [FrontendController::class, 'subscription'])->name('subscription');
 
 Route::get('/terms-and-condition', [FrontendController::class, 'termsAndCondition'])->name('termsAndCondition');

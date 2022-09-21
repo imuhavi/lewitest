@@ -16,6 +16,7 @@ Route::group(['prefix' => 'seller', 'middleware' => ['auth', 'verified', 'seller
 
 
   Route::get('product-draft', [ProductController::class, 'productDraft'])->name('productDraft');
+  Route::get('product/image/delete/{image}', [ProductController::class, 'destroyImage']);
   Route::get('orders', [DashboardController::class, 'orderList'])->name('orderList');
   Route::get('order-details/{id}', [DashboardController::class, 'showDetails'])->name('showDetails');
   Route::get('customer-list', [DashboardController::class, 'customerList'])->name('customerList');

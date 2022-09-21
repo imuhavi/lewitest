@@ -7,9 +7,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SubscriptionWillBeExpired extends Mailable
+class SubscriptionWillBeExpired extends Mailable implements ShouldQueue
 {
-  use Queueable, SerializesModels;
+  use SerializesModels, Queueable;
 
   /**
    * Create a new message instance.
