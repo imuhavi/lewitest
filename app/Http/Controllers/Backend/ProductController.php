@@ -4,17 +4,16 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attribute;
-use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\Subcategory;
 use App\Models\User;
+use App\Notifications\NotifyCreateProduct;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-
   private $VIEW_PATH = 'backend.products.index';
 
   public function index(Request $request)
@@ -135,6 +134,9 @@ class ProductController extends Controller
         }
       }
 
+      $admin = User::where('role', 'Admin')->first();
+      $admin->notify(new NotifyCreateProduct($product));
+
       return redirect()->back()->with('success', 'Product uploaded successfully.');
     } catch (\Throwable $th) {
       return redirect()->back()->with('error', $th->getMessage());
@@ -206,7 +208,6 @@ class ProductController extends Controller
       } else {
         $data['status'] = 'Inactive';
       }
-      // return $request->is_draft;
 
       if ($request->is_draft == 'on') {
         $data['is_draft'] = 1;

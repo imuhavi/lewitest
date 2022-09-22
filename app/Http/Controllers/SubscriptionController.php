@@ -81,6 +81,7 @@ class SubscriptionController extends Controller
         ]));
       } elseif ($r->payment_method == 'CASH_ON_DELIVERY') {
         event(new Registered($user));
+
         Mail::to($user->email)->send(new ShopCreated($shop));
         return redirect('/seller/dashboard')->with('success', 'Subscribe successfully !');
       }

@@ -124,8 +124,8 @@
                           class="fa fa-eye"></i></a>
                       <a class="btn btn-warning" href="{{ url(routePrefix(). '/product/' . $item->id . '/edit') }}"><i
                           class="fa fa-edit"></i></a>
-                      <!-- <a class="btn btn-danger" href="{{ url(routePrefix(). '/product/delete/' . $item->id) }}"><i
-                          class="fa fa-trash"></i></a> -->
+                      <a class="btn btn-danger" href="{{ url(routePrefix(). '/product/delete/' . $item->id) }}"><i
+                          class="fa fa-trash"></i></a>
                     </td>
                   </tr>
                   @endforeach

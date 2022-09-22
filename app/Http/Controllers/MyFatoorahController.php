@@ -10,6 +10,7 @@ use App\Models\SellerTransaction;
 use App\Models\Shop;
 use App\Models\Subscription;
 use App\Models\User;
+use App\Notifications\NotifySellerRegister;
 use Basel\MyFatoorah\MyFatoorah;
 use Exception;
 use Illuminate\Auth\Events\Registered;
@@ -117,6 +118,9 @@ class MyFatoorahController extends Controller
         'amount' => $PaymentInvoice->InvoiceDisplayValue
       ]);
       event(new Registered($user));
+
+      $admin = User::where('role', 'Admin')->first();
+      $admin->notify(new NotifySellerRegister($shop));
       Mail::to($user->email)->send(new ShopCreated($shop));
     } elseif ($user->role == 'Customer') {
       Order::find($UserDefinedField->order_id)->update([

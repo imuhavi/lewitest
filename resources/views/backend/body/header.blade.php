@@ -288,37 +288,29 @@
               </li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-bell"></i><span
-                    class="badge badge-danger pull-right">3</span></a>
+                    class="badge badge-danger pull-right">{{ count(auth()->user()->notifications)
+                    }}</span></a>
                 <ul class="dropdown-menu title-caret dropdown-lg" role="menu">
                   <li>
-                    <p class="drop-title">You have 3 pending tasks!</p>
+                    <p class="drop-title">All Notification!</p>
                   </li>
                   <li class="dropdown-menu-list slimscroll tasks">
                     <ul class="list-unstyled">
+
+                      @foreach(auth()->user()->notifications->take(5) as $notification )
                       <li>
                         <a href="#">
-                          <div class="task-icon badge badge-success"><i class="fa fa-user"></i></div>
-                          <span class="badge badge-roundless badge-default pull-right">1m</span>
-                          <p class="task-details">New user registered</p>
+                          <div class="task-icon badge badge-danger"><i class="icon-bell"></i></div>
+                          <span class="badge badge-roundless badge-default pull-right">{{
+                            $notification->created_at->shortRelativeDiffForHumans() }}</span>
+                          <p class="task-details">{{ $notification->data['name'] }} New Registed!</p>
                         </a>
                       </li>
-                      <li>
-                        <a href="#">
-                          <div class="task-icon badge badge-primary"><i class="fa fa-refresh"></i></div>
-                          <span class="badge badge-roundless badge-default pull-right">24m</span>
-                          <p class="task-details">3 Charts refreshed</p>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <div class="task-icon badge badge-danger"><i class="fa fa-phone"></i></div>
-                          <span class="badge badge-roundless badge-default pull-right">24m</span>
-                          <p class="task-details">2 Missed calls</p>
-                        </a>
-                      </li>
+                      @endforeach
+
                     </ul>
                   </li>
-                  <li class="drop-all"><a href="#" class="text-center">All Tasks</a></li>
+                  <li class="drop-all"><a href="#" class="text-center">See More</a></li>
                 </ul>
               </li>
               <li class="dropdown">
