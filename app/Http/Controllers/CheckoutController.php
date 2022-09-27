@@ -170,6 +170,9 @@ class CheckoutController extends Controller
                 'color' => ucfirst($item['color']),
                 'size' => ucfirst($item['size'])
               ]);
+              $product->update([
+                'quantity' => $product->quantity - $item['quantity']
+              ]);
             }
           }
           Transaction::create([
@@ -220,6 +223,9 @@ class CheckoutController extends Controller
                 'quantity' => $item['quantity'],
                 'color' => ucfirst($item['color']),
                 'size' => ucfirst($item['size'])
+              ]);
+              $product->update([
+                'quantity' => $product->quantity - $item['quantity']
               ]);
             }
           }

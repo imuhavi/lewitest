@@ -337,47 +337,56 @@
   $(document).ready(function () {
     $('.cart-btn').on('click', function (e) {
       e.preventDefault()
-      $('.cart-btn').hide()
-      $('.cart-btn-hidden').show()
       let productId = $(this).attr('data-productId')
       let quantity = $('.qty-input').val()
       let color = $('.color-active').attr('data-color')
       let size = $('.size-active').attr('data-size')
-      $.ajaxSetup({
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-      })
-      $.ajax({
-        url: "{{ url('add-to-cart') }}",
-        method: 'POST',
-        data: {
-          'product_id': productId,
-          'quantity': quantity,
-          'color': color,
-          'size': size
-        },
-        datType: 'json',
-        success: function (data) {
-          getTotalCart()
-          getCart()
-          const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            icon: 'success',
-            showConfirmButton: false,
-            timer: 2000
-          })
-          if ($.isEmptyObject(data.error)) {
-            Toast.fire({
-              type: 'success',
-              title: data,
-            })
+      let hasColor = document.querySelector(".color");
+      let hasSize = document.querySelector(".size");
+
+      if(hasColor && color == undefined){
+        alert("You have to select a color !");
+      }else if(hasSize && size == undefined){
+        alert("You have to select a color !");
+      }else{
+        $('.cart-btn').hide()
+        $('.cart-btn-hidden').show()
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
           }
-          $('.cart-btn-hidden').hide()
-          $('.cart-btn').show()
-        }
-      })
+        })
+        $.ajax({
+          url: "{{ url('add-to-cart') }}",
+          method: 'POST',
+          data: {
+            'product_id': productId,
+            'quantity': quantity,
+            'color': color,
+            'size': size
+          },
+          datType: 'json',
+          success: function (data) {
+            getTotalCart()
+            getCart()
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 2000
+            })
+            if ($.isEmptyObject(data.error)) {
+              Toast.fire({
+                type: 'success',
+                title: data,
+              })
+            }
+            $('.cart-btn-hidden').hide()
+            $('.cart-btn').show()
+          }
+        })
+      }
     })
   })
 </script>
