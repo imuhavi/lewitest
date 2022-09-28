@@ -229,7 +229,7 @@
               </li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-bell"></i><span
-                    class="badge badge-danger pull-right">{{ count(auth()->user()->notifications)
+                    class="badge badge-danger pull-right">{{ count(auth()->user()->unreadNotifications)
                     }}</span></a>
                 <ul class="dropdown-menu title-caret dropdown-lg" role="menu">
                   <li>
@@ -238,9 +238,9 @@
                   <li class="dropdown-menu-list slimscroll tasks">
                     <ul class="list-unstyled">
 
-                      @foreach(auth()->user()->notifications->take(5) as $notification )
+                      @foreach(auth()->user()->unreadNotifications->take(5) as $notification )
                       <li>
-                        <a href="#">
+                        <a href="{{ route('markAsRead', $notification->id) }}">
                           <div class="task-icon badge badge-danger"><i class="icon-bell"></i></div>
                           @switch($notification)
                           @case($notification->type == 'App\Notifications\NotifySellerRegister')
@@ -255,6 +255,13 @@
                             {{
                             $notification->created_at->shortRelativeDiffForHumans() }}</span>
                           <p class="task-details">Product Created!</p>
+                          @break
+
+                          @case($notification->type == 'App\Notifications\NotifyOrderPlaced')
+                          <span class="badge badge-roundless badge-default pull-right">
+                            {{
+                            $notification->created_at->shortRelativeDiffForHumans() }}</span>
+                          <p class="task-details">Get New Order!</p>
                           @break
                           @endswitch
                         </a>

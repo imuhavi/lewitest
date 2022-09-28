@@ -134,6 +134,16 @@ class DashboardController extends Controller
     return redirect()->back();
   }
 
+
+  public function notificationRead($id)
+  {
+    $admin = auth()->user();
+    if ($id) {
+      $admin->notifications->where('id', $id)->markAsRead();
+    }
+    return back();
+  }
+
   public function download(Request $request)
   {
     $from = date('Y-m-d', strtotime($request->from));

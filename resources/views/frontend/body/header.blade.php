@@ -79,7 +79,8 @@
                     src="{{ asset('frontend/assets') }}/images/profile.png" alt="user-profile"></a>
 
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <li><a class="dropdown-item" href="{{ url(routePrefix(). '/dashboard') }}">{{
+                  <li><a class="dropdown-item"
+                      href="@if(auth()->user()->role == 'Customer') {{ url(routePrefix(). '/orders') }} @else {{ url(routePrefix(). '/dashboard') }} @endif">{{
                       Str::words(Auth::user()->name) }}</a>
                   </li>
                   <li><a class="dropdown-item" href="#" onclick="logout()">Log out</a></li>

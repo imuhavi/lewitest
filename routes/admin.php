@@ -31,6 +31,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']
   # Shop
   Route::get('/shop/{shop}', [ShopController::class, 'statusChange']);
 
+  Route::get('notification-read/{id}', [DashboardController::class, 'notificationRead'])->name('markAsRead');
   # Product
   Route::get('product/delete/{product}', [ProductController::class, 'destroy']);
   Route::get('product/image/delete/{image}', [ProductController::class, 'destroyImage']);
