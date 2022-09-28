@@ -10,8 +10,10 @@ use App\Models\States;
 use App\Models\Transaction;
 use App\Mail\OrderPlaced;
 use App\Models\GeneralSetting;
+use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Models\UserDetail;
+use App\Notifications\NotifyOrderPlaced;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -251,7 +253,11 @@ class CheckoutController extends Controller
 
   public function orderPlaced(Order $order)
   {
+    $admin = User::where('role', 'Admin')->first();
+    $admin->notify(new NotifyOrderPlaced($order));
+
     Mail::to([Auth::user()->email, '5dots.sa@gmail.com'])->send(new OrderPlaced($order));
+
     return view($this->VIEW_PATH . 'invoice', compact('order'));
   }
 }

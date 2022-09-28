@@ -126,14 +126,6 @@ class MyFatoorahController extends Controller
       Order::find($UserDefinedField->order_id)->update([
         'is_paid' => 'Paid'
       ]);
-
-      // Prouct Quanity Minus hobe order hoyar por
-      $order = Order::findOrFail($UserDefinedField->order_id);
-      foreach ($order->order_details as $item) {
-        $product = Product::where('id', $item->product_id)->first();
-        $product->decrement('quantity', $item->quantity);
-        $product->save();
-      }
     }
     return true;
   }

@@ -211,79 +211,20 @@
               </li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-envelope-open"></i><span
-                    class="badge badge-danger pull-right">6</span></a>
+                    class="badge badge-danger pull-right">0</span></a>
                 <ul class="dropdown-menu title-caret dropdown-lg" role="menu">
                   <li>
-                    <p class="drop-title">You have 6 new messages!</p>
+                    <p class="drop-title">You have 0 new messages!</p>
                   </li>
                   <li class="dropdown-menu-list slimscroll messages">
                     <ul class="list-unstyled">
                       <li>
                         <a href="#">
-                          <div class="msg-img">
-                            <div class="online on"></div><img class="img-circle" src="assets/images/avatar2.png" alt="">
-                          </div>
-                          <p class="msg-name">Michael Lewis</p>
-                          <p class="msg-text">Yeah science!</p>
-                          <p class="msg-time">3 minutes ago</p>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <div class="msg-img">
-                            <div class="online off"></div><img class="img-circle" src="assets/images/avatar4.png"
-                              alt="">
-                          </div>
-                          <p class="msg-name">John Doe</p>
-                          <p class="msg-text">Hi Nick</p>
-                          <p class="msg-time">8 minutes ago</p>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <div class="msg-img">
-                            <div class="online off"></div><img class="img-circle" src="assets/images/avatar3.png"
-                              alt="">
-                          </div>
-                          <p class="msg-name">Emma Green</p>
-                          <p class="msg-text">Let's meet!</p>
-                          <p class="msg-time">56 minutes ago</p>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <div class="msg-img">
-                            <div class="online on"></div><img class="img-circle" src="assets/images/avatar5.png" alt="">
-                          </div>
-                          <p class="msg-name">Nick Doe</p>
-                          <p class="msg-text">Nice to meet you</p>
-                          <p class="msg-time">2 hours ago</p>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <div class="msg-img">
-                            <div class="online on"></div><img class="img-circle" src="assets/images/avatar2.png" alt="">
-                          </div>
-                          <p class="msg-name">Michael Lewis</p>
-                          <p class="msg-text">Yeah science!</p>
-                          <p class="msg-time">5 hours ago</p>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <div class="msg-img">
-                            <div class="online off"></div><img class="img-circle" src="assets/images/avatar4.png"
-                              alt="">
-                          </div>
-                          <p class="msg-name">John Doe</p>
-                          <p class="msg-text">Hi Nick</p>
-                          <p class="msg-time">9 hours ago</p>
+                          <p class="msg-name">No Message Avaiable</p>
                         </a>
                       </li>
                     </ul>
                   </li>
-                  <li class="drop-all"><a href="#" class="text-center">All Messages</a></li>
                 </ul>
               </li>
               <li class="dropdown">
@@ -292,7 +233,7 @@
                     }}</span></a>
                 <ul class="dropdown-menu title-caret dropdown-lg" role="menu">
                   <li>
-                    <p class="drop-title">All Notification!</p>
+                    <p class="drop-title">Latest Notification!</p>
                   </li>
                   <li class="dropdown-menu-list slimscroll tasks">
                     <ul class="list-unstyled">
@@ -301,16 +242,28 @@
                       <li>
                         <a href="#">
                           <div class="task-icon badge badge-danger"><i class="icon-bell"></i></div>
-                          <span class="badge badge-roundless badge-default pull-right">{{
+                          @switch($notification)
+                          @case($notification->type == 'App\Notifications\NotifySellerRegister')
+                          <span class="badge badge-roundless badge-default pull-right">
+
+                            {{
                             $notification->created_at->shortRelativeDiffForHumans() }}</span>
-                          <p class="task-details">{{ $notification->data['name'] }} New Registed!</p>
+                          <p class="task-details">Seller Registed!</p>
+                          @break
+                          @case($notification->type == 'App\Notifications\NotifyCreateProduct')
+                          <span class="badge badge-roundless badge-default pull-right">
+                            {{
+                            $notification->created_at->shortRelativeDiffForHumans() }}</span>
+                          <p class="task-details">Product Created!</p>
+                          @break
+                          @endswitch
                         </a>
                       </li>
                       @endforeach
 
                     </ul>
                   </li>
-                  <li class="drop-all"><a href="#" class="text-center">See More</a></li>
+
                 </ul>
               </li>
               <li class="dropdown">

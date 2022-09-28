@@ -91,7 +91,8 @@
               <p>Color: </p>
               <ul class="d-flex">
                 @foreach($colors as $item)
-                <li><a href="" onclick="return false" title="{{ $item }}" data-color="{{ $item }}" class="color">{{
+                <li><a href="" title="double click to deselect" onclick="return false" title="{{ $item }}"
+                    data-color="{{ $item }}" class="color">{{
                     strtoupper($item) }}</a></li>
                 @endforeach
               </ul>
@@ -103,7 +104,8 @@
               <p>Size: </p>
               <ul class="d-flex">
                 @foreach($sizes as $item)
-                <li><a href="" onclick="return false" class="size" data-size="{{ $item }}">{{ ucfirst($item) }}</a></li>
+                <li><a href="" title="double click to deselect" onclick="return false" class="size"
+                    data-size="{{ $item }}">{{ ucfirst($item) }}</a></li>
                 @endforeach
               </ul>
             </div>
@@ -122,25 +124,10 @@
             </div>
 
             <p class="category">Category: {{ $product->subcategory->name }}</p>
-            <!-- <div class="d-flex share-product">
-              <p>Share This Item:</p>
-              <ul class="d-flex">
-                <li class="me-3"><a href="#"><i class="fab fa-twitter"></i></a></li>
-                <li class="me-3"><a href="#"><i class="fab fa-instagram"></i></li>
-                <li class="me-3"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-              </ul>
-            </div> -->
+
 
             <p class="category">Available Quantity: {{ $product->quantity }} {{ $product->unit }}</p>
 
-
-
-            <!-- <div class="installment-payment d-flex border justify-content-between align-items-center">
-              <p>or 4 interest-free payment of <br> 300 AED. <a href="#">Learn More</a></p>
-
-              <a href="#"><img class="img-fluid" src="{{ asset('frontend/assets/') }}/images/fitbit-logo.png"
-                  alt=""></a>
-            </div> -->
           </div>
         </div>
       </div>
@@ -322,14 +309,24 @@
 <script>
   // Actice Attributes
   $(document).ready(function () {
+
     $('.color').click(function () {
       $('li a').removeClass("color-active");
       $(this).addClass("color-active");
     });
 
+    $('.color').dblclick(function () {
+      $(this).removeClass("color-active");
+    })
+
+
     $('.size').click(function () {
       $('li a').removeClass("size-active");
       $(this).addClass("size-active");
+    })
+
+    $('.size').dblclick(function () {
+      $(this).removeClass("size-active");
     })
   });
 
@@ -344,11 +341,34 @@
       let hasColor = document.querySelector(".color");
       let hasSize = document.querySelector(".size");
 
-      if(hasColor && color == undefined){
-        alert("You have to select a color !");
-      }else if(hasSize && size == undefined){
-        alert("You have to select a color !");
-      }else{
+      if (hasColor && color == undefined) {
+        let title = "You have to select a Color !";
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          icon: 'warning',
+          showConfirmButton: false,
+          timer: 2000
+        })
+        Toast.fire({
+          type: 'warning',
+          title: title,
+        })
+
+      } else if (hasSize && size == undefined) {
+        let title = "You have to select a Size !";
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          icon: 'warning',
+          showConfirmButton: false,
+          timer: 2000
+        })
+        Toast.fire({
+          type: 'warning',
+          title: title,
+        })
+      } else {
         $('.cart-btn').hide()
         $('.cart-btn-hidden').show()
         $.ajaxSetup({

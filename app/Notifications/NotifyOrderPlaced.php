@@ -7,19 +7,19 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NotifySellerRegister extends Notification
+class NotifyOrderPlaced extends Notification implements ShouldQueue
 {
   use Queueable;
 
-  public $shop;
   /**
    * Create a new notification instance.
    *
    * @return void
    */
-  public function __construct($shop)
+  public $order;
+  public function __construct($order)
   {
-    $this->shop = $shop;
+    $this->order = $order;
   }
 
   /**
@@ -33,7 +33,6 @@ class NotifySellerRegister extends Notification
     return ['database'];
   }
 
-
   /**
    * Get the array representation of the notification.
    *
@@ -43,7 +42,7 @@ class NotifySellerRegister extends Notification
   public function toArray($notifiable)
   {
     return [
-      'user_id' => $this->shop['id']
+      'order_id' => $this->order['id']
     ];
   }
 }
