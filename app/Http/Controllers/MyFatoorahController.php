@@ -42,6 +42,7 @@ class MyFatoorahController extends Controller
       $arr = [
         "user_id" => $user->id,
         "order_id" => $r->order_id,
+        "user_role" => $user->role,
         "subscription_id" => null,
         "paid_amount" => $r->payable_amount
       ];
@@ -75,8 +76,14 @@ class MyFatoorahController extends Controller
   {
     if (array_key_exists('paymentId', $request->all())) {
       $result = $this->myfatoorah->getPaymentStatus('paymentId', $request->paymentId);
+
       if ($result && $result['IsSuccess'] == true && $result['Data']['InvoiceStatus'] == "Paid") {
         $this->createInvoice($result['Data']);
+        $UserDefinedField = json_decode($result['Data']['UserDefinedField']);
+
+        if ($UserDefinedField->user_role == 'Customer') {
+          return redirect('/order-placed/' . $UserDefinedField->order_id);
+        }
         return redirect('/seller/dashboard')->with('success', 'Subscribe successfully !');
         // echo "success payment";
       }

@@ -230,10 +230,11 @@
                 <h5>Total Amount</h5>
               </div>
               <div class="col-6">
-                <h5 class="price-text sub-total-text text-end"> SA {{ ($cart['total'] + $shippingCost + $newtax) -
+                <h5 class="price-text sub-total-text text-end"> SA {{ number_format(($cart['total'] + $shippingCost +
+                  $newtax) -
                   ($coupon
                   ?
-                  $coupon['discount'] : 0) }}</h5>
+                  $coupon['discount'] : 0), 2) }}</h5>
               </div>
             </div>
           </div>

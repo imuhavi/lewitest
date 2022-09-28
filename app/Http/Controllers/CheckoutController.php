@@ -148,13 +148,14 @@ class CheckoutController extends Controller
         );
 
         $shipping = GeneralSetting::first();
+        $tax = $shipping->tax / 100;
         if (!empty($shipping)) {
           $order = Order::create([
             'user_id' => auth()->id(),
             'coupon_id' => $coupon ? $coupon['coupon_id'] : null,
             'coupon_discount_amount' => $coupon ? $coupon['discount'] : 0,
             'shipping_cost' => $shipping->shipping_cost ?? 0,
-            'tax' => $cart['total'] * 0.15,
+            'tax' => $cart['total'] * $tax,
             'amount' => $cart['total'],
             'payment_method' => 'COD',
             'note' => $request->note
@@ -202,13 +203,14 @@ class CheckoutController extends Controller
         );
 
         $shipping = GeneralSetting::first();
+        $tax = $shipping->tax / 100;
         if (!empty($shipping)) {
           $order = Order::create([
             'user_id' => auth()->id(),
             'coupon_id' => $coupon ? $coupon['coupon_id'] : null,
             'coupon_discount_amount' => $coupon ? $coupon['discount'] : 0,
             'shipping_cost' => $shipping->shipping_cost ?? 0,
-            'tax' => $cart['total'] * 0.15,
+            'tax' => $cart['total'] * $tax,
             'amount' => $cart['total'],
             'payment_method' => 'Card',
             'note' => $request->note
@@ -253,11 +255,15 @@ class CheckoutController extends Controller
 
   public function orderPlaced(Order $order)
   {
+    $setting = GeneralSetting::first();
+    $shippingCost = $setting->shipping_cost;
+    $tax = $setting->tax;
+
     $admin = User::where('role', 'Admin')->first();
     $admin->notify(new NotifyOrderPlaced($order));
 
     Mail::to([Auth::user()->email, '5dots.sa@gmail.com'])->send(new OrderPlaced($order));
 
-    return view($this->VIEW_PATH . 'invoice', compact('order'));
+    return view($this->VIEW_PATH . 'invoice', compact('order', 'shippingCost', 'tax'));
   }
 }

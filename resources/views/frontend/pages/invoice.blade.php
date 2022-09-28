@@ -161,13 +161,10 @@
               @php
               $payment_method = $order->payment_method == 'COD' ? 'Cash on delivery' : 'Online'
               @endphp
-              <p>Payment Method: {{ $payment_method }}</p>
+              <p>Payment Method: {{ $order->payment_method }}</p>
             </li>
             <li>
-              @php
-              $payment_status = $order->status == 'Complete' ? 'Paid' : 'Unpaid'
-              @endphp
-              <p>Payment Status: {{ $payment_status }}</p>
+              <p>Payment Status: {{ $order->is_paid }}</p>
             </li>
           </ul>
         </div>
@@ -235,7 +232,7 @@
             @endif
 
             <tr>
-              <td style="width:180px; text-align: left;">Tax (15%)</td>
+              <td style="width:180px; text-align: left;">Tax ({{ $tax }}%)</td>
               <td><span>{{ number_format($order->tax, 2) }}</span></td>
             </tr>
             <tr>
