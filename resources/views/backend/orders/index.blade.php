@@ -310,7 +310,7 @@
                         Phone: +966 53 458 8012
                       </td>
                       <td class="text-right" style="border-top: none !important;">
-                        <h2 class="m-b-md m-t-xxs">Invoice: #{{ $singleOrder->order_id }}</h2>
+                        <h2 class="m-b-md m-t-xxs">Invoice: #{{ $singleOrder->id }}</h2>
                         <a href="{{ url( routePrefix() .'/orders') }}" class="btn btn-info btn-sm" id="button">Go
                           back</a>
                         <button type="button" class="btn btn-default" onclick="invoicePrint()"><i
@@ -320,12 +320,15 @@
                     </tr>
                     <tr>
                       <td>
-                        <strong class="m-b-md">Shipping Address</strong><br>
+                        <strong class="m-b-md">Customer Details</strong><br>
                         @if(auth()->user()->role == 'Admin' || auth()->user()->role == 'Customer')
 
                         @if($singleOrder->user && $singleOrder->user->userDetail)
-                        <p>{{ $singleOrder->user->userDetail->postal_code }}, {{
-                          $singleOrder->user->userDetail->address }},<br> {{
+                        <b>Name:</b> {{ $singleOrder->user->name }}<br>
+                        <b>Email:</b> {{ $singleOrder->user->email }}<br>
+                        <b>Phone:</b> {{ $singleOrder->user->userDetail->phone }}<br>
+                        <p><b>Shipping: </b>{{ $singleOrder->user->userDetail->postal_code }}, {{
+                          $singleOrder->user->userDetail->address }}, {{
                           $singleOrder->city($singleOrder->user->userDetail->city_id) }}, <br>{{
                           $singleOrder->state($singleOrder->user->userDetail->state_id) }}.
                         </p>
@@ -335,7 +338,11 @@
 
                         @else
 
-                        <p>
+                        $singleOrder->user->userDetail)
+                        <b>Name:</b> {{ $singleOrder->user->name }}<br>
+                        <b>Email:</b> {{ $singleOrder->user->email }}<br>
+                        <b>Phone:</b> {{ $singleOrder->user->userDetail->phone }}<br>
+                        <p><b>Shipping: </b>
                           {{ $singleOrder->order->user->userDetail->postal_code }},
                           {{ $singleOrder->order->user->userDetail->address }}<br>
                           {{ $singleOrder->order->city($singleOrder->order->user->userDetail->city_id) }}<br>
@@ -347,13 +354,13 @@
 
 
                       <td class="text-right">
-                        <strong class="m-b-md">Customer Details</strong><br>
+                        <strong class="m-b-md">Order Details</strong><br>
                         @if(auth()->user()->role == 'Admin' || auth()->user()->role == 'Customer')
                         <p>
-                          {{ $singleOrder->user->name }}<br>
-                          {{ $singleOrder->user->email }}<br>
-                          {{ $singleOrder->user->userDetail->phone }}<br>
-
+                          <b>Date: </b>{{ $singleOrder->created_at->format('d/m/y') }}<br><b>Order Status: </b>
+                          {{ $singleOrder->status }}<br>
+                          <b>Payment Method: </b> {{ $singleOrder->payment_method }}<br>
+                          <b>Payment Status: </b> {{ $singleOrder->is_paid }}
                         </p>
                         @else
 
