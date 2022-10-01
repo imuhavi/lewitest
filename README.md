@@ -57,7 +57,7 @@
 
 1. Seller Dashboard a (sales isuse)
 2. Withdraw(important)
-3. Payment method based on product.(important)
+<!-- 3. Payment method based on product.(important) -->
 4. Home page search.
 5. Best Selling Product Seller.
 

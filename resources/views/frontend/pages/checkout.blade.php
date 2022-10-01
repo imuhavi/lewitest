@@ -120,13 +120,15 @@
 
               <ul class="payment-method-list">
                 <li>
-                  <input name="payment_method" id="card" type="radio" value="Card">
+                  <input name="payment_method" id="card" type="radio" value="Card" checked>
                   <label for="card">Pay Card</label>
                 </li>
-                <!-- <li>
-                  <input name="payment_method" id="delivery" type="radio" value="COD" checked>
-                  <label for="delivery">Cash on Delivery</label>
-                </li> -->
+                @if($is_cash_available != 0)
+                  <li>
+                    <input name="payment_method" id="delivery" type="radio" value="COD" checked>
+                    <label for="delivery">Cash on Delivery</label>
+                  </li>
+                @endif
               </ul>
             </div>
           </form>
