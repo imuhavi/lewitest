@@ -31,7 +31,10 @@ class CheckoutController extends Controller
       $setting = GeneralSetting::first();
       $shippingCost = $setting->shipping_cost;
       $tax = $setting->tax;
-      return view($this->VIEW_PATH . 'checkout', compact('states', 'shippingCost', 'tax'));
+      $is_cash_available = count(array_filter(getCart()['cart'], function ($item){
+        return $item['is_cash_available'] == 1;
+      }));
+      return view($this->VIEW_PATH . 'checkout', compact('states', 'shippingCost', 'tax', 'is_cash_available'));
     }
     return redirect('/');
   }

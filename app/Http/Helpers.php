@@ -101,7 +101,8 @@ if (!function_exists('getCart')) {
           'discount' => $item['quantity'] * $discount,
           'quantity' => $item['quantity'],
           'color' => $item['color'],
-          'size' => $item['size']
+          'size' => $item['size'],
+          'is_cash_available' => $product->isCashAvailable
         ];
         $data['total'] += (($product->price * $item['quantity']) - ($item['quantity'] * $discount));
       }
