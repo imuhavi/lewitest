@@ -120,7 +120,7 @@
           <li class="@yield('subseller2')"><a href="{{ url(routePrefix() .'/withdraw') }}">Withdraws</a></li>
         </ul>
       </li>
-      <li class="droplink @yield('mail-box')"><a href="#" class="waves-effect waves-button"><span
+      <!-- <li class="droplink @yield('mail-box')"><a href="#" class="waves-effect waves-button"><span
             class="menu-icon icon-envelope-open"></span>
           <p>Mailbox</p><span class="arrow"></span>
         </a>
@@ -128,7 +128,7 @@
           <li class="@yield('inbox')"><a href="{{ url(routePrefix().'/mail') }}">Inbox</a></li>
           <li class="@yield('compose')"><a href="{{ url(routePrefix(). '/compose') }}">Compose</a></li>
         </ul>
-      </li>
+      </li> -->
 
       <li class="@yield('settings_active')"><a href="{{ url( routePrefix() .'/settings') }}"
           class="waves-effect waves-button"><span class="menu-icon icon-settings"></span>

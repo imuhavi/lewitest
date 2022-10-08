@@ -30,7 +30,7 @@ class SellerController extends Controller
         ->orWhere('phone_2', 'like', '%' . $search  . '%');
     }
     $data = $sql->paginate(10);
-    return view($this->VIEW_PATH . '.index', compact('page', 'data', 'search'));
+    return view($this->VIEW_PATH . 'index', compact('page', 'data', 'search'));
   }
 
   public function sellerShow($id)
