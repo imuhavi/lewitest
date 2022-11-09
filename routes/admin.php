@@ -10,9 +10,9 @@ use App\Http\Controllers\Backend\MailboxController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SellerController;
 use App\Http\Controllers\Backend\GeneralSettingController;
-use App\Http\Controllers\Backend\SocialConfigController;
 use App\Http\Controllers\Backend\SubcategoryController;
 use App\Http\Controllers\Backend\AttributesController;
+use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\ShopController;
 
@@ -78,4 +78,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']
   Route::patch('/sliders/update/{slider}', [SliderController::class, 'update'])->name('sliderUpdate');
   Route::get('/sliders/destroy/{slider}', [SliderController::class, 'destroy'])->name('sliderDestroy');
   Route::get('/sliders/status/{slider}', [SliderController::class, 'statusChange'])->name('sliderStatus');
+
+  // Banner
+  Route::get('/banner', [BannerController::class, 'banner'])->name('banner');
+  Route::put('/banner-update-one', [BannerController::class, 'bannerOne'])->name('banner.update.one');
+  Route::put('/banner-update-two', [BannerController::class, 'bannerTwo'])->name('banner.update.two');
+  Route::put('/banner-update-three', [BannerController::class, 'bannerThree'])->name('banner.update.three');
 });

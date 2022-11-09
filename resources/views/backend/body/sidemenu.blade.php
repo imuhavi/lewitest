@@ -15,6 +15,12 @@
         </a>
       </li>
 
+      <li class="@yield('banner_active')"><a href="{{ url( routePrefix() . '/banner') }}"
+          class="waves-effect waves-button"><span class="menu-icon icon-picture"></span>
+          <p>Manage Banner</p>
+        </a>
+      </li>
+
       <li class="@yield('category_active')"><a href="{{ url( routePrefix() . '/category') }}"
           class="waves-effect waves-button"><span class="menu-icon icon-list"></span>
           <p>Category</p>

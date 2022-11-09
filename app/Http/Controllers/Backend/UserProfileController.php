@@ -7,17 +7,56 @@ use App\Models\Shop;
 use App\Models\States;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class UserProfileController extends Controller
 {
 
   private $VIEW_PATH = 'backend.profile';
+  private $SELLER_PATH = 'backend.seller.seller-profile';
 
   public function userProfile()
   {
     $states = States::get();
     return view($this->VIEW_PATH, compact('states'));
+  }
+
+
+  public function sellerProfile($id)
+  {
+    $states = States::get();
+    $user = User::where('id', $id)->first();
+    return view($this->SELLER_PATH, compact('states', 'user'));
+  }
+
+  function updateSeller(Request $request)
+  {
+    $request->validate([
+      'full_name' => 'required|min:2|max:20',
+      'phone' => 'nullable|min:10|max:10',
+      'address' => 'max:200'
+    ]);
+
+    try {
+      $user = User::findOrFail($request->id);
+      if ($request->file('profile_photo')) {
+        if ($user->avatar) {
+          if (hasFile($user->avatar)) {
+            removeImage($user->avatar);
+          }
+        }
+        uploadImage($request->file('profile_photo'));
+      }
+
+      $user->update([
+        'name' => $request->full_name,
+        'phone' => $request->phone,
+        'address' => $request->address,
+        'avatar' => session('fileName') ?? $user->avatar, // You will get file name for one time use on session after successfully upload
+      ]);
+      return redirect()->back()->with('success', 'Profile updated successfully !');
+    } catch (\Throwable $th) {
+      return redirect()->back()->with('error', $th->getMessage());
+    }
   }
 
   public function updateProfile(Request $request)

@@ -53,8 +53,8 @@ Slider Create
                       <p class="mb-0">Sub Title</p>
                     </div>
                     <div class="col-sm-9">
-                      <input type="text" name="sub_title" placeholder="Enter a Sub title" id="title"
-                        class="form-control">
+                      <input type="text" name="sub_title" value="{{ old('sub_title') }}" placeholder="Enter a Sub title"
+                        id="title" class="form-control">
                       @error('title')
                       <small class="text-danger">{{ $message }}</small>
                       @enderror
@@ -66,7 +66,8 @@ Slider Create
                       <p class="mb-0">Title</p>
                     </div>
                     <div class="col-sm-9">
-                      <input type="text" name="title" placeholder="Enter a title" id="title" class="form-control">
+                      <input type="text" name="title" placeholder="Enter a title" id="title" value="{{ old('title') }}"
+                        class="form-control">
                       @error('title')
                       <small class="text-danger">{{ $message }}</small>
                       @enderror
@@ -105,7 +106,7 @@ Slider Create
   </div>
   <!-- Main Wrapper -->
   <div class="page-footer">
-    <p class="no-s">Made with <i class="fa fa-heart"></i> by stacks</p>
+    <p class="no-s">Made with <i class="fa fa-heart"></i> by 5dtos</p>
   </div>
 </div>
 <!-- Page Inner -->

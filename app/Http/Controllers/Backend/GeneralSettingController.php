@@ -40,6 +40,7 @@ class GeneralSettingController extends Controller
         uploadImage($request->file('app_logo_white'));
         $data->app_logo_white = session('fileName');
       }
+
       if ($request->file('app_logo_black')) {
         if (hasFile($data->app_logo_black)) {
           removeImage($data->app_logo_black);

@@ -86,15 +86,17 @@ Seller List
                     </td>
                     <td>{{ $item->created_at->diffForHumans() }}</td>
                     <td style="text-align: center">
-                      <a class="btn btn-sm btn-info" href="{{ url( routePrefix() . '/seller/' . $item->id) }}">
+                      <a class="btn btn-sm btn-info" title="View Profile"
+                        href="{{ url( routePrefix() . '/seller/' . $item->id) }}">
                         <i class="fa fa-eye"></i>
                       </a>
 
-                      <a class="btn btn-sm btn-warning" id="sendMail" href="{{ route('sendAlert', $item->id) }}"
-                        onclick="handleSubmit()"><i class="icon-envelope"></i></a>
+                      <a class="btn btn-sm btn-danger" title="Edit Profile"
+                        href="{{ route('sellerProfile', $item->id) }}">
+                        <i class="icon icon-note"></i>
+                      </a>
 
-                      <a class="btn btn-sm btn-danger" id="loading" style="display: none;"
-                        href="{{ route('sendAlert', $item->id) }}" onclick="handleSubmit()"><i class="icon-ban"></i></a>
+
                     </td>
                     <td style="text-align: center">
                       @if($item->shop && (strtotime('+' . $item->shop->subscription->days . ' day',
@@ -104,6 +106,13 @@ Seller List
                         <i class="icon-check"></i>
                       </a>
                       @endif
+
+                      <a title="send mail" class="btn btn-sm btn-warning" id="sendMail"
+                        href="{{ route('sendAlert', $item->id) }}" onclick="handleSubmit()"><i
+                          class="icon-envelope"></i></a>
+
+                      <a class="btn btn-sm btn-danger" id="loading" style="display: none;"
+                        href="{{ route('sendAlert', $item->id) }}" onclick="handleSubmit()"><i class="icon-ban"></i></a>
                     </td>
                   </tr>
                   @empty

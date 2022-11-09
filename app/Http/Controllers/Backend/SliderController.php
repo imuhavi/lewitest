@@ -34,6 +34,7 @@ class SliderController extends Controller
     if ($request->file('banner')) {
       uploadImage($request->file('banner'), 1024);
     }
+
     Slider::create([
       'title' => $request->title,
       'sub_title' => $request->sub_title,

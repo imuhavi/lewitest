@@ -58,7 +58,12 @@ Route::get('/seller-register/{subscription}', [FrontendController::class, 'selle
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
   Route::get('/profile', [UserProfileController::class, 'userProfile'])->name('userProfile');
+  Route::get('/seller-profile/{id}', [UserProfileController::class, 'sellerProfile'])->name('sellerProfile');
+
   Route::post('/update-profile', [UserProfileController::class, 'updateProfile'])->name('updateProfile');
+
+  Route::put('/update-seller', [UserProfileController::class, 'updateSeller'])->name('updateSeller');
+
   Route::post('/update-password', [UserProfileController::class, 'updatePassword'])->name('updatePassword');
   Route::post('/update-shop', [UserProfileController::class, 'updateShop'])->name('updateShop');
   Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');

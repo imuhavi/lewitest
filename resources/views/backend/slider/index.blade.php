@@ -1,11 +1,11 @@
 @extends('backend.master')
 @section('slider_active') active open @endsection
 @section('meta_title')
-  Slider list
+Slider list
 @endsection
 
 @section('meta_description')
-  Slider List
+Slider List
 @endsection
 
 @section('slider') active @endsection @section('content')
@@ -28,7 +28,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="panel panel-white">
-        <a href="{{ url(routePrefix(). '/sliders/create') }}" class="btn btn-info btn-sm">Add Slider</a>
+          <a href="{{ url(routePrefix(). '/sliders/create') }}" class="btn btn-info btn-sm">Add Slider</a>
           <div class="panel-body">
             <div class="table-responsive">
               <table id="" class="table table-bordered" style="width: 100%; cellspacing: 0">
@@ -49,24 +49,25 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $item->title }}</td>
                     <td>
-                        <img style="width: 200px; height: auto;" 
-                         src="{{ asset('backend/uploads/' . $item->banner) }}"
-                         alt="Slider Banner Image">
+                      <img style="width: 200px; height: auto;" src="{{ asset('backend/uploads/' . $item->banner) }}"
+                        alt="Slider Banner Image">
                     </td>
                     <td>{{ $item->category->name }}</td>
                     <td>
-                      <span class="badge badge-pill badge-{{ ($item->status == 'Active') ? 'success' : 'warning' }}">{{ $item->status }}</span>
+                      <span class="badge badge-pill badge-{{ ($item->status == 'Active') ? 'success' : 'warning' }}">{{
+                        $item->status }}</span>
                     </td>
                     <td>
-                        <a class="btn btn-sm btn-{{ ($item->status == 'Active') ? 'warning' : 'success' }}" href="{{ url( routePrefix() . '/sliders/status/' . $item->id) }}"><i
-                            class="fa fa-arrow-{{ ($item->status == 'Active') ? 'down' : 'up' }}"></i>
-                        </a>
-                        <a class="btn btn-sm btn-info" href="{{ url( routePrefix() . '/sliders/edit/' . $item->id) }}"><i
-                            class="fa fa-edit"></i>
-                        </a>
-                        <a class="btn btn-sm btn-danger" href="{{ url( routePrefix() . '/sliders/destroy/' . $item->id) }}"><i
-                            class="fa fa-trash"></i>
-                        </a>
+                      <a class="btn btn-sm btn-{{ ($item->status == 'Active') ? 'warning' : 'success' }}"
+                        href="{{ url( routePrefix() . '/sliders/status/' . $item->id) }}"><i
+                          class="fa fa-arrow-{{ ($item->status == 'Active') ? 'down' : 'up' }}"></i>
+                      </a>
+                      <a class="btn btn-sm btn-info" href="{{ url( routePrefix() . '/sliders/edit/' . $item->id) }}"><i
+                          class="fa fa-edit"></i>
+                      </a>
+                      <a class="btn btn-sm btn-danger"
+                        href="{{ url( routePrefix() . '/sliders/destroy/' . $item->id) }}"><i class="fa fa-trash"></i>
+                      </a>
                     </td>
                   </tr>
                   @empty
@@ -87,7 +88,7 @@
   </div>
   <!-- Main Wrapper -->
   <div class="page-footer">
-    <p class="no-s">Made with <i class="fa fa-heart"></i> by stacks</p>
+    <p class="no-s">Made with <i class="fa fa-heart"></i> by 5dots</p>
   </div>
 </div>
 <!-- Page Inner -->
