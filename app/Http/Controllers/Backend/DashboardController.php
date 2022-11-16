@@ -124,6 +124,15 @@ class DashboardController extends Controller
 
   public function updateStatus(Order $order, $status)
   {
+    if ($status == 'Complete') {
+      foreach ($order->order_details as $item) {
+        $seller = User::findOrFail($item->user_id);
+        $seller->update([
+          'balance' => $seller->balance + ($item->unit_price * $item->quantity)
+        ]);
+      }
+    }
+
     $order->update([
       'status' => ucfirst($status)
     ]);

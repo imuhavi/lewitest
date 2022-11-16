@@ -53,7 +53,6 @@ Add Subcategory
                     <th>Sl</th>
                     <th>Name</th>
                     <th>Parent Category</th>
-                    <th>Total Product</th>
                     <th>Image</th>
                     <th>Status</th>
                     <th width="120" style="text-align: center">Action</th>
@@ -65,7 +64,6 @@ Add Subcategory
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $subcatItem->name }}</td>
                     <td>{{ $subcatItem->category->name }}</td>
-                    <td>{{ $subcatItem->products->count() }}</td>
                     <td>
                       @if ($subcatItem->icon)
                       <img src="{{ asset('/backend/uploads/' . $subcatItem->icon) }}" class="small-image"

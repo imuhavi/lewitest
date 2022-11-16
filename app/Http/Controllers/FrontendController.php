@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attribute;
+use App\Models\Banner;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Cities;
@@ -32,7 +33,10 @@ class FrontendController extends Controller
     $womensMain = $categories->where('id', '2')->first();
     $products = Product::whereStatus('Active')->orderBy('id', 'desc')->take(8)->get();
     $shops = Shop::where('status', 'Active')->get(['id', 'shop_logo']);
-    return view($this->HOME_PATH, compact('slider', 'categories', 'womensSub1', 'womensSub2', 'mensSub', 'mensMain', 'womensMain', 'shops', 'products'));
+    $bannerOne = Banner::where('position', 'one')->first();
+    $bannerTwo = Banner::where('position', 'two')->first();
+    $bannerThree = Banner::where('position', 'three')->first();
+    return view($this->HOME_PATH, compact('slider', 'categories', 'womensSub1', 'womensSub2', 'mensSub', 'mensMain', 'womensMain', 'shops', 'products', 'bannerOne', 'bannerTwo', 'bannerThree'));
   }
 
   function shop()

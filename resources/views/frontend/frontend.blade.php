@@ -112,18 +112,14 @@
   <section id="banner-one">
     <div class="conteiner">
       <div class="row">
-        @if($mensMain)
         <div class="col-lg-12 col-md-12 col-sm-12">
           <div class="banner-content">
-            <h5 class="banner-sub-heading">{{ $mensMain->name }}</h5>
-            <h3 class="banner-heading">Mens Special</h3>
-            <a class="fivedots-btn" href="">Shop Now <img class="icon"
-                src="{{ asset('/backend/uploads'. $mensMain->banner) }}" alt=""></a>
+            <h5 class="banner-sub-heading">{{ $bannerOne->category->name ?? '' }}</h5>
+            <h3 class="banner-heading">{{ $bannerOne->title ?? '' }}</h3>
+            <a class="fivedots-btn" href="">Shop
+              Now <img class="icon" src="{{ asset('/backend/uploads'. $bannerOne->banner) }}" alt=""></a>
           </div>
         </div>
-        @else
-        <h2 class="text-white text-center p-5">No Mens Category Available!</h2>
-        @endif
       </div>
     </div>
   </section>
@@ -180,9 +176,9 @@
         <div class="col-6"></div>
         <div class="col-6">
           <div class="banner-content bc-two">
-            <h3 class="banner-heading">Ready For the Summer</h3>
-            <a class="fivedots-btn" href="#">Shop Now <img class="icon"
-                src="{{ asset('frontend/assets') }}/images/btn-arrow-light.png" alt=""></a>
+            <h3 class="banner-heading">{{ $bannerTwo->title ?? '' }}</h3>
+            <a class="fivedots-btn" href="">Shop
+              Now <img class="icon" src="{{ asset('backend/uploads', $bannerOne->banner ?? '') }}" alt=""></a>
           </div>
         </div>
       </div>
@@ -274,9 +270,11 @@
       <div class="row">
         <div class="col-6">
           <div class="banner-content">
-            <h3 class="banner-heading">35% <span class="d-block">Discount On All Items</span></h3>
-            <a class="fivedots-btn" href="#">Shop Now <img class="icon"
-                src="{{ asset('frontend/assets') }}/images/btn-arrow-light.png" alt=""></a>
+            <h3 class="banner-heading">{{ $bannerThree->category->name ?? '' }} <span class="d-block">{{
+                $bannerThree->title ?? ''
+                }}</span></h3>
+            <a class="fivedots-btn" href="">Shop
+              Now <img class="icon" src="{{ asset('backend/uploads', $bannerThree->banner ?? '') }}" alt=""></a>
           </div>
         </div>
         <div class="col-6">

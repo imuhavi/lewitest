@@ -3,6 +3,7 @@
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\SocialConfig;
+use App\Models\Subcategory;
 use Illuminate\Support\Str;
 
 if (!function_exists('uploadImage')) {
@@ -115,5 +116,20 @@ if (!function_exists('social_credential')) {
   function social_credential($provider)
   {
     return SocialConfig::whereType(ucfirst($provider))->first();
+  }
+}
+
+
+if (!function_exists('getcategory')) {
+  function getcategory($category)
+  {
+    return Category::findOrFail($category)->name;
+  }
+}
+
+if (!function_exists('getsubcategory')) {
+  function getsubcategory($subcategory)
+  {
+    return Subcategory::findOrFail($subcategory)->name;
   }
 }

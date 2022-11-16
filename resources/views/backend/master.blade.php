@@ -82,6 +82,7 @@
   var errorNotification = "{{ session('error') }}"
 </script>
 <script src="//cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="{{ asset('backend/') }}/assets/js/custom.js"></script>
 
 @yield('footer_js')

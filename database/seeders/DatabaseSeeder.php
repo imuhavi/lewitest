@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
       UserTableSeeder::class,
       SubscriptionTableSeeder::class,
       SubscriptionOptionTableSeeder::class,
+      BannerSeeder::class,
     ]);
   }
 }

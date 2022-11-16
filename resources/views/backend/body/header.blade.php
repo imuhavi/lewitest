@@ -48,6 +48,9 @@
 
   <script src="{{ asset('backend/') }}/assets/plugins/3d-bold-navigation/js/modernizr.js"></script>
 
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+
 
 </head>
 
@@ -206,9 +209,8 @@
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li>
-                <a href="javascript:void(0);" class="show-search"><i class="icon-magnifier"></i></a>
-              </li>
+
+              @if(routePrefix() === 'admin')
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-envelope-open"></i><span
                     class="badge badge-danger pull-right">0</span></a>
@@ -227,6 +229,7 @@
                   </li>
                 </ul>
               </li>
+
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-bell"></i><span
                     class="badge badge-danger pull-right">{{ count(auth()->user()->unreadNotifications)
@@ -273,6 +276,12 @@
 
                 </ul>
               </li>
+              @endif
+              @if(routePrefix() === 'seller')
+              <li>
+                <h3 style="color: white; margin-top: 17px;">{{ Auth::user()->balance }} SR</h3>
+              </li>
+              @endif
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <span class="user-name">{{ Auth::user()->name ?? "" }}<i class="fa fa-angle-down"></i></span>

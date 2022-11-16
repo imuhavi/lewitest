@@ -18,7 +18,7 @@ class CreateBannersTable extends Migration
       $table->unsignedBigInteger('category_id');
       $table->string('title');
       $table->enum('position', ['one', 'two', 'three'])->default('one');
-      $table->text('banner');
+      $table->text('banner')->nullable();
       $table->enum('status', ['Active', 'Inactive'])->default('Inactive');
       $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
       $table->timestamps();

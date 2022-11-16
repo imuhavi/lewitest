@@ -19,7 +19,8 @@ class ProductController extends Controller
   public function index(Request $request)
   {
     $page = 'index';
-    $sql = Product::with('category', 'user')->where('is_draft', 0)->orderBy('created_at', 'DESC');
+    $sql = Product::with('user')->where('is_draft', 0)->orderBy('created_at', 'DESC');
+
 
     $keyword = '';
     if ($request->keyword) {
@@ -37,6 +38,7 @@ class ProductController extends Controller
     if (auth()->user()->role == 'Seller') {
       $sql->where('user_id', auth()->id());
     }
+
 
     $data = $sql->paginate(10);
     return view($this->VIEW_PATH, compact('page', 'data', 'keyword'));
@@ -80,11 +82,14 @@ class ProductController extends Controller
       'min' => 'required',
       'max' => 'required',
       'quantity' => 'required',
-      'category_id' => 'required'
+      'category_id' => 'required',
+      'sub_category_id' => 'required'
     ]);
+
 
     try {
       $data = $request->except(['_token', 'images']);
+
 
       if (!empty($data['attributes'])) {
         $data['attributes'] = json_encode(array_map(function ($item) {
@@ -121,6 +126,9 @@ class ProductController extends Controller
         uploadImage($request->file('thumbnail'), 500);
         $data['thumbnail'] = session('fileName');
       }
+
+      $data['category_id'] = json_encode($request->category_id);
+      $data['sub_category_id'] = json_encode($request->sub_category_id);
 
       $product = Product::create($data);
 

@@ -12,10 +12,6 @@ class Product extends Model
   use Notifiable;
   protected $guarded = [];
 
-  public function category()
-  {
-    return $this->belongsTo(Category::class);
-  }
 
   public function user()
   {
@@ -25,10 +21,5 @@ class Product extends Model
   public function images()
   {
     return $this->hasMany(ProductImage::class, 'product_id');
-  }
-
-  public function subcategory()
-  {
-    return $this->belongsTo(Subcategory::class, 'sub_category_id');
   }
 }

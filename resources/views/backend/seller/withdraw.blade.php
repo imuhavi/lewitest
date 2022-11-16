@@ -92,20 +92,19 @@
                   </div>
                   <hr>
                   <div class="modal-body">
-                    <h3>Available balance: <strong>SA {{ number_format(auth()->user()->balance, 2) }}</strong></h3>
+                    <h3>Available balance: <strong>SR {{ number_format(auth()->user()->balance, 2) }}</strong></h3>
 
                     <form action="{{ route('withdrawRequest') }}" method="post">
                       @csrf
                       <div class="input-group m-b-sm">
-                        <span class="input-group-addon" id="basic-addon1">SAR</span>
+                        <span class="input-group-addon" id="basic-addon1">SR</span>
                         <input name="amount" type="number" required max="{{ number_format(auth()->user()->balance) }}"
                           class="form-control" placeholder="Amount" aria-describedby="basic-addon1">
                       </div>
 
-                      <small>Minimum withdrawal limit is SA 100.00</small>
+                      <small>Minimum withdrawal limit is SR 100.00</small>
                   </div>
                   <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
                     <button type="submit" class="btn btn-success">Submit</button>
                   </div>
                   </form>

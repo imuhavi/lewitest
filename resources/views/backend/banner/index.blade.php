@@ -49,7 +49,8 @@ Banner
                     </div>
                     <div class="col-sm-9">
                       <img class="img avatar" id="banner_preview_one"
-                        src="{{ asset('backend/uploads/'. $banner_one->banner) }}" alt="" width="100%" height="242px">
+                        src="{{ asset('backend/uploads/' . $banner_one->banner ?? '') }}" alt="" width="100%"
+                        height="242px">
                     </div>
                   </div>
 
@@ -60,7 +61,7 @@ Banner
                     </div>
                     <div class="col-sm-9">
                       <input type="text" name="title" placeholder="Enter a title" id="title"
-                        value="{{ $banner_one->title }}" class="form-control">
+                        value="{{ $banner_one->title ?? '' }}" class="form-control">
                       @error('title')
                       <small class="text-danger">{{ $message }}</small>
                       @enderror
@@ -145,7 +146,7 @@ Banner
                     </div>
                     <div class="col-sm-9">
                       <input type="text" name="title" placeholder="Enter a title" id="title"
-                        value="{{ $bannerTwo->title }}" class="form-control">
+                        value="{{ $bannerTwo->title ?? '' }}" class="form-control">
                       @error('title')
                       <small class="text-danger">{{ $message }}</small>
                       @enderror
@@ -232,7 +233,7 @@ Banner
                     </div>
                     <div class="col-sm-9">
                       <input type="text" name="title" placeholder="Enter a title" id="title"
-                        value="{{ $bannerThree->title }}" class="form-control">
+                        value="{{ $bannerThree->title ?? '' }}" class="form-control">
                       @error('title')
                       <small class="text-danger">{{ $message }}</small>
                       @enderror
