@@ -197,7 +197,6 @@
 
         @php
         $discountAmount = ($product->price - ($product->discount / 100) * $product->price);
-
         $discount = (($product->discount * 100) / $product->price)
         @endphp
 

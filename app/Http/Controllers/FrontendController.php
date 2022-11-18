@@ -77,15 +77,27 @@ class FrontendController extends Controller
 
   function subCategoryShop($slug, $id)
   {
+
     $page = 'subCategoryShop';
-    $subcategory = Subcategory::with('products')->find($id);
-    $productSQL = $subcategory->products;
+    $subcategory = Subcategory::find($id);
 
-    $minimumPrices = $productSQL->pluck('price')->toArray();
-    $maximumPrices = $productSQL->pluck('price')->toArray();
+    $tem_product = Product::where('status', 'Active')->get();
 
-    $min = min(count($minimumPrices) === 0 ? [0] : $minimumPrices);
-    $max = max(count($maximumPrices) === 0 ? [0] : $maximumPrices);
+    $products = [];
+    $arrayPrice = [];
+
+    foreach ($tem_product as $item) {
+      if (in_array($id, json_decode($item->sub_category_id))) {
+        array_push($products, $item);
+        array_push($arrayPrice, $item->price);
+      }
+    }
+
+    // $minimumPrices = $products->pluck('price')->toArray(); // Issues working
+    // $maximumPrices = $products->pluck('price')->toArray(); // Issues working
+
+    $min = min(count($arrayPrice) === 0 ? [0] : $arrayPrice);
+    $max = max(count($arrayPrice) === 0 ? [0] : $arrayPrice);
 
     $allAttributes = Product::where('attributes', '!=', null)->pluck('attributes');
     $colorAttributesArr = [];
@@ -118,14 +130,23 @@ class FrontendController extends Controller
   function categoryShop($slug, $id)
   {
     $page = 'categoryShop';
-    $category = Category::with('products')->find($id);
-    $productSQL = $category->products;
+    $category = Category::find($id);
 
-    $minimumCategoryPrices = $productSQL->pluck('price')->toArray();
-    $maximumCategoryPrices = $productSQL->pluck('price')->toArray();
+    $tem_product = Product::where('status', 'Active')->get();
 
-    $min = min(count($minimumCategoryPrices) === 0 ? [0] : $minimumCategoryPrices);
-    $max = max(count($maximumCategoryPrices) === 0 ? [0] : $maximumCategoryPrices);
+    $products = [];
+    $arrayPrice = [];
+
+    foreach ($tem_product as $item) {
+      if (in_array($id, json_decode($item->category_id))) {
+        array_push($products, $item);
+        array_push($arrayPrice, $item->price);
+      }
+    }
+
+
+    $min = min(count($arrayPrice) === 0 ? [0] : $arrayPrice);
+    $max = max(count($arrayPrice) === 0 ? [0] : $arrayPrice);
 
     $allAttributes = Product::where('attributes', '!=', null)->pluck('attributes');
     $colorAttributesArr = [];
