@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Attribute;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductCategory;
 use App\Models\ProductImage;
 use App\Models\Subcategory;
 use App\Models\User;
@@ -20,7 +21,6 @@ class ProductController extends Controller
   {
     $page = 'index';
     $sql = Product::with('user')->where('is_draft', 0)->orderBy('created_at', 'DESC');
-
 
     $keyword = '';
     if ($request->keyword) {
@@ -88,7 +88,7 @@ class ProductController extends Controller
 
 
     try {
-      $data = $request->except(['_token', 'images']);
+      $data = $request->except(['_token', 'images', 'category_id', 'sub_category_id']);
 
 
       if (!empty($data['attributes'])) {
@@ -127,10 +127,23 @@ class ProductController extends Controller
         $data['thumbnail'] = session('fileName');
       }
 
-      $data['category_id'] = json_encode($request->category_id);
-      $data['sub_category_id'] = json_encode($request->sub_category_id);
 
       $product = Product::create($data);
+
+      foreach ($request->category_id as $item) {
+        ProductCategory::create([
+          'product_id' => $product->id,
+          'category_subcategory_id' => $item
+        ]);
+      }
+
+      foreach ($request->sub_category_id as $item) {
+        ProductCategory::create([
+          'product_id' => $product->id,
+          'category_subcategory_id' => $item,
+          'category_or_subcategory' => 'subcategory'
+        ]);
+      }
 
       if (!empty($request->images)) {
         foreach ($request->images as $image) {
@@ -197,12 +210,12 @@ class ProductController extends Controller
       'unit' => 'required',
       'min' => 'required',
       'max' => 'required',
-      'quantity' => 'required',
-      'category_id' => 'required'
+      'quantity' => 'required'
     ]);
 
     try {
       $data = $request->except(['_token', 'images']);
+
 
       if (!empty($data['attributes'])) {
         $data['attributes'] = json_encode(array_map(function ($item) {
@@ -246,6 +259,23 @@ class ProductController extends Controller
       }
 
       $product->update($data);
+      ProductCategory::destroy($product->productCategory->pluck('id'));
+
+      foreach ($request->category_id as $item) {
+        ProductCategory::create([
+          'product_id' => $product->id,
+          'category_subcategory_id' => $item
+        ]);
+      }
+
+
+      foreach ($request->sub_category_id as $item) {
+        ProductCategory::create([
+          'product_id' => $product->id,
+          'category_subcategory_id' => $item,
+          'category_or_subcategory' => 'subcategory'
+        ]);
+      }
 
       if (!empty($request->images)) {
         foreach ($request->images as $image) {
@@ -264,6 +294,8 @@ class ProductController extends Controller
 
   public function destroy(Product $product)
   {
+
+
     if ($product->thumbnail) {
       removeImage($product->thumbnail);
     }
@@ -277,7 +309,7 @@ class ProductController extends Controller
     foreach ($product->images as $image) {
       removeImage($image->image);
     }
-
+    ProductCategory::destroy($product->productCategory->pluck('id'));
     $product->delete();
     return redirect()->back()->with('success', 'Product deleted successfully !');
   }

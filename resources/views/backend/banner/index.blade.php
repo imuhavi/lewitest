@@ -248,7 +248,7 @@ Banner
                       <select name="category_id" id="category_id" class="form-control">
                         <option disabled>Select Category</option>
                         @foreach($category as $item)
-                        <option value="{{ $item->id }} {{ $bannerThree->category_id == $item->id ? 'selected' : '' }}">
+                        <option value="{{ $item->id }}" {{ $bannerThree->category_id == $item->id ? 'selected' : '' }}">
                           {{ $item->name }}</option>
                         @endforeach
                       </select>

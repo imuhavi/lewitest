@@ -22,4 +22,15 @@ class Product extends Model
   {
     return $this->hasMany(ProductImage::class, 'product_id');
   }
+
+
+  public function productCategory()
+  {
+    return $this->hasMany(ProductCategory::class)->where('category_or_subcategory', 'category');
+  }
+
+  public function productSubcatogory()
+  {
+    return $this->hasMany(ProductCategory::class)->where('category_or_subcategory', 'subcategory');
+  }
 }

@@ -100,8 +100,9 @@
                     <th>SL</th>
                     <th>Thumbnail</th>
                     <th>Name</th>
-                    <th>SKU Number</th>
+                    <th>SKU</th>
                     <th>Category</th>
+                    <th>Subcategory</th>
                     <th>Seller</th>
                     <th>Status</th>
                     <th>Action</th>
@@ -118,8 +119,17 @@
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->product_sku }}</td>
                     <td>
-                      @foreach(json_decode($item->category_id) as $category)
-                      {{ getcategory($category) }}
+                      @foreach($item->productCategory as $category)
+                      {{ $category->category->name }}
+                      @if(!$loop->last)
+                      ,
+                      @endif
+                      @endforeach
+                    </td>
+
+                    <td>
+                      @foreach($item->productSubcatogory as $item)
+                      {{ $item->subcategory->name }}
                       @if(!$loop->last)
                       ,
                       @endif
@@ -435,7 +445,7 @@
                       <label for="category">Choose Parent Category</label>
                       <select name="category_id[]" id="category" class="form-control js-example-basic-multiple"
                         multiple="multiple">
-                        <option value="" selected disabled>Select One</option>
+                        <option value="" disabled>Select One</option>
                         @foreach ($category as $cat_item )
                         <option value="{{ $cat_item->id }}" @if ( $page=='edit' ) {{ $cat_item->id == $data->category_id
                           ?
@@ -477,7 +487,7 @@
                       <br>
                       <select name="sub_category_id[]" id="sub_category" class="form-control js-example-basic-multiple "
                         multiple="multiple">
-                        <option selected disabled value="">Choose Subcategory</option>
+                        <option disabled value="">Choose Subcategory</option>
                         @foreach ( $subCategory as $child_item )
                         <option value="{{ $child_item->id }}">{{ $child_item->name }}</option>
                         @endforeach
@@ -754,12 +764,12 @@
                   <th width="45%">Parent Category</th>
                   <td width="10%">:</td>
                   <td width="45%">
-                    @foreach(json_decode($data->category_id) as $category)
+                    <!-- @foreach($data->category_id as $category)
                     {{ getcategory($category) }}
                     @if(!$loop->last)
                     ,
                     @endif
-                    @endforeach
+                    @endforeach -->
                   </td>
                 </tr>
 

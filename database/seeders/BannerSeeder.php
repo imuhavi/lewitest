@@ -20,26 +20,26 @@ class BannerSeeder extends Seeder
       'title' => 'Mens Shopping',
       'position' => 'one',
       'banner' => '',
-      'status' => 'Active',
+      'status' => 'Inactive',
     ]);
 
     Banner::create([
       'id' => '2',
-      'category_id' => '2',
+      'category_id' => '1',
       'title' => 'Womens Shopping',
       'position' => 'two',
       'banner' => '',
-      'status' => 'Active',
+      'status' => 'Inactive',
     ]);
 
 
     Banner::create([
       'id' => '3',
-      'category_id' => '3',
+      'category_id' => '1',
       'title' => 'Accesories',
       'position' => 'three',
       'banner' => '',
-      'status' => 'Active',
+      'status' => 'Inactive',
     ]);
   }
 }
