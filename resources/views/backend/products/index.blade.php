@@ -101,10 +101,11 @@
                     <th>Thumbnail</th>
                     <th>Name</th>
                     <th>SKU</th>
-                    <th>Category</th>
-                    <th>Subcategory</th>
+
                     <th>Seller</th>
                     <th>Status</th>
+                    <th>Category</th>
+                    <th width="60">Subcategory</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -118,6 +119,10 @@
                     </td>
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->product_sku }}</td>
+
+                    <td>{{ $item->user ? $item->user->name : '' }}</td>
+                    <td>{{ $item->status }}</td>
+
                     <td>
                       @foreach($item->productCategory as $category)
                       {{ $category->category->name }}
@@ -128,15 +133,13 @@
                     </td>
 
                     <td>
-                      @foreach($item->productSubcatogory as $item)
-                      {{ $item->subcategory->name }}
+                      @foreach($item->productSubcatogory as $subcategory)
+                      {{ $subcategory->subcategory->name }}
                       @if(!$loop->last)
                       ,
                       @endif
                       @endforeach
                     </td>
-                    <td>{{ $item->user ? $item->user->name : '' }}</td>
-                    <td>{{ $item->status }}</td>
                     <td>
                       <a class="btn btn-info" href="{{ url(routePrefix(). '/product/' . $item->id) }}"><i
                           class="fa fa-eye"></i></a>
@@ -439,19 +442,21 @@
                   <h3 class="panel-title">Product Categories</h3>
                 </div>
                 <br>
+                @php
+                $categoryCheck = $data->productCategory
+                @endphp
                 <div class="panel-body">
+                  @if($page == 'Edit')
                   <div class="form-row">
                     <div class="form-group">
                       <label for="category">Choose Parent Category</label>
                       <select name="category_id[]" id="category" class="form-control js-example-basic-multiple"
                         multiple="multiple">
+
                         <option value="" disabled>Select One</option>
                         @foreach ($category as $cat_item )
-                        <option value="{{ $cat_item->id }}" @if ( $page=='edit' ) {{ $cat_item->id == $data->category_id
-                          ?
-                          'selected'
-                          : '' }} @endif
-                          >{{ $cat_item->name }}</option>
+                        <option value="{{ $cat_item->id }}" selected="selected">{{
+                          $cat_item->name }}</option>
                         @endforeach
                       </select>
                       @error('category_id')
@@ -459,26 +464,40 @@
                       @enderror
                     </div>
                   </div>
+                  @else
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="category">Choose Parent Category</label>
+                      <select name="category_id[]" id="category" class="form-control js-example-basic-multiple"
+                        multiple="multiple">
+                        <option value="" disabled>Select One</option>
+                        @foreach ($category as $cat_item )
+                        <option value="{{ $cat_item->id }}">{{ $cat_item->name }}</option>
+                        @endforeach
+                      </select>
+                      @error('category_id')
+                      <small class="text-danger">{{ $message }}</small>
+                      @enderror
+                    </div>
+                  </div>
+                  @endif
 
                   @if($page == 'edit')
-                  <!-- <div class="form-row">
 
+
+                  <div class="form-row">
                     <div class="form-group">
                       <label for="sub_category">Choose Child Category</label>
-                      <select name="sub_category_id" id="sub_category" class="form-control">
-                        <option value="" selected>Select One</option>
+                      <br>
+                      <select name="sub_category_id[]" id="sub_category" class="form-control js-example-basic-multiple "
+                        multiple="multiple">
+                        <option disabled value="">Choose Subcategory</option>
                         @foreach ( $subCategory as $child_item )
-                        <option value="{{ $child_item->id }}" @if ( $page=='edit' ) {{ $child_item->id ==
-                          $data->sub_category_id ?
-                          'selected'
-                          : '' }} @endif
-                          >{{ $child_item->name }}</option>
+                        <option value="{{ $child_item->id }}">{{ $child_item->name }}</option>
                         @endforeach
                       </select>
                     </div>
-
-
-                  </div> -->
+                  </div>
                   @else
 
                   <div class="form-row">

@@ -294,8 +294,6 @@ class ProductController extends Controller
 
   public function destroy(Product $product)
   {
-
-
     if ($product->thumbnail) {
       removeImage($product->thumbnail);
     }
