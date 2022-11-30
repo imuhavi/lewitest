@@ -442,9 +442,7 @@
                   <h3 class="panel-title">Product Categories</h3>
                 </div>
                 <br>
-                @php
-                $categoryCheck = $data->productCategory
-                @endphp
+
                 <div class="panel-body">
                   @if($page == 'Edit')
                   <div class="form-row">
