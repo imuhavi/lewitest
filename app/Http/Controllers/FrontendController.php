@@ -8,6 +8,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Cities;
 use App\Models\Product;
+use App\Models\ProductCategory;
 use App\Models\ProductImage;
 use App\Models\Shop;
 use App\Models\Slider;
@@ -81,23 +82,8 @@ class FrontendController extends Controller
     $page = 'subCategoryShop';
     $subcategory = Subcategory::find($id);
 
-    $tem_product = Product::where('status', 'Active')->get();
-
-    $products = [];
-    $arrayPrice = [];
-
-    foreach ($tem_product as $item) {
-      if (in_array($id, json_decode($item->sub_category_id))) {
-        array_push($products, $item);
-        array_push($arrayPrice, $item->price);
-      }
-    }
-
-    // $minimumPrices = $products->pluck('price')->toArray(); // Issues working
-    // $maximumPrices = $products->pluck('price')->toArray(); // Issues working
-
-    $min = min(count($arrayPrice) === 0 ? [0] : $arrayPrice);
-    $max = max(count($arrayPrice) === 0 ? [0] : $arrayPrice);
+    $min = Product::min('price');
+    $max = Product::max('price');
 
     $allAttributes = Product::where('attributes', '!=', null)->pluck('attributes');
     $colorAttributesArr = [];
@@ -132,21 +118,8 @@ class FrontendController extends Controller
     $page = 'categoryShop';
     $category = Category::find($id);
 
-    $tem_product = Product::where('status', 'Active')->get();
-
-    $products = [];
-    $arrayPrice = [];
-
-    foreach ($tem_product as $item) {
-      if (in_array($id, json_decode($item->category_id))) {
-        array_push($products, $item);
-        array_push($arrayPrice, $item->price);
-      }
-    }
-
-
-    $min = min(count($arrayPrice) === 0 ? [0] : $arrayPrice);
-    $max = max(count($arrayPrice) === 0 ? [0] : $arrayPrice);
+    $min = Product::min('price');
+    $max = Product::max('price');
 
     $allAttributes = Product::where('attributes', '!=', null)->pluck('attributes');
     $colorAttributesArr = [];
@@ -182,9 +155,15 @@ class FrontendController extends Controller
     $take = 12;
 
     if ($r->cat_or_sub == 'categoryShop') {
-      $sql = Product::where('category_id', $r->category);
+      $product_arr = ProductCategory::where('category_or_subcategory', 'category')
+                            ->where('category_subcategory_id', $r->category)
+                            ->pluck('product_id');
+      $sql = Product::whereIn('id', $product_arr);
     } elseif ($r->cat_or_sub == 'subCategoryShop') {
-      $sql = Product::where('sub_category_id', $r->category);
+      $product_arr = ProductCategory::where('category_or_subcategory', 'subcategory')
+                            ->where('category_subcategory_id', $r->category)
+                            ->pluck('product_id');
+      $sql = Product::whereIn('id', $product_arr);
     } elseif ($r->cat_or_sub == '') {
       $sql = Product::whereStatus('Active');
     }
