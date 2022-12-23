@@ -4,19 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Attribute;
 use App\Models\Banner;
-use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Cities;
 use App\Models\Product;
 use App\Models\ProductCategory;
-use App\Models\ProductImage;
 use App\Models\Shop;
 use App\Models\Slider;
 use App\Models\States;
 use App\Models\Subcategory;
 use App\Models\Subscription;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class FrontendController extends Controller
 {
@@ -156,13 +154,13 @@ class FrontendController extends Controller
 
     if ($r->cat_or_sub == 'categoryShop') {
       $product_arr = ProductCategory::where('category_or_subcategory', 'category')
-                            ->where('category_subcategory_id', $r->category)
-                            ->pluck('product_id');
+        ->where('category_subcategory_id', $r->category)
+        ->pluck('product_id');
       $sql = Product::whereIn('id', $product_arr);
     } elseif ($r->cat_or_sub == 'subCategoryShop') {
       $product_arr = ProductCategory::where('category_or_subcategory', 'subcategory')
-                            ->where('category_subcategory_id', $r->category)
-                            ->pluck('product_id');
+        ->where('category_subcategory_id', $r->category)
+        ->pluck('product_id');
       $sql = Product::whereIn('id', $product_arr);
     } elseif ($r->cat_or_sub == '') {
       $sql = Product::whereStatus('Active');
@@ -190,7 +188,39 @@ class FrontendController extends Controller
   function productView($slug)
   {
     $product = Product::where('slug', $slug)->first();
-    $reletedProduct = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->where('status', 'Active')->take(8)->get();
+    $subcategory_id = json_decode($product->productCategory->pluck('category_subcategory_id'));
+
+
+    // $reletedProduct = Product::whereHas('productCategory', function (Builder $query) {
+    //   $query;
+    // })->get();
+
+    $category_id= ProductCategory::where('category_or_subcategory', 'category')->where('product_id', $product->id)->pluck('category_subcategory_id');
+    $subcategory_id= ProductCategory::where('category_or_subcategory', 'subcategory')->where('product_id', $product->id)->pluck('category_subcategory_id');
+
+    $category_product= ProductCategory::whereIn('category_subcategory_id', $category_id)->where('product_id' ,'!=', $product->id)->take(10)->get()->unique('product_id');
+    $subcategory_product= ProductCategory::whereIn('category_subcategory_id', $subcategory_id)->where('product_id' ,'!=', $product->id)->take(10)->get()->unique('product_id');
+
+    $reletedProduct = [];
+    $products_id = [];
+    foreach($category_product as $item){
+      array_push($reletedProduct, $item->product);
+      array_push($products_id, $item->product_id);
+    }
+
+    foreach($subcategory_product as $item){
+      if(!in_array($item->product_id, $products_id)){
+        array_push($reletedProduct, $item->product);
+      }
+    }
+
+    // array_map(function($item){
+    //   dd($item);
+    //   array_push($reletedProducts, $item['product']);
+    // }, (array) $category_product);
+    
+    $reletedProduct;
+    // return $reletedProduct = Product::whereBeteen('category_id', $subcategory_id)->where('id', '!=', $product->id)->where('status', 'Active')->take(8)->get();
 
     $colors = [];
     $sizes = [];

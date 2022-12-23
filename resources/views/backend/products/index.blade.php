@@ -444,16 +444,18 @@
                 <br>
 
                 <div class="panel-body">
-                  @if($page == 'Edit')
+                  @if($page == 'edit')
+
+
                   <div class="form-row">
                     <div class="form-group">
                       <label for="category">Choose Parent Category</label>
                       <select name="category_id[]" id="category" class="form-control js-example-basic-multiple"
                         multiple="multiple">
-
-                        <option value="" disabled>Select One</option>
+                        <option value="">Select One</option>
                         @foreach ($category as $cat_item )
-                        <option value="{{ $cat_item->id }}" selected="selected">{{
+                        <option value="{{ $cat_item->id }}" @if(in_array($cat_item->id, $selectProductCategory))
+                          selected @endif>{{
                           $cat_item->name }}</option>
                         @endforeach
                       </select>
@@ -468,7 +470,7 @@
                       <label for="category">Choose Parent Category</label>
                       <select name="category_id[]" id="category" class="form-control js-example-basic-multiple"
                         multiple="multiple">
-                        <option value="" disabled>Select One</option>
+                        <option value="">Select Categories</option>
                         @foreach ($category as $cat_item )
                         <option value="{{ $cat_item->id }}">{{ $cat_item->name }}</option>
                         @endforeach
@@ -482,16 +484,16 @@
 
                   @if($page == 'edit')
 
-
                   <div class="form-row">
                     <div class="form-group">
                       <label for="sub_category">Choose Child Category</label>
                       <br>
-                      <select name="sub_category_id[]" id="sub_category" class="form-control js-example-basic-multiple "
+                      <select name="sub_category_id[]" id="sub_category" class="form-control js-example-basic-multiple"
                         multiple="multiple">
-                        <option disabled value="">Choose Subcategory</option>
+                        <option value="">Choose Subcategory</option>
                         @foreach ( $subCategory as $child_item )
-                        <option value="{{ $child_item->id }}">{{ $child_item->name }}</option>
+                        <option value="{{ $child_item->id }}" @if(in_array($child_item->id, $selectProductSubCategory))
+                          selected @endif>{{ $child_item->name }}</option>
                         @endforeach
                       </select>
                     </div>
@@ -781,12 +783,12 @@
                   <th width="45%">Parent Category</th>
                   <td width="10%">:</td>
                   <td width="45%">
-                    <!-- @foreach($data->category_id as $category)
-                    {{ getcategory($category) }}
+                    @foreach($data->productCategory as $category)
+                    {{ $category->category->name }}
                     @if(!$loop->last)
                     ,
                     @endif
-                    @endforeach -->
+                    @endforeach
                   </td>
                 </tr>
 
@@ -794,12 +796,13 @@
                   <th width="45%">Child Category</th>
                   <td width="10%">:</td>
                   <td width="45%">
-                    @foreach(json_decode($data->sub_category_id) as $subcategory)
-                    {{ getsubcategory($subcategory) }}
+                    @foreach($data->productSubcatogory as $subcategory)
+                    {{ $subcategory->subcategory->name }}
                     @if(!$loop->last)
                     ,
                     @endif
-                    @endforeach</td>
+                    @endforeach
+                  </td>
                 </tr>
 
                 <tr>

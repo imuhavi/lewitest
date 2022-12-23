@@ -123,7 +123,12 @@
                   alt="user-profile"></a>
             </div>
 
-            <p class="category">Category: {{ $product->subcategory->name }}</p>
+            <p class="category">Category: @foreach($product->productCategory as $category)
+              {{ $category->category->name }}
+              @if(!$loop->last)
+              ,
+              @endif
+              @endforeach</p>
 
 
             <p class="category">Available Quantity: {{ $product->quantity }} {{ $product->unit }}</p>
@@ -166,7 +171,23 @@
                 <tr>
                   <td class="w-25">Product Category: </td>
                   <td>
-                    <h6>{{ $product->subcategory->name }}</h6>
+                    <h6>@foreach($product->productCategory as $category)
+                      {{ $category->category->name }}
+                      @if(!$loop->last)
+                      ,
+                      @endif
+                      @endforeach </h6>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="w-25">Product Subcategory: </td>
+                  <td>
+                    <h6>@foreach($product->productSubcatogory as $subcategory)
+                      {{ $subcategory->subcategory->name }}
+                      @if(!$loop->last)
+                      ,
+                      @endif
+                      @endforeach </h6>
                   </td>
                 </tr>
                 <tr>

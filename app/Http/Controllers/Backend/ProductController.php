@@ -193,11 +193,13 @@ class ProductController extends Controller
   {
     $page = 'edit';
     $data = $product;
+    $selectProductCategory = json_decode($product->productCategory->pluck('category_subcategory_id'));
+    $selectProductSubCategory = json_decode($product->productSubcatogory->pluck('category_subcategory_id'));
     $category = Category::orderBy('name', 'asc')->get();
     $subCategory = Subcategory::orderBy('name', 'asc')->get();
     $sellers = User::where('role', 'Seller')->orderBy('name', 'asc')->get();
     $attributes = Attribute::orderBy('name', 'asc')->get();
-    return view($this->VIEW_PATH, compact('data', 'page', 'category', 'subCategory', 'sellers', 'attributes'));
+    return view($this->VIEW_PATH, compact('data', 'page', 'category', 'selectProductCategory', 'selectProductSubCategory', 'subCategory', 'sellers', 'attributes'));
   }
 
   public function update(Request $request, Product $product)
@@ -214,8 +216,7 @@ class ProductController extends Controller
     ]);
 
     try {
-      $data = $request->except(['_token', 'images']);
-
+      $data = $request->except(['_token', 'images', 'category_id', 'sub_category_id']);
 
       if (!empty($data['attributes'])) {
         $data['attributes'] = json_encode(array_map(function ($item) {
@@ -262,15 +263,14 @@ class ProductController extends Controller
       ProductCategory::destroy($product->productCategory->pluck('id'));
 
       foreach ($request->category_id as $item) {
-        ProductCategory::create([
+        ProductCategory::Create([
           'product_id' => $product->id,
           'category_subcategory_id' => $item
         ]);
       }
 
-
       foreach ($request->sub_category_id as $item) {
-        ProductCategory::create([
+        ProductCategory::Create([
           'product_id' => $product->id,
           'category_subcategory_id' => $item,
           'category_or_subcategory' => 'subcategory'
