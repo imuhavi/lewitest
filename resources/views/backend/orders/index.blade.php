@@ -338,10 +338,9 @@
 
                         @else
 
-                        $singleOrder->user->userDetail)
                         <b>Name:</b> {{ $singleOrder->user->name }}<br>
                         <b>Email:</b> {{ $singleOrder->user->email }}<br>
-                        <b>Phone:</b> {{ $singleOrder->user->userDetail->phone }}<br>
+                        <b>Phone:</b> {{ $singleOrder->user->phone ?? '' }}<br>
                         <p><b>Shipping: </b>
                           {{ $singleOrder->order->user->userDetail->postal_code }},
                           {{ $singleOrder->order->user->userDetail->address }}<br>

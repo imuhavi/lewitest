@@ -27,13 +27,13 @@ $discount = (($item->discount * 100) / $item->price)
       {{Str::limit($item->name, 25)}}
     </a>
     @if($item->discount !== null && $item->discount_type == 'Percent')
-    <h3 class="new-price my-2">{{ round($discountAmount)}} SAR</h3>
-    <p class="old-price text-danger">{{ $item->price }}SAR</p>
+    <h3 class="new-price my-2">SA {{ round($discountAmount)}}</h3>
+    <p class="old-price text-danger">SA {{ $item->price }}</p>
     @elseif($item->discount !== null && $item->discount_type == 'Flat')
-    <h3 class="new-price my-2">{{ $item->price- $item->discount }}SAR</h3>
-    <p class="old-price text-danger">{{ $item->price }}SAR</p>
+    <h3 class="new-price my-2">SA {{ $item->price- $item->discount }}</h3>
+    <p class="old-price text-danger">SA {{ $item->price }}</p>
     @else
-    <h3 class="new-price my-2">{{ $item->price }}SAR</h3>
+    <h3 class="new-price my-2">SA {{ $item->price }}</h3>
     @endif
   </div>
 </div>

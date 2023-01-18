@@ -261,6 +261,7 @@ class ProductController extends Controller
 
       $product->update($data);
       ProductCategory::destroy($product->productCategory->pluck('id'));
+      ProductCategory::destroy($product->productSubcatogory->pluck('id'));
 
       foreach ($request->category_id as $item) {
         ProductCategory::Create([

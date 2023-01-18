@@ -19,7 +19,7 @@ class BannerSeeder extends Seeder
       'category_id' => '1',
       'title' => 'Mens Shopping',
       'position' => 'one',
-      'banner' => '',
+      'banner' => null,
       'status' => 'Inactive',
     ]);
 
@@ -28,7 +28,7 @@ class BannerSeeder extends Seeder
       'category_id' => '1',
       'title' => 'Womens Shopping',
       'position' => 'two',
-      'banner' => '',
+      'banner' => null,
       'status' => 'Inactive',
     ]);
 
@@ -38,7 +38,7 @@ class BannerSeeder extends Seeder
       'category_id' => '1',
       'title' => 'Accesories',
       'position' => 'three',
-      'banner' => '',
+      'banner' => null,
       'status' => 'Inactive',
     ]);
   }

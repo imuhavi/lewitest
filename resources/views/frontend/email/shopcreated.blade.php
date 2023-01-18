@@ -12,7 +12,7 @@
     .site-header {
       background-color: black;
       width: 100%;
-      padding: 15px;
+      padding: 12px;
       color: white !important;
       text-align: center;
     }

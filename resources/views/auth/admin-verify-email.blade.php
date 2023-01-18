@@ -81,7 +81,7 @@
 
                     </form>
                   </div>
-                  <p class="text-center m-t-xs text-sm">2022 &copy; 5dots</p>
+                  <p class="text-center m-t-xs text-sm">2023 &copy; 5dots</p>
                 </div>
               </div>
             </div>

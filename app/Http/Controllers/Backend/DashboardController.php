@@ -49,15 +49,15 @@ class DashboardController extends Controller
       $products = count(array_filter(auth()->user()->product->toArray(), function ($product) {
         return $product['status'] == 'Active' ? 1 : 0;
       }));
-
-      return view($this->VIEW_PATH . 'dashboard', compact('customers', 'products', 'orders', 'amount'));
+      $sales = Order::whereStatus('Complete')->value(DB::raw("SUM(amount - coupon_discount_amount)"));
+      return view($this->VIEW_PATH . 'dashboard', compact('customers', 'products', 'orders', 'amount', 'sales'));
     } elseif (auth()->user()->role == 'Admin') {
       $bestSellingProduct = OrderDetails::select('product_id', DB::raw('count(*) as total'))->groupBy('product_id')->orderBy('total', 'DESC')->limit(5)->get();
       $shops = Shop::whereStatus('Active')->count();
       $customers = User::whereRole('Customer')->count();
       $products = Product::whereStatus('Active')->count();
       $sales = Order::whereStatus('Complete')->value(DB::raw("SUM(amount - coupon_discount_amount)"));
-      return view($this->VIEW_PATH . 'dashboard', compact('customers', 'products', 'sales', 'orders', 'amount', 'shops', 'bestSellingProduct'));
+      return view($this->VIEW_PATH . 'dashboard', compact('customers', 'products', 'sales', 'orders', 'amount', 'shops', 'bestSellingProduct')); 
     }
     return view($this->VIEW_PATH . 'dashboard', compact('orders'));
   }

@@ -24,6 +24,8 @@ use Illuminate\Support\Facades\Session;
 |
 */
 
+
+
 Route::get('/', [FrontendController::class, 'frontend'])->name('home');
 Route::get('/shop', [FrontendController::class, 'shop'])->name('shop');
 Route::get('/shop-subcategory/{slug}/{id}', [FrontendController::class, 'subCategoryShop'])->name('subCategoryShop');
@@ -39,6 +41,9 @@ Route::get('forgot-password', [UserLoginRegisterController::class, 'forgotPasswo
 Route::get('/shop-category/{slug}/{id}', [FrontendController::class, 'categoryShop'])->name('categoryShop');
 
 Route::get('/product/{slug}', [FrontendController::class, 'productView'])->name('productView');
+
+# Search Items
+Route::get('/search', [FrontendController::class, 'search'])->name('search');
 
 # Filter products
 Route::get('/filter/products', [FrontendController::class, 'filterProducts']);
@@ -76,6 +81,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
 # Subscribe & register for seller
 Route::post('/subscribe-subscription/{subscription}', [SubscriptionController::class, 'subscribe']);
+
+# Resubscribe
+Route::get('/resubscribe/{subscription}', [SubscriptionController::class, 'resubscribe'])->name('resubscribe');
 
 # Get States and Cities.
 Route::get('get-cities/{stateId}', [FrontendController::class, 'getCity'])->name('getCity');

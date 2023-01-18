@@ -307,7 +307,6 @@
                         </div>
                       </div>
                       @elseif($page == 'edit')
-
                       <div class="col-md-4">
                         <div class="form-row">
                           <div class="form-group">
@@ -325,13 +324,11 @@
                       </div>
                       @endif
 
-
-
                       <div class="col-md-4">
                         <div class="form-row">
                           <div class="form-group">
                             <label for="discount">Discount</label>
-                            <input type="number" min="0" value="{{ $data ? $data->discount : old('discount') }}"
+                            <input type="number" min="1" value="{{ $data ? $data->discount : old('discount') }}"
                               name="discount" class="form-control" id="discount" placeholder="Discount">
                           </div>
                         </div>

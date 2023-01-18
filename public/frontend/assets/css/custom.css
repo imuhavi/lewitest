@@ -437,7 +437,6 @@ nav .main_menu li a.active_menu {
 /* Banner Section */
 #banner-one {
   margin-top: 100px;
-  background-image: url("../images/banner-one.png");
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;

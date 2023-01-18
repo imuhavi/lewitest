@@ -109,7 +109,9 @@
   <!---------------------------
           Banner Section One 
       ----------------------------->
-  <section id="banner-one">
+
+  @if($bannerOne->banner !== null)
+  <section id="banner-one" style="background-image: url({{asset('backend/uploads/'. $bannerOne->banner)}})">
     <div class="conteiner">
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -123,6 +125,9 @@
       </div>
     </div>
   </section>
+  @else
+  <h2 class="text-center py-5">There is no nanner yet!</h2>
+  @endif
 
   <!---------------------------
           Mens Category Start 
@@ -170,7 +175,9 @@
   <!---------------------------
                 Banner Two 
       ---------------------------->
-  <section id="banner-two">
+
+  @if($bannerThree->banner !== null)
+  <section id="banner-two" style="background-image: url({{asset('backend/uploads/'. $bannerTwo->banner)}})">
     <div class="conteiner">
       <div class="row">
         <div class="col-6"></div>
@@ -184,6 +191,10 @@
       </div>
     </div>
   </section>
+  @else
+  <h2 class="text-center py-5">There is no nanner yet!</h2>
+  @endif
+
 
   <!---------------------------------
             Product BY Category one 
@@ -264,7 +275,8 @@
   <!--------------------------------
             Banner Section Three
       --------------------------------->
-  <section id="banner-three">
+  @if($bannerThree->banner !== null)
+  <section id="banner-three" style="background-image: url({{asset('backend/uploads/'. $bannerThree->banner)}})">
     <div class="conteiner">
       <div class="row">
         <div class="col-6">
@@ -281,6 +293,9 @@
       </div>
     </div>
   </section>
+  @else
+  <h2 class="text-center py-5">There is no nanner yet!</h2>
+  @endif
 
   <!-------------------------------
             Product BY Brand

@@ -6,6 +6,7 @@ use App\Mail\ShopCreated;
 use App\Models\Shop;
 use App\Models\Subscription;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -79,12 +80,33 @@ class SubscriptionController extends Controller
           'order_id' => null,
           'payable_amount' => $r->payable_amount
         ]));
-      } elseif ($r->payment_method == 'CASH_ON_DELIVERY') {
-        event(new Registered($user));
-
-        Mail::to($user->email)->send(new ShopCreated($shop));
-        return redirect('/seller/dashboard')->with('success', 'Subscribe successfully !');
+        // event(new Registered($user));
+        
+        // } elseif ($r->payment_method == 'CASH_ON_DELIVERY') {
+        // event(new Registered($user));
+ 
+        // Mail::to($user->email)->send(new ShopCreated($shop));
+        // return redirect('/seller/dashboard')->with('success', 'Subscribe successfully !');
       }
     }
   }
+
+
+  public function resubscribe(Subscription $subscription){
+    $shop = Shop::where('user_id', auth()->id())->first();
+    $user = User::find(auth()->id());
+    $shop->update([
+      'subscription_id' => $subscription->id,
+      'created_at' => Carbon::today(),
+    ]);
+
+    return redirect(route('MyFatoorah.index', [
+          'payment_for' => 'subscription',
+          'user' => $user,
+          'subscription' => $subscription,
+          'order_id' => null,
+          'payable_amount' => $subscription->price+($subscription->price  * 0.15), 
+        ]));
+  }
+  
 }

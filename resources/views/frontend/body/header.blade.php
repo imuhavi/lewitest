@@ -60,11 +60,14 @@
       <div class="container py-2">
         <div class="d-flex justify-content-around align-items-center">
           <div class="col-md-4 d-flex  justify-content-start">
-            <form action="" class="search-box-desk d-flex align-items-center py-1 order-sm-1 order-1 order-lg-0">
+            <form action="{{ route('search') }}"
+              class="search-box-desk d-flex align-items-center py-1 order-sm-1 order-1 order-lg-0" method="get">
+
               <div class="search-icon">
                 <img class="img-fluid" src="{{ asset('frontend/assets') }}/images/search-normal.png" alt="search-icon">
               </div>
-              <input class="search border-0 p-2 ms-1" type="search" id="" placeholder="Search items...">
+              <input class="search border-0 p-2 ms-1" name="keyword" type="search"
+                value="{{ isset($keyword) ? $keyword : '' }}" id="" placeholder="Search Product items...">
             </form>
           </div>
           <div class="col-md-4 d-flex justify-content-center">
@@ -83,6 +86,7 @@
                       href="@if(auth()->user()->role == 'Customer') {{ url(routePrefix(). '/orders') }} @else {{ url(routePrefix(). '/dashboard') }} @endif">{{
                       Str::words(Auth::user()->name) }}</a>
                   </li>
+                  <li><a class="dropdown-item" href="{{ route('subscription') }}">Resubscribe</a></li>
                   <li><a class="dropdown-item" href="#" onclick="logout()">Log out</a></li>
                 </ul>
                 <form method="POST" id="logoutForm" action="{{ route('logout') }}">

@@ -1,4 +1,8 @@
 @extends('frontend.master')
+@section('content')
+
+
+@extends('frontend.master')
 @section('header_css')
 <link rel="stylesheet" href="{{ asset('/frontend/assets/') }}/css/price-range.css">
 @endsection
@@ -17,8 +21,6 @@
             {{ $subcategory->name }}
             @elseif(isset($page) && $page == 'categoryShop')
             {{ $category->name }}
-            @elseif(isset($page) && $page == 'Search')
-            {{ $keyword }}
             @endif
           </li>
         </ol>
@@ -143,9 +145,6 @@
                     </div>
                   </div>
                 </div>
-
-
-
 
               </div>
 
@@ -272,21 +271,11 @@
                     Products
         -------------------------------->
 
+      @if($data->isNotEmpty())
+      @foreach ($data as $item)
       <div class="col-md-12 col-lg-9">
         <div class="row mb-5">
           <div class="col-12 d-flex justify-content-between">
-            @if(isset($page))
-            <h2>
-              @if(isset($page) && $page == 'subCategoryShop')
-              {{ $subcategory->name }}
-              @elseif(isset($page) && $page == 'categoryShop')
-              {{ $category->name }}
-              @elseif(isset($page) && $page == 'Search')
-              {{ $keyword }}
-              @endif
-            </h2>
-
-            @endif
             <div class="filter">
               <select id="select_js" onchange="filter()">
                 <option value="">Filter By</option>
@@ -307,6 +296,14 @@
             class="btn btn-md btn-dark mt-2">Loading...</button>
         </div>
       </div>
+      @endforeach
+      @else
+      <div>
+        <h2>No search found</h2>
+      </div>
+      @endif
+
+
 
     </div>
 
@@ -314,8 +311,6 @@
 </main>
 
 <script>
-  let keyword = location.search.replace('?keyword=', '');
-
   let min = getElement('input-min-lg'),
     max = getElement('input-max-lg'),
     filterBy = getElement('select_js'),
@@ -334,17 +329,15 @@
     mode = 'loadmore'
     fetchProduct()
   }
-
   function filter() {
     skip = 0
     mode = 'filter'
     fetchProduct()
   }
-
   function fetchProduct() {
     loadMoreBtn.style.display = 'none'
     noDataBtn.style.display = 'block'
-    fetch(`/filter/products?min=${min.value}&max=${max.value}&filterBy=${filterBy.value}&color=${color.value}&size=${size.value}&skip=${skip}&category=${category}&cat_or_sub=${catOrSub}&keyword=${keyword}`)
+    fetch(`/filter/products?min=${min.value}&max=${max.value}&filterBy=${filterBy.value}&color=${color.value}&size=${size.value}&skip=${skip}&category=${category}&cat_or_sub=${catOrSub}`)
       .then(response => response.text())
       .then(data => {
         if (data.length != 0) {
@@ -365,7 +358,6 @@
     filter()
     getCart()
   }
-
   function setCurrentValue(field, value) {
     switch (field) {
       case 'color':
@@ -388,4 +380,14 @@
 <script src="{{ asset('/frontend/assets/') }}/js/price-range.js" type="text/javascript"></script>
 
 <script src="{{ asset('/frontend/assets/') }}/js/price-range-sm.js" type="text/javascript"></script>
+@endsection
+
+
+
+
+
+
+
+
+
 @endsection

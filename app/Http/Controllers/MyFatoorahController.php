@@ -115,6 +115,7 @@ class MyFatoorahController extends Controller
     $PaymentInvoice = PaymentInvoice::create($paymentarray);
 
     $user = User::find($UserDefinedField->user_id);
+  
     if ($user->role == 'Seller') {
       $shop = Shop::where('user_id', $UserDefinedField->user_id)->first();
 

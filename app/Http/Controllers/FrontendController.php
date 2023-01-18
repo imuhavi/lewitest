@@ -21,6 +21,7 @@ class FrontendController extends Controller
   private $HOME_PATH = 'frontend.frontend';
   private $VIEW_PATH = 'frontend.pages.';
 
+
   function frontend()
   {
     $slider = Slider::where('status', 'Active')->get();
@@ -40,7 +41,7 @@ class FrontendController extends Controller
 
   function shop()
   {
-    $products = Product::orderBy('id', 'asc')->get();
+    // $products = Product::orderBy('id', 'asc')->get();
 
     $min = 10;
     $max = 9000;
@@ -116,6 +117,7 @@ class FrontendController extends Controller
     $page = 'categoryShop';
     $category = Category::find($id);
 
+
     $min = Product::min('price');
     $max = Product::max('price');
 
@@ -162,13 +164,14 @@ class FrontendController extends Controller
         ->where('category_subcategory_id', $r->category)
         ->pluck('product_id');
       $sql = Product::whereIn('id', $product_arr);
-    } elseif ($r->cat_or_sub == '') {
+    } else{
       $sql = Product::whereStatus('Active');
     }
 
     if ($r->min) {
       $sql->where('price', '>=', $r->min);
     }
+
     if ($r->max) {
       $sql->where('price', '<=', $r->max);
     }
@@ -181,6 +184,11 @@ class FrontendController extends Controller
     if ($r->size) {
       $sql->where('attributes', 'like', '%' . $r->size . '%');
     }
+
+    if($r->keyword){
+      $sql->where('name', 'like', '%' . $r->keyword . '%');
+    }
+
     $data = $sql->whereStatus('Active')->skip($r->skip)->take($take)->get();
     return view('frontend.includes.product', compact('data'));
   }
@@ -190,10 +198,6 @@ class FrontendController extends Controller
     $product = Product::where('slug', $slug)->first();
     $subcategory_id = json_decode($product->productCategory->pluck('category_subcategory_id'));
 
-
-    // $reletedProduct = Product::whereHas('productCategory', function (Builder $query) {
-    //   $query;
-    // })->get();
 
     $category_id= ProductCategory::where('category_or_subcategory', 'category')->where('product_id', $product->id)->pluck('category_subcategory_id');
     $subcategory_id= ProductCategory::where('category_or_subcategory', 'subcategory')->where('product_id', $product->id)->pluck('category_subcategory_id');
@@ -213,14 +217,6 @@ class FrontendController extends Controller
         array_push($reletedProduct, $item->product);
       }
     }
-
-    // array_map(function($item){
-    //   dd($item);
-    //   array_push($reletedProducts, $item['product']);
-    // }, (array) $category_product);
-    
-    $reletedProduct;
-    // return $reletedProduct = Product::whereBeteen('category_id', $subcategory_id)->where('id', '!=', $product->id)->where('status', 'Active')->take(8)->get();
 
     $colors = [];
     $sizes = [];
@@ -272,5 +268,40 @@ class FrontendController extends Controller
   {
     $states = States::get();
     return view($this->VIEW_PATH . 'sellerRegister', compact('subscription', 'states'));
+  }
+
+  function search(Request $request){
+    $keyword = $request->keyword;
+    $page= 'Search';
+    $min = Product::min('price');
+    $max = Product::max('price');
+
+    $allAttributes = Product::where('attributes', '!=', null)->pluck('attributes');
+    $colorAttributesArr = [];
+    $sizeAttributesArr = [];
+    foreach ($allAttributes as $key => $attributes) {
+      foreach (json_decode($attributes) as $attribute) {
+        $itemArr = json_decode($attribute);
+        $item = Attribute::find($itemArr[0]);
+        if ($item->name == 'Color') {
+          array_push($colorAttributesArr, $itemArr[1]);
+        } elseif ($item->name == 'Size') {
+          array_push($sizeAttributesArr, $itemArr[1]);
+        }
+      }
+    }
+
+    $colorAttributesArr = array_unique($colorAttributesArr);
+    $sizeAttributesArr = array_unique($sizeAttributesArr);
+
+    return view($this->VIEW_PATH . 'shop', compact(
+      'min',
+      'page',
+      'keyword',
+      'max',
+      'colorAttributesArr',
+      'sizeAttributesArr'
+    ));
+
   }
 }

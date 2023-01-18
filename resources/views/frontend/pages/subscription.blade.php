@@ -31,7 +31,11 @@
 
         </div>
         <div class="card-footer text-center">
+          @if(auth()->user()->role == 'Seller')
+          <a href="{{ route('resubscribe', $item->id) }}" class="btn btn-dark w-75 p-2">Reactive</a>
+          @else
           <a href="{{ route('sellerRegister', $item->id) }}" class="btn btn-dark w-75 p-2">Get Started</a>
+          @endif
         </div>
       </div>
     </div>
