@@ -36,8 +36,14 @@
             <h2 class="logo"><a href="{{ route('home') }}">Five Dots</a></h2>
             <p class="py-3">Collecting the dots. Then connecting them. And then sharing the connections with those
               around you. This is how a creative human works. Collecting, connecting, sharing.</p>
-
+            @if(auth()->check() && auth()->user()->shop &&
+            (strtotime('now') > strtotime('+' . auth()->user()->shop->subscription->days . ' day',
+            strtotime(auth()->user()->shop->created_at)) )
+            )
+            <a class="btn btn-outline-secondary" href="{{ route('subscription') }}">Reactive</a>
+            @else
             <a class="btn btn-outline-secondary" href="{{ route('subscription') }}">Join As Designer</a>
+            @endif
           </div>
         </div>
 

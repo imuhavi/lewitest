@@ -244,6 +244,15 @@ class FrontendController extends Controller
 
   function subscription()
   {
+    if ( auth()->check() &&
+      auth()->user()->shop
+      &&
+      auth()->user()->shop->status == 'Active'
+      &&
+      (strtotime('+' . auth()->user()->shop->subscription->days . ' day', strtotime(auth()->user()->shop->created_at)) > strtotime('now'))
+    ){
+      return redirect()->back()->with('warning', 'Shop is Already Active!');
+    }
     $data = Subscription::with('subscriptionOptions')->get();
     return view($this->VIEW_PATH . 'subscription', compact('data'));
   }

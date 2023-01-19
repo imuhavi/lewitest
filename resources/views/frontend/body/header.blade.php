@@ -86,7 +86,12 @@
                       href="@if(auth()->user()->role == 'Customer') {{ url(routePrefix(). '/orders') }} @else {{ url(routePrefix(). '/dashboard') }} @endif">{{
                       Str::words(Auth::user()->name) }}</a>
                   </li>
+                  @if(auth()->check() && auth()->user()->shop &&
+                  (strtotime('now') > strtotime('+' . auth()->user()->shop->subscription->days . ' day',
+                  strtotime(auth()->user()->shop->created_at)) )
+                  )
                   <li><a class="dropdown-item" href="{{ route('subscription') }}">Resubscribe</a></li>
+                  @endif
                   <li><a class="dropdown-item" href="#" onclick="logout()">Log out</a></li>
                 </ul>
                 <form method="POST" id="logoutForm" action="{{ route('logout') }}">

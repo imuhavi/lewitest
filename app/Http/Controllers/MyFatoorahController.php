@@ -10,8 +10,9 @@ use App\Models\SellerTransaction;
 use App\Models\Shop;
 use App\Models\Subscription;
 use App\Models\User;
-use App\Notifications\NotifySellerRegister;
+use App\Notifications\NotifySellerRegister; 
 use Basel\MyFatoorah\MyFatoorah;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -35,6 +36,7 @@ class MyFatoorahController extends Controller
       $arr = [
         "user_id" => $user->id,
         "subscription_id" => $subscription->id,
+        "user_role" => $user->role,
         "paid_amount" => $r->payable_amount,
       ];
     } elseif ($r->payment_for == 'place_order') {
@@ -77,10 +79,11 @@ class MyFatoorahController extends Controller
     if (array_key_exists('paymentId', $request->all())) {
       $result = $this->myfatoorah->getPaymentStatus('paymentId', $request->paymentId);
 
+      
       if ($result && $result['IsSuccess'] == true && $result['Data']['InvoiceStatus'] == "Paid") {
         $this->createInvoice($result['Data']);
         $UserDefinedField = json_decode($result['Data']['UserDefinedField']);
-
+        
         if ($UserDefinedField->user_role == 'Customer') {
           return redirect('/order-placed/' . $UserDefinedField->order_id);
         }
@@ -120,6 +123,11 @@ class MyFatoorahController extends Controller
       $shop = Shop::where('user_id', $UserDefinedField->user_id)->first();
 
       // Create a transaction table including user_id, payment method, payment invoice, amount, status.
+      $shop->update([
+        'created_at' => Carbon::today(),
+        'status'=> 'Active'
+      ]);
+
       SellerTransaction::create([
         'user_id' => $UserDefinedField->user_id,
         'payment_invoice_id' => $PaymentInvoice->id,

@@ -97,7 +97,6 @@ class SubscriptionController extends Controller
     $user = User::find(auth()->id());
     $shop->update([
       'subscription_id' => $subscription->id,
-      'created_at' => Carbon::today(),
     ]);
 
     return redirect(route('MyFatoorah.index', [
