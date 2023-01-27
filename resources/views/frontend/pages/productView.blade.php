@@ -88,26 +88,26 @@
 
             @if(!empty($colors))
             <div class="product-color">
-              <p>Color: </p>
-              <ul class="d-flex">
+              <p>Choose Color: </p>
+              <select name="color" id="color" class="form-control js-example-basic-multiple">
                 @foreach($colors as $item)
-                <li><a href="" title="double click to deselect" onclick="return false" title="{{ $item }}"
-                    data-color="{{ $item }}" class="color">{{
-                    strtoupper($item) }}</a></li>
+                <option value="{{ $item }}">{{
+                  strtoupper($item) }}</option>
                 @endforeach
-              </ul>
+              </select>
             </div>
             @endif
 
             @if(!empty($sizes))
             <div class="product-size">
-              <p>Size: </p>
-              <ul class="d-flex">
+              <p>Choose Size: </p>
+
+              <select name="size" id="size" class="form-control js-example-basic-multiple">
                 @foreach($sizes as $item)
-                <li><a href="" title="double click to deselect" onclick="return false" class="size"
-                    data-size="{{ $item }}">{{ ucfirst($item) }}</a></li>
+                <option value="{{ $item }}">{{
+                  strtoupper($item) }}</option>
                 @endforeach
-              </ul>
+              </select>
             </div>
             @endif
 
@@ -326,9 +326,15 @@
 <!-- Nice Number -->
 <script src="{{ asset('/frontend/assets/') }}/js/jquery.nice-number.min.js"></script>
 <script src="https://cdn.rawgit.com/igorlino/elevatezoom-plus/1.1.6/src/jquery.ez-plus.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script>
   // Actice Attributes
+
+  $(document).ready(function () {
+    $('.js-example-basic-multiple').select2();
+  });
+
   $(document).ready(function () {
 
     $('.color').click(function () {
@@ -352,13 +358,17 @@
   });
 
 
+
   $(document).ready(function () {
     $('.cart-btn').on('click', function (e) {
+      let selectElementColor = document.querySelector('#color');
+      let selectElementSize = document.querySelector('#size');
+
       e.preventDefault()
       let productId = $(this).attr('data-productId')
       let quantity = $('.qty-input').val()
-      let color = $('.color-active').attr('data-color')
-      let size = $('.size-active').attr('data-size')
+      let color = selectElementColor.options[selectElementColor.selectedIndex].value;
+      let size = selectElementSize.options[selectElementSize.selectedIndex].value;
       let hasColor = document.querySelector(".color");
       let hasSize = document.querySelector(".size");
 

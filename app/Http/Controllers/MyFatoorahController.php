@@ -123,10 +123,13 @@ class MyFatoorahController extends Controller
       $shop = Shop::where('user_id', $UserDefinedField->user_id)->first();
 
       // Create a transaction table including user_id, payment method, payment invoice, amount, status.
-      $shop->update([
+      
+      if($shop->status === 'Inactive'){
+        $shop->update([
         'created_at' => Carbon::today(),
         'status'=> 'Active'
       ]);
+      }
 
       SellerTransaction::create([
         'user_id' => $UserDefinedField->user_id,

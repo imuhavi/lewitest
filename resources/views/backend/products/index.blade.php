@@ -298,7 +298,8 @@
                         <div class="form-row">
                           <div class="form-group">
                             <label for="discount_type">Discount type</label>
-                            <select name="discount_type" id="discount_type" class="form-control">
+                            <select name="discount_type" id="discount_type"
+                              class="form-control js-example-basic-multiple">
                               <option selected value="">Select Discount Type</option>
                               <option value="Percent">Percent</option>
                               <option value="Flat">Flat</option>
@@ -311,7 +312,8 @@
                         <div class="form-row">
                           <div class="form-group">
                             <label for="discount_type">Discount type</label>
-                            <select name="discount_type" id="discount_type" class="form-control">
+                            <select name="discount_type" id="discount_type"
+                              class="form-control js-example-basic-multiple">
                               <option selected value="">Select Discount Type</option>
                               <option value="Percent" @if($data->discount_type =='Percent' ) selected
                                 @endif>Percent
@@ -522,7 +524,7 @@
                           auth()->user()->name }}</option>
                       </select>
                       @else
-                      <select name="user_id" id="seller" class="form-control">
+                      <select name="user_id" id="seller" class="form-control js-example-basic-multiple">
                         <option value="" selected>Select One</option>
                         @foreach ( $sellers as $seller_item )
                         <option value="{{ $seller_item->id }}" data-seller="{{ $seller_item->name }}" {{ ($data &&
@@ -548,8 +550,7 @@
                 <div class="panel-body">
                   <div class="form-row">
                     <div class="form-group">
-                      <label for="attributes">Product Attribute:(add attribute and value) </label>
-                      <br>
+
 
                       @php
                       $old_attributes = $data ? json_decode($data->attributes) : [];
@@ -565,11 +566,14 @@
                       @endforeach
                       @endif
 
+                      <label for="attributes">Product Attribute:(add attribute and value before choose!) </label>
+                      <br>
+
                       @foreach($attributes as $item)
-                      {{ $loop->iteration }}. {{ $item->name }}
+                      Choose {{ $item->name }}
 
 
-                      <select name="attributes[]" class="form-control" multiple>
+                      <select name="attributes[]" class="form-control js-example-basic-multiple" multiple>
 
                         @foreach(json_decode($item->value) as $value)
                         <option @if(in_array($value, $old_attributes_arr)) selected @endif
@@ -871,29 +875,6 @@
 
 @section('footer_js')
 <script>
-  // $('#category').change(function () {
-  //   let categoryId = $(this).val();
-  //   if (categoryId) {
-  //     $.ajax({
-  //       type: "GET",
-  //       url: "{{url('get-subcategory')}}/" + categoryId,
-  //       success: function (res) {
-  //         if (res) {
-  //           $("#sub_category").empty();
-  //           $("#sub_category").append('<option>Choose Subcategory</option>');
-  //           $.each(res, function (key, value) {
-  //             $("#sub_category").append('<option value="' + value.id + '">' + value.name + '</option>');
-  //           });
-
-  //         } else {
-  //           $("#sub_category").empty();
-  //         }
-  //       }
-  //     });
-  //   } else {
-  //     $("#sub_category").empty();
-  //   }
-  // });
 
   $(document).ready(function () {
     $('.js-example-basic-multiple').select2();
