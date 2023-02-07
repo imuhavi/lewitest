@@ -1,6 +1,6 @@
 @extends('frontend.master')
 @section('header_css')
-<link rel="stylesheet" href="{{ asset('/frontend/assets/') }}/css/price-range.css">
+<link rel="stylesheet" href="{{ secure_asset('/frontend/assets/') }}/css/price-range.css">
 @endsection
 @section('content')
 <main>
@@ -385,7 +385,7 @@
 @endsection
 
 @section('footer_js')
-<script src="{{ asset('/frontend/assets/') }}/js/price-range.js" type="text/javascript"></script>
+<script src="{{ secure_asset('/frontend/assets/') }}/js/price-range.js" type="text/javascript"></script>
 
-<script src="{{ asset('/frontend/assets/') }}/js/price-range-sm.js" type="text/javascript"></script>
+<script src="{{ secure_asset('/frontend/assets/') }}/js/price-range-sm.js" type="text/javascript"></script>
 @endsection
