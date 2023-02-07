@@ -1,6 +1,6 @@
 @extends('frontend.master')
 @section('header_css')
-<link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/jquery.nice-number.min.css">
+<link rel="stylesheet" href="{{ secure_asset('/frontend/assets') }}/css/jquery.nice-number.min.css">
 @endsection
 @section('content')
 <main>
@@ -24,7 +24,7 @@
                 <input type="checkbox">
               </div>
               <div class="cart_pro_img">
-                <img src="{{ asset('frontend/assets/') }}/images/product-img-2.png" alt="product">
+                <img src="{{ secure_asset('frontend/assets/') }}/images/product-img-2.png" alt="product">
               </div>
               <div class="cart_pro_text">
                 <p class="item_name">your product name here</p>
@@ -42,7 +42,7 @@
                 <input type="checkbox">
               </div>
               <div class="cart_pro_img">
-                <img src="{{ asset('frontend/assets/') }}/images/product-img-2.png" alt="product">
+                <img src="{{ secure_asset('frontend/assets/') }}/images/product-img-2.png" alt="product">
               </div>
               <div class="cart_pro_text">
                 <p class="item_name">your product name here</p>
@@ -61,7 +61,7 @@
                 <input type="checkbox">
               </div>
               <div class="cart_pro_img">
-                <img src="{{ asset('frontend/assets/') }}/images/product-img-3.png" alt="product">
+                <img src="{{ secure_asset('frontend/assets/') }}/images/product-img-3.png" alt="product">
               </div>
               <div class="cart_pro_text">
                 <p class="item_name">your product name here</p>
@@ -112,5 +112,5 @@
 @endsection
 @section('footer_js')
 <!-- Nice Number -->
-<script src="{{ asset('/frontend/assets/') }}/js/jquery.nice-number.min.js"></script>
+<script src="{{ secure_asset('/frontend/assets/') }}/js/jquery.nice-number.min.js"></script>
 @endsection
