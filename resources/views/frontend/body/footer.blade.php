@@ -8,11 +8,11 @@
         <div class="col-md-4 col-7 pe-0">
           <div class="contact-info text-dark">
             <h3 class="footer-title">Contact</h3>
-            <p><i class="fas fa-envelope"></i><a href="mailto:info@5dots.sa"><span class="ps-3">info@5dots.sa</span></a>
+            <p><i class="fas fa-envelope"></i><a href="mailto:info@lewiche.com"><span class="ps-3">info@lewiche.com</span></a>
             </p>
-            <p><i class="fas fa-phone"></i><span class="ps-3">+966 53 458 8012</span></p>
+            <p><i class="fas fa-phone"></i><span class="ps-3">+254794080887</span></p>
             <p><i class="fas fa-map-marker-alt"></i></i><span class="ps-3">Made with <i
-                  class="fas fa-heart text-denger"></i> in Al-Khobar</span>
+                  class="fas fa-heart text-denger"></i> in Laravel and vue</span>
             </p>
           </div>
         </div>
@@ -73,7 +73,7 @@
 
   <div class="footer-bottom">
     <p class="text-center">Copyright &copy;
-      <script type="text/javascript"> document.write(new Date().getFullYear());</script> [5dots.sa] All
+      <script type="text/javascript"> document.write(new Date().getFullYear());</script> [lewiche.com] All
       rights reserved.
     </p>
   </div>
