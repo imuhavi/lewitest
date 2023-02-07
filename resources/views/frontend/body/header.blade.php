@@ -64,22 +64,22 @@
               class="search-box-desk d-flex align-items-center py-1 order-sm-1 order-1 order-lg-0" method="get">
 
               <div class="search-icon">
-                <img class="img-fluid" src="{{ asset('frontend/assets') }}/images/search-normal.png" alt="search-icon">
+                <img class="img-fluid" src="{{ secure_asset('frontend/assets') }}/images/search-normal.png" alt="search-icon">
               </div>
               <input class="search border-0 p-2 ms-1" name="keyword" type="search"
                 value="{{ isset($keyword) ? $keyword : '' }}" id="" placeholder="Search Product items...">
             </form>
           </div>
           <div class="col-md-4 d-flex justify-content-center">
-            <a class="navbar-brand" href="{{ route('home') }}"><span class="logo">Five
-                Dots</span></a>
+            <a class="navbar-brand" href="{{ route('home') }}"><span class="logo">Lewi
+                Mall</span></a>
           </div>
           <div class="col-md-4 d-flex  justify-content-end">
             <ul class="top-bar-right d-flex">
               <li>
                 @auth
                 <a href="#" class="signIn" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><img
-                    src="{{ asset('frontend/assets') }}/images/profile.png" alt="user-profile"></a>
+                    src="{{ secure_asset('frontend/assets') }}/images/profile.png" alt="user-profile"></a>
 
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                   <li><a class="dropdown-item"
@@ -100,7 +100,7 @@
 
                 @else
                 <a href="{{ route('userLogin') }}" class="signIn"><img
-                    src="{{ asset('frontend/assets') }}/images/profile.png" alt="user-profile"></a>
+                    src="{{ secure_asset('frontend/assets') }}/images/profile.png" alt="user-profile"></a>
                 @endauth
               </li>
 
