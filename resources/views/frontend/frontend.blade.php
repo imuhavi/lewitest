@@ -20,7 +20,7 @@
 
         @if($item->category)
 
-        <div style="background-image: url({{asset('backend/uploads/'. $item->banner)}})"
+        <div style="background-image: url({{secure_asset('backend/uploads/'. $item->banner)}})"
           class="carousel-item carousel-img {{$key == 0 ? 'active' : '' }}" data-bs-interval="3000">
           <div class="container">
             <div class="carousel-caption text-dark text-left">
@@ -30,7 +30,7 @@
                 <h1 class=" wow bounceInDown" data-wow-duration="1.2s" data-wow-delay=".2s">{{ $item->title }}</h1>
                 <a class="btn fivedots-btn wow bounceInDown" data-wow-duration="1.5s" data-wow-delay=".5s"
                   href="{{ route('categoryShop', ['id'=> $item->category->id, 'slug' => $item->category->slug]) }}">Shop
-                  Now <img class="icon" src="{{ asset('frontend/assets') }}/images/btn-arrow-light.png" alt=""></a>
+                  Now <img class="icon" src="{{ secure_asset('frontend/assets') }}/images/btn-arrow-light.png" alt=""></a>
               </div>
             </div>
           </div>
@@ -62,7 +62,7 @@
           @foreach($womensSub1 as $item)
           <div class="child-cat-item ">
             <a href="{{ route('subCategoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}"><img class="w-100"
-                src="{{ asset('/backend/uploads/'. $item->icon) }}" alt="womens-{{ $item->icon }}"></a>
+                src="{{ secure_asset('/backend/uploads/'. $item->icon) }}" alt="womens-{{ $item->icon }}"></a>
             <h3>{{ $item->name }}</h3>
             <a class="explore-btn"
               href="{{ route('subCategoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}">Explore
@@ -74,7 +74,7 @@
         <div class="col-md-6 category-main">
           <div class="parent-cat-item">
             <div class="overflow"></div>
-            <img class="img-fluid" src="{{ asset('/backend/uploads/'. $womensMain->banner) }}" alt="women's Main">
+            <img class="img-fluid" src="{{ secure_asset('/backend/uploads/'. $womensMain->banner) }}" alt="women's Main">
             <div class="parent-cat-content">
               <h4>{{ $womensMain->name }}</h4>
               <h2>{{ __('NEW FASHION COLLECTION') }}</h2>
@@ -82,7 +82,7 @@
 
               <a class="fivedots-btn mt-4"
                 href="{{ route('categoryShop', ['id'=> $womensMain->id, 'slug' => $womensMain->slug]) }}">Shop Now <img
-                  class="icon" src="{{ asset('frontend/assets') }}/images/btn-arrow-light.png" alt=""></a>
+                  class="icon" src="{{ secure_asset('frontend/assets') }}/images/btn-arrow-light.png" alt=""></a>
             </div>
           </div>
         </div>
@@ -94,11 +94,11 @@
           @foreach($womensSub2 as $item)
           <div class="child-cat-item">
             <a href="{{ route('subCategoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}"><img class="w-100"
-                src="{{ asset('/backend/uploads/'. $item->icon) }}" alt="womans-{{ $item->icon }}"></a>
+                src="{{ secure_asset('/backend/uploads/'. $item->icon) }}" alt="womans-{{ $item->icon }}"></a>
             <h3>{{ $item->name }}</h3>
             <a class="explore-btn"
               href="{{ route('subCategoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}">Explore
-              <img class="icon" src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
+              <img class="icon" src="{{ secure_asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
           </div>
           @endforeach
         </div>
@@ -111,7 +111,7 @@
       ----------------------------->
 
   @if($bannerOne->banner !== null)
-  <section id="banner-one" style="background-image: url({{asset('backend/uploads/'. $bannerOne->banner)}})">
+  <section id="banner-one" style="background-image: url({{secure_asset('backend/uploads/'. $bannerOne->banner)}})">
     <div class="conteiner">
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -119,7 +119,7 @@
             <h5 class="banner-sub-heading">{{ $bannerOne->category->name ?? '' }}</h5>
             <h3 class="banner-heading">{{ $bannerOne->title ?? '' }}</h3>
             <a class="fivedots-btn" href="">Shop
-              Now <img class="icon" src="{{ asset('/backend/uploads'. $bannerOne->banner) }}" alt=""></a>
+              Now <img class="icon" src="{{ secure_asset('/backend/uploads'. $bannerOne->banner) }}" alt=""></a>
           </div>
         </div>
       </div>
@@ -140,11 +140,11 @@
           <div class="col-md-6">
             <div class="child-cat-item">
               <a href="{{ route('subCategoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}"><img class="img-fluid"
-                  src="{{ asset('/backend/uploads/'. $item->icon) }}" alt="women's-1"></a>
+                  src="{{ secure_asset('/backend/uploads/'. $item->icon) }}" alt="women's-1"></a>
               <h3>{{ $item->name }}</h3>
               <a class="explore-btn"
                 href="{{ route('subCategoryShop', ['id'=> $item->id, 'slug' => $item->slug]) }}">Explore <img
-                  class="icon" src="{{ asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
+                  class="icon" src="{{ secure_asset('frontend/assets') }}/images/btn-arrow.png" alt=""></a>
             </div>
           </div>
           @endforeach
@@ -155,7 +155,7 @@
         @if($mensMain)
         <div class="parent-cat-item">
           <div class="overflow"></div>
-          <img class="img-fluid parent-cat-banner" src="{{ asset('/backend/uploads/'. $mensMain->banner) }}"
+          <img class="img-fluid parent-cat-banner" src="{{ secure_asset('/backend/uploads/'. $mensMain->banner) }}"
             alt="women's Main">
           <div class="parent-cat-content">
             <h4>Weekend Sale</h4>
@@ -163,7 +163,7 @@
             <p>From only SA 180.00</p>
             <a class="fivedots-btn mt-4"
               href="{{ route('categoryShop', ['id'=> $mensMain->id, 'slug' => $mensMain->slug]) }}">Shop Now <img
-                class="icon" src="{{ asset('frontend/assets') }}/images/btn-arrow-light.png" alt=""></a>
+                class="icon" src="{{ secure_asset('frontend/assets') }}/images/btn-arrow-light.png" alt=""></a>
           </div>
         </div>
         @endif
@@ -177,7 +177,7 @@
       ---------------------------->
 
   @if($bannerThree->banner !== null)
-  <section id="banner-two" style="background-image: url({{asset('backend/uploads/'. $bannerTwo->banner)}})">
+  <section id="banner-two" style="background-image: url({{secure_asset('backend/uploads/'. $bannerTwo->banner)}})">
     <div class="conteiner">
       <div class="row">
         <div class="col-6"></div>
@@ -185,7 +185,7 @@
           <div class="banner-content bc-two">
             <h3 class="banner-heading">{{ $bannerTwo->title ?? '' }}</h3>
             <a class="fivedots-btn" href="">Shop
-              Now <img class="icon" src="{{ asset('backend/uploads', $bannerOne->banner ?? '') }}" alt=""></a>
+              Now <img class="icon" src="{{ secure_asset('backend/uploads', $bannerOne->banner ?? '') }}" alt=""></a>
           </div>
         </div>
       </div>
@@ -214,7 +214,7 @@
         <div class="item">
           <div class="product-item">
             <a class="w-100" href="{{ route('productView', $product->slug) }}"><img class="img-fluid"
-                src="{{ asset('backend/uploads/' . $product->thumbnail) }}" alt="product-img-1"></a>
+                src="{{ secure_asset('backend/uploads/' . $product->thumbnail) }}" alt="product-img-1"></a>
 
             <div class="product-content">
               <a href="{{ route('productView', $product->slug) }}" class="product-title-home">{{
@@ -267,7 +267,7 @@
 
       <div class="text-center mt-4">
         <a class="fivedots-btn" href="{{ route('shop') }}">View More <img class="icon"
-            src="{{ asset('frontend/assets') }}/images/btn-arrow-light.png" alt=""></a>
+            src="{{ secure_asset('frontend/assets') }}/images/btn-arrow-light.png" alt=""></a>
       </div>
     </div>
   </section>
@@ -276,7 +276,7 @@
             Banner Section Three
       --------------------------------->
   @if($bannerThree->banner !== null)
-  <section id="banner-three" style="background-image: url({{asset('backend/uploads/'. $bannerThree->banner)}})">
+  <section id="banner-three" style="background-image: url({{secure_asset('backend/uploads/'. $bannerThree->banner)}})">
     <div class="conteiner">
       <div class="row">
         <div class="col-6">
@@ -285,7 +285,7 @@
                 $bannerThree->title ?? ''
                 }}</span></h3>
             <a class="fivedots-btn" href="">Shop
-              Now <img class="icon" src="{{ asset('backend/uploads', $bannerThree->banner ?? '') }}" alt=""></a>
+              Now <img class="icon" src="{{ secure_asset('backend/uploads', $bannerThree->banner ?? '') }}" alt=""></a>
           </div>
         </div>
         <div class="col-6">
@@ -307,7 +307,7 @@
         <div class="col-md-12">
           <div id="brand" class="owl-carousel">
             @foreach( $shops as $shop)
-            <div class="items"><a href="#"><img src="{{ asset('backend/uploads/'. $shop->shop_logo) }}" alt=""></a>
+            <div class="items"><a href="#"><img src="{{ secure_asset('backend/uploads/'. $shop->shop_logo) }}" alt=""></a>
             </div>
             @endforeach
           </div>
