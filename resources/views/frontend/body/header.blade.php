@@ -7,21 +7,21 @@
   {{-- Ajax Request Meta --}}
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <script src="https://kit.fontawesome.com/b868f71921.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" type="text/css" href="{{ asset('/frontend/assets/') }}/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="{{ secure_asset('/frontend/assets/') }}/css/bootstrap.min.css">
   @yield('header_css')
-  <link rel="stylesheet" href="{{ asset('/frontend/assets/') }}/css/select2.css">
-  <link rel="stylesheet" href="{{ asset('/frontend/assets/') }}/css/nice-select.css">
-  <link rel="stylesheet" href="{{ asset('/frontend/assets/') }}/css/jquery.nice-number.min.css">
-  <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/owl.carousel.min.css">
-  <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/owl.theme.default.min.css">
-  <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/slick.css">
-  <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/hs-menu.min.css" />
-  <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/animate.css">
-  <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/material-design/css/material-design-iconic-font.css" />
-  <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/carousel.css">
-  <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/custom.css">
-  <link rel="stylesheet" href="{{ asset('/frontend/assets') }}/css/responsive.css">
-  <link href="{{ asset('backend/') }}/assets/plugins/toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="{{ secure_asset('/frontend/assets/') }}/css/select2.css">
+  <link rel="stylesheet" href="{{ secure_asset('/frontend/assets/') }}/css/nice-select.css">
+  <link rel="stylesheet" href="{{ secure_asset('/frontend/assets/') }}/css/jquery.nice-number.min.css">
+  <link rel="stylesheet" href="{{ secure_asset('/frontend/assets') }}/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="{{ secure_asset('/frontend/assets') }}/css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="{{ secure_asset('/frontend/assets') }}/css/slick.css">
+  <link rel="stylesheet" href="{{ secure_asset('/frontend/assets') }}/css/hs-menu.min.css" />
+  <link rel="stylesheet" href="{{ secure_asset('/frontend/assets') }}/css/animate.css">
+  <link rel="stylesheet" href="{{ secure_asset('/frontend/assets') }}/material-design/css/material-design-iconic-font.css" />
+  <link rel="stylesheet" href="{{ secure_asset('/frontend/assets') }}/css/carousel.css">
+  <link rel="stylesheet" href="{{ secure_asset('/frontend/assets') }}/css/custom.css">
+  <link rel="stylesheet" href="{{ secure_asset('/frontend/assets') }}/css/responsive.css">
+  <link href="{{ secure_asset('backend/') }}/assets/plugins/toastr/toastr.min.css" rel="stylesheet" type="text/css" />
   <style>
     .cartParent {
       position: relative;
